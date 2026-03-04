@@ -616,8 +616,9 @@ body {
 
 .tplan-input-row label {
   font-size: 0.65rem;
-  color: var(--text-muted);
-  width: 38px;
+  font-weight: 700;
+  color: var(--teal-mid);
+  width: 14px;
   flex-shrink: 0;
 }
 
@@ -634,6 +635,15 @@ body {
 }
 
 .tplan-input-row input:focus { border-color: var(--teal-mid); background: var(--white); }
+
+.tplan-val {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--teal);
+  white-space: nowrap;
+  min-width: 28px;
+  text-align: right;
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -923,15 +933,17 @@ body {
             <!-- Düz -->
             <div class="tplan-card" data-plan="duz" onclick="pickTplan(this)">
               <div class="tplan-diagram">
-                <svg viewBox="0 0 80 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                  <rect x="4" y="5" width="72" height="10" rx="1.5"/>
+                <svg viewBox="0 0 80 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <rect x="4" y="5" width="72" height="12" rx="1.5" fill="rgba(0,91,108,0.09)"/>
+                  <text x="40" y="15" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans, sans-serif">A</text>
                 </svg>
               </div>
               <div class="tplan-label">Düz Tezgah</div>
               <div class="tplan-inputs" style="display:none">
                 <div class="tplan-input-row">
-                  <label>A kolu</label>
-                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                  <label>A</label>
+                  <input type="number" placeholder="cm" min="1" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
                 </div>
               </div>
             </div>
@@ -939,20 +951,23 @@ body {
             <!-- L -->
             <div class="tplan-card" data-plan="l" onclick="pickTplan(this)">
               <div class="tplan-diagram">
-                <svg viewBox="0 0 50 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="42" height="11" rx="1"/>
-                  <rect x="4" y="4" width="11" height="36" rx="1"/>
+                <svg viewBox="0 0 54 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="4,4 50,4 50,16 16,16 16,44 4,44" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="2"/>
+                  <text x="27" y="13" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans, sans-serif">A</text>
+                  <text x="10" y="32" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans, sans-serif">B</text>
                 </svg>
               </div>
               <div class="tplan-label">L Tezgah</div>
               <div class="tplan-inputs" style="display:none">
                 <div class="tplan-input-row">
-                  <label>A kolu</label>
-                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                  <label>A</label>
+                  <input type="number" placeholder="cm" min="1" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
                 </div>
                 <div class="tplan-input-row">
-                  <label>B kolu</label>
-                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                  <label>B</label>
+                  <input type="number" placeholder="cm" min="1" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
                 </div>
               </div>
             </div>
@@ -960,25 +975,29 @@ body {
             <!-- U -->
             <div class="tplan-card" data-plan="u" onclick="pickTplan(this)">
               <div class="tplan-diagram">
-                <svg viewBox="0 0 50 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="4" width="42" height="11" rx="1"/>
-                  <rect x="4" y="4" width="11" height="36" rx="1"/>
-                  <rect x="35" y="4" width="11" height="36" rx="1"/>
+                <svg viewBox="0 0 54 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="4,4 50,4 50,44 38,44 38,16 16,16 16,44 4,44" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="2"/>
+                  <text x="10" y="33" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans, sans-serif">A</text>
+                  <text x="27" y="12" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans, sans-serif">B</text>
+                  <text x="44" y="33" text-anchor="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans, sans-serif">C</text>
                 </svg>
               </div>
               <div class="tplan-label">U Tezgah</div>
               <div class="tplan-inputs" style="display:none">
                 <div class="tplan-input-row">
-                  <label>A kolu</label>
-                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                  <label>A</label>
+                  <input type="number" placeholder="cm" min="1" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
                 </div>
                 <div class="tplan-input-row">
-                  <label>B kolu</label>
-                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                  <label>B</label>
+                  <input type="number" placeholder="cm" min="1" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
                 </div>
                 <div class="tplan-input-row">
-                  <label>C kolu</label>
-                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                  <label>C</label>
+                  <input type="number" placeholder="cm" min="1" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
                 </div>
               </div>
             </div>
@@ -1132,6 +1151,13 @@ function pickChip(el) {
   saveSelections();
 }
 
+function updateTplanVal(input) {
+  const span = input.nextElementSibling;
+  const label = input.previousElementSibling.textContent.trim();
+  if (span) span.textContent = input.value ? label + ': ' + input.value + ' cm' : '';
+  saveSelections();
+}
+
 function pickTplan(el) {
   const panel = el.closest('.q2-panel');
   panel.querySelectorAll('.tplan-card').forEach(c => {
@@ -1185,7 +1211,7 @@ function loadSelections() {
         const tcard = document.querySelector(`#q2PanelD .tplan-card[data-plan="${adv.dplan}"]`);
         if (tcard) {
           pickTplan(tcard);
-          if (adv.dinputs) tcard.querySelectorAll('input').forEach((inp, i) => { if (adv.dinputs[i] !== undefined) inp.value = adv.dinputs[i]; });
+          if (adv.dinputs) tcard.querySelectorAll('input').forEach((inp, i) => { if (adv.dinputs[i] !== undefined) { inp.value = adv.dinputs[i]; updateTplanVal(inp); } });
         }
       }
     } catch(e) {}
