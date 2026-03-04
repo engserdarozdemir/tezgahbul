@@ -202,7 +202,7 @@ body {
   font-weight: 500;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--teal-light);
+  color: var(--orange);
   margin-bottom: 6px;
 }
 
@@ -211,7 +211,7 @@ body {
   display: block;
   width: 20px;
   height: 1px;
-  background: var(--teal-light);
+  background: var(--orange);
 }
 
 .slide-title {
@@ -499,6 +499,142 @@ body {
   border: 1px solid rgba(0,91,108,0.15);
 }
 
+/* ===== Q2 ADVANCED (4 panel) ===== */
+.q2-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #e0e0e0;
+  margin: 20px -40px -36px;
+}
+
+.q2-panel {
+  background: var(--white);
+  padding: 18px 16px 20px;
+  border-top: 2px solid transparent;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.q2-panel.filled { border-top-color: var(--teal); }
+
+.q2-panel-no {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 5px;
+}
+
+.q2-panel-q {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 12px;
+  line-height: 1.35;
+  letter-spacing: -0.2px;
+  min-height: 40px;
+}
+
+.q2-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.q2-chip {
+  padding: 4px 9px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1.5px solid #ddd;
+  background: var(--white);
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.q2-chip:hover { border-color: var(--teal-mid); color: var(--teal); }
+.q2-chip.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+/* Panel 4 tezgah planları */
+.q2-panel-locked {
+  opacity: 0.35;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.tplan-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tplan-card {
+  border: 1.5px solid #e0e0e0;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--white);
+}
+
+.tplan-card:hover { border-color: var(--teal-mid); }
+.tplan-card.active { border-color: var(--teal); border-left-width: 3px; }
+
+.tplan-diagram {
+  color: var(--teal-mid);
+  margin-bottom: 4px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.tplan-diagram svg { height: 100%; width: auto; }
+.tplan-card.active .tplan-diagram { color: var(--teal); }
+
+.tplan-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: 0.3px;
+}
+
+.tplan-inputs {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tplan-input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tplan-input-row label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  width: 38px;
+  flex-shrink: 0;
+}
+
+.tplan-input-row input {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 3px 6px;
+  font-size: 0.72rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--teal);
+  outline: none;
+  background: var(--off-white);
+  min-width: 0;
+}
+
+.tplan-input-row input:focus { border-color: var(--teal-mid); background: var(--white); }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -507,6 +643,7 @@ body {
   .sec-sub { text-align: left; max-width: 100%; }
   .soru-blok { padding: 32px 20px 28px; }
   #sorular { padding: 72px 16px 80px; }
+  .q2-grid { grid-template-columns: repeat(2, 1fr); margin: 16px -20px -28px; }
 }
 
 </style>
@@ -563,8 +700,8 @@ body {
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <div class="slide-inner">
-        <div class="slide-cat">Porselen Slab</div>
-        <h1 class="slide-title">Ada Mutfak Çözümleri</h1>
+        <div class="slide-cat">Porselen</div>
+        <h1 class="slide-title">Doğaya özgü zarar görmeyen desenler</h1>
       </div>
     </div>
   </div>
@@ -574,7 +711,7 @@ body {
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <div class="slide-inner">
-        <div class="slide-cat">Komple Mutfak</div>
+        <div class="slide-cat">Mutfak Değişimi</div>
         <h1 class="slide-title">Sıfırdan Dolap &amp; Tezgah</h1>
       </div>
     </div>
@@ -656,31 +793,14 @@ body {
     </div>
 
     <!-- S2 -->
-    <div class="soru-blok">
+    <div class="soru-blok" id="q2Standard">
       <div class="soru-no">Soru 02</div>
-      <div class="soru-q">Hangi malzemeleri tanıyorsunuz?</div>
+      <div class="soru-q" id="q2Title">Hangi malzemeleri tanıyorsunuz?</div>
       <div class="soru-hint">İşaretleyin — anında açıklama görünür</div>
 
       <div class="mat-list">
 
-        <div class="mat-row" onclick="this.classList.toggle('on')">
-          <div class="mat-row-head">
-            <div class="mat-box"></div>
-            <span class="mat-name">Mermer</span>
-            <span class="mat-tag">Doğal Taş</span>
-          </div>
-          <div class="mat-info">
-            <div class="mat-info-inner">
-              <div class="mat-info-title">Mermer Nedir?</div>
-              <div class="mat-info-text">Doğal metamorfik bir kaya olan mermer, eşsiz damarları ve sıcak görünümüyle mutfak tezgahlarında tercih edilen klasik bir malzemedir. Her plaka benzersiz desenler taşır.</div>
-              <div class="mat-tags">
-                <span class="mtag">Doğal Desen</span><span class="mtag">Serin Yüzey</span><span class="mtag">Uzun Ömürlü</span><span class="mtag">Asit Hassas</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mat-row" onclick="this.classList.toggle('on')">
+        <div class="mat-row" data-mat="granit" onclick="toggleMat(this)">
           <div class="mat-row-head">
             <div class="mat-box"></div>
             <span class="mat-name">Granit</span>
@@ -689,7 +809,7 @@ body {
           <div class="mat-info">
             <div class="mat-info-inner">
               <div class="mat-info-title">Granit Nedir?</div>
-              <div class="mat-info-text">Volkanik kökenli granit, mermere kıyasla çok daha sert ve dayanıklıdır. Çizilmeye, ısıya ve asitlere karşı dirençlidir. Yoğun kullanılan mutfaklar için idealdir.</div>
+              <div class="mat-info-text">Volkanik kökenli granit, çok sert ve dayanıklıdır. Çizilmeye, ısıya ve asitlere karşı dirençlidir. Yoğun kullanılan mutfaklar için idealdir.</div>
               <div class="mat-tags">
                 <span class="mtag">Çok Sert</span><span class="mtag">Isıya Dayanıklı</span><span class="mtag">Az Bakım</span><span class="mtag">Çizilmez</span>
               </div>
@@ -697,7 +817,7 @@ body {
           </div>
         </div>
 
-        <div class="mat-row" onclick="this.classList.toggle('on')">
+        <div class="mat-row" data-mat="quartz" onclick="toggleMat(this)">
           <div class="mat-row-head">
             <div class="mat-box"></div>
             <span class="mat-name">Quartz</span>
@@ -706,7 +826,7 @@ body {
           <div class="mat-info">
             <div class="mat-info-inner">
               <div class="mat-info-title">Quartz Nedir?</div>
-              <div class="mat-info-text">%90-95 doğal kuvars ve reçineden üretilir. Gözeneksiz yüzeyi ve yüksek hijyen özelliğiyle özellikle modern mutfaklarda popülerdir. Geniş renk seçeneği sunar.</div>
+              <div class="mat-info-text">%90-95 doğal kuvars ve reçineden üretilir. Gözeneksiz yüzeyi ve yüksek hijyen özelliğiyle modern mutfaklarda popülerdir. Geniş renk seçeneği sunar.</div>
               <div class="mat-tags">
                 <span class="mtag">Gözeneksiz</span><span class="mtag">Hijyenik</span><span class="mtag">Renk Seçeneği</span><span class="mtag">Kolay Bakım</span>
               </div>
@@ -714,7 +834,7 @@ body {
           </div>
         </div>
 
-        <div class="mat-row" onclick="this.classList.toggle('on')">
+        <div class="mat-row" data-mat="porselen" onclick="toggleMat(this)">
           <div class="mat-row-head">
             <div class="mat-box"></div>
             <span class="mat-name">Porselen Slab</span>
@@ -731,7 +851,7 @@ body {
           </div>
         </div>
 
-        <div class="mat-row" onclick="this.classList.toggle('on')">
+        <div class="mat-row" data-mat="bilmiyorum" id="matBilmiyorum" onclick="toggleMat(this)" style="display:none">
           <div class="mat-row-head">
             <div class="mat-box"></div>
             <span class="mat-name">Hiçbirini Bilmiyorum</span>
@@ -745,6 +865,124 @@ body {
                 <span class="mtag">Ücretsiz Danışma</span><span class="mtag">Ev Ziyareti</span><span class="mtag">Numune Getirme</span>
               </div>
             </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- S2 ADVANCED (only when Q1 = "Mevcut Tezgahı Değiştir") -->
+    <div id="q2Advanced" class="soru-blok" style="display:none">
+      <div class="soru-no">Soru 02</div>
+      <div class="soru-q">Tezgahınız hakkında bilgi verin</div>
+      <div class="soru-hint">Her adım sırasıyla açılır</div>
+
+      <div class="q2-grid">
+
+        <!-- Panel A: Mevcut tezgah -->
+        <div class="q2-panel" id="q2PanelA" data-panel="A">
+          <div class="q2-panel-no">A</div>
+          <div class="q2-panel-q">Mevcut tezgahınız nedir?</div>
+          <div class="q2-chip-group">
+            <button class="q2-chip" onclick="pickChip(this)">Mermer</button>
+            <button class="q2-chip" onclick="pickChip(this)">Akrilik</button>
+            <button class="q2-chip" onclick="pickChip(this)">Granit</button>
+            <button class="q2-chip" onclick="pickChip(this)">Quartz</button>
+            <button class="q2-chip" onclick="pickChip(this)">Porselen</button>
+            <button class="q2-chip" onclick="pickChip(this)">Bilmiyorum</button>
+          </div>
+        </div>
+
+        <!-- Panel B: İstenen ürün (locked until A filled) -->
+        <div class="q2-panel q2-panel-locked" id="q2PanelB" data-panel="B">
+          <div class="q2-panel-no">B</div>
+          <div class="q2-panel-q">Hangi ürün grubunu istiyorsunuz?</div>
+          <div class="q2-chip-group">
+            <button class="q2-chip" onclick="pickChip(this)">Porselen</button>
+            <button class="q2-chip" onclick="pickChip(this)">Quartz</button>
+            <button class="q2-chip" onclick="pickChip(this)">Granit</button>
+          </div>
+        </div>
+
+        <!-- Panel C: Ölçü bilgisi (locked until B filled) -->
+        <div class="q2-panel q2-panel-locked" id="q2PanelC" data-panel="C">
+          <div class="q2-panel-no">C</div>
+          <div class="q2-panel-q">Ölçüleri biliyor musunuz?</div>
+          <div class="q2-chip-group">
+            <button class="q2-chip" onclick="pickChip(this)">Evet</button>
+            <button class="q2-chip" onclick="pickChip(this)">Hayır</button>
+          </div>
+        </div>
+
+        <!-- Panel D: Tezgah tipi + ölçüler (locked until C = Evet) -->
+        <div class="q2-panel q2-panel-locked" id="q2PanelD" data-panel="D">
+          <div class="q2-panel-no">D</div>
+          <div class="q2-panel-q">Tezgah tipi &amp; ölçüler</div>
+          <div class="tplan-grid">
+
+            <!-- Düz -->
+            <div class="tplan-card" data-plan="duz" onclick="pickTplan(this)">
+              <div class="tplan-diagram">
+                <svg viewBox="0 0 80 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                  <rect x="4" y="5" width="72" height="10" rx="1.5"/>
+                </svg>
+              </div>
+              <div class="tplan-label">Düz Tezgah</div>
+              <div class="tplan-inputs" style="display:none">
+                <div class="tplan-input-row">
+                  <label>A kolu</label>
+                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                </div>
+              </div>
+            </div>
+
+            <!-- L -->
+            <div class="tplan-card" data-plan="l" onclick="pickTplan(this)">
+              <div class="tplan-diagram">
+                <svg viewBox="0 0 50 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="42" height="11" rx="1"/>
+                  <rect x="4" y="4" width="11" height="36" rx="1"/>
+                </svg>
+              </div>
+              <div class="tplan-label">L Tezgah</div>
+              <div class="tplan-inputs" style="display:none">
+                <div class="tplan-input-row">
+                  <label>A kolu</label>
+                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                </div>
+                <div class="tplan-input-row">
+                  <label>B kolu</label>
+                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                </div>
+              </div>
+            </div>
+
+            <!-- U -->
+            <div class="tplan-card" data-plan="u" onclick="pickTplan(this)">
+              <div class="tplan-diagram">
+                <svg viewBox="0 0 50 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="42" height="11" rx="1"/>
+                  <rect x="4" y="4" width="11" height="36" rx="1"/>
+                  <rect x="35" y="4" width="11" height="36" rx="1"/>
+                </svg>
+              </div>
+              <div class="tplan-label">U Tezgah</div>
+              <div class="tplan-inputs" style="display:none">
+                <div class="tplan-input-row">
+                  <label>A kolu</label>
+                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                </div>
+                <div class="tplan-input-row">
+                  <label>B kolu</label>
+                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                </div>
+                <div class="tplan-input-row">
+                  <label>C kolu</label>
+                  <input type="number" placeholder="cm" min="1" oninput="saveSelections()">
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -831,11 +1069,136 @@ startAuto();
   });
 })();
 
-// ===== Q1 =====
-function pickOpt(el) {
-  document.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
-  el.classList.add('selected');
+// ===== Q1 & Q2 =====
+const q2Titles = [
+  '',
+  'Hangi tezgah malzemesini tercih edersiniz?',
+  'Tezgahınızın malzemesi nedir?',
+  'Hangi malzemeleri tanıyorsunuz?'
+];
+
+function updateQ2(idx) {
+  const standard = document.getElementById('q2Standard');
+  const advanced = document.getElementById('q2Advanced');
+  if (idx === 0) {
+    standard.style.display = 'none';
+    advanced.style.display = '';
+  } else {
+    standard.style.display = '';
+    advanced.style.display = 'none';
+    document.getElementById('q2Title').textContent = q2Titles[idx] || q2Titles[3];
+    document.getElementById('matBilmiyorum').style.display = idx === 3 ? '' : 'none';
+  }
 }
+
+function pickOpt(el) {
+  const cards = document.querySelectorAll('.opt-card');
+  cards.forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const idx = Array.from(cards).indexOf(el);
+  updateQ2(idx);
+  saveSelections();
+}
+
+function toggleMat(el) {
+  el.classList.toggle('on');
+  saveSelections();
+}
+
+function pickChip(el) {
+  const panel = el.closest('.q2-panel');
+  panel.querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  panel.classList.add('filled');
+
+  const panelId = panel.id;
+  if (panelId === 'q2PanelA') {
+    document.getElementById('q2PanelB').classList.remove('q2-panel-locked');
+  } else if (panelId === 'q2PanelB') {
+    document.getElementById('q2PanelC').classList.remove('q2-panel-locked');
+  } else if (panelId === 'q2PanelC') {
+    const panelD = document.getElementById('q2PanelD');
+    if (el.textContent.trim() === 'Evet') {
+      panelD.classList.remove('q2-panel-locked');
+    } else {
+      panelD.classList.add('q2-panel-locked');
+      panelD.querySelectorAll('.tplan-card').forEach(c => {
+        c.classList.remove('active');
+        c.querySelector('.tplan-inputs').style.display = 'none';
+      });
+      panelD.classList.remove('filled');
+    }
+  }
+  saveSelections();
+}
+
+function pickTplan(el) {
+  const panel = el.closest('.q2-panel');
+  panel.querySelectorAll('.tplan-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.tplan-inputs').style.display = 'none';
+  });
+  el.classList.add('active');
+  el.querySelector('.tplan-inputs').style.display = 'flex';
+  panel.classList.add('filled');
+  saveSelections();
+}
+
+// ===== LOCAL STORAGE =====
+function saveSelections() {
+  const cards = document.querySelectorAll('.opt-card');
+  const q1 = Array.from(cards).findIndex(c => c.classList.contains('selected'));
+  localStorage.setItem('tb_q1', q1);
+  if (q1 === 0) {
+    const getChip = id => document.querySelector(`#${id} .q2-chip.active`)?.textContent.trim() || '';
+    const activeCard = document.querySelector('#q2PanelD .tplan-card.active');
+    const dplan = activeCard?.dataset.plan || '';
+    const dinputs = activeCard ? Array.from(activeCard.querySelectorAll('input')).map(i => i.value) : [];
+    localStorage.setItem('tb_q2adv', JSON.stringify({
+      a: getChip('q2PanelA'), b: getChip('q2PanelB'),
+      c: getChip('q2PanelC'), dplan, dinputs
+    }));
+  } else {
+    const q2 = Array.from(document.querySelectorAll('.mat-row.on')).map(r => r.dataset.mat);
+    localStorage.setItem('tb_q2', JSON.stringify(q2));
+  }
+}
+
+function loadSelections() {
+  const q1 = parseInt(localStorage.getItem('tb_q1'));
+  if (!isNaN(q1) && q1 >= 0) {
+    const cards = document.querySelectorAll('.opt-card');
+    if (cards[q1]) {
+      cards[q1].classList.add('selected');
+      updateQ2(q1);
+    }
+  }
+  if (q1 === 0) {
+    try {
+      const adv = JSON.parse(localStorage.getItem('tb_q2adv') || '{}');
+      const findChip = (panelId, text) =>
+        Array.from(document.querySelectorAll(`#${panelId} .q2-chip`)).find(c => c.textContent.trim() === text);
+      if (adv.a) { const c = findChip('q2PanelA', adv.a); if (c) pickChip(c); }
+      if (adv.b) { const c = findChip('q2PanelB', adv.b); if (c) pickChip(c); }
+      if (adv.c) { const c = findChip('q2PanelC', adv.c); if (c) pickChip(c); }
+      if (adv.dplan) {
+        const tcard = document.querySelector(`#q2PanelD .tplan-card[data-plan="${adv.dplan}"]`);
+        if (tcard) {
+          pickTplan(tcard);
+          if (adv.dinputs) tcard.querySelectorAll('input').forEach((inp, i) => { if (adv.dinputs[i] !== undefined) inp.value = adv.dinputs[i]; });
+        }
+      }
+    } catch(e) {}
+  } else {
+    const q2 = JSON.parse(localStorage.getItem('tb_q2') || '[]');
+    q2.forEach(mat => {
+      const row = document.querySelector(`.mat-row[data-mat="${mat}"]`);
+      if (row) row.classList.add('on');
+    });
+  }
+}
+
+loadSelections();
 
 // ===== ŞEHİR (LOGO) =====
 function toggleLogoCity() {
