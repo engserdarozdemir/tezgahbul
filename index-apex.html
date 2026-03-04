@@ -151,15 +151,14 @@ body {
 .slide {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 1s ease;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
-.slide.active { opacity: 1; }
-
 .slide:nth-child(1) .slide-bg { background-image: url('Goruntu/GranitBanner.png'); background-size: cover; background-position: center; }
-.slide:nth-child(2) .slide-bg { background: linear-gradient(160deg, #0a1a0a 0%, #1a3520 45%, #254a30 100%); }
-.slide:nth-child(3) .slide-bg { background: linear-gradient(160deg, #1a1000 0%, #2a2000 45%, #3d3010 100%); }
+.slide:nth-child(2) .slide-bg { background-image: url('Goruntu/Quartz.png'); background-size: cover; background-position: center; }
+.slide:nth-child(3) .slide-bg { background-image: url('Goruntu/Porselen.png'); background-size: cover; background-position: center; }
+.slide:nth-child(4) .slide-bg { background-image: url('Goruntu/AdaT.png'); background-size: cover; background-position: center; }
 
 .slide-bg {
   position: absolute;
@@ -553,6 +552,17 @@ body {
     <div class="slide-overlay"></div>
     <div class="slide-content">
       <div class="slide-inner">
+        <div class="slide-cat">Quartz</div>
+        <h1 class="slide-title">Modern &amp; Hijyenik Yüzeyler</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-inner">
         <div class="slide-cat">Porselen Slab</div>
         <h1 class="slide-title">Ada Mutfak Çözümleri</h1>
       </div>
@@ -748,24 +758,42 @@ body {
 // ===== SLIDER =====
 const DURATION = 7500;
 const slides = document.querySelectorAll('.slide');
+const hero = document.getElementById('hero');
+const total = slides.length;
 let cur = 0, timer;
 
-function goTo(i) {
-  slides[cur].classList.remove('active');
-  cur = (i + slides.length) % slides.length;
-  slides[cur].classList.add('active');
+function getOffset(i) {
+  let d = i - cur;
+  if (d >  total / 2) d -= total;
+  if (d < -total / 2) d += total;
+  return d;
+}
+
+function positionSlides(dragPct, animate) {
+  slides.forEach((slide, i) => {
+    const x = getOffset(i) * 100 + dragPct;
+    slide.style.transition = animate
+      ? 'transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+      : 'none';
+    slide.style.transform = `translateX(${x}%)`;
+  });
+}
+
+function goTo(i, animate) {
+  cur = ((i % total) + total) % total;
+  positionSlides(0, animate);
 }
 
 function startAuto() {
   clearTimeout(timer);
-  timer = setTimeout(() => { goTo(cur + 1); startAuto(); }, DURATION);
+  timer = setTimeout(() => { goTo(cur + 1, true); startAuto(); }, DURATION);
 }
 
+positionSlides(0, false);
 startAuto();
 
 // ===== DRAG / SWIPE =====
 (function () {
-  const hero = document.getElementById('hero');
   let startX = 0, isDragging = false;
 
   hero.addEventListener('pointerdown', e => {
@@ -773,20 +801,34 @@ startAuto();
     startX = e.clientX;
     isDragging = true;
     hero.setPointerCapture(e.pointerId);
+    clearTimeout(timer);
+    positionSlides(0, false);
+  });
+
+  hero.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    const pct = (e.clientX - startX) / hero.offsetWidth * 100;
+    positionSlides(pct, false);
   });
 
   hero.addEventListener('pointerup', e => {
     if (!isDragging) return;
     isDragging = false;
     const dx = e.clientX - startX;
-    if (Math.abs(dx) > 50) {
-      clearTimeout(timer);
-      goTo(cur + (dx < 0 ? 1 : -1));
-      startAuto();
+    if (Math.abs(dx) > hero.offsetWidth * 0.2) {
+      goTo(cur + (dx < 0 ? 1 : -1), true);
+    } else {
+      positionSlides(0, true);
     }
+    startAuto();
   });
 
-  hero.addEventListener('pointercancel', () => { isDragging = false; });
+  hero.addEventListener('pointercancel', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    positionSlides(0, true);
+    startAuto();
+  });
 })();
 
 // ===== Q1 =====
