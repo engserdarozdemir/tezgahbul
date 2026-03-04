@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TezgahBul — Mutfak Tezgahı Uzmanı</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ===== TOKENS ===== */
+:root {
+  --teal:       #002A32;
+  --teal-mid:   #005b6c;
+  --teal-light: #007a8f;
+  --dark:       #121313;
+  --gray-bg:    #e7e7e7;
+  --gray-mid:   #b0b0b0;
+  --white:      #ffffff;
+  --off-white:  #f5f5f5;
+  --text:       #1a1a1a;
+  --text-muted: #6b6b6b;
+  --orange:     #e8650a;
+  --gap: min(56px, 5vw);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 68px;
+  background: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gap);
+}
+
+.nav-logo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.5px;
+}
+
+.city-trigger {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-logo span {
+  color: var(--teal-light);
+}
+
+.nav-logo sub {
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.4);
+  margin-left: 6px;
+  vertical-align: baseline;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+  user-select: none;
+}
+
+.nav-logo sub:hover { color: var(--orange); }
+
+/* Logo şehir dropdown */
+.logo-city-dd {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: rgba(0,30,38,0.96);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 1.5px solid var(--orange);
+  width: fit-content;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 200;
+}
+
+.logo-city-dd.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.lc-opt {
+  padding: 6px 10px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.15s;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.lc-opt:last-child { border-bottom: none; }
+.lc-opt:hover { color: var(--orange); }
+.lc-opt.active { color: var(--orange); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  height: 20vh;
+  min-height: 100px;
+  overflow: hidden;
+  margin-top: 68px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slide.active { opacity: 1; }
+
+.slide:nth-child(1) .slide-bg { background-image: url('Goruntu/GranitBanner.png'); background-size: cover; background-position: center; }
+.slide:nth-child(2) .slide-bg { background: linear-gradient(160deg, #0a1a0a 0%, #1a3520 45%, #254a30 100%); }
+.slide:nth-child(3) .slide-bg { background: linear-gradient(160deg, #1a1000 0%, #2a2000 45%, #3d3010 100%); }
+
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  /* Fotoğraf için:
+     background-image: url('images/mutfak1.jpg');
+     background-size: cover; background-position: center; */
+}
+
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(0,42,50,0.75) 0%,
+    rgba(0,42,50,0.3) 60%,
+    rgba(0,42,50,0.05) 100%
+  );
+}
+
+.slide-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--gap);
+  max-width: 1200px;
+  margin: 0 auto;
+  left: 0; right: 0;
+}
+
+.slide-inner {
+  max-width: 560px;
+}
+
+.slide-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 6px;
+}
+
+.slide-cat::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: var(--teal-light);
+}
+
+.slide-title {
+  font-size: clamp(1rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+}
+
+
+/* ===== SORULAR ===== */
+#sorular {
+  background: var(--off-white);
+  padding: 96px var(--gap) 112px;
+}
+
+.sorular-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sec-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 64px;
+  gap: 24px;
+}
+
+.sec-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+  margin-bottom: 12px;
+}
+
+.sec-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--teal-mid);
+}
+
+.sec-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.sec-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 280px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.soru-blok {
+  background: var(--white);
+  border: 1px solid #e0e0e0;
+  border-top: 3px solid var(--teal);
+  padding: 40px 40px 36px;
+  margin-bottom: 20px;
+}
+
+.soru-no {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+  margin-bottom: 8px;
+}
+
+.soru-q {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+  letter-spacing: -0.3px;
+  line-height: 1.3;
+}
+
+.soru-hint {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* Q1 grid */
+.opt-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.opt-card {
+  border: 1.5px solid #e0e0e0;
+  padding: 20px 18px;
+  cursor: pointer;
+  background: var(--white);
+  text-align: left;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.opt-card:hover {
+  border-color: var(--teal-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,42,50,0.08);
+}
+
+.opt-card.selected {
+  border-color: var(--teal);
+  border-left-width: 3px;
+  box-shadow: 6px 6px 0 rgba(0,42,50,0.12);
+}
+
+.opt-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--teal-mid);
+  margin-bottom: 12px;
+}
+
+.opt-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.opt-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1.3;
+  margin-bottom: 3px;
+  letter-spacing: -0.2px;
+}
+
+.opt-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.opt-radio {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid #ccc;
+  transition: all 0.2s;
+}
+
+.opt-card.selected .opt-radio {
+  background: var(--teal);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,42,50,0.12);
+}
+
+/* Q2 liste */
+.mat-list { display: flex; flex-direction: column; }
+
+.mat-row {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #ebebeb;
+  cursor: pointer;
+}
+
+.mat-row:last-child { border-bottom: none; }
+
+.mat-row-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 4px;
+  transition: background 0.15s;
+}
+
+.mat-row:hover .mat-row-head { background: rgba(0,42,50,0.02); }
+
+.mat-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-row.on .mat-box {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.mat-row.on .mat-box::after {
+  content: '';
+  width: 9px;
+  height: 5px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg) translateY(-1px);
+  display: block;
+}
+
+.mat-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--teal);
+  flex: 1;
+  letter-spacing: -0.2px;
+}
+
+.mat-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid #e0e0e0;
+  padding: 3px 9px;
+}
+
+.mat-info {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.mat-row.on .mat-info {
+  max-height: 260px;
+  opacity: 1;
+}
+
+.mat-info-inner {
+  margin: 0 0 16px 32px;
+  padding: 16px 20px;
+  background: rgba(0,42,50,0.03);
+  border-left: 3px solid var(--teal-light);
+}
+
+.mat-info-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-mid);
+  margin-bottom: 6px;
+}
+
+.mat-info-text {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.mat-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.mtag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  background: rgba(0,91,108,0.08);
+  color: var(--teal-mid);
+  border: 1px solid rgba(0,91,108,0.15);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .opt-grid { grid-template-columns: 1fr; }
+  .sec-header { flex-direction: column; align-items: flex-start; }
+  .sec-sub { text-align: left; max-width: 100%; }
+  .soru-blok { padding: 32px 20px 28px; }
+  #sorular { padding: 72px 16px 80px; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="nav-logo">
+    Tezgah<span>Bul</span>
+    <span class="city-trigger">
+      <sub id="citySub" onclick="toggleLogoCity()">Ankara</sub>
+      <div class="logo-city-dd" id="logoCityDD">
+        <div class="lc-opt active" onclick="pickLogoCity(this,'Ankara')">Ankara</div>
+        <div class="lc-opt" onclick="pickLogoCity(this,'İstanbul')">İstanbul</div>
+        <div class="lc-opt" onclick="pickLogoCity(this,'İzmir')">İzmir</div>
+      </div>
+    </span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#">Hakkımızda</a></li>
+    <li><a href="#">İletişim</a></li>
+  </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+
+  <div class="slide active">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-inner">
+        <div class="slide-cat">Granit</div>
+        <h1 class="slide-title">Mutfağınızı Yeniden Tasarlayın</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-inner">
+        <div class="slide-cat">Porselen Slab</div>
+        <h1 class="slide-title">Ada Mutfak Çözümleri</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="slide-bg"></div>
+    <div class="slide-overlay"></div>
+    <div class="slide-content">
+      <div class="slide-inner">
+        <div class="slide-cat">Komple Mutfak</div>
+        <h1 class="slide-title">Sıfırdan Dolap &amp; Tezgah</h1>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- ===== SORULAR ===== -->
+<section id="sorular">
+  <div class="sorular-wrap">
+
+    <div class="sec-header">
+      <div>
+        <div class="sec-eyebrow">Size Özel Rehber</div>
+        <div class="sec-title">Nasıl yardımcı<br>olabiliriz?</div>
+      </div>
+      <div class="sec-sub">Birkaç soruyla size en uygun çözümü ve fiyatı bulalım.</div>
+    </div>
+
+    <!-- S1 -->
+    <div class="soru-blok">
+      <div class="soru-no">Soru 01</div>
+      <div class="soru-q">Mutfağınız için ne planlıyorsunuz?</div>
+      <div class="soru-hint">En uygun seçeneği seçin</div>
+
+      <div class="opt-grid">
+
+        <button class="opt-card" onclick="pickOpt(this)">
+          <div class="opt-radio"></div>
+          <div class="opt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 4v6h6"/>
+              <path d="M23 20v-6h-6"/>
+              <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+            </svg>
+          </div>
+          <div class="opt-label">Mevcut Tezgahı Değiştir</div>
+          <div class="opt-sub">Sadece tezgah yenileme</div>
+        </button>
+
+        <button class="opt-card" onclick="pickOpt(this)">
+          <div class="opt-radio"></div>
+          <div class="opt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="opt-label">Sıfırdan Dolap &amp; Tezgah</div>
+          <div class="opt-sub">Komple mutfak kurulumu</div>
+        </button>
+
+        <button class="opt-card" onclick="pickOpt(this)">
+          <div class="opt-radio"></div>
+          <div class="opt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <div class="opt-label">Tamir &amp; Yenileme</div>
+          <div class="opt-sub">Mevcut tezgahı restore et</div>
+        </button>
+
+        <button class="opt-card" onclick="pickOpt(this)">
+          <div class="opt-radio"></div>
+          <div class="opt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+              <line x1="12" y1="17" x2="12.01" y2="17" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="opt-label">Henüz Karar Vermedim</div>
+          <div class="opt-sub">Tavsiye istiyorum</div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- S2 -->
+    <div class="soru-blok">
+      <div class="soru-no">Soru 02</div>
+      <div class="soru-q">Hangi malzemeleri tanıyorsunuz?</div>
+      <div class="soru-hint">İşaretleyin — anında açıklama görünür</div>
+
+      <div class="mat-list">
+
+        <div class="mat-row" onclick="this.classList.toggle('on')">
+          <div class="mat-row-head">
+            <div class="mat-box"></div>
+            <span class="mat-name">Mermer</span>
+            <span class="mat-tag">Doğal Taş</span>
+          </div>
+          <div class="mat-info">
+            <div class="mat-info-inner">
+              <div class="mat-info-title">Mermer Nedir?</div>
+              <div class="mat-info-text">Doğal metamorfik bir kaya olan mermer, eşsiz damarları ve sıcak görünümüyle mutfak tezgahlarında tercih edilen klasik bir malzemedir. Her plaka benzersiz desenler taşır.</div>
+              <div class="mat-tags">
+                <span class="mtag">Doğal Desen</span><span class="mtag">Serin Yüzey</span><span class="mtag">Uzun Ömürlü</span><span class="mtag">Asit Hassas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mat-row" onclick="this.classList.toggle('on')">
+          <div class="mat-row-head">
+            <div class="mat-box"></div>
+            <span class="mat-name">Granit</span>
+            <span class="mat-tag">Doğal Taş</span>
+          </div>
+          <div class="mat-info">
+            <div class="mat-info-inner">
+              <div class="mat-info-title">Granit Nedir?</div>
+              <div class="mat-info-text">Volkanik kökenli granit, mermere kıyasla çok daha sert ve dayanıklıdır. Çizilmeye, ısıya ve asitlere karşı dirençlidir. Yoğun kullanılan mutfaklar için idealdir.</div>
+              <div class="mat-tags">
+                <span class="mtag">Çok Sert</span><span class="mtag">Isıya Dayanıklı</span><span class="mtag">Az Bakım</span><span class="mtag">Çizilmez</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mat-row" onclick="this.classList.toggle('on')">
+          <div class="mat-row-head">
+            <div class="mat-box"></div>
+            <span class="mat-name">Quartz</span>
+            <span class="mat-tag">Mühendislik Taşı</span>
+          </div>
+          <div class="mat-info">
+            <div class="mat-info-inner">
+              <div class="mat-info-title">Quartz Nedir?</div>
+              <div class="mat-info-text">%90-95 doğal kuvars ve reçineden üretilir. Gözeneksiz yüzeyi ve yüksek hijyen özelliğiyle özellikle modern mutfaklarda popülerdir. Geniş renk seçeneği sunar.</div>
+              <div class="mat-tags">
+                <span class="mtag">Gözeneksiz</span><span class="mtag">Hijyenik</span><span class="mtag">Renk Seçeneği</span><span class="mtag">Kolay Bakım</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mat-row" onclick="this.classList.toggle('on')">
+          <div class="mat-row-head">
+            <div class="mat-box"></div>
+            <span class="mat-name">Porselen Slab</span>
+            <span class="mat-tag">Büyük Format</span>
+          </div>
+          <div class="mat-info">
+            <div class="mat-info-inner">
+              <div class="mat-info-title">Porselen Slab Nedir?</div>
+              <div class="mat-info-text">120×260 cm ve üzeri boyutlarda büyük format seramik levhalardır. İnce (6–12 mm), hafif ancak son derece sağlamdır. Ada mutfaklar için idealdir.</div>
+              <div class="mat-tags">
+                <span class="mtag">Büyük Format</span><span class="mtag">İnce &amp; Hafif</span><span class="mtag">UV Dayanımlı</span><span class="mtag">Dış Mekan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mat-row" onclick="this.classList.toggle('on')">
+          <div class="mat-row-head">
+            <div class="mat-box"></div>
+            <span class="mat-name">Hiçbirini Bilmiyorum</span>
+            <span class="mat-tag">Rehberlik</span>
+          </div>
+          <div class="mat-info">
+            <div class="mat-info-inner">
+              <div class="mat-info-title">Size Özel Tavsiye</div>
+              <div class="mat-info-text">Sorun değil! Uzmanlarımız kullanım alışkanlıklarınızı, bütçenizi ve estetik beklentilerinizi dinleyerek en uygun malzemeyi önerecektir.</div>
+              <div class="mat-tags">
+                <span class="mtag">Ücretsiz Danışma</span><span class="mtag">Ev Ziyareti</span><span class="mtag">Numune Getirme</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+// ===== SLIDER =====
+const DURATION = 7500;
+const slides = document.querySelectorAll('.slide');
+let cur = 0, timer;
+
+function goTo(i) {
+  slides[cur].classList.remove('active');
+  cur = (i + slides.length) % slides.length;
+  slides[cur].classList.add('active');
+}
+
+function startAuto() {
+  clearTimeout(timer);
+  timer = setTimeout(() => { goTo(cur + 1); startAuto(); }, DURATION);
+}
+
+startAuto();
+
+// ===== DRAG / SWIPE =====
+(function () {
+  const hero = document.getElementById('hero');
+  let startX = 0, isDragging = false;
+
+  hero.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    startX = e.clientX;
+    isDragging = true;
+    hero.setPointerCapture(e.pointerId);
+  });
+
+  hero.addEventListener('pointerup', e => {
+    if (!isDragging) return;
+    isDragging = false;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 50) {
+      clearTimeout(timer);
+      goTo(cur + (dx < 0 ? 1 : -1));
+      startAuto();
+    }
+  });
+
+  hero.addEventListener('pointercancel', () => { isDragging = false; });
+})();
+
+// ===== Q1 =====
+function pickOpt(el) {
+  document.querySelectorAll('.opt-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ===== ŞEHİR (LOGO) =====
+function toggleLogoCity() {
+  document.getElementById('logoCityDD').classList.toggle('open');
+}
+
+function pickLogoCity(el, name) {
+  document.getElementById('citySub').textContent = name;
+  document.getElementById('logoCityDD').classList.remove('open');
+  document.querySelectorAll('.lc-opt').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.city-trigger')) {
+    document.getElementById('logoCityDD').classList.remove('open');
+  }
+});
+</script>
+
+</body>
+</html>
