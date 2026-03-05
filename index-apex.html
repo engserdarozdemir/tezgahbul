@@ -1303,6 +1303,67 @@ function pickChip(el) {
   saveSelections();
 }
 
+// ===== TPLAN ORANTILI KUŞBAKIŞI ÇİZİM =====
+function r(n) { return Math.round(n * 10) / 10; } // 1 ondalık
+
+function updateTplanShape(card) {
+  const plan = card.dataset.plan;
+  const vals = Array.from(card.querySelectorAll('.tplan-input-row input')).map(i => parseFloat(i.value) || 0);
+  if (plan === 'l') _drawL(card, vals[0], vals[1]);
+  else if (plan === 'u') _drawU(card, vals[0], vals[1], vals[2]);
+}
+
+function _drawL(card, A, B) {
+  const svg = card.querySelector('.tplan-diagram svg');
+  const poly = svg && svg.querySelector('polygon');
+  if (!poly) return;
+  if (!A || !B) {
+    poly.setAttribute('points', '4,4 56,4 56,22 22,22 22,54 4,54');
+    const tA = svg.querySelector('[data-arm="A"]');
+    const gB = svg.querySelector('[data-arm="B"]')?.parentElement;
+    if (tA) { tA.setAttribute('x', '30'); tA.setAttribute('y', '-2'); }
+    if (gB && gB.tagName === 'g') gB.setAttribute('transform', 'translate(-4,38) rotate(-90)');
+    return;
+  }
+  const sc = Math.min(52 / A, 50 / B);
+  const As = A * sc, Bs = B * sc;
+  const d = Math.min(Math.max(8, 60 * sc), As * 0.45, Bs * 0.45);
+  const x1=4, x2=r(4+As), x3=r(4+d), y1=4, y2=r(4+d), y3=r(4+Bs);
+  poly.setAttribute('points', `${x1},${y1} ${x2},${y1} ${x2},${y2} ${x3},${y2} ${x3},${y3} ${x1},${y3}`);
+  const tA = svg.querySelector('[data-arm="A"]');
+  const gB = svg.querySelector('[data-arm="B"]')?.parentElement;
+  if (tA) { tA.setAttribute('x', r((x1+x2)/2)); tA.setAttribute('y', r(y1-4)); }
+  if (gB && gB.tagName === 'g') gB.setAttribute('transform', `translate(${r(x1-5)},${r((y1+y3)/2)}) rotate(-90)`);
+}
+
+function _drawU(card, A, B, C) {
+  const svg = card.querySelector('.tplan-diagram svg');
+  const poly = svg && svg.querySelector('polygon');
+  if (!poly) return;
+  if (!A || !B || !C) {
+    poly.setAttribute('points', '4,4 56,4 56,54 38,54 38,22 22,22 22,54 4,54');
+    const tB = svg.querySelector('[data-arm="B"]');
+    const gA = svg.querySelector('[data-arm="A"]')?.parentElement;
+    const gC = svg.querySelector('[data-arm="C"]')?.parentElement;
+    if (tB) { tB.setAttribute('x', '30'); tB.setAttribute('y', '-2'); }
+    if (gA && gA.tagName === 'g') gA.setAttribute('transform', 'translate(-4,38) rotate(-90)');
+    if (gC && gC.tagName === 'g') gC.setAttribute('transform', 'translate(64,38) rotate(-90)');
+    return;
+  }
+  const sc = Math.min(52 / B, 50 / Math.max(A, C));
+  const As=A*sc, Bs=B*sc, Cs=C*sc;
+  const d = Math.min(Math.max(8, 60 * sc), Bs / 3);
+  const x1=4, x2=r(4+Bs), x3=r(4+Bs-d), x4=r(4+d);
+  const y1=4, y2=r(4+d), y3=r(4+As), y4=r(4+Cs);
+  poly.setAttribute('points', `${x1},${y1} ${x2},${y1} ${x2},${y4} ${x3},${y4} ${x3},${y2} ${x4},${y2} ${x4},${y3} ${x1},${y3}`);
+  const tB = svg.querySelector('[data-arm="B"]');
+  const gA = svg.querySelector('[data-arm="A"]')?.parentElement;
+  const gC = svg.querySelector('[data-arm="C"]')?.parentElement;
+  if (tB) { tB.setAttribute('x', r((x1+x2)/2)); tB.setAttribute('y', r(y1-4)); }
+  if (gA && gA.tagName === 'g') gA.setAttribute('transform', `translate(${r(x1-5)},${r((y1+y3)/2)}) rotate(-90)`);
+  if (gC && gC.tagName === 'g') gC.setAttribute('transform', `translate(${r(x2+5)},${r((y1+y4)/2)}) rotate(-90)`);
+}
+
 function updateTplanVal(input) {
   const span = input.nextElementSibling;
   const label = input.previousElementSibling.textContent.trim();
@@ -1322,6 +1383,8 @@ function updateTplanVal(input) {
   const svgTxt = card.querySelector(`.tplan-diagram [data-arm="${label}"]`);
   if (svgTxt) svgTxt.textContent = val ? label + ': ' + val : label;
 
+  // Orantılı şekli güncelle
+  updateTplanShape(card);
   saveSelections();
 }
 
@@ -1334,6 +1397,7 @@ function _syncTplanSvg(card) {
     const svgTxt = card.querySelector(`.tplan-diagram [data-arm="${lbl}"]`);
     if (svgTxt) svgTxt.textContent = val ? lbl + ': ' + val : lbl;
   });
+  updateTplanShape(card);
 }
 
 function pickTplan(el) {
@@ -1341,8 +1405,10 @@ function pickTplan(el) {
   panel.querySelectorAll('.tplan-card').forEach(c => {
     c.classList.remove('active');
     c.querySelector('.tplan-inputs').style.display = 'none';
-    // SVG kollarını harfe sıfırla
+    // SVG kollarını harfe sıfırla ve şekli varsayılana döndür
     c.querySelectorAll('.tplan-diagram [data-arm]').forEach(t => t.textContent = t.dataset.arm);
+    if (c.dataset.plan === 'l') _drawL(c, 0, 0);
+    else if (c.dataset.plan === 'u') _drawU(c, 0, 0, 0);
   });
   el.classList.add('active');
   el.querySelector('.tplan-inputs').style.display = 'flex';
