@@ -578,6 +578,9 @@ body {
   cursor: pointer;
   transition: all 0.15s;
   background: var(--white);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .tplan-card:hover { border-color: var(--teal-mid); }
@@ -585,14 +588,21 @@ body {
 
 .tplan-diagram {
   color: var(--teal-mid);
-  margin-bottom: 4px;
   height: 52px;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .tplan-diagram svg { height: 100%; width: auto; }
 .tplan-card.active .tplan-diagram { color: var(--teal); }
+
+.tplan-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .tplan-label {
   font-size: 0.68rem;
@@ -602,7 +612,7 @@ body {
 }
 
 .tplan-inputs {
-  margin-top: 8px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -937,17 +947,19 @@ body {
             <!-- Düz -->
             <div class="tplan-card" data-plan="duz" onclick="pickTplan(this)">
               <div class="tplan-diagram">
-                <svg viewBox="0 0 80 26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                  <rect x="4" y="3" width="72" height="20" rx="1.5" fill="rgba(0,91,108,0.09)"/>
-                  <text data-arm="A" x="40" y="7" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                <svg viewBox="0 -10 80 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" overflow="visible">
+                  <rect x="4" y="3" width="72" height="18" rx="1.5" fill="rgba(0,91,108,0.09)"/>
+                  <text data-arm="A" x="40" y="-3" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
                 </svg>
               </div>
-              <div class="tplan-label">Düz Tezgah</div>
-              <div class="tplan-inputs" style="display:none">
-                <div class="tplan-input-row">
-                  <label>A</label>
-                  <input type="number" placeholder="cm" min="1" max="1200" oninput="updateTplanVal(this)">
-                  <span class="tplan-val"></span>
+              <div class="tplan-right">
+                <div class="tplan-label">Düz Tezgah</div>
+                <div class="tplan-inputs" style="display:none">
+                  <div class="tplan-input-row">
+                    <label>A</label>
+                    <input type="number" placeholder="cm" min="1" max="1200" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -955,27 +967,29 @@ body {
             <!-- L -->
             <div class="tplan-card" data-plan="l" onclick="pickTplan(this)">
               <div class="tplan-diagram">
-                <svg viewBox="0 0 60 58" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
                   <polygon points="4,4 56,4 56,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
-                  <!-- A: yatay kol, arka kenar = üst (y=4), metin üste yakın -->
-                  <text data-arm="A" x="30" y="8" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
-                  <!-- B: dikey kol, arka kenar = sol (x=4), metin sola yakın, döndürülmüş -->
-                  <g transform="translate(13,38) rotate(-90)">
-                    <text data-arm="B" x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                  <!-- A: yatay kol, metin dışarıda - üstte -->
+                  <text data-arm="A" x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                  <!-- B: dikey kol, metin dışarıda - solda -->
+                  <g transform="translate(1,38) rotate(-90)">
+                    <text data-arm="B" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
                   </g>
                 </svg>
               </div>
-              <div class="tplan-label">L Tezgah</div>
-              <div class="tplan-inputs" style="display:none">
-                <div class="tplan-input-row">
-                  <label>A</label>
-                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
-                  <span class="tplan-val"></span>
-                </div>
-                <div class="tplan-input-row">
-                  <label>B</label>
-                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
-                  <span class="tplan-val"></span>
+              <div class="tplan-right">
+                <div class="tplan-label">L Tezgah</div>
+                <div class="tplan-inputs" style="display:none">
+                  <div class="tplan-input-row">
+                    <label>A</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                  <div class="tplan-input-row">
+                    <label>B</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -983,36 +997,38 @@ body {
             <!-- U -->
             <div class="tplan-card" data-plan="u" onclick="pickTplan(this)">
               <div class="tplan-diagram">
-                <svg viewBox="0 0 60 58" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
                   <polygon points="4,4 56,4 56,54 38,54 38,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
-                  <!-- B: üst yatay kol, arka kenar = üst (y=4), metin üste yakın -->
-                  <text data-arm="B" x="30" y="8" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
-                  <!-- A: sol dikey kol, arka kenar = sol (x=4), metin sola yakın, döndürülmüş -->
-                  <g transform="translate(13,38) rotate(-90)">
-                    <text data-arm="A" x="0" y="-5" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                  <!-- B: üst kol, metin dışarıda - üstte -->
+                  <text data-arm="B" x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                  <!-- A: sol kol, metin dışarıda - solda -->
+                  <g transform="translate(1,38) rotate(-90)">
+                    <text data-arm="A" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
                   </g>
-                  <!-- C: sağ dikey kol, arka kenar = sağ (x=56), metin sağa yakın, döndürülmüş -->
-                  <g transform="translate(47,38) rotate(-90)">
-                    <text data-arm="C" x="0" y="5" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">C</text>
+                  <!-- C: sağ kol, metin dışarıda - sağda -->
+                  <g transform="translate(59,38) rotate(-90)">
+                    <text data-arm="C" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="700" fill="currentColor" font-family="DM Sans,sans-serif">C</text>
                   </g>
                 </svg>
               </div>
-              <div class="tplan-label">U Tezgah</div>
-              <div class="tplan-inputs" style="display:none">
-                <div class="tplan-input-row">
-                  <label>A</label>
-                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
-                  <span class="tplan-val"></span>
-                </div>
-                <div class="tplan-input-row">
-                  <label>B</label>
-                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
-                  <span class="tplan-val"></span>
-                </div>
-                <div class="tplan-input-row">
-                  <label>C</label>
-                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
-                  <span class="tplan-val"></span>
+              <div class="tplan-right">
+                <div class="tplan-label">U Tezgah</div>
+                <div class="tplan-inputs" style="display:none">
+                  <div class="tplan-input-row">
+                    <label>A</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                  <div class="tplan-input-row">
+                    <label>B</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                  <div class="tplan-input-row">
+                    <label>C</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
                 </div>
               </div>
             </div>
