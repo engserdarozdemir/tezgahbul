@@ -661,6 +661,78 @@ body {
   text-align: right;
 }
 
+/* ===== ADA TEZGAH TOGGLE ===== */
+.ada-toggle-row {
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #ebebeb;
+}
+
+.ada-toggle-q {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--teal);
+  flex: 1;
+  line-height: 1.3;
+}
+
+.ios-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.ios-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.ios-slider {
+  position: absolute;
+  inset: 0;
+  background: #d0d0d0;
+  border-radius: 24px;
+  transition: background 0.22s;
+}
+
+.ios-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  transition: transform 0.22s cubic-bezier(0.4,0,0.2,1);
+}
+
+.ios-switch input:checked + .ios-slider { background: var(--teal); }
+.ios-switch input:checked + .ios-slider::before { transform: translateX(18px); }
+
+.ada-yn-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--teal-mid);
+  min-width: 28px;
+}
+
+/* Panel E (ada tezgah ölçüleri) */
+.q2-panel-e {
+  grid-column: 1 / -1;
+  background: var(--white);
+  padding: 18px 16px 20px;
+  border-top: 2px solid var(--teal);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -951,7 +1023,7 @@ body {
               <div class="tplan-diagram">
                 <svg viewBox="0 -10 80 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" overflow="visible">
                   <rect x="4" y="3" width="72" height="18" rx="1.5" fill="rgba(0,91,108,0.09)"/>
-                  <text data-arm="A" x="40" y="-3" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="500" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                  <text data-arm="A" x="40" y="-3" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
                 </svg>
               </div>
               <div class="tplan-right">
@@ -972,10 +1044,10 @@ body {
                 <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
                   <polygon points="4,4 56,4 56,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
                   <!-- A: yatay kol, metin dışarıda - üstte -->
-                  <text data-arm="A" x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="500" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                  <text data-arm="A" x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
                   <!-- B: dikey kol, metin dışarıda - solda -->
                   <g transform="translate(-4,38) rotate(-90)">
-                    <text data-arm="B" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="500" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                    <text data-arm="B" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
                   </g>
                 </svg>
               </div>
@@ -1002,14 +1074,14 @@ body {
                 <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
                   <polygon points="4,4 56,4 56,54 38,54 38,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
                   <!-- B: üst kol, metin dışarıda - üstte -->
-                  <text data-arm="B" x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="500" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                  <text data-arm="B" x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
                   <!-- A: sol kol, metin dışarıda - solda -->
                   <g transform="translate(-4,38) rotate(-90)">
-                    <text data-arm="A" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="500" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                    <text data-arm="A" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
                   </g>
                   <!-- C: sağ kol, metin dışarıda - sağda -->
                   <g transform="translate(64,38) rotate(-90)">
-                    <text data-arm="C" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="500" fill="currentColor" font-family="DM Sans,sans-serif">C</text>
+                    <text data-arm="C" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">C</text>
                   </g>
                 </svg>
               </div>
@@ -1035,6 +1107,49 @@ body {
               </div>
             </div>
 
+          </div>
+
+          <!-- Ada tezgah sorusu -->
+          <div class="ada-toggle-row" id="adaToggleRow" style="display:none">
+            <span class="ada-toggle-q">Ada tezgah istiyor musunuz?</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="adaSwitch" onchange="toggleAda(this)">
+              <span class="ios-slider"></span>
+            </label>
+            <span class="ada-yn-label" id="adaLabel">Hayır</span>
+          </div>
+
+        </div>
+
+        <!-- Panel E: Ada tezgah ölçüleri (tam genişlik 2. satır) -->
+        <div class="q2-panel-e" id="q2PanelE" style="display:none">
+          <div class="q2-panel-no">E</div>
+          <div class="q2-panel-q">Ada tezgah ölçüleri</div>
+          <div class="tplan-card active" data-plan="ada" style="cursor:default; margin-top:8px; border-left-width:3px;">
+            <div class="tplan-diagram" style="height:52px">
+              <svg viewBox="0 -12 110 62" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" overflow="visible">
+                <rect x="4" y="4" width="84" height="46" rx="1.5" fill="rgba(0,91,108,0.09)"/>
+                <text data-arm="A" x="46" y="-4" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                <g transform="translate(96,27) rotate(-90)">
+                  <text data-arm="B" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                </g>
+              </svg>
+            </div>
+            <div class="tplan-right">
+              <div class="tplan-label">Ada Tezgah</div>
+              <div class="tplan-inputs" style="display:flex">
+                <div class="tplan-input-row">
+                  <label>A</label>
+                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
+                </div>
+                <div class="tplan-input-row">
+                  <label>B</label>
+                  <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                  <span class="tplan-val"></span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1179,6 +1294,10 @@ function pickChip(el) {
         c.querySelector('.tplan-inputs').style.display = 'none';
       });
       panelD.classList.remove('filled');
+      // Ada toggle ve panel E'yi sıfırla
+      const adaSw = document.getElementById('adaSwitch');
+      if (adaSw && adaSw.checked) { adaSw.checked = false; toggleAda(adaSw); }
+      document.getElementById('adaToggleRow').style.display = 'none';
     }
   }
   saveSelections();
@@ -1230,6 +1349,25 @@ function pickTplan(el) {
   // Seçili kartın mevcut değerlerini SVG'ye geri yükle
   _syncTplanSvg(el);
   panel.classList.add('filled');
+  // Ada toggle'ı göster
+  document.getElementById('adaToggleRow').style.display = 'flex';
+  saveSelections();
+}
+
+function toggleAda(checkbox) {
+  const label = document.getElementById('adaLabel');
+  const panelE = document.getElementById('q2PanelE');
+  if (checkbox.checked) {
+    label.textContent = 'Evet';
+    panelE.style.display = 'block';
+  } else {
+    label.textContent = 'Hayır';
+    panelE.style.display = 'none';
+    // Ada alanlarını sıfırla
+    panelE.querySelectorAll('input').forEach(i => { i.value = ''; });
+    panelE.querySelectorAll('.tplan-val').forEach(s => { s.textContent = ''; });
+    panelE.querySelectorAll('[data-arm]').forEach(t => { t.textContent = t.dataset.arm; });
+  }
   saveSelections();
 }
 
@@ -1243,9 +1381,11 @@ function saveSelections() {
     const activeCard = document.querySelector('#q2PanelD .tplan-card.active');
     const dplan = activeCard?.dataset.plan || '';
     const dinputs = activeCard ? Array.from(activeCard.querySelectorAll('input')).map(i => i.value) : [];
+    const ada = document.getElementById('adaSwitch')?.checked || false;
+    const adaInputs = Array.from(document.querySelectorAll('#q2PanelE .tplan-card input')).map(i => i.value);
     localStorage.setItem('tb_q2adv', JSON.stringify({
       a: getChip('q2PanelA'), b: getChip('q2PanelB'),
-      c: getChip('q2PanelC'), dplan, dinputs
+      c: getChip('q2PanelC'), dplan, dinputs, ada, adaInputs
     }));
   } else {
     const q2 = Array.from(document.querySelectorAll('.mat-row.on')).map(r => r.dataset.mat);
@@ -1275,6 +1415,18 @@ function loadSelections() {
         if (tcard) {
           pickTplan(tcard);
           if (adv.dinputs) { tcard.querySelectorAll('input').forEach((inp, i) => { if (adv.dinputs[i] !== undefined) inp.value = adv.dinputs[i]; }); _syncTplanSvg(tcard); }
+        }
+      }
+      if (adv.ada) {
+        const sw = document.getElementById('adaSwitch');
+        if (sw) {
+          sw.checked = true;
+          toggleAda(sw);
+          if (adv.adaInputs) {
+            document.querySelectorAll('#q2PanelE .tplan-card input').forEach((inp, i) => {
+              if (adv.adaInputs[i]) { inp.value = adv.adaInputs[i]; inp.dispatchEvent(new Event('input')); }
+            });
+          }
         }
       }
     } catch(e) {}
