@@ -2,5 +2,46 @@
   "version": "1.0",
   "updated": "2026-03-06",
   "aciklama": "TezgahBul imalatçı veritabanı. Her kayıt: ad, adres, sehir, ilce, lat, lon, tel, maps (Google Maps linki)",
-  "manufacturers": []
+  "manufacturers": [
+    {
+      "ad": "Palmira Granit Mermer",
+      "adres": "Yuvaköy Mermerciler Sitesi, Yenimahalle",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "lat": 39.9752,
+      "lon": 32.6944,
+      "tel": "0312 472 82 93",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Palmira+Granit+Mermer+Ankara+Yuvaköy"
+    },
+    {
+      "ad": "Torunlar Mermer",
+      "adres": "Mermerciler Sitesi 3707. Sk. No:27, Yuvaköy, Yenimahalle",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "lat": 39.9755,
+      "lon": 32.6947,
+      "tel": "0312 396 00 31",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Torunlar+Mermer+Ankara+Yuvaköy"
+    },
+    {
+      "ad": "Hisartaş Mühendislik",
+      "adres": "Yuvaköy Mah. 3709. Sk. No:12, Yenimahalle",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "lat": 39.9748,
+      "lon": 32.6951,
+      "tel": "0312 385 04 19",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Hisartaş+Mühendislik+Ankara+Yuvaköy"
+    },
+    {
+      "ad": "Betamer",
+      "adres": "Yuva Mah. 3706. Sk. No:64, Yenimahalle",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "lat": 39.9760,
+      "lon": 32.6940,
+      "tel": "0312 396 02 22",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Betamer+Madencilik+Ankara+Yuvaköy"
+    }
+  ]
 }
