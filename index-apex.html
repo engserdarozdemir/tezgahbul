@@ -733,6 +733,153 @@ body {
   border-top: 2px solid var(--teal);
 }
 
+/* ===== KAPLAMA & DAVLUMBAZ ===== */
+.kaplama-expand {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.kaplama-expand.open { max-height: 400px; opacity: 1; }
+
+.dim-arrow {
+  font-size: 0.78rem;
+  color: var(--teal-light);
+  flex-shrink: 0;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.yuksek-expand,
+.standart-expand {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.yuksek-expand.open,
+.standart-expand.open { max-height: 80px; opacity: 1; }
+
+/* ===== YAKINIMADAKİ İMALATÇILAR ===== */
+.q2-panel-f {
+  grid-column: 1 / -1;
+  background: var(--white);
+  padding: 18px 16px 20px;
+  border-top: 2px solid var(--teal-light);
+}
+.mfr-list { margin-top: 10px; display: flex; flex-direction: column; gap: 0; }
+.mfr-city {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.mfr-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.mfr-card {
+  border: 1px solid #e0e0e0;
+  padding: 10px 12px;
+  background: var(--off-white);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.mfr-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1.3;
+}
+.mfr-addr {
+  font-size: 0.67rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.mfr-meta { display: flex; align-items: center; gap: 6px; margin-top: 5px; flex-wrap: wrap; }
+.mfr-dist {
+  font-size: 0.63rem;
+  font-weight: 700;
+  color: var(--teal-mid);
+  background: rgba(0,91,108,0.08);
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+.mfr-phone { font-size: 0.67rem; color: var(--teal-mid); text-decoration: none; }
+.mfr-map {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--orange);
+  text-decoration: none;
+  letter-spacing: 0.2px;
+}
+.mfr-map:hover { text-decoration: underline; }
+.mfr-loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding: 10px 0;
+}
+@keyframes mfr-spin { to { transform: rotate(360deg); } }
+.mfr-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #e0e0e0;
+  border-top-color: var(--teal-mid);
+  border-radius: 50%;
+  animation: mfr-spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+.kaplama-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-top: 10px;
+}
+
+.kaplama-chip {
+  padding: 4px 9px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border: 1.5px solid #ddd;
+  background: var(--white);
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.kaplama-chip:hover { border-color: var(--teal-mid); color: var(--teal); }
+.kaplama-chip.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+.davlumbaz-expand {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.davlumbaz-expand.open { max-height: 120px; opacity: 1; }
+
+.davlumbaz-section {
+  padding: 10px 0 4px;
+  border-top: 1px dashed #ddd;
+  margin-top: 8px;
+}
+
+.davlumbaz-q {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--teal-mid);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -1119,6 +1266,73 @@ body {
             <span class="ada-yn-label" id="adaLabel">Hayır</span>
           </div>
 
+          <!-- Tezgah arkası kaplama sorusu -->
+          <div class="ada-toggle-row" id="kaplamaToggleRow" style="display:none">
+            <span class="ada-toggle-q">Tezgah arkası kaplama istiyor musunuz?</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="kaplamaSwitch" onchange="toggleKaplama(this)">
+              <span class="ios-slider"></span>
+            </label>
+            <span class="ada-yn-label" id="kaplamaLabel">Hayır</span>
+          </div>
+          <div class="kaplama-expand" id="kaplamaExpand">
+            <div class="kaplama-chip-group">
+              <button class="kaplama-chip" onclick="pickKaplama(this)" data-val="kaplama">Kaplama</button>
+              <button class="kaplama-chip" onclick="pickKaplama(this)" data-val="standart">Standart Süpürgelik</button>
+              <button class="kaplama-chip" onclick="pickKaplama(this)" data-val="yuksek">Yüksek Süpürgelik</button>
+            </div>
+            <div class="yuksek-expand" id="yuksekExpand">
+              <div class="davlumbaz-section">
+                <div class="davlumbaz-q">Yüksek süpürgelik yüksekliği</div>
+                <div class="tplan-input-row">
+                  <label>H</label>
+                  <span class="dim-arrow">↕</span>
+                  <input type="number" id="supurgelikYuksek" placeholder="cm" min="1" max="999" oninput="updateDavlumbaz(this,'supurgelikYuksekVal','H')">
+                  <span class="tplan-val" id="supurgelikYuksekVal"></span>
+                </div>
+              </div>
+            </div>
+            <div class="standart-expand" id="standartExpand">
+              <div class="davlumbaz-section">
+                <div class="davlumbaz-q">Standart süpürgelik yüksekliği</div>
+                <div class="tplan-input-row">
+                  <label>H</label>
+                  <span class="dim-arrow">↕</span>
+                  <span class="tplan-val" style="color:var(--teal);font-weight:700;font-size:0.92rem;">4 cm (sabit)</span>
+                </div>
+              </div>
+            </div>
+            <div class="davlumbaz-expand" id="davlumbazExpand">
+              <div class="davlumbaz-section">
+                <div class="davlumbaz-q">Davlumbaz alanı ölçüsü</div>
+                <div class="tplan-input-row">
+                  <label>En</label>
+                  <span class="dim-arrow">↔</span>
+                  <input type="number" id="davlumbazEn" placeholder="cm" min="1" max="999" oninput="updateDavlumbaz(this,'davlumbazEnVal','En')">
+                  <span class="tplan-val" id="davlumbazEnVal"></span>
+                </div>
+                <div class="tplan-input-row">
+                  <label>Boy</label>
+                  <span class="dim-arrow">↕</span>
+                  <input type="number" id="davlumbazBoy" placeholder="cm" min="1" max="999" oninput="updateDavlumbaz(this,'davlumbazBoyVal','Boy')">
+                  <span class="tplan-val" id="davlumbazBoyVal"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Panel F: Yakınımdaki imalatçılar (C=Hayır seçilince) -->
+        <div class="q2-panel-f" id="yakinimdaSection" style="display:none">
+          <div class="q2-panel-no">—</div>
+          <div class="q2-panel-q">Yakınımdaki tezgah imalatçıları</div>
+          <div id="mfrList" class="mfr-list">
+            <div class="mfr-loading">
+              <span class="mfr-spinner"></span>
+              <span class="mfr-loading-text">Konum belirleniyor...</span>
+            </div>
+          </div>
         </div>
 
         <!-- Panel E: Ada tezgah ölçüleri (tam genişlik 2. satır) -->
@@ -1287,6 +1501,7 @@ function pickChip(el) {
     const panelD = document.getElementById('q2PanelD');
     if (el.textContent.trim() === 'Evet') {
       panelD.classList.remove('q2-panel-locked');
+      document.getElementById('yakinimdaSection').style.display = 'none';
     } else {
       panelD.classList.add('q2-panel-locked');
       panelD.querySelectorAll('.tplan-card').forEach(c => {
@@ -1298,6 +1513,13 @@ function pickChip(el) {
       const adaSw = document.getElementById('adaSwitch');
       if (adaSw && adaSw.checked) { adaSw.checked = false; toggleAda(adaSw); }
       document.getElementById('adaToggleRow').style.display = 'none';
+      // Kaplama toggle'ı sıfırla
+      const kaplSw = document.getElementById('kaplamaSwitch');
+      if (kaplSw && kaplSw.checked) { kaplSw.checked = false; toggleKaplama(kaplSw); }
+      document.getElementById('kaplamaToggleRow').style.display = 'none';
+      // Yakınımdaki imalatçılar bölümünü göster
+      document.getElementById('yakinimdaSection').style.display = 'block';
+      fetchNearbyManufacturers();
     }
   }
   saveSelections();
@@ -1415,8 +1637,77 @@ function pickTplan(el) {
   // Seçili kartın mevcut değerlerini SVG'ye geri yükle
   _syncTplanSvg(el);
   panel.classList.add('filled');
-  // Ada toggle'ı göster
+  // Ada ve kaplama toggle'ı göster
   document.getElementById('adaToggleRow').style.display = 'flex';
+  document.getElementById('kaplamaToggleRow').style.display = 'flex';
+  saveSelections();
+}
+
+function toggleKaplama(checkbox) {
+  const label = document.getElementById('kaplamaLabel');
+  const expand = document.getElementById('kaplamaExpand');
+  if (checkbox.checked) {
+    label.textContent = 'Evet';
+    expand.classList.add('open');
+  } else {
+    label.textContent = 'Hayır';
+    expand.classList.remove('open');
+    document.querySelectorAll('.kaplama-chip').forEach(c => c.classList.remove('active'));
+    document.getElementById('davlumbazExpand').classList.remove('open');
+    document.getElementById('yuksekExpand').classList.remove('open');
+    document.getElementById('standartExpand').classList.remove('open');
+    const en = document.getElementById('davlumbazEn');
+    const boy = document.getElementById('davlumbazBoy');
+    const yuk = document.getElementById('supurgelikYuksek');
+    if (en) { en.value = ''; document.getElementById('davlumbazEnVal').textContent = ''; }
+    if (boy) { boy.value = ''; document.getElementById('davlumbazBoyVal').textContent = ''; }
+    if (yuk) { yuk.value = ''; document.getElementById('supurgelikYuksekVal').textContent = ''; }
+  }
+  saveSelections();
+}
+
+function pickKaplama(el) {
+  document.querySelectorAll('.kaplama-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const davlumbaz = document.getElementById('davlumbazExpand');
+  const yuksek = document.getElementById('yuksekExpand');
+  const standart = document.getElementById('standartExpand');
+  const _clearDavlumbaz = () => {
+    const en = document.getElementById('davlumbazEn');
+    const boy = document.getElementById('davlumbazBoy');
+    if (en) { en.value = ''; document.getElementById('davlumbazEnVal').textContent = ''; }
+    if (boy) { boy.value = ''; document.getElementById('davlumbazBoyVal').textContent = ''; }
+  };
+  const _clearYuksek = () => {
+    const y = document.getElementById('supurgelikYuksek');
+    if (y) { y.value = ''; document.getElementById('supurgelikYuksekVal').textContent = ''; }
+  };
+  const _clearStandart = () => {};
+  if (el.dataset.val === 'kaplama') {
+    davlumbaz.classList.add('open');
+    yuksek.classList.remove('open'); standart.classList.remove('open');
+    _clearYuksek(); _clearStandart();
+  } else if (el.dataset.val === 'yuksek') {
+    yuksek.classList.add('open');
+    davlumbaz.classList.remove('open'); standart.classList.remove('open');
+    _clearDavlumbaz(); _clearStandart();
+  } else if (el.dataset.val === 'standart') {
+    standart.classList.add('open');
+    davlumbaz.classList.remove('open'); yuksek.classList.remove('open');
+    _clearDavlumbaz(); _clearYuksek();
+  } else {
+    davlumbaz.classList.remove('open'); yuksek.classList.remove('open'); standart.classList.remove('open');
+    _clearDavlumbaz(); _clearYuksek(); _clearStandart();
+  }
+  saveSelections();
+}
+
+function updateDavlumbaz(input, valId, lbl) {
+  const maxV = parseInt(input.getAttribute('max')) || 9999;
+  if (input.value !== '' && parseInt(input.value) > maxV) input.value = maxV;
+  if (input.value !== '' && parseInt(input.value) < 1) input.value = '';
+  const span = document.getElementById(valId);
+  if (span) span.textContent = input.value ? lbl + ': ' + input.value + ' cm' : '';
   saveSelections();
 }
 
@@ -1437,6 +1728,90 @@ function toggleAda(checkbox) {
   saveSelections();
 }
 
+// ===== YAKINIMADAKİ İMALATÇILAR =====
+function _dist(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
+function _renderMfrCards(list, city, items, uLat, uLon) {
+  const cards = items.map(item => {
+    const name = item.tags.name;
+    const street = item.tags['addr:street'] || '';
+    const district = item.tags['addr:district'] || item.tags['addr:suburb'] || '';
+    const addr = [street, district].filter(Boolean).join(', ');
+    const phone = item.tags.phone || item.tags['contact:phone'] || item.tags['contact:mobile'] || '';
+    const iLat = item.lat ?? item.center?.lat;
+    const iLon = item.lon ?? item.center?.lon;
+    const dist = iLat != null ? _dist(uLat, uLon, iLat, iLon).toFixed(1) + ' km' : '';
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + city)}`;
+    return `<div class="mfr-card">
+      <div class="mfr-name">${name}</div>
+      ${addr ? `<div class="mfr-addr">${addr}</div>` : ''}
+      <div class="mfr-meta">
+        ${dist ? `<span class="mfr-dist">${dist}</span>` : ''}
+        ${phone ? `<a class="mfr-phone" href="tel:${phone}">${phone}</a>` : ''}
+        <a class="mfr-map" href="${mapsUrl}" target="_blank" rel="noopener">Haritada Gör →</a>
+      </div>
+    </div>`;
+  }).join('');
+  list.innerHTML = `<div class="mfr-city">📍 ${city} çevresinde bulundu</div><div class="mfr-cards">${cards}</div>`;
+}
+
+function _renderMfrFallback(list, city) {
+  const cats = [
+    ['Mermerci', `mermerci ${city}`],
+    ['Granit İmalatçı', `granit imalatçı ${city}`],
+    ['Mutfak Tezgahı', `mutfak tezgahı ${city}`],
+    ['Doğal Taş Atölyesi', `doğal taş atölyesi ${city}`]
+  ];
+  const cards = cats.map(([label, q]) =>
+    `<div class="mfr-card">
+      <div class="mfr-name">${label}</div>
+      <div class="mfr-addr">${city} ve çevresi</div>
+      <div class="mfr-meta">
+        <a class="mfr-map" href="https://www.google.com/maps/search/${encodeURIComponent(q)}" target="_blank" rel="noopener">Google Harita'da Ara →</a>
+      </div>
+    </div>`
+  ).join('');
+  list.innerHTML = `<div class="mfr-city">📍 ${city}</div><div class="mfr-cards">${cards}</div>`;
+}
+
+async function fetchNearbyManufacturers() {
+  const list = document.getElementById('mfrList');
+  list.innerHTML = '<div class="mfr-loading"><span class="mfr-spinner"></span><span class="mfr-loading-text">Konum belirleniyor...</span></div>';
+  const updateStatus = msg => { const t = list.querySelector('.mfr-loading-text'); if (t) t.textContent = msg; };
+
+  let city = 'Ankara', lat = 39.92, lon = 32.85;
+  try {
+    const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
+    if (geo.latitude) { lat = geo.latitude; lon = geo.longitude; city = geo.city || geo.region || 'Ankara'; }
+  } catch(e) {}
+
+  updateStatus(`${city} çevresinde aranıyor...`);
+
+  try {
+    const q = `[out:json][timeout:15];(
+      node["craft"="stonemason"](around:25000,${lat},${lon});
+      node["shop"="marble"](around:25000,${lat},${lon});
+      node["shop"="stone"](around:25000,${lat},${lon});
+      way["craft"="stonemason"](around:25000,${lat},${lon});
+      way["shop"="marble"](around:25000,${lat},${lon});
+    );out body center 8;`;
+    const data = await fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST', body: 'data=' + encodeURIComponent(q)
+    }).then(r => r.json());
+
+    const items = (data.elements || []).filter(e => e.tags?.name).slice(0, 4);
+    items.length > 0 ? _renderMfrCards(list, city, items, lat, lon) : _renderMfrFallback(list, city);
+  } catch(e) {
+    _renderMfrFallback(list, city);
+  }
+}
+
 // ===== LOCAL STORAGE =====
 function saveSelections() {
   const cards = document.querySelectorAll('.opt-card');
@@ -1449,9 +1824,15 @@ function saveSelections() {
     const dinputs = activeCard ? Array.from(activeCard.querySelectorAll('input')).map(i => i.value) : [];
     const ada = document.getElementById('adaSwitch')?.checked || false;
     const adaInputs = Array.from(document.querySelectorAll('#q2PanelE .tplan-card input')).map(i => i.value);
+    const kaplama = document.getElementById('kaplamaSwitch')?.checked || false;
+    const kaplamaType = document.querySelector('.kaplama-chip.active')?.dataset.val || '';
+    const davlumbazEn = document.getElementById('davlumbazEn')?.value || '';
+    const davlumbazBoy = document.getElementById('davlumbazBoy')?.value || '';
+    const supurgelikYuksek = document.getElementById('supurgelikYuksek')?.value || '';
     localStorage.setItem('tb_q2adv', JSON.stringify({
       a: getChip('q2PanelA'), b: getChip('q2PanelB'),
-      c: getChip('q2PanelC'), dplan, dinputs, ada, adaInputs
+      c: getChip('q2PanelC'), dplan, dinputs, ada, adaInputs,
+      kaplama, kaplamaType, davlumbazEn, davlumbazBoy, supurgelikYuksek
     }));
   } else {
     const q2 = Array.from(document.querySelectorAll('.mat-row.on')).map(r => r.dataset.mat);
@@ -1494,6 +1875,17 @@ function loadSelections() {
             });
           }
         }
+      }
+      if (adv.kaplama) {
+        const sw = document.getElementById('kaplamaSwitch');
+        if (sw) { sw.checked = true; toggleKaplama(sw); }
+        if (adv.kaplamaType) {
+          const chip = document.querySelector(`.kaplama-chip[data-val="${adv.kaplamaType}"]`);
+          if (chip) pickKaplama(chip);
+        }
+        if (adv.davlumbazEn) { const el = document.getElementById('davlumbazEn'); if (el) { el.value = adv.davlumbazEn; updateDavlumbaz(el, 'davlumbazEnVal', 'En'); } }
+        if (adv.davlumbazBoy) { const el = document.getElementById('davlumbazBoy'); if (el) { el.value = adv.davlumbazBoy; updateDavlumbaz(el, 'davlumbazBoyVal', 'Boy'); } }
+        if (adv.supurgelikYuksek) { const el = document.getElementById('supurgelikYuksek'); if (el) { el.value = adv.supurgelikYuksek; updateDavlumbaz(el, 'supurgelikYuksekVal', 'H'); } }
       }
     } catch(e) {}
   } else {
