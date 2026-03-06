@@ -835,6 +835,20 @@ body {
   animation: mfr-spin 0.75s linear infinite;
   flex-shrink: 0;
 }
+.mfr-empty {
+  padding: 12px 0 4px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mfr-source-badge {
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  opacity: 0.6;
+  font-style: italic;
+}
 
 .kaplama-chip-group {
   display: flex;
@@ -1737,47 +1751,25 @@ function _dist(lat1, lon1, lat2, lon2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
-function _renderMfrCards(list, city, items, uLat, uLon) {
+function _renderMfrCards(list, city, items) {
   const cards = items.map(item => {
-    const name = item.tags.name;
-    const street = item.tags['addr:street'] || '';
-    const district = item.tags['addr:district'] || item.tags['addr:suburb'] || '';
-    const addr = [street, district].filter(Boolean).join(', ');
-    const phone = item.tags.phone || item.tags['contact:phone'] || item.tags['contact:mobile'] || '';
-    const iLat = item.lat ?? item.center?.lat;
-    const iLon = item.lon ?? item.center?.lon;
-    const dist = iLat != null ? _dist(uLat, uLon, iLat, iLon).toFixed(1) + ' km' : '';
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name + ' ' + city)}`;
+    const distStr = (item._dist != null && item._dist < 999)
+      ? `<span class="mfr-dist">📍 ${item._dist.toFixed(1)} km</span>` : '';
+    const mapsUrl = item.maps ||
+      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.ad + ' ' + city)}`;
+    const badge = item._osm ? '<span class="mfr-source-badge">OpenStreetMap</span>' : '';
     return `<div class="mfr-card">
-      <div class="mfr-name">${name}</div>
-      ${addr ? `<div class="mfr-addr">${addr}</div>` : ''}
+      <div class="mfr-name">${item.ad}</div>
+      ${item.adres ? `<div class="mfr-addr">${item.adres}</div>` : ''}
       <div class="mfr-meta">
-        ${dist ? `<span class="mfr-dist">${dist}</span>` : ''}
-        ${phone ? `<a class="mfr-phone" href="tel:${phone}">${phone}</a>` : ''}
+        ${distStr}
+        ${item.tel ? `<a class="mfr-phone" href="tel:${item.tel}">${item.tel}</a>` : ''}
         <a class="mfr-map" href="${mapsUrl}" target="_blank" rel="noopener">Haritada Gör →</a>
       </div>
+      ${badge}
     </div>`;
   }).join('');
-  list.innerHTML = `<div class="mfr-city">📍 ${city} çevresinde bulundu</div><div class="mfr-cards">${cards}</div>`;
-}
-
-function _renderMfrFallback(list, city) {
-  const cats = [
-    ['Mermerci', `mermerci ${city}`],
-    ['Granit İmalatçı', `granit imalatçı ${city}`],
-    ['Mutfak Tezgahı', `mutfak tezgahı ${city}`],
-    ['Doğal Taş Atölyesi', `doğal taş atölyesi ${city}`]
-  ];
-  const cards = cats.map(([label, q]) =>
-    `<div class="mfr-card">
-      <div class="mfr-name">${label}</div>
-      <div class="mfr-addr">${city} ve çevresi</div>
-      <div class="mfr-meta">
-        <a class="mfr-map" href="https://www.google.com/maps/search/${encodeURIComponent(q)}" target="_blank" rel="noopener">Google Harita'da Ara →</a>
-      </div>
-    </div>`
-  ).join('');
-  list.innerHTML = `<div class="mfr-city">📍 ${city}</div><div class="mfr-cards">${cards}</div>`;
+  list.innerHTML = `<div class="mfr-city">📍 ${city} çevresinde tezgah imalatçıları</div><div class="mfr-cards">${cards}</div>`;
 }
 
 async function fetchNearbyManufacturers() {
@@ -1793,22 +1785,69 @@ async function fetchNearbyManufacturers() {
 
   updateStatus(`${city} çevresinde aranıyor...`);
 
-  try {
-    const q = `[out:json][timeout:15];(
-      node["craft"="stonemason"](around:25000,${lat},${lon});
-      node["shop"="marble"](around:25000,${lat},${lon});
-      node["shop"="stone"](around:25000,${lat},${lon});
-      way["craft"="stonemason"](around:25000,${lat},${lon});
-      way["shop"="marble"](around:25000,${lat},${lon});
-    );out body center 8;`;
-    const data = await fetch('https://overpass-api.de/api/interpreter', {
-      method: 'POST', body: 'data=' + encodeURIComponent(q)
-    }).then(r => r.json());
+  let items = [];
 
-    const items = (data.elements || []).filter(e => e.tags?.name).slice(0, 4);
-    items.length > 0 ? _renderMfrCards(list, city, items, lat, lon) : _renderMfrFallback(list, city);
-  } catch(e) {
-    _renderMfrFallback(list, city);
+  // 1. Önce TezgahBul veritabanından ara (manufacturers.json)
+  try {
+    const db = await fetch('https://engserdarozdemir.github.io/tezgahbul/manufacturers.json').then(r => r.json());
+    const nearby = (db.manufacturers || [])
+      .map(m => ({ ...m, _dist: _dist(lat, lon, m.lat, m.lon) }))
+      .filter(m => m._dist < 120)
+      .sort((a, b) => a._dist - b._dist)
+      .slice(0, 8);
+    items = nearby;
+  } catch(e) {}
+
+  // 2. Eğer 4'ten az sonuç varsa, OpenStreetMap'ten isim tabanlı arama yap
+  if (items.length < 4) {
+    try {
+      const radius = 60000;
+      const nameRe = 'mermer|granit|tezgah|do\\u011fal ta\\u015f|do\\u011falta\\u015f|mimer|naturel|kuvars|quartz|taş işleme|taş ocak|traverten|oniks';
+      const q = `[out:json][timeout:25];(
+        node["name"~"mermer|granit|tezgah|doğal taş|doğaltaş|mimer|naturel|kuvars|quartz|traverten",i](around:${radius},${lat},${lon});
+        way["name"~"mermer|granit|tezgah|doğal taş|doğaltaş|mimer|naturel|kuvars|quartz|traverten",i](around:${radius},${lat},${lon});
+        node["craft"~"stonemason|stone_cutter|marble"](around:${radius},${lat},${lon});
+        way["craft"~"stonemason|stone_cutter|marble"](around:${radius},${lat},${lon});
+        node["shop"~"marble|stone|doğal_taş"](around:${radius},${lat},${lon});
+        way["shop"~"marble|stone"](around:${radius},${lat},${lon});
+      );out body center 12;`;
+      const data = await fetch('https://overpass-api.de/api/interpreter', {
+        method: 'POST', body: 'data=' + encodeURIComponent(q)
+      }).then(r => r.json());
+
+      const osmItems = (data.elements || [])
+        .filter(e => e.tags?.name)
+        .map(e => {
+          const iLat = e.lat ?? e.center?.lat;
+          const iLon = e.lon ?? e.center?.lon;
+          const street  = e.tags['addr:street'] || '';
+          const district = e.tags['addr:district'] || e.tags['addr:suburb'] || e.tags['addr:city'] || '';
+          return {
+            ad: e.tags.name,
+            adres: [street, district].filter(Boolean).join(', '),
+            tel: e.tags.phone || e.tags['contact:phone'] || e.tags['contact:mobile'] || '',
+            lat: iLat, lon: iLon,
+            maps: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.tags.name + ' ' + city)}`,
+            _dist: (iLat != null) ? _dist(lat, lon, iLat, iLon) : 999,
+            _osm: true
+          };
+        })
+        .filter(e => e._dist < 60)
+        .sort((a, b) => a._dist - b._dist)
+        .slice(0, 8 - items.length);
+
+      items = [...items, ...osmItems];
+    } catch(e) {}
+  }
+
+  // 3. Render
+  if (items.length > 0) {
+    _renderMfrCards(list, city, items);
+  } else {
+    list.innerHTML = `<div class="mfr-empty">
+      <p>${city} çevresinde kayıtlı imalatçı bulunamadı.</p>
+      <a href="https://www.google.com/maps/search/mermer+imalatçı+${encodeURIComponent(city)}" target="_blank" rel="noopener" class="mfr-map">Google Haritalar'da Ara →</a>
+    </div>`;
   }
 }
 

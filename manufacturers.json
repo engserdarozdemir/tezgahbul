@@ -1,0 +1,6 @@
+{
+  "version": "1.0",
+  "updated": "2026-03-06",
+  "aciklama": "TezgahBul imalatçı veritabanı. Her kayıt: ad, adres, sehir, ilce, lat, lon, tel, maps (Google Maps linki)",
+  "manufacturers": []
+}
