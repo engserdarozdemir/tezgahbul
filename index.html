@@ -854,6 +854,32 @@ body {
   font-style: italic;
 }
 
+/* ===== DEKTON MODEL KARTLARI ===== */
+.dekton-model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+  gap: 6px;
+  margin-top: 6px;
+}
+.dekton-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 3px;
+  cursor: pointer;
+  background: var(--white);
+  transition: border-color 0.15s;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+.dekton-card:hover { border-color: var(--teal-mid); }
+.dekton-card.active { border-color: var(--teal); background: rgba(0,42,50,0.04); }
+.dekton-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+.dk-name { font-size: 0.63rem; font-weight: 600; color: var(--teal); text-align: center; padding: 4px 4px 0; line-height: 1.2; }
+.dk-finish { font-size: 0.55rem; color: var(--text-muted); margin-top: 1px; }
+.dk-collection { font-size: 0.52rem; color: var(--text-muted); opacity: 0.65; }
+
 /* ===== PANEL B — MALZEME BİLGİSİ + MARKA/MODEL/YÜZEY ===== */
 .b-mat-info {
   max-height: 0; overflow: hidden; opacity: 0;
@@ -1603,6 +1629,51 @@ const BRAND_MODELS = {
   'Silestone': ['Eternal Calacatta', 'Desert Silver', 'Iconic White', 'Ethereal Dusk', 'Pulsar']
 };
 
+const DEKTON_MODELS = [
+  { name: 'Bergen',    finish: 'Parlak', code: 'BEK', collection: 'Stonika' },
+  { name: 'Khalo',     finish: 'Parlak', code: 'HLC', collection: 'Stonika' },
+  { name: 'Arga',      finish: 'Parlak', code: 'RGC', collection: 'Stonika' },
+  { name: 'Salina',    finish: 'Parlak', code: 'AAI', collection: 'Silverkoast' },
+  { name: 'Marina',    finish: 'Velvet', code: 'RMR', collection: 'Silverkoast' },
+  { name: 'Limbo',     finish: 'Parlak', code: 'MCO', collection: 'Onirika' },
+  { name: 'Awake',     finish: 'Parlak', code: 'DSV', collection: 'Onirika' },
+  { name: 'Trance',    finish: 'Parlak', code: 'MCA', collection: 'Onirika' },
+  { name: 'Morpheus',  finish: 'Velvet', code: 'MSC', collection: 'Onirika' },
+  { name: 'Reverie',   finish: 'Velvet', code: 'RRK', collection: 'Onirika' },
+  { name: 'Somnia',    finish: 'Mat',    code: 'BMT', collection: 'Onirika' },
+  { name: 'Halo',      finish: 'Parlak', code: 'HKC', collection: 'DK Xgloss' },
+  { name: 'Nara',      finish: 'Velvet', code: 'NAK', collection: 'DK Natural' },
+  { name: 'Rem',       finish: 'Velvet', code: 'RKC', collection: 'DK Natural' },
+  { name: 'Kovik',     finish: 'Mat',    code: 'SVA', collection: 'DK Natural' },
+  { name: 'Aeris',     finish: 'Mat',    code: 'IKC', collection: 'DK Natural' },
+  { name: 'Eter',      finish: 'Mat',    code: 'BDK', collection: 'DK Natural' },
+  { name: 'Laurent',   finish: 'Mat',    code: 'PTL', collection: 'DK Natural' },
+  { name: 'Kira',      finish: 'Mat',    code: 'PU4', collection: 'DK Natural' },
+  { name: 'Albarium',  finish: 'Mat',    code: 'RLM', collection: 'Kraftizen' },
+  { name: 'Argentium', finish: 'Mat',    code: 'NMK', collection: 'Kraftizen' },
+  { name: 'Umber',     finish: 'Mat',    code: 'T2A', collection: 'Kraftizen' },
+  { name: 'Nacre',     finish: 'Velvet', code: 'CKC', collection: 'Kraftizen' },
+  { name: 'Polar',     finish: 'Mat',    code: 'CPO', collection: 'Pietra Edition' },
+  { name: 'Adia',      finish: 'Mat',    code: 'PIT', collection: 'Pietra Edition' },
+  { name: 'Nebu',      finish: 'Mat',    code: 'WCP', collection: 'Pietra Edition' },
+  { name: 'Trevi',     finish: 'Mat',    code: 'TVG', collection: 'Pietra Edition' },
+  { name: 'Ava',       finish: 'Mat',    code: 'VTP', collection: 'Pietra Edition' },
+  { name: 'Grigio',    finish: 'Mat',    code: 'GCK', collection: 'Pietra Kode' },
+  { name: 'Grafite',   finish: 'Mat',    code: 'P5C', collection: 'Pietra Kode' },
+  { name: 'Marmorio',  finish: 'Mat',    code: 'RCK', collection: 'Pietra Kode' },
+  { name: 'Sabbia',    finish: 'Mat',    code: 'ICK', collection: 'Pietra Kode' },
+  { name: 'Avorio',    finish: 'Mat',    code: 'VCK', collection: 'Pietra Kode' },
+  { name: 'Ceppo',     finish: 'Mat',    code: 'PCK', collection: 'Pietra Kode' },
+  { name: 'Lunar',     finish: 'Mat',    code: 'UKC', collection: 'DK Industrial' },
+  { name: 'Kreta',     finish: 'Mat',    code: 'KRE', collection: 'DK Industrial' },
+  { name: 'Laos',      finish: 'Mat',    code: 'LOS', collection: 'DK Industrial' },
+  { name: 'Evok',      finish: 'Mat',    code: 'PWK', collection: 'Nomak' },
+  { name: 'Keena',     finish: 'Mat',    code: 'WMK', collection: 'Nomak' },
+  { name: 'Thala',     finish: 'Mat',    code: 'DVK', collection: 'Nomak' },
+  { name: 'Kedar',     finish: 'Mat',    code: 'NRL', collection: 'Amazonik' },
+  { name: 'Zira',      finish: 'Mat',    code: 'BQK', collection: 'Amazonik' },
+];
+
 function _openBPanelFor(matName) {
   const info = MAT_INFO[matName];
   if (!info) return;
@@ -1658,7 +1729,30 @@ function pickBrand(el, matName) {
 
   bSurfaceSection.classList.remove('open');
 
-  if (models.length > 0) {
+  if (brand === 'Dekton') {
+    const grid = document.createElement('div');
+    grid.className = 'dekton-model-grid';
+    DEKTON_MODELS.forEach(m => {
+      const thumbUrl = `https://assetstools.cosentino.com/api/v1/bynder/color/${m.code}/detalle/${m.code}-thumb.jpg`;
+      const btn = document.createElement('button');
+      btn.className = 'dekton-card';
+      btn.dataset.model = m.name + ' - ' + m.finish;
+      btn.innerHTML = `<img src="${thumbUrl}" alt="${m.name}" loading="lazy">
+        <span class="dk-name">${m.name}</span>
+        <span class="dk-finish">${m.finish}</span>
+        <span class="dk-collection">${m.collection}</span>`;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.dekton-card').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        bSurfaceSection.classList.remove('open');
+        saveSelections();
+      });
+      grid.appendChild(btn);
+    });
+    bModelChips.innerHTML = '';
+    bModelChips.appendChild(grid);
+    bModelSection.classList.add('open');
+  } else if (models.length > 0) {
     bModelChips.innerHTML = models.map(m =>
       `<button class="q2-chip" onclick="pickBrandModel(this,'${matName}')">${m}</button>`
     ).join('');
