@@ -501,8 +501,8 @@ body {
 
 /* ===== Q2 ADVANCED (4 panel) ===== */
 .q2-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 1px;
   background: #e0e0e0;
   margin: 20px -40px -36px;
@@ -510,13 +510,16 @@ body {
 
 .q2-panel {
   background: var(--white);
-  padding: 18px 16px 20px;
-  border-top: 2px solid transparent;
-  transition: border-color 0.2s;
+  padding: 18px 40px 20px;
+  border-top: none;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s, max-height 0.4s ease, opacity 0.35s ease, padding 0.3s ease;
   position: relative;
+  max-height: 2000px;
+  overflow: hidden;
 }
 
-.q2-panel.filled { border-top-color: var(--teal); }
+.q2-panel.filled { border-left-color: var(--teal); }
 
 .q2-panel-no {
   font-size: 10px;
@@ -534,7 +537,6 @@ body {
   margin-bottom: 12px;
   line-height: 1.35;
   letter-spacing: -0.2px;
-  min-height: 40px;
 }
 
 .q2-chip-group {
@@ -561,9 +563,11 @@ body {
 
 /* Panel 4 tezgah planları */
 .q2-panel-locked {
-  opacity: 0.35;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   pointer-events: none;
-  transition: opacity 0.3s;
 }
 
 .tplan-grid {
@@ -944,7 +948,8 @@ body {
   .sec-sub { text-align: left; max-width: 100%; }
   .soru-blok { padding: 32px 20px 28px; }
   #sorular { padding: 72px 16px 80px; }
-  .q2-grid { grid-template-columns: repeat(2, 1fr); margin: 16px -20px -28px; }
+  .q2-grid { margin: 16px -20px -28px; }
+  .q2-panel { padding: 16px 20px 18px; }
 }
 
 </style>
@@ -1560,14 +1565,14 @@ const MAT_INFO = {
     title: 'Porselen Slab',
     desc: '120×260 cm ve üzeri büyük format seramik levhalar. İnce (6–12 mm), hafif ama son derece sağlam. Çizilmez, ısıya ve UV ışığa dayanıklıdır. Dış mekan kullanımına da uygundur.',
     tags: ['Büyük Format', 'UV Dayanımlı', 'İnce & Hafif', 'Kolay Temizlik', 'Çizilmez', 'Dış Mekan'],
-    brands: ['Florim', 'Ariostea', 'Atlas Concorde', 'Lapitec', 'Dekton'],
+    brands: ['Dekton', 'Neolith', 'Laminam', 'Infinity', 'Kale T-One', 'Ng Kütahya', 'Anatolia', 'Lamar', 'Sapienstone'],
     surfaces: ['Parlak', 'Mat', 'İpeksi Mat', 'Dokulu']
   },
   'Quartz': {
     title: 'Quartz (Kuvars)',
     desc: '%90–95 doğal kuvars ve reçineden üretilir. Gözeneksiz yüzeyi sayesinde hijyenik ve kolay temizlenir. Geniş renk seçeneği sunar; modern mutfaklarda en çok tercih edilen tezgah malzemesidir.',
     tags: ['Gözeneksiz', 'Hijyenik', 'Geniş Renk Seçeneği', 'Kolay Bakım', 'Dayanıklı'],
-    brands: ['Belenco', 'Caesarstone', 'Silestone', 'Technistone'],
+    brands: ['Belenco', 'Çimstone', 'Coante', 'Calisco', 'Silestone'],
     surfaces: ['Parlak']
   },
   'Granit': {
@@ -1580,15 +1585,22 @@ const MAT_INFO = {
 };
 
 const BRAND_MODELS = {
-  'Florim': ['Planks', 'Urban', 'Nature Mood', 'Infinity', 'Design+'],
-  'Ariostea': ['Ultra Marmi', 'High-Tech Wood', 'Ultra Onici', 'Speed'],
-  'Atlas Concorde': ['Marvel Edge', 'Boost Natural', 'Balance', 'Aura 1000'],
-  'Lapitec': ['Vesuvio', 'Bianco Assoluto', 'Nero Assoluto', 'Smoke'],
-  'Dekton': ['Ultra', 'Slim', 'Natura', 'Industrial', 'Stone'],
+  // Porselen
+  'Dekton': ['Ultra', 'Slim', 'Stonika', 'Industrial', 'Natural Stone', 'Outdoor'],
+  'Neolith': ['Classtone', 'Stonetech', 'Nature', 'Intense', 'Iron', 'Fusion'],
+  'Laminam': ['Oxide', 'Fokos', 'Calce', 'Ardesia', 'In-Side', 'Assoluto'],
+  'Infinity': ['Terra', 'Nature', 'Glamour', 'Prestige', 'Lux'],
+  'Kale T-One': ['Premium', 'Classic', 'Ultra', 'Stone'],
+  'Ng Kütahya': [],
+  'Anatolia': [],
+  'Lamar': [],
+  'Sapienstone': ['Natural', 'Skin', 'Abstract', 'Contemporary', 'Stone'],
+  // Quartz
   'Belenco': ['Iceberg (1110)', 'Angel White (2110)', 'Aurora (2254)', 'Fairy White (4227)', 'Kristella White (4262)', 'Calacatta Venatino (7119)', 'Calacatta Verona (8119)', 'Statuario Crux (5219)', 'Mont Clair Snow (2262)', 'Ellsworth Ice (3152)'],
-  'Caesarstone': ['Calacatta Gold', 'Statuario Maximus', 'White Attica', 'Primordia', 'Cloudburst'],
-  'Silestone': ['Eternal Calacatta', 'Desert Silver', 'Iconic White', 'Ethereal Dusk', 'Pulsar'],
-  'Technistone': ['Crystal Quartz', 'Noble White', 'Fantasy Green', 'Brilliant White']
+  'Çimstone': ['Eternal', 'Olympos', 'Kalkan', 'Bodrum', 'Efes', 'Pamukkale'],
+  'Coante': ['White Series', 'Grey Series', 'Marble Look', 'Premium'],
+  'Calisco': ['Classic White', 'Storm Grey', 'Nero', 'Calacatta'],
+  'Silestone': ['Eternal Calacatta', 'Desert Silver', 'Iconic White', 'Ethereal Dusk', 'Pulsar']
 };
 
 function _openBPanelFor(matName) {
@@ -1645,10 +1657,29 @@ function pickBrand(el, matName) {
   const bSurfaceSection = document.getElementById('bSurfaceSection');
 
   bSurfaceSection.classList.remove('open');
-  bModelChips.innerHTML = models.map(m =>
-    `<button class="q2-chip" onclick="pickBrandModel(this,'${matName}')">${m}</button>`
-  ).join('');
-  bModelSection.classList.add('open');
+
+  if (models.length > 0) {
+    bModelChips.innerHTML = models.map(m =>
+      `<button class="q2-chip" onclick="pickBrandModel(this,'${matName}')">${m}</button>`
+    ).join('');
+    bModelSection.classList.add('open');
+  } else {
+    bModelSection.classList.remove('open');
+    bModelChips.innerHTML = '';
+    // Modeli olmayan markada yüzeyi direkt göster
+    const info = MAT_INFO[matName];
+    if (info && info.surfaces) {
+      const bSurfaceChips = document.getElementById('bSurfaceChips');
+      if (info.surfaces.length === 1) {
+        bSurfaceChips.innerHTML = `<button class="q2-chip active fixed">${info.surfaces[0]}</button>`;
+      } else {
+        bSurfaceChips.innerHTML = info.surfaces.map(s =>
+          `<button class="q2-chip" onclick="pickSurface(this)">${s}</button>`
+        ).join('');
+      }
+      bSurfaceSection.classList.add('open');
+    }
+  }
   saveSelections();
 }
 
