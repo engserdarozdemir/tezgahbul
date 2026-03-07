@@ -850,6 +850,48 @@ body {
   font-style: italic;
 }
 
+/* ===== PANEL B — MALZEME BİLGİSİ + MARKA/MODEL/YÜZEY ===== */
+.b-mat-info {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.b-mat-info.open { max-height: 220px; opacity: 1; }
+.b-mat-inner { padding: 10px 0 4px; }
+.b-mat-title {
+  font-size: 0.72rem; font-weight: 700;
+  color: var(--teal); margin-bottom: 4px;
+}
+.b-mat-text {
+  font-size: 0.7rem; line-height: 1.6;
+  color: var(--text-muted); margin-bottom: 7px;
+}
+.b-mat-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.b-mat-tag {
+  font-size: 0.6rem; font-weight: 600;
+  background: rgba(0,42,50,0.07); color: var(--teal-mid);
+  padding: 2px 7px; border-radius: 20px;
+}
+.b-sub-wrap {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.35s ease;
+}
+.b-sub-wrap.open { max-height: 600px; opacity: 1; }
+.b-sub-section { padding-top: 10px; }
+.b-sub-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--teal-mid);
+  margin-bottom: 6px;
+}
+.b-sub-collapse {
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+.b-sub-collapse.open { max-height: 300px; opacity: 1; }
+.q2-chip.fixed {
+  opacity: 0.6; cursor: default; pointer-events: none;
+  background: rgba(0,42,50,0.06);
+}
+
 .kaplama-chip-group {
   display: flex;
   flex-wrap: wrap;
@@ -1035,7 +1077,7 @@ body {
             </svg>
           </div>
           <div class="opt-label">Mevcut Tezgaha Servis Talebi</div>
-          <div class="opt-sub">Komple mutfak kurulumu</div>
+          <div class="opt-sub">Mevcut tezgahta gelen kusurlar için çözüm</div>
         </button>
 
 
@@ -1151,6 +1193,27 @@ body {
             <button class="q2-chip" onclick="pickChip(this)">Porselen</button>
             <button class="q2-chip" onclick="pickChip(this)">Quartz</button>
             <button class="q2-chip" onclick="pickChip(this)">Granit</button>
+          </div>
+
+          <!-- Malzeme bilgi kutusu -->
+          <div class="b-mat-info" id="bMatInfo">
+            <div class="b-mat-inner" id="bMatInner"></div>
+          </div>
+
+          <!-- Marka → Model → Yüzey (Porselen & Quartz için) -->
+          <div class="b-sub-wrap" id="bSubWrap">
+            <div class="b-sub-section" id="bBrandSection">
+              <div class="b-sub-label">Marka</div>
+              <div class="q2-chip-group" id="bBrandChips"></div>
+            </div>
+            <div class="b-sub-section b-sub-collapse" id="bModelSection">
+              <div class="b-sub-label">Model / Koleksiyon</div>
+              <div class="q2-chip-group" id="bModelChips"></div>
+            </div>
+            <div class="b-sub-section b-sub-collapse" id="bSurfaceSection">
+              <div class="b-sub-label">Yüzey</div>
+              <div class="q2-chip-group" id="bSurfaceChips"></div>
+            </div>
           </div>
         </div>
 
@@ -1491,6 +1554,129 @@ function toggleMat(el) {
   saveSelections();
 }
 
+// ===== PANEL B VERİ YAPISI =====
+const MAT_INFO = {
+  'Porselen': {
+    title: 'Porselen Slab',
+    desc: '120×260 cm ve üzeri büyük format seramik levhalar. İnce (6–12 mm), hafif ama son derece sağlam. Çizilmez, ısıya ve UV ışığa dayanıklıdır. Dış mekan kullanımına da uygundur.',
+    tags: ['Büyük Format', 'UV Dayanımlı', 'İnce & Hafif', 'Kolay Temizlik', 'Çizilmez', 'Dış Mekan'],
+    brands: ['Florim', 'Ariostea', 'Atlas Concorde', 'Lapitec', 'Dekton'],
+    surfaces: ['Parlak', 'Mat', 'İpeksi Mat', 'Dokulu']
+  },
+  'Quartz': {
+    title: 'Quartz (Kuvars)',
+    desc: '%90–95 doğal kuvars ve reçineden üretilir. Gözeneksiz yüzeyi sayesinde hijyenik ve kolay temizlenir. Geniş renk seçeneği sunar; modern mutfaklarda en çok tercih edilen tezgah malzemesidir.',
+    tags: ['Gözeneksiz', 'Hijyenik', 'Geniş Renk Seçeneği', 'Kolay Bakım', 'Dayanıklı'],
+    brands: ['Belenco', 'Caesarstone', 'Silestone', 'Technistone'],
+    surfaces: ['Parlak']
+  },
+  'Granit': {
+    title: 'Granit',
+    desc: 'Volkanik kökenli, son derece sert ve dayanıklı doğal taş. Çizilmeye, yüksek ısıya ve asitlere karşı dirençlidir. Her plaka kendine özgü doğal desen ve renk taşır.',
+    tags: ['Çok Sert', 'Isıya Dayanıklı', 'Çizilmez', 'Doğal Doku', 'Az Bakım'],
+    brands: null,
+    surfaces: null
+  }
+};
+
+const BRAND_MODELS = {
+  'Florim': ['Planks', 'Urban', 'Nature Mood', 'Infinity', 'Design+'],
+  'Ariostea': ['Ultra Marmi', 'High-Tech Wood', 'Ultra Onici', 'Speed'],
+  'Atlas Concorde': ['Marvel Edge', 'Boost Natural', 'Balance', 'Aura 1000'],
+  'Lapitec': ['Vesuvio', 'Bianco Assoluto', 'Nero Assoluto', 'Smoke'],
+  'Dekton': ['Ultra', 'Slim', 'Natura', 'Industrial', 'Stone'],
+  'Belenco': ['Iceberg (1110)', 'Angel White (2110)', 'Aurora (2254)', 'Fairy White (4227)', 'Kristella White (4262)', 'Calacatta Venatino (7119)', 'Calacatta Verona (8119)', 'Statuario Crux (5219)', 'Mont Clair Snow (2262)', 'Ellsworth Ice (3152)'],
+  'Caesarstone': ['Calacatta Gold', 'Statuario Maximus', 'White Attica', 'Primordia', 'Cloudburst'],
+  'Silestone': ['Eternal Calacatta', 'Desert Silver', 'Iconic White', 'Ethereal Dusk', 'Pulsar'],
+  'Technistone': ['Crystal Quartz', 'Noble White', 'Fantasy Green', 'Brilliant White']
+};
+
+function _openBPanelFor(matName) {
+  const info = MAT_INFO[matName];
+  if (!info) return;
+
+  // Malzeme bilgi kutusu
+  const bMatInfo = document.getElementById('bMatInfo');
+  const bMatInner = document.getElementById('bMatInner');
+  bMatInner.innerHTML = `
+    <div class="b-mat-title">${info.title}</div>
+    <div class="b-mat-text">${info.desc}</div>
+    <div class="b-mat-tags">${info.tags.map(t => `<span class="b-mat-tag">${t}</span>`).join('')}</div>`;
+  bMatInfo.classList.add('open');
+
+  const bSubWrap = document.getElementById('bSubWrap');
+  const bBrandSection = document.getElementById('bBrandSection');
+  const bBrandChips = document.getElementById('bBrandChips');
+  const bModelSection = document.getElementById('bModelSection');
+  const bSurfaceSection = document.getElementById('bSurfaceSection');
+
+  // Marka + model + yüzey sıfırla
+  bModelSection.classList.remove('open');
+  bSurfaceSection.classList.remove('open');
+  bModelSection.querySelector('#bModelChips').innerHTML = '';
+  bSurfaceSection.querySelector('#bSurfaceChips').innerHTML = '';
+
+  if (info.brands) {
+    bBrandChips.innerHTML = info.brands.map(b =>
+      `<button class="q2-chip" onclick="pickBrand(this,'${matName}')">${b}</button>`
+    ).join('');
+    bSubWrap.classList.add('open');
+  } else {
+    bSubWrap.classList.remove('open');
+    bBrandChips.innerHTML = '';
+  }
+}
+
+function _closeBPanel() {
+  document.getElementById('bMatInfo').classList.remove('open');
+  document.getElementById('bSubWrap').classList.remove('open');
+  document.getElementById('bModelSection').classList.remove('open');
+  document.getElementById('bSurfaceSection').classList.remove('open');
+}
+
+function pickBrand(el, matName) {
+  el.closest('#bBrandChips').querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+
+  const brand = el.textContent.trim();
+  const models = BRAND_MODELS[brand] || [];
+  const bModelSection = document.getElementById('bModelSection');
+  const bModelChips = document.getElementById('bModelChips');
+  const bSurfaceSection = document.getElementById('bSurfaceSection');
+
+  bSurfaceSection.classList.remove('open');
+  bModelChips.innerHTML = models.map(m =>
+    `<button class="q2-chip" onclick="pickBrandModel(this,'${matName}')">${m}</button>`
+  ).join('');
+  bModelSection.classList.add('open');
+  saveSelections();
+}
+
+function pickBrandModel(el, matName) {
+  el.closest('#bModelChips').querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+
+  const info = MAT_INFO[matName];
+  const bSurfaceSection = document.getElementById('bSurfaceSection');
+  const bSurfaceChips = document.getElementById('bSurfaceChips');
+
+  if (info.surfaces.length === 1) {
+    bSurfaceChips.innerHTML = `<button class="q2-chip active fixed">${info.surfaces[0]}</button>`;
+  } else {
+    bSurfaceChips.innerHTML = info.surfaces.map(s =>
+      `<button class="q2-chip" onclick="pickSurface(this)">${s}</button>`
+    ).join('');
+  }
+  bSurfaceSection.classList.add('open');
+  saveSelections();
+}
+
+function pickSurface(el) {
+  el.closest('#bSurfaceChips').querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  saveSelections();
+}
+
 function pickChip(el) {
   const panel = el.closest('.q2-panel');
   panel.querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
@@ -1500,7 +1686,10 @@ function pickChip(el) {
   const panelId = panel.id;
   if (panelId === 'q2PanelA') {
     document.getElementById('q2PanelB').classList.remove('q2-panel-locked');
+    _closeBPanel();
   } else if (panelId === 'q2PanelB') {
+    const mat = el.textContent.trim();
+    _openBPanelFor(mat);
     document.getElementById('q2PanelC').classList.remove('q2-panel-locked');
   } else if (panelId === 'q2PanelC') {
     const panelD = document.getElementById('q2PanelD');
