@@ -1706,7 +1706,7 @@ function pickBrand(el, matName) {
     list.className = 'dekton-model-list';
     const models = dektonModels.length > 0 ? dektonModels : [];
     models.forEach(m => {
-      const thumbUrl = `./Plakalar/Porselen/Dekton/${m.code}-thumb.jpg`;
+      const thumbUrl = `./Plakalar/Porselen/Dekton/${m.name.toLowerCase().replace(/\s+/g,'-')}-thumb.jpg`;
       const btn = document.createElement('button');
       btn.className = 'dekton-list-item';
       btn.dataset.model = m.name + ' - ' + m.finish;
