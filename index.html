@@ -856,31 +856,32 @@ body {
 
 /* ===== DEKTON MODEL LİSTESİ ===== */
 .dekton-model-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 4px;
   max-height: 420px;
   overflow-y: auto;
-  border: 1px solid #e4e4e4;
-  border-radius: 4px;
   margin-top: 8px;
-  scroll-behavior: smooth;
+  padding: 2px;
+  width: 100%;
 }
 .dekton-list-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 7px 10px;
+  gap: 8px;
+  padding: 6px 8px;
   cursor: pointer;
-  border-bottom: 1px solid #f0f0f0;
-  transition: background 0.12s;
+  border: 1.5px solid #e4e4e4;
+  border-radius: 4px;
+  transition: border-color 0.12s, background 0.12s;
   background: var(--white);
-  border-left: 3px solid transparent;
 }
-.dekton-list-item:last-child { border-bottom: none; }
-.dekton-list-item:hover { background: #f4f8f9; }
-.dekton-list-item.active { background: rgba(0,42,50,0.05); border-left-color: var(--teal); }
-.dekton-list-item img { width: 50px; height: 50px; object-fit: cover; flex-shrink: 0; border-radius: 2px; }
+.dekton-list-item:hover { border-color: var(--teal-mid); background: #f4f8f9; }
+.dekton-list-item.active { border-color: var(--teal); background: rgba(0,42,50,0.05); }
+.dekton-list-item img { width: 44px; height: 44px; object-fit: cover; flex-shrink: 0; border-radius: 2px; }
 .dki-info { flex: 1; min-width: 0; }
-.dki-name { font-size: 0.72rem; font-weight: 600; color: var(--teal); }
-.dki-sub { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; }
+.dki-name { font-size: 0.68rem; font-weight: 600; color: var(--teal); line-height: 1.3; }
+.dki-sub { font-size: 0.58rem; color: var(--text-muted); margin-top: 1px; }
 
 /* ===== PANEL B — MALZEME BİLGİSİ + MARKA/MODEL/YÜZEY ===== */
 .b-mat-info {
@@ -1705,7 +1706,7 @@ function pickBrand(el, matName) {
     list.className = 'dekton-model-list';
     const models = dektonModels.length > 0 ? dektonModels : [];
     models.forEach(m => {
-      const thumbUrl = `https://assetstools.cosentino.com/api/v1/bynder/color/${m.code}/detalle/${m.code}-thumb.jpg`;
+      const thumbUrl = `./Plakalar/Porselen/Dekton/${m.code}-thumb.jpg`;
       const btn = document.createElement('button');
       btn.className = 'dekton-list-item';
       btn.dataset.model = m.name + ' - ' + m.finish;
