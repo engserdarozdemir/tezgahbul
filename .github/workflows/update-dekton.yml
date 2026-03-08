@@ -1,0 +1,36 @@
+name: Update Dekton Models
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *'   # Her 72 saatte bir (gece yarısı UTC)
+  workflow_dispatch:          # Manuel tetikleme
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run fetch script
+        run: node scripts/fetch-dekton.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/dekton-models.json
+          if git diff --cached --quiet; then
+            echo "No changes, skipping commit."
+          else
+            git commit -m "chore: dekton modelleri güncellendi (otomatik)"
+            git push
+          fi
