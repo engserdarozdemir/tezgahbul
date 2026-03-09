@@ -910,6 +910,7 @@ body {
 }
 .b-sub-wrap.open { max-height: 1100px; opacity: 1; }
 .b-sub-section { padding-top: 10px; }
+#bSelectionSummary { color: #e07a20; font-size: 0.8em; font-weight: 600; }
 .b-sub-label {
   font-size: 0.65rem; font-weight: 700; letter-spacing: 0.6px;
   text-transform: uppercase; color: var(--teal-mid);
@@ -1222,7 +1223,7 @@ body {
         <!-- Panel B: İstenen ürün (locked until A filled) -->
         <div class="q2-panel q2-panel-locked" id="q2PanelB" data-panel="B">
           <div class="q2-panel-no">B</div>
-          <div class="q2-panel-q">Hangi ürün grubunu istiyorsunuz?</div>
+          <div class="q2-panel-q">Hangi ürün grubunu istiyorsunuz? <span id="bSelectionSummary"></span></div>
           <div class="q2-chip-group">
             <button class="q2-chip" onclick="pickChip(this)">Porselen</button>
             <button class="q2-chip" onclick="pickChip(this)">Quartz</button>
@@ -1826,6 +1827,38 @@ function pickBrandModel(el, matName) {
   saveSelections();
 }
 
+function updateBSummary() {
+  const el = document.getElementById('bSelectionSummary');
+  if (!el) return;
+
+  const brand = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '';
+
+  let model = '';
+  let finish = '';
+  const activeListItem = document.querySelector('.dekton-list-item.active');
+  if (activeListItem) {
+    model = activeListItem.dataset.model || '';
+    // Neolith: finish ayrı chip'ten gelir; Dekton: model içinde zaten var
+    const neolithFinish = document.querySelector('#neolithFinishChips .q2-chip.active')?.textContent.trim();
+    if (neolithFinish) { finish = neolithFinish; }
+  } else {
+    model = document.querySelector('#bModelChips .q2-chip.active')?.textContent.trim() || '';
+    finish = document.querySelector('#bSurfaceChips .q2-chip.active')?.textContent.trim() || '';
+  }
+
+  let parts = [brand, model].filter(Boolean).join(' - ');
+  if (finish) parts += ' ' + finish;
+
+  // Granit/Quartz gibi marka seçilmeden direkt yüzey seçimlerinde
+  if (!parts) {
+    const matChip = document.querySelector('#q2PanelB > .q2-chip-group > .q2-chip.active')?.textContent.trim() || '';
+    finish = document.querySelector('#bSurfaceChips .q2-chip.active')?.textContent.trim() || '';
+    parts = [matChip, finish].filter(Boolean).join(' - ');
+  }
+
+  el.textContent = parts ? `(${parts})` : '';
+}
+
 function pickNeolithFinish(el) {
   el.closest('#neolithFinishChips').querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
@@ -2218,6 +2251,7 @@ function saveSelections() {
     const q2 = Array.from(document.querySelectorAll('.mat-row.on')).map(r => r.dataset.mat);
     localStorage.setItem('tb_q2', JSON.stringify(q2));
   }
+  updateBSummary();
 }
 
 function loadSelections() {
