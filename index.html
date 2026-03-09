@@ -1056,6 +1056,7 @@ body {
 .cf-error { font-size: 0.72rem; color: #c0392b; margin-top: 6px; display: none; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -2491,203 +2492,145 @@ async function loadImgBase64(url) {
 }
 
 async function generateQuotePDF() {
-  const name = document.getElementById('cfName').value.trim();
-  const phone = document.getElementById('cfPhone').value.trim();
-  if (!name || !phone) {
+  const cfName    = document.getElementById('cfName').value.trim();
+  const cfPhone   = document.getElementById('cfPhone').value.trim();
+  if (!cfName || !cfPhone) {
     document.getElementById('cfError').style.display = 'block';
     return;
   }
   document.getElementById('cfError').style.display = 'none';
 
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-
-  const W = 210, H = 297;
-  const ml = 18, mr = 18, mt = 18;
-
-  // — Renkler —
-  const teal   = [0, 42, 50];
-  const gold   = [201, 169, 110];
-  const gray   = [120, 120, 120];
-  const light  = [245, 240, 235];
-  const black  = [30, 26, 23];
-
-  // — Header —
-  doc.setFillColor(...teal);
-  doc.rect(0, 0, W, 28, 'F');
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(18);
-  doc.setTextColor(255, 255, 255);
-  doc.text('TezgahBul', ml, 17);
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8);
-  doc.setTextColor(180, 220, 220);
-  doc.text('Mutfak Tezgahı Uzmanı', ml, 23);
-
-  // Tarih — sağ üst
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('tr-TR', { day:'2-digit', month:'2-digit', year:'numeric' });
-  doc.setTextColor(200, 240, 240);
-  doc.setFontSize(8);
-  doc.text(dateStr, W - mr, 17, { align: 'right' });
-  doc.text('Teklif Formu', W - mr, 23, { align: 'right' });
-
-  let y = 38;
-
-  // — Ürün Bilgileri Başlığı —
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9);
-  doc.setTextColor(...teal);
-  doc.text('ÜRÜN BİLGİLERİ', ml, y);
-  doc.setDrawColor(...gold);
-  doc.setLineWidth(0.4);
-  doc.line(ml, y + 2, W - mr, y + 2);
-  y += 8;
-
-  // — Slab görseli —
-  const slabPath = getSlabImagePath();
-  const imgW = 52, imgH = 38;
-  if (slabPath) {
-    const b64 = await loadImgBase64(slabPath);
-    if (b64) {
-      doc.setDrawColor(...gold);
-      doc.setLineWidth(0.3);
-      doc.rect(ml, y, imgW, imgH);
-      doc.addImage(b64, 'JPEG', ml, y, imgW, imgH);
-    }
-  }
-
-  // — Ürün detayları (sağ taraf) —
-  const brand  = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '—';
+  // — Veri toplama —
+  const brand      = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '—';
   const activeItem = document.querySelector('.dekton-list-item.active');
   let modelText = '—', finishText = '—', collText = '';
   if (activeItem) {
     const ds = activeItem.dataset.model || '';
     if (brand === 'Dekton') {
       const parts = ds.split(' - ');
-      modelText = parts[0] || ds;
+      modelText  = parts[0] || ds;
       finishText = parts[1] || '—';
       const m = (window.dektonModels || []).find(x => x.name === modelText);
       collText = m ? m.collection : '';
     } else if (brand === 'Neolith') {
-      modelText = ds;
+      modelText  = ds;
       finishText = document.querySelector('#neolithFinishChips .q2-chip.active')?.textContent.trim() || '—';
     } else {
-      modelText = ds;
+      modelText  = ds;
       finishText = document.querySelector('#bSurfaceChips .q2-chip.active')?.textContent.trim() || '—';
     }
   }
 
-  const infoX = ml + imgW + 8;
-  const rows = [
-    ['Marka',       brand],
-    ['Model',       modelText],
-    ['Yüzey',       finishText],
-  ];
-  if (collText) rows.push(['Koleksiyon', collText]);
-
-  doc.setFontSize(8.5);
-  let iy = y + 5;
-  rows.forEach(([lbl, val]) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(...gray);
-    doc.text(lbl + ':', infoX, iy);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(...black);
-    doc.text(val, infoX + 24, iy);
-    iy += 7;
-  });
-
-  y += imgH + 8;
-
-  // — Tezgah Bilgileri —
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9);
-  doc.setTextColor(...teal);
-  doc.text('TEZGAH BİLGİLERİ', ml, y);
-  doc.setDrawColor(...gold);
-  doc.line(ml, y + 2, W - mr, y + 2);
-  y += 8;
-
   const activeCard = document.querySelector('#q2PanelD .tplan-card.active');
-  const planLabel = activeCard?.querySelector('.tplan-label')?.textContent.trim() || '—';
-  const dims = Array.from(activeCard?.querySelectorAll('.tplan-val') || [])
-    .map(v => v.textContent.trim()).filter(Boolean).join('  ');
-
-  const kaplama = document.getElementById('kaplamaSwitch')?.checked;
-  const kaplamaType = document.querySelector('.kaplama-chip.active')?.textContent.trim() || '';
-  const davEn = document.getElementById('davlumbazEn')?.value;
-  const davBoy = document.getElementById('davlumbazBoy')?.value;
-
-  const tezgahRows = [
-    ['Tip', planLabel],
-    ['Ölçüler', dims || '—'],
-  ];
-  if (kaplama && kaplamaType) {
-    let kapVal = kaplamaType;
-    if (kaplamaType === 'Kaplama' && davEn && davBoy) kapVal += `  (En: ${davEn} cm, Boy: ${davBoy} cm)`;
-    tezgahRows.push(['Kaplama', kapVal]);
+  const planLabel  = activeCard?.querySelector('.tplan-label')?.textContent.trim() || '—';
+  const dims       = Array.from(activeCard?.querySelectorAll('.tplan-val') || [])
+                       .map(v => v.textContent.trim()).filter(Boolean).join('   ');
+  const kaplSw     = document.getElementById('kaplamaSwitch')?.checked;
+  const kaplType   = document.querySelector('.kaplama-chip.active')?.textContent.trim() || '';
+  const davEn      = document.getElementById('davlumbazEn')?.value;
+  const davBoy     = document.getElementById('davlumbazBoy')?.value;
+  let kaplamaText  = '';
+  if (kaplSw && kaplType) {
+    kaplamaText = kaplType;
+    if (kaplType === 'Kaplama' && davEn && davBoy) kaplamaText += ` (En: ${davEn} cm, Boy: ${davBoy} cm)`;
   }
 
-  doc.setFontSize(8.5);
-  tezgahRows.forEach(([lbl, val]) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(...gray);
-    doc.text(lbl + ':', ml, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(...black);
-    doc.text(val, ml + 24, y);
-    y += 7;
-  });
+  const cfEmail    = document.getElementById('cfEmail').value.trim();
+  const cfAddress  = document.getElementById('cfAddress').value.trim();
+  const cfCity     = document.getElementById('cfCity').value.trim();
+  const cfDist     = document.getElementById('cfDistrict').value.trim();
 
-  y += 4;
+  const now      = new Date();
+  const dateStr  = now.toLocaleDateString('tr-TR', { day:'2-digit', month:'2-digit', year:'numeric' });
+  const quoteNo  = getNextQuoteNo();
+  const slabPath = getSlabImagePath();
 
-  // — Müşteri Bilgileri —
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9);
-  doc.setTextColor(...teal);
-  doc.text('MÜŞTERİ BİLGİLERİ', ml, y);
-  doc.setDrawColor(...gold);
-  doc.line(ml, y + 2, W - mr, y + 2);
-  y += 8;
+  // — HTML şablonu —
+  const row = (lbl, val) => val
+    ? `<tr>
+         <td style="color:#888;padding:5px 14px 5px 0;width:115px;font-weight:600;vertical-align:top">${lbl}</td>
+         <td style="color:#1e1a17;padding:5px 0;vertical-align:top">${val}</td>
+       </tr>` : '';
 
-  const email   = document.getElementById('cfEmail').value.trim();
-  const address = document.getElementById('cfAddress').value.trim();
-  const city    = document.getElementById('cfCity').value.trim();
-  const dist    = document.getElementById('cfDistrict').value.trim();
+  const section = (title, content) =>
+    `<div style="margin-bottom:22px">
+       <div style="font-size:9px;font-weight:700;color:#002a32;letter-spacing:1.5px;text-transform:uppercase;
+                   padding-bottom:6px;border-bottom:1.5px solid #c9a96e;margin-bottom:12px">${title}</div>
+       ${content}
+     </div>`;
 
-  const cfRows = [
-    ['Ad Soyad', name],
-    ['Telefon',  phone],
-  ];
-  if (email)   cfRows.push(['E-posta', email]);
-  if (address) cfRows.push(['Adres', address]);
-  if (city || dist) cfRows.push(['İl / İlçe', [city, dist].filter(Boolean).join(' / ')]);
+  const slabImg = slabPath
+    ? `<img src="${slabPath}" style="width:148px;height:106px;object-fit:cover;border-radius:4px;border:1px solid #ddd;flex-shrink:0;display:block">`
+    : `<div style="width:148px;height:106px;background:#f0ebe4;border-radius:4px;flex-shrink:0"></div>`;
 
-  doc.setFontSize(8.5);
-  cfRows.forEach(([lbl, val]) => {
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(...gray);
-    doc.text(lbl + ':', ml, y);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(...black);
-    doc.text(val, ml + 24, y);
-    y += 7;
-  });
+  const productContent =
+    `<div style="display:flex;gap:20px;align-items:flex-start">
+       ${slabImg}
+       <table style="font-size:13px;border-collapse:collapse;flex:1">
+         ${row('Marka', brand)}
+         ${row('Model', modelText)}
+         ${row('Yüzey', finishText)}
+         ${row('Koleksiyon', collText)}
+       </table>
+     </div>`;
 
-  // — Footer —
-  const quoteNo = getNextQuoteNo();
-  doc.setFillColor(...light);
-  doc.rect(0, H - 16, W, 16, 'F');
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(8);
-  doc.setTextColor(...teal);
-  doc.text('TezgahBul — tezgahbul.com', ml, H - 7);
-  doc.setTextColor(...gray);
-  doc.text('Teklif No: ' + quoteNo, W - mr, H - 7, { align: 'right' });
+  const tezgahContent =
+    `<table style="font-size:13px;border-collapse:collapse;width:100%">
+       ${row('Tip', planLabel)}
+       ${row('Ölçüler', dims || '—')}
+       ${row('Kaplama', kaplamaText)}
+     </table>`;
 
+  const customerContent =
+    `<table style="font-size:13px;border-collapse:collapse;width:100%">
+       ${row('Ad Soyad', cfName)}
+       ${row('Telefon', cfPhone)}
+       ${row('E-posta', cfEmail)}
+       ${row('Adres', cfAddress)}
+       ${row('İl / İlçe', [cfCity, cfDist].filter(Boolean).join(' / '))}
+     </table>`;
+
+  const html =
+    `<div style="width:794px;height:1123px;background:#fff;font-family:Arial,Helvetica,sans-serif;position:relative;box-sizing:border-box">
+       <!-- Header -->
+       <div style="background:#002a32;padding:22px 36px;display:flex;justify-content:space-between;align-items:flex-start">
+         <div>
+           <div style="color:#fff;font-size:24px;font-weight:700;letter-spacing:0.5px">TezgahBul</div>
+           <div style="color:#90c8c8;font-size:11px;margin-top:4px">Mutfak Tezgahı Uzmanı</div>
+         </div>
+         <div style="text-align:right">
+           <div style="color:#c0e0e0;font-size:12px;font-weight:600">${dateStr}</div>
+           <div style="color:#90c8c8;font-size:11px;margin-top:3px">Teklif Formu</div>
+         </div>
+       </div>
+       <!-- Content -->
+       <div style="padding:28px 36px 80px">
+         ${section('Ürün Bilgileri', productContent)}
+         ${section('Tezgah Bilgileri', tezgahContent)}
+         ${section('Müşteri Bilgileri', customerContent)}
+       </div>
+       <!-- Footer -->
+       <div style="position:absolute;bottom:0;left:0;right:0;background:#f5f0eb;padding:11px 36px;
+                   display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ede8e2">
+         <div style="font-size:11px;color:#002a32;font-weight:600">TezgahBul — tezgahbul.com</div>
+         <div style="font-size:11px;color:#888">Teklif No: ${quoteNo}</div>
+       </div>
+     </div>`;
+
+  // — Geçici div oluştur —
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-1';
+  wrap.innerHTML = html;
+  document.body.appendChild(wrap);
+
+  // — html2canvas → jsPDF —
+  const canvas = await html2canvas(wrap.firstElementChild, { scale: 2, useCORS: true, logging: false });
+  document.body.removeChild(wrap);
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+  const imgData = canvas.toDataURL('image/jpeg', 0.92);
+  doc.addImage(imgData, 'JPEG', 0, 0, 210, 297);
   doc.save(`TezgahBul-Teklif-${quoteNo.replace('#','')}.pdf`);
 }
 </script>
