@@ -1054,9 +1054,11 @@ body {
 }
 .cf-submit:hover { background: var(--teal-mid); }
 .cf-error { font-size: 0.72rem; color: #c0392b; margin-top: 6px; display: none; }
+.cf-photo-label { font-size: 0.72rem; font-weight: 600; color: #8b7355; text-transform: uppercase; letter-spacing: 0.04em; margin: 14px 0 6px; }
+.cf-photo-area { border: 2px dashed #c9a96e; border-radius: 8px; padding: 14px; cursor: pointer; text-align: center; color: #aaa; min-height: 76px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.cf-photo-area:hover { background: #fdf9f5; }
+.cf-photo-area img { max-width: 100%; max-height: 150px; border-radius: 6px; object-fit: contain; }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -1581,6 +1583,11 @@ body {
           <input type="text" id="cfDistrict" placeholder="İlçe" autocomplete="address-level2">
         </div>
       </div>
+      <div class="cf-photo-label">Mevcut Mutfak Fotoğrafı <span class="cf-opt">(opsiyonel)</span></div>
+      <div class="cf-photo-area" onclick="document.getElementById('cfKitchenPhoto').click()">
+        <div id="cfPhotoPreview"><span style="font-size:0.8rem">+ Fotoğraf ekle</span></div>
+      </div>
+      <input type="file" id="cfKitchenPhoto" accept="image/*" style="display:none" onchange="previewKitchenPhoto(this)">
       <div class="cf-error" id="cfError">Lütfen Ad Soyad ve Telefon alanlarını doldurun.</div>
       <button class="cf-submit" onclick="generateQuotePDF()">Teklif Formu İste →</button>
     </div>
@@ -2506,6 +2513,17 @@ async function loadImgBase64(url) {
   } catch { return null; }
 }
 
+function previewKitchenPhoto(input) {
+  if (!input.files?.[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const p = document.getElementById('cfPhotoPreview');
+    p.innerHTML = `<img src="${e.target.result}">`;
+    p.dataset.src = e.target.result;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
 async function generateQuotePDF() {
   const cfName    = document.getElementById('cfName').value.trim();
   const cfPhone   = document.getElementById('cfPhone').value.trim();
@@ -2560,94 +2578,61 @@ async function generateQuotePDF() {
   const quoteNo  = getNextQuoteNo();
   const slabPath = getSlabImagePath();
   const slabDataURL = slabPath ? await slabToDataURL(slabPath) : null;
+  const kitchenPhotoURL = document.getElementById('cfPhotoPreview')?.dataset?.src || null;
 
-  // — HTML şablonu —
+  // — Print HTML —
   const row = (lbl, val) => val
-    ? `<tr>
-         <td style="color:#888;padding:5px 14px 5px 0;width:115px;font-weight:600;vertical-align:top">${lbl}</td>
-         <td style="color:#1e1a17;padding:5px 0;vertical-align:top">${val}</td>
-       </tr>` : '';
+    ? `<tr><td style="color:#666;font-weight:600;padding:5px 18px 5px 0;width:120px;vertical-align:top;white-space:nowrap">${lbl}</td><td style="color:#1e1a17;padding:5px 0;vertical-align:top">${val}</td></tr>`
+    : '';
 
-  const section = (title, content) =>
-    `<div style="margin-bottom:22px">
-       <div style="font-size:9px;font-weight:700;color:#002a32;letter-spacing:1.5px;text-transform:uppercase;
-                   padding-bottom:6px;border-bottom:1.5px solid #c9a96e;margin-bottom:12px">${title}</div>
+  const sec = (title, content) =>
+    `<div style="margin-bottom:26px">
+       <div style="font-size:8px;font-weight:700;color:#002a32;letter-spacing:2px;text-transform:uppercase;padding-bottom:6px;border-bottom:1.5px solid #c9a96e;margin-bottom:13px">${title}</div>
        ${content}
      </div>`;
 
-  const slabImg = slabDataURL
-    ? `<img src="${slabDataURL}" style="width:148px;height:106px;object-fit:cover;border-radius:4px;border:1px solid #ddd;flex-shrink:0;display:block">`
-    : `<div style="width:148px;height:106px;background:#f0ebe4;border-radius:4px;flex-shrink:0"></div>`;
+  const slabImgHtml = slabDataURL
+    ? `<img src="${slabDataURL}" style="max-width:200px;max-height:144px;border-radius:4px;border:1px solid #ddd;display:block;flex-shrink:0">`
+    : `<div style="width:200px;height:144px;background:#f0ebe4;border-radius:4px;flex-shrink:0"></div>`;
 
-  const productContent =
-    `<div style="display:flex;gap:20px;align-items:flex-start">
-       ${slabImg}
-       <table style="font-size:13px;border-collapse:collapse;flex:1">
-         ${row('Marka', brand)}
-         ${row('Model', modelText)}
-         ${row('Yüzey', finishText)}
-         ${row('Koleksiyon', collText)}
-       </table>
-     </div>`;
+  const kitchenHtml = kitchenPhotoURL
+    ? sec('Mevcut Mutfak', `<img src="${kitchenPhotoURL}" style="max-width:280px;max-height:200px;border-radius:4px;border:1px solid #ddd;display:block">`)
+    : '';
 
-  const tezgahContent =
-    `<table style="font-size:13px;border-collapse:collapse;width:100%">
-       ${row('Tip', planLabel)}
-       ${row('Ölçüler', dims || '—')}
-       ${row('Kaplama', kaplamaText)}
-     </table>`;
+  const printHTML = `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8">
+<title>TezgahBul Teklif ${quoteNo}</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1e1a17;background:#fff}
+@page{size:A4;margin:0}
+@media print{body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+.footer{position:fixed;bottom:0;left:0;right:0}}
+</style></head><body>
+<div style="width:210mm;min-height:297mm;padding-bottom:48px">
+  <div style="background:#002a32;padding:22px 40px;display:flex;justify-content:space-between;align-items:flex-start">
+    <div><div style="color:#fff;font-size:26px;font-weight:700">TezgahBul</div>
+    <div style="color:#90c8c8;font-size:11px;margin-top:4px">Mutfak Tezgahı Uzmanı</div></div>
+    <div style="text-align:right"><div style="color:#e0f0f0;font-size:12px;font-weight:600">${dateStr}</div>
+    <div style="color:#90c8c8;font-size:10px;margin-top:3px">Teklif Formu</div></div>
+  </div>
+  <div style="padding:30px 40px">
+    ${sec('Ürün Bilgileri', `<div style="display:flex;gap:22px;align-items:flex-start">${slabImgHtml}
+      <table style="border-collapse:collapse">${row('Marka',brand)}${row('Model',modelText)}${row('Yüzey',finishText)}${collText?row('Koleksiyon',collText):''}</table></div>`)}
+    ${sec('Tezgah Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Tip',planLabel)}${row('Ölçüler',dims||'—')}${kaplamaText?row('Kaplama',kaplamaText):''}</table>`)}
+    ${sec('Müşteri Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Ad Soyad',cfName)}${row('Telefon',cfPhone)}${cfEmail?row('E-posta',cfEmail):''}${cfAddress?row('Adres',cfAddress):''}${(cfCity||cfDist)?row('İl / İlçe',[cfCity,cfDist].filter(Boolean).join(' / ')):''}</table>`)}
+    ${kitchenHtml}
+  </div>
+</div>
+<div class="footer" style="background:#f5f0eb;padding:10px 40px;display:flex;justify-content:space-between;border-top:1px solid #e8e0d8">
+  <span style="font-size:10px;color:#002a32;font-weight:600">TezgahBul — tezgahbul.com</span>
+  <span style="font-size:10px;color:#888">Teklif No: ${quoteNo}</span>
+</div>
+<script>window.addEventListener('load',()=>window.print());window.addEventListener('afterprint',()=>window.close());<\/script>
+</body></html>`;
 
-  const customerContent =
-    `<table style="font-size:13px;border-collapse:collapse;width:100%">
-       ${row('Ad Soyad', cfName)}
-       ${row('Telefon', cfPhone)}
-       ${row('E-posta', cfEmail)}
-       ${row('Adres', cfAddress)}
-       ${row('İl / İlçe', [cfCity, cfDist].filter(Boolean).join(' / '))}
-     </table>`;
-
-  const html =
-    `<div style="width:794px;height:1123px;background:#fff;font-family:Arial,Helvetica,sans-serif;position:relative;box-sizing:border-box">
-       <!-- Header -->
-       <div style="background:#002a32;padding:22px 36px;display:flex;justify-content:space-between;align-items:flex-start">
-         <div>
-           <div style="color:#fff;font-size:24px;font-weight:700;letter-spacing:0.5px">TezgahBul</div>
-           <div style="color:#90c8c8;font-size:11px;margin-top:4px">Mutfak Tezgahı Uzmanı</div>
-         </div>
-         <div style="text-align:right">
-           <div style="color:#c0e0e0;font-size:12px;font-weight:600">${dateStr}</div>
-           <div style="color:#90c8c8;font-size:11px;margin-top:3px">Teklif Formu</div>
-         </div>
-       </div>
-       <!-- Content -->
-       <div style="padding:28px 36px 80px">
-         ${section('Ürün Bilgileri', productContent)}
-         ${section('Tezgah Bilgileri', tezgahContent)}
-         ${section('Müşteri Bilgileri', customerContent)}
-       </div>
-       <!-- Footer -->
-       <div style="position:absolute;bottom:0;left:0;right:0;background:#f5f0eb;padding:11px 36px;
-                   display:flex;justify-content:space-between;align-items:center;border-top:1px solid #ede8e2">
-         <div style="font-size:11px;color:#002a32;font-weight:600">TezgahBul — tezgahbul.com</div>
-         <div style="font-size:11px;color:#888">Teklif No: ${quoteNo}</div>
-       </div>
-     </div>`;
-
-  // — Geçici div oluştur —
-  const wrap = document.createElement('div');
-  wrap.style.cssText = 'position:fixed;left:-9999px;top:0;z-index:-1';
-  wrap.innerHTML = html;
-  document.body.appendChild(wrap);
-
-  // — html2canvas → jsPDF —
-  const canvas = await html2canvas(wrap.firstElementChild, { scale: 2, useCORS: true, allowTaint: true, logging: false, width: 794, height: 1123 });
-  document.body.removeChild(wrap);
-
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  const imgData = canvas.toDataURL('image/jpeg', 0.92);
-  doc.addImage(imgData, 'JPEG', 0, 0, 210, 297);
-  doc.save(`TezgahBul-Teklif-${quoteNo.replace('#','')}.pdf`);
+  const win = window.open('', '_blank', 'width=900,height=1100');
+  if (!win) { alert('Popup engelleyici aktif — lütfen izin verin.'); return; }
+  win.document.write(printHTML);
+  win.document.close();
 }
 </script>
 
