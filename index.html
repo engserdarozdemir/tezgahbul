@@ -919,7 +919,7 @@ body {
   max-height: 0; overflow: hidden; opacity: 0;
   transition: max-height 0.35s ease, opacity 0.3s ease;
 }
-.b-sub-collapse.open { max-height: 600px; opacity: 1; }
+.b-sub-collapse.open { max-height: 700px; opacity: 1; }
 .q2-chip.fixed {
   opacity: 0.6; cursor: default; pointer-events: none;
   background: rgba(0,42,50,0.06);
@@ -1243,6 +1243,10 @@ body {
             <div class="b-sub-section b-sub-collapse" id="bModelSection">
               <div class="b-sub-label">Model / Koleksiyon</div>
               <div class="q2-chip-group" id="bModelChips"></div>
+              <div class="b-sub-collapse" id="neolithFinishInline" style="padding-top:6px">
+                <div class="b-sub-label">Yüzey</div>
+                <div class="q2-chip-group" id="neolithFinishChips"></div>
+              </div>
             </div>
             <div class="b-sub-section b-sub-collapse" id="bSurfaceSection">
               <div class="b-sub-label">Yüzey</div>
@@ -1646,6 +1650,20 @@ async function loadDektonModels() {
 
 loadDektonModels();
 
+let neolithModels = [];
+
+async function loadNeolithModels() {
+  try {
+    const res = await fetch('./data/neolith-models.json');
+    const json = await res.json();
+    neolithModels = json.models || [];
+  } catch (e) {
+    console.warn('Neolith modelleri yüklenemedi:', e);
+  }
+}
+
+loadNeolithModels();
+
 function _openBPanelFor(matName) {
   const info = MAT_INFO[matName];
   if (!info) return;
@@ -1700,6 +1718,7 @@ function pickBrand(el, matName) {
   const bSurfaceSection = document.getElementById('bSurfaceSection');
 
   bSurfaceSection.classList.remove('open');
+  document.getElementById('neolithFinishInline').classList.remove('open');
 
   if (brand === 'Dekton') {
     const list = document.createElement('div');
@@ -1718,6 +1737,43 @@ function pickBrand(el, matName) {
       btn.addEventListener('click', () => {
         list.querySelectorAll('.dekton-list-item').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
+        bSurfaceSection.classList.remove('open');
+        saveSelections();
+      });
+      list.appendChild(btn);
+    });
+    bModelChips.innerHTML = '';
+    bModelChips.appendChild(list);
+    bModelSection.classList.add('open');
+  } else if (brand === 'Neolith') {
+    const list = document.createElement('div');
+    list.className = 'dekton-model-list';
+    const nModels = neolithModels.length > 0 ? neolithModels : [];
+    nModels.forEach(m => {
+      const thumbUrl = `./Plakalar/Porselen/Neolith/${m.slug}-thumb.jpg`;
+      const btn = document.createElement('button');
+      btn.className = 'dekton-list-item';
+      btn.dataset.model = m.name;
+      btn.dataset.finishes = JSON.stringify(m.finishes);
+      btn.innerHTML = `<img src="${thumbUrl}" alt="${m.name}" loading="lazy">
+        <div class="dki-info">
+          <div class="dki-name">${m.name}</div>
+          <div class="dki-sub">${m.finishes.join(' · ')}</div>
+        </div>`;
+      btn.addEventListener('click', () => {
+        list.querySelectorAll('.dekton-list-item').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const finishes = m.finishes;
+        const finishInline = document.getElementById('neolithFinishInline');
+        const finishChipsEl = document.getElementById('neolithFinishChips');
+        if (finishes.length === 1) {
+          finishChipsEl.innerHTML = `<button class="q2-chip active fixed">${finishes[0]}</button>`;
+        } else {
+          finishChipsEl.innerHTML = finishes.map(f =>
+            `<button class="q2-chip" onclick="pickNeolithFinish(this)">${f}</button>`
+          ).join('');
+        }
+        finishInline.classList.add('open');
         bSurfaceSection.classList.remove('open');
         saveSelections();
       });
@@ -1767,6 +1823,12 @@ function pickBrandModel(el, matName) {
     ).join('');
   }
   bSurfaceSection.classList.add('open');
+  saveSelections();
+}
+
+function pickNeolithFinish(el) {
+  el.closest('#neolithFinishChips').querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
   saveSelections();
 }
 
