@@ -2461,6 +2461,21 @@ function getNextQuoteNo() {
   return '#' + String(n).padStart(5, '0');
 }
 
+async function slabToDataURL(src) {
+  return new Promise(resolve => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = img.naturalWidth; c.height = img.naturalHeight;
+      c.getContext('2d').drawImage(img, 0, 0);
+      resolve(c.toDataURL('image/jpeg', 0.88));
+    };
+    img.onerror = () => resolve(null);
+    img.src = src + '?t=' + Date.now();
+  });
+}
+
 function getSlabImagePath() {
   const brand = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '';
   const activeItem = document.querySelector('.dekton-list-item.active');
@@ -2468,12 +2483,12 @@ function getSlabImagePath() {
   if (brand === 'Dekton') {
     const modelName = (activeItem.dataset.model || '').split(' - ')[0].trim();
     const slug = modelName.toLowerCase().replace(/\s+/g, '-');
-    return `./Plakalar/Porselen/Dekton/${slug}-slab.jpg`;
+    return `./Plakalar/Porselen/Dekton/slab/${slug}-slab.jpg`;
   }
   if (brand === 'Neolith') {
     const modelName = activeItem.dataset.model || '';
     const m = neolithModels.find(x => x.name === modelName);
-    if (m) return `./Plakalar/Porselen/Neolith/${m.slug}-slab.jpg`;
+    if (m) return `./Plakalar/Porselen/Neolith/slab/${m.slug}-slab.jpg`;
   }
   return null;
 }
@@ -2544,6 +2559,7 @@ async function generateQuotePDF() {
   const dateStr  = now.toLocaleDateString('tr-TR', { day:'2-digit', month:'2-digit', year:'numeric' });
   const quoteNo  = getNextQuoteNo();
   const slabPath = getSlabImagePath();
+  const slabDataURL = slabPath ? await slabToDataURL(slabPath) : null;
 
   // — HTML şablonu —
   const row = (lbl, val) => val
@@ -2559,8 +2575,8 @@ async function generateQuotePDF() {
        ${content}
      </div>`;
 
-  const slabImg = slabPath
-    ? `<img src="${slabPath}" style="width:148px;height:106px;object-fit:cover;border-radius:4px;border:1px solid #ddd;flex-shrink:0;display:block">`
+  const slabImg = slabDataURL
+    ? `<img src="${slabDataURL}" style="width:148px;height:106px;object-fit:cover;border-radius:4px;border:1px solid #ddd;flex-shrink:0;display:block">`
     : `<div style="width:148px;height:106px;background:#f0ebe4;border-radius:4px;flex-shrink:0"></div>`;
 
   const productContent =
@@ -2624,7 +2640,7 @@ async function generateQuotePDF() {
   document.body.appendChild(wrap);
 
   // — html2canvas → jsPDF —
-  const canvas = await html2canvas(wrap.firstElementChild, { scale: 2, useCORS: true, logging: false });
+  const canvas = await html2canvas(wrap.firstElementChild, { scale: 2, useCORS: true, allowTaint: true, logging: false, width: 794, height: 1123 });
   document.body.removeChild(wrap);
 
   const { jsPDF } = window.jspdf;
