@@ -1719,7 +1719,9 @@ function pickBrand(el, matName) {
   const bSurfaceSection = document.getElementById('bSurfaceSection');
 
   bSurfaceSection.classList.remove('open');
+  document.getElementById('bSurfaceChips').innerHTML = '';
   document.getElementById('neolithFinishInline').classList.remove('open');
+  document.getElementById('neolithFinishChips').innerHTML = '';
 
   if (brand === 'Dekton') {
     const list = document.createElement('div');
