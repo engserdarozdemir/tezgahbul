@@ -1,9 +1,7 @@
 name: Update Dekton Models
 
 on:
-  schedule:
-    - cron: '0 0 */3 * *'   # Her 72 saatte bir (gece yarısı UTC)
-  workflow_dispatch:          # Manuel tetikleme
+  workflow_dispatch:          # Sadece manuel tetikleme
 
 jobs:
   update:
