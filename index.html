@@ -1738,7 +1738,7 @@ const BRAND_MODELS = {
   'Dekton': ['Ultra', 'Slim', 'Stonika', 'Industrial', 'Natural Stone', 'Outdoor'],
   'Neolith': ['Classtone', 'Stonetech', 'Nature', 'Intense', 'Iron', 'Fusion'],
   'Laminam': ['Oxide', 'Fokos', 'Calce', 'Ardesia', 'In-Side', 'Assoluto'],
-  'Infinity': ['Terra', 'Nature', 'Glamour', 'Prestige', 'Lux'],
+  'Infinity': [],
   'Kale T-One': ['Premium', 'Classic', 'Ultra', 'Stone'],
   'Ng Kütahya': [],
   'Anatolia': [],
@@ -1779,6 +1779,20 @@ async function loadNeolithModels() {
 }
 
 loadNeolithModels();
+
+let infinityModels = [];
+
+async function loadInfinityModels() {
+  try {
+    const res = await fetch('./data/infinity-models.json');
+    const json = await res.json();
+    infinityModels = json.models || [];
+  } catch (e) {
+    console.warn('Infinity modelleri yüklenemedi:', e);
+  }
+}
+
+loadInfinityModels();
 
 function _openBPanelFor(matName) {
   const info = MAT_INFO[matName];
@@ -1869,6 +1883,43 @@ function pickBrand(el, matName) {
     const nModels = neolithModels.length > 0 ? neolithModels : [];
     nModels.forEach(m => {
       const thumbUrl = `./Plakalar/Porselen/Neolith/${m.slug}-thumb.jpg`;
+      const btn = document.createElement('button');
+      btn.className = 'dekton-list-item';
+      btn.dataset.model = m.name;
+      btn.dataset.finishes = JSON.stringify(m.finishes);
+      btn.innerHTML = `<img src="${thumbUrl}" alt="${m.name}" loading="lazy">
+        <div class="dki-info">
+          <div class="dki-name">${m.name}</div>
+          <div class="dki-sub">${m.finishes.join(' · ')}</div>
+        </div>`;
+      btn.addEventListener('click', () => {
+        list.querySelectorAll('.dekton-list-item').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const finishes = m.finishes;
+        const finishInline = document.getElementById('neolithFinishInline');
+        const finishChipsEl = document.getElementById('neolithFinishChips');
+        if (finishes.length === 1) {
+          finishChipsEl.innerHTML = `<button class="q2-chip active fixed">${finishes[0]}</button>`;
+        } else {
+          finishChipsEl.innerHTML = finishes.map(f =>
+            `<button class="q2-chip" onclick="pickNeolithFinish(this)">${f}</button>`
+          ).join('');
+        }
+        finishInline.classList.add('open');
+        bSurfaceSection.classList.remove('open');
+        saveSelections();
+      });
+      list.appendChild(btn);
+    });
+    bModelChips.innerHTML = '';
+    bModelChips.appendChild(list);
+    bModelSection.classList.add('open');
+  } else if (brand === 'Infinity') {
+    const list = document.createElement('div');
+    list.className = 'dekton-model-list';
+    const iModels = infinityModels.length > 0 ? infinityModels : [];
+    iModels.forEach(m => {
+      const thumbUrl = `./Plakalar/Porselen/Infinity/${m.slug}-thumb.webp`;
       const btn = document.createElement('button');
       btn.className = 'dekton-list-item';
       btn.dataset.model = m.name;
