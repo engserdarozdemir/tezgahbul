@@ -1837,6 +1837,20 @@ function _closeBPanel() {
   document.getElementById('bSurfaceSection').classList.remove('open');
 }
 
+const FINISH_TR = {
+  'Polished': 'Parlak',
+  'Matte': 'Mat',
+  'Satin': 'Mat',
+  'Mat': 'Mat',
+  'Levigato Pearl': null,
+  'Glam': 'Parlak',
+  'Patinated': 'Mat',
+  'Rectified': null
+};
+function trFinishes(arr) {
+  return [...new Set(arr.map(f => FINISH_TR[f] !== undefined ? FINISH_TR[f] : f).filter(f => f !== null))];
+}
+
 function pickBrand(el, matName) {
   el.closest('#bBrandChips').querySelectorAll('.q2-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
@@ -1923,24 +1937,29 @@ function pickBrand(el, matName) {
       const btn = document.createElement('button');
       btn.className = 'dekton-list-item';
       btn.dataset.model = m.name;
-      btn.dataset.finishes = JSON.stringify(m.finishes);
+      const trF = trFinishes(m.finishes);
+      btn.dataset.finishes = JSON.stringify(trF);
       btn.innerHTML = `<img src="${thumbUrl}" alt="${m.name}" loading="lazy">
         <div class="dki-info">
           <div class="dki-name">${m.name}</div>
-          <div class="dki-sub">${m.finishes.join(' · ')}</div>
+          ${trF.length ? `<div class="dki-sub">${trF.join(' · ')}</div>` : ''}
         </div>`;
       btn.addEventListener('click', () => {
         list.querySelectorAll('.dekton-list-item').forEach(c => c.classList.remove('active'));
         btn.classList.add('active');
-        const finishes = m.finishes;
+        const finishes = trF;
         const finishInline = document.getElementById('neolithFinishInline');
         const finishChipsEl = document.getElementById('neolithFinishChips');
         if (finishes.length === 1) {
           finishChipsEl.innerHTML = `<button class="q2-chip active fixed">${finishes[0]}</button>`;
-        } else {
+        } else if (finishes.length > 1) {
           finishChipsEl.innerHTML = finishes.map(f =>
             `<button class="q2-chip" onclick="pickNeolithFinish(this)">${f}</button>`
           ).join('');
+        } else {
+          finishInline.classList.remove('open');
+          saveSelections();
+          return;
         }
         finishInline.classList.add('open');
         bSurfaceSection.classList.remove('open');
