@@ -1786,7 +1786,7 @@ async function loadInfinityModels() {
   try {
     const res = await fetch('./data/infinity-models.json');
     const json = await res.json();
-    infinityModels = json.models || [];
+    infinityModels = Array.isArray(json) ? json : (json.models || []);
   } catch (e) {
     console.warn('Infinity modelleri yüklenemedi:', e);
   }
