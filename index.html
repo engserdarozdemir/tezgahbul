@@ -1780,6 +1780,20 @@ async function loadNeolithModels() {
 
 loadNeolithModels();
 
+let silestoneModels = [];
+
+async function loadSilestoneModels() {
+  try {
+    const res = await fetch('./data/silestone-models.json');
+    const json = await res.json();
+    silestoneModels = json.models || [];
+  } catch (e) {
+    console.warn('Silestone modelleri yüklenemedi:', e);
+  }
+}
+
+loadSilestoneModels();
+
 let infinityModels = [];
 
 async function loadInfinityModels() {
@@ -1843,6 +1857,8 @@ const FINISH_TR = {
   'Satin': 'Mat',
   'Mat': 'Mat',
   'Levigato Pearl': null,
+  'Suede': 'Mat',
+  'Volcano': 'Mat',
   'Glam': 'Parlak',
   'Patinated': 'Mat',
   'Rectified': null
@@ -1934,6 +1950,48 @@ function pickBrand(el, matName) {
     const iModels = infinityModels.length > 0 ? infinityModels : [];
     iModels.forEach(m => {
       const thumbUrl = `./Plakalar/Porselen/Infinity/${m.slug}-thumb.webp`;
+      const btn = document.createElement('button');
+      btn.className = 'dekton-list-item';
+      btn.dataset.model = m.name;
+      const trF = trFinishes(m.finishes);
+      btn.dataset.finishes = JSON.stringify(trF);
+      btn.innerHTML = `<img src="${thumbUrl}" alt="${m.name}" loading="lazy">
+        <div class="dki-info">
+          <div class="dki-name">${m.name}</div>
+          ${trF.length ? `<div class="dki-sub">${trF.join(' · ')}</div>` : ''}
+        </div>`;
+      btn.addEventListener('click', () => {
+        list.querySelectorAll('.dekton-list-item').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        const finishes = trF;
+        const finishInline = document.getElementById('neolithFinishInline');
+        const finishChipsEl = document.getElementById('neolithFinishChips');
+        if (finishes.length === 1) {
+          finishChipsEl.innerHTML = `<button class="q2-chip active fixed">${finishes[0]}</button>`;
+        } else if (finishes.length > 1) {
+          finishChipsEl.innerHTML = finishes.map(f =>
+            `<button class="q2-chip" onclick="pickNeolithFinish(this)">${f}</button>`
+          ).join('');
+        } else {
+          finishInline.classList.remove('open');
+          saveSelections();
+          return;
+        }
+        finishInline.classList.add('open');
+        bSurfaceSection.classList.remove('open');
+        saveSelections();
+      });
+      list.appendChild(btn);
+    });
+    bModelChips.innerHTML = '';
+    bModelChips.appendChild(list);
+    bModelSection.classList.add('open');
+  } else if (brand === 'Silestone') {
+    const list = document.createElement('div');
+    list.className = 'dekton-model-list';
+    const sModels = silestoneModels.length > 0 ? silestoneModels : [];
+    sModels.forEach(m => {
+      const thumbUrl = m.thumb_url;
       const btn = document.createElement('button');
       btn.className = 'dekton-list-item';
       btn.dataset.model = m.name;

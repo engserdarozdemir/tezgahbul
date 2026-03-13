@@ -1,0 +1,305 @@
+{
+  "models": [
+    {
+      "name": "Blanc élysée",
+      "slug": "blanc-elysee",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/blanc-elysee-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/blanc-elysee-slab.jpg"
+    },
+    {
+      "name": "Brass Relish",
+      "slug": "brass-relish",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/brass-relish-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/brass-relish-slab.jpg"
+    },
+    {
+      "name": "Bronze Rivers",
+      "slug": "bronze-rivers",
+      "finishes": [
+        "Polished"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/bronze-rivers-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/bronze-rivers-slab.jpg"
+    },
+    {
+      "name": "Calacatta Tova",
+      "slug": "calacatta-tova",
+      "finishes": [
+        "Polished"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/calacatta-tova-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/calacatta-tova-slab.jpg"
+    },
+    {
+      "name": "Calypso",
+      "slug": "calypso",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/calypso-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/calypso-slab.jpg"
+    },
+    {
+      "name": "Charcoal Soapstone",
+      "slug": "charcoal-soapstone",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/charcoal-soapstone-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/charcoal-soapstone-slab.jpg"
+    },
+    {
+      "name": "Cinder Craze",
+      "slug": "cinder-craze",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/cinder-craze-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/cinder-craze-slab.jpg"
+    },
+    {
+      "name": "Classic Calacatta",
+      "slug": "classic-calacatta",
+      "finishes": [
+        "Polished"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/classic-calacatta-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/classic-calacatta-slab.jpg"
+    },
+    {
+      "name": "Concrete Pulse",
+      "slug": "concrete-pulse",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/concrete-pulse-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/concrete-pulse-slab.jpg"
+    },
+    {
+      "name": "Coral Clay Colour",
+      "slug": "coral-clay-colour",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/coral-clay-colour-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/coral-clay-colour-slab.jpg"
+    },
+    {
+      "name": "Desert Silver",
+      "slug": "desert-silver",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/desert-silver-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/desert-silver-slab.jpg"
+    },
+    {
+      "name": "Et Calacatta Gold",
+      "slug": "et-calacatta-gold",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/et-calacatta-gold-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/et-calacatta-gold-slab.jpg"
+    },
+    {
+      "name": "Et Marquina",
+      "slug": "et-marquina",
+      "finishes": [
+        "Polished",
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/et-marquina-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/et-marquina-slab.jpg"
+    },
+    {
+      "name": "Et Statuario",
+      "slug": "et-statuario",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/et-statuario-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/et-statuario-slab.jpg"
+    },
+    {
+      "name": "Ethereal Glow",
+      "slug": "ethereal-glow",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/ethereal-glow-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/ethereal-glow-slab.jpg"
+    },
+    {
+      "name": "Ethereal Haze",
+      "slug": "ethereal-haze",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/ethereal-haze-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/ethereal-haze-slab.jpg"
+    },
+    {
+      "name": "Ffrom01",
+      "slug": "ffrom01",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/ffrom01-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/ffrom01-slab.jpg"
+    },
+    {
+      "name": "Ffrom02",
+      "slug": "ffrom02",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/ffrom02-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/ffrom02-slab.jpg"
+    },
+    {
+      "name": "Ffrom03",
+      "slug": "ffrom03",
+      "finishes": [
+        "Suede",
+        "Volcano"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/ffrom03-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/ffrom03-slab.jpg"
+    },
+    {
+      "name": "Gris Expo",
+      "slug": "gris-expo",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/gris-expo-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/gris-expo-slab.jpg"
+    },
+    {
+      "name": "Jardin Emerald",
+      "slug": "jardin-emerald",
+      "finishes": [
+        "Polished",
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/jardin-emerald-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/jardin-emerald-slab.jpg"
+    },
+    {
+      "name": "Lagoon",
+      "slug": "lagoon",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/lagoon-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/lagoon-slab.jpg"
+    },
+    {
+      "name": "Lime Delight",
+      "slug": "lime-delight",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/lime-delight-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/lime-delight-slab.jpg"
+    },
+    {
+      "name": "Linen Cream",
+      "slug": "linen-cream",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/linen-cream-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/linen-cream-slab.jpg"
+    },
+    {
+      "name": "Miami White",
+      "slug": "miami-white",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/miami-white-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/miami-white-slab.jpg"
+    },
+    {
+      "name": "Motion Grey",
+      "slug": "motion-grey",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/motion-grey-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/motion-grey-slab.jpg"
+    },
+    {
+      "name": "Night Tebas18",
+      "slug": "night-tebas18",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/night-tebas18-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/night-tebas18-slab.jpg"
+    },
+    {
+      "name": "Parisien Bleu",
+      "slug": "parisien-bleu",
+      "finishes": [
+        "Polished"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/parisien-bleu-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/parisien-bleu-slab.jpg"
+    },
+    {
+      "name": "Pearl Jasmine",
+      "slug": "pearl-jasmine",
+      "finishes": [
+        "Polished"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/pearl-jasmine-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/pearl-jasmine-slab.jpg"
+    },
+    {
+      "name": "Persian White",
+      "slug": "persian-white",
+      "finishes": [
+        "Polished",
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/persian-white-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/persian-white-slab.jpg"
+    },
+    {
+      "name": "Siberian",
+      "slug": "siberian",
+      "finishes": [
+        "Polished"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/siberian-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/siberian-slab.jpg"
+    },
+    {
+      "name": "Snowy Ibiza",
+      "slug": "snowy-ibiza",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/snowy-ibiza-thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/snowy-ibiza-slab.jpg"
+    },
+    {
+      "name": "White Zeus",
+      "slug": "white-zeus-",
+      "finishes": [
+        "Suede"
+      ],
+      "thumb_url": "./Plakalar/Quartz/Silestone/white-zeus--thumb.jpg",
+      "slab_url": "./Plakalar/Quartz/Silestone/white-zeus--slab.jpg"
+    }
+  ]
+}
