@@ -4,6 +4,7 @@
       "name": "Blanc élysée",
       "slug": "blanc-elysee",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/blanc-elysee-thumb.jpg",
@@ -40,6 +41,7 @@
       "name": "Calypso",
       "slug": "calypso",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/calypso-thumb.jpg",
@@ -49,6 +51,7 @@
       "name": "Charcoal Soapstone",
       "slug": "charcoal-soapstone",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/charcoal-soapstone-thumb.jpg",
@@ -85,6 +88,7 @@
       "name": "Coral Clay Colour",
       "slug": "coral-clay-colour",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/coral-clay-colour-thumb.jpg",
@@ -94,6 +98,7 @@
       "name": "Desert Silver",
       "slug": "desert-silver",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/desert-silver-thumb.jpg",
@@ -103,6 +108,7 @@
       "name": "Et Calacatta Gold",
       "slug": "et-calacatta-gold",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/et-calacatta-gold-thumb.jpg",
@@ -112,7 +118,6 @@
       "name": "Et Marquina",
       "slug": "et-marquina",
       "finishes": [
-        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/et-marquina-thumb.jpg",
@@ -122,6 +127,7 @@
       "name": "Et Statuario",
       "slug": "et-statuario",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/et-statuario-thumb.jpg",
@@ -131,6 +137,7 @@
       "name": "Ethereal Glow",
       "slug": "ethereal-glow",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/ethereal-glow-thumb.jpg",
@@ -140,6 +147,7 @@
       "name": "Ethereal Haze",
       "slug": "ethereal-haze",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/ethereal-haze-thumb.jpg",
@@ -167,8 +175,7 @@
       "name": "Ffrom03",
       "slug": "ffrom03",
       "finishes": [
-        "Suede",
-        "Volcano"
+        "Polished"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/ffrom03-thumb.jpg",
       "slab_url": "./Plakalar/Quartz/Silestone/ffrom03-slab.jpg"
@@ -177,6 +184,7 @@
       "name": "Gris Expo",
       "slug": "gris-expo",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/gris-expo-thumb.jpg",
@@ -186,8 +194,7 @@
       "name": "Jardin Emerald",
       "slug": "jardin-emerald",
       "finishes": [
-        "Polished",
-        "Suede"
+        "Polished"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/jardin-emerald-thumb.jpg",
       "slab_url": "./Plakalar/Quartz/Silestone/jardin-emerald-slab.jpg"
@@ -196,6 +203,7 @@
       "name": "Lagoon",
       "slug": "lagoon",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/lagoon-thumb.jpg",
@@ -214,6 +222,7 @@
       "name": "Linen Cream",
       "slug": "linen-cream",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/linen-cream-thumb.jpg",
@@ -223,6 +232,7 @@
       "name": "Miami White",
       "slug": "miami-white",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/miami-white-thumb.jpg",
@@ -232,6 +242,7 @@
       "name": "Motion Grey",
       "slug": "motion-grey",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/motion-grey-thumb.jpg",
@@ -241,6 +252,7 @@
       "name": "Night Tebas18",
       "slug": "night-tebas18",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/night-tebas18-thumb.jpg",
@@ -287,6 +299,7 @@
       "name": "Snowy Ibiza",
       "slug": "snowy-ibiza",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/snowy-ibiza-thumb.jpg",
@@ -296,6 +309,7 @@
       "name": "White Zeus",
       "slug": "white-zeus-",
       "finishes": [
+        "Polished",
         "Suede"
       ],
       "thumb_url": "./Plakalar/Quartz/Silestone/white-zeus--thumb.jpg",
