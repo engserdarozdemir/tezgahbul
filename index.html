@@ -979,6 +979,720 @@ body {
   letter-spacing: 0.3px;
 }
 
+/* ===== MALZEME KARŞILAŞTIRMA ===== */
+.compare-section {
+  padding: 80px var(--gap) 64px;
+  background: var(--off-white);
+}
+.compare-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.compare-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.compare-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.compare-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.compare-card {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1.5px solid #e0e0e0;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.compare-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,42,50,0.1);
+}
+.compare-card-head {
+  padding: 24px 22px 16px;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-mid) 100%);
+  color: var(--white);
+}
+.compare-card-head h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.compare-card-head .cc-type {
+  font-size: 0.72rem;
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+}
+.compare-card-body {
+  padding: 20px 22px 24px;
+}
+.compare-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.8rem;
+}
+.compare-row:last-child { border-bottom: none; }
+.compare-row .cr-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.compare-row .cr-value {
+  font-weight: 600;
+  color: var(--text);
+}
+.cr-stars { color: var(--orange); letter-spacing: 1px; }
+.cr-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.cr-badge.green { background: #e6f9ee; color: #1a8a4a; }
+.cr-badge.blue { background: #e6f0fa; color: #1a5a8a; }
+.cr-badge.amber { background: #fef3e0; color: #8a6a1a; }
+.compare-card-cta {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--teal);
+  background: rgba(0,42,50,0.04);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  text-decoration: none;
+  border-top: 1px solid #eee;
+}
+.compare-card-cta:hover { background: var(--teal); color: #fff; }
+@media (max-width: 768px) {
+  .compare-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .compare-section { padding: 56px 20px 48px; }
+}
+
+/* ===== ÖNCE/SONRA GALERİ ===== */
+.gallery-section {
+  padding: 80px var(--gap) 64px;
+  background: var(--white);
+}
+.gallery-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.gallery-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.gallery-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.gallery-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.ba-card {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1.5px solid #e0e0e0;
+  background: var(--white);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ba-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,42,50,0.1);
+}
+.ba-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  background: #f0f0f0;
+}
+.ba-slider .ba-before,
+.ba-slider .ba-after {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ba-slider .ba-before {
+  clip-path: inset(0 50% 0 0);
+}
+.ba-slider .ba-line {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: var(--white);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.ba-slider .ba-handle {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-handle svg { width: 18px; height: 18px; color: var(--teal); }
+.ba-label {
+  position: absolute;
+  bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.ba-label.before { left: 10px; background: rgba(0,0,0,0.6); color: #fff; }
+.ba-label.after { right: 10px; background: rgba(0,42,50,0.85); color: #fff; }
+.ba-card-info {
+  padding: 16px 20px;
+}
+.ba-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.ba-card-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ba-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+/* Placeholder için */
+.ba-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex-direction: column;
+  gap: 8px;
+}
+.ba-placeholder svg { width: 32px; height: 32px; opacity: 0.3; }
+.ba-placeholder-text { font-size: 0.75rem; opacity: 0.6; }
+@media (max-width: 768px) {
+  .gallery-section { padding: 56px 20px 48px; }
+  .gallery-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+}
+
+/* ===== BLOG / REHBER ===== */
+.blog-section {
+  padding: 80px var(--gap) 64px;
+  background: var(--off-white);
+}
+.blog-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.blog-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.blog-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.blog-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.blog-card {
+  background: var(--white);
+  border-radius: 14px;
+  border: 1.5px solid #e0e0e0;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,42,50,0.1);
+}
+.blog-card-icon {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.blog-card-body {
+  padding: 0 22px 22px;
+}
+.blog-card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.blog-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.blog-card-excerpt {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.blog-card-read {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--teal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+.blog-card-read:hover { color: var(--orange); }
+/* Blog modal */
+.blog-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.blog-modal-overlay.open { display: flex; }
+.blog-modal {
+  background: var(--white);
+  border-radius: 16px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 40px;
+  position: relative;
+}
+.blog-modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--off-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: background 0.15s;
+}
+.blog-modal-close:hover { background: #ddd; }
+.blog-modal h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+.blog-modal p {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+.blog-modal h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--teal-mid);
+  margin: 24px 0 10px;
+}
+.blog-modal ul {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.blog-modal li {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+@media (max-width: 768px) {
+  .blog-section { padding: 56px 20px 48px; }
+  .blog-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .blog-modal { padding: 28px 22px; }
+}
+
+/* ===== SERVİS TALEBİ ===== */
+.servis-blok {
+  display: none;
+  margin-top: 24px;
+  background: var(--white);
+  border: 1.5px solid #e0e0e0;
+  border-top: 3px solid var(--orange);
+  border-radius: 0 0 10px 10px;
+  padding: 28px 28px 32px;
+}
+.servis-blok.open { display: block; animation: priceSlideIn 0.3s ease; }
+.servis-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+.servis-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.servis-cats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.servis-cat {
+  padding: 14px 12px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  background: var(--white);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.servis-cat:hover { border-color: var(--teal); }
+.servis-cat.active {
+  border-color: var(--orange);
+  background: rgba(232,101,10,0.04);
+}
+.servis-cat-icon { font-size: 1.5rem; margin-bottom: 6px; }
+.servis-cat-name { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+.servis-form {
+  display: none;
+  margin-top: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+.servis-form.open { display: block; }
+.servis-form .cf-grid { margin-bottom: 0; }
+.servis-desc-field textarea {
+  width: 100%;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.servis-desc-field textarea:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,90,108,0.08);
+}
+@media (max-width: 560px) {
+  .servis-blok { padding: 22px 18px 26px; }
+  .servis-cats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ===== İMALATÇI DİZİNİ ===== */
+.mfr-section {
+  padding: 80px var(--gap) 64px;
+  background: var(--white);
+}
+.mfr-header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.mfr-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.mfr-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.mfr-sub-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+.mfr-filter-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+.mfr-filter-chip {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1.5px solid #ddd;
+  background: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.mfr-filter-chip:hover { border-color: var(--teal); color: var(--teal); }
+.mfr-filter-chip.active {
+  background: var(--teal);
+  color: var(--white);
+  border-color: var(--teal);
+}
+.mfr-dir-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.mfr-dir-card {
+  background: var(--white);
+  border: 1.5px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 22px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+.mfr-dir-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,42,50,0.08);
+}
+.mfr-dir-card.featured {
+  border-color: var(--orange);
+  border-width: 2px;
+}
+.mfr-featured-badge {
+  position: absolute;
+  top: -1px; right: 16px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 0 0 6px 6px;
+  text-transform: uppercase;
+}
+.mfr-dir-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.mfr-dir-loc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.mfr-dir-desc {
+  font-size: 0.8rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.mfr-dir-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.mfr-dir-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: rgba(0,42,50,0.06);
+  color: var(--teal-mid);
+}
+.mfr-dir-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.mfr-dir-btn {
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.mfr-dir-btn.primary {
+  background: var(--teal);
+  color: #fff;
+}
+.mfr-dir-btn.primary:hover { background: var(--teal-mid); }
+.mfr-dir-btn.secondary {
+  background: var(--off-white);
+  color: var(--teal);
+  border: 1px solid #ddd;
+}
+.mfr-dir-btn.secondary:hover { background: #e8e8e8; }
+.mfr-dir-empty {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+}
+@media (max-width: 768px) {
+  .mfr-section { padding: 56px 20px 48px; }
+  .mfr-dir-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background: var(--teal);
+  color: rgba(255,255,255,0.7);
+  padding: 48px var(--gap) 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  max-width: 960px;
+  margin: 0 auto 32px;
+}
+.footer-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.footer-brand span { color: var(--teal-light); }
+.footer-desc {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  max-width: 320px;
+}
+.footer-col h4 {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.15s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  text-align: center;
+  font-size: 0.72rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .site-footer { padding: 40px 24px 24px; }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -995,69 +1709,221 @@ body {
 /* ===== MÜŞTERİ FORMU ===== */
 .cf-section {
   display: none;
-  margin-top: 28px;
-  background: #fff;
-  border: 1px solid #e2ddd8;
-  border-radius: 10px;
-  padding: 24px 28px 28px;
+  margin-top: 32px;
+  background: var(--white);
+  border: 1.5px solid #e0e0e0;
+  border-top: 3px solid var(--teal);
+  padding: 32px 32px 36px;
 }
 .cf-section.open { display: block; }
 .cf-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--stone);
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ede8e2;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+.cf-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  line-height: 1.5;
 }
 .cf-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px 16px;
+  gap: 16px 20px;
 }
-.cf-field { display: flex; flex-direction: column; gap: 4px; }
+@media (max-width: 560px) {
+  .cf-section { padding: 24px 20px 28px; }
+  .cf-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+.cf-field { display: flex; flex-direction: column; gap: 5px; }
 .cf-field.full { grid-column: 1 / -1; }
 .cf-field label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   color: var(--teal-mid);
   text-transform: uppercase;
 }
-.cf-opt { font-weight: 400; text-transform: none; color: #aaa; font-size: 0.62rem; }
-.cf-field input {
+.cf-opt { font-weight: 400; text-transform: none; color: var(--gray-mid); font-size: 0.65rem; }
+.cf-field input, .cf-field select {
   border: 1.5px solid #ddd;
-  border-radius: 6px;
-  padding: 8px 11px;
-  font-size: 0.82rem;
-  font-family: 'Jost', sans-serif;
-  color: var(--stone);
+  border-radius: 8px;
+  padding: 11px 14px;
+  font-size: 0.88rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--white);
 }
-.cf-field input:focus { border-color: var(--teal); }
+.cf-field input:focus, .cf-field select:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,90,108,0.08);
+}
 .cf-field input::placeholder { color: #bbb; }
+.cf-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
 .cf-submit {
-  margin-top: 20px;
+  flex: 1;
+  min-width: 180px;
   background: var(--teal);
   color: #fff;
   border: none;
-  padding: 11px 28px;
-  border-radius: 7px;
-  font-size: 0.82rem;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
-  font-family: 'Jost', sans-serif;
   cursor: pointer;
-  letter-spacing: 0.3px;
-  transition: background 0.15s;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, transform 0.1s;
 }
 .cf-submit:hover { background: var(--teal-mid); }
-.cf-error { font-size: 0.72rem; color: #c0392b; margin-top: 6px; display: none; }
-.cf-photo-label { font-size: 0.72rem; font-weight: 600; color: #8b7355; text-transform: uppercase; letter-spacing: 0.04em; margin: 14px 0 6px; }
-.cf-photo-area { border: 2px dashed #c9a96e; border-radius: 8px; padding: 14px; cursor: pointer; text-align: center; color: #aaa; min-height: 76px; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-.cf-photo-area:hover { background: #fdf9f5; }
-.cf-photo-area img { max-width: 100%; max-height: 150px; border-radius: 6px; object-fit: contain; }
+.cf-submit:active { transform: scale(0.98); }
+.cf-whatsapp {
+  flex: 1;
+  min-width: 180px;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: background 0.15s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.cf-whatsapp:hover { background: #1fb855; }
+.cf-whatsapp:active { transform: scale(0.98); }
+.cf-whatsapp svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+.cf-error { font-size: 0.78rem; color: #c0392b; margin-top: 8px; display: none; }
+.cf-trust {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+.cf-trust svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.5; }
+.cf-photo-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--teal-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin: 20px 0 8px;
+}
+.cf-photo-area {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 18px;
+  cursor: pointer;
+  text-align: center;
+  color: var(--text-muted);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cf-photo-area:hover { background: #f9f9f9; border-color: var(--teal-light); }
+.cf-photo-area img { max-width: 100%; max-height: 160px; border-radius: 8px; object-fit: contain; }
+
+/* ===== FİYAT TAHMİNİ ===== */
+.price-box {
+  background: linear-gradient(135deg, #f0faf8 0%, #e8f4f0 100%);
+  border: 1.5px solid #b8dcd4;
+  border-left: 4px solid var(--teal);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  animation: priceSlideIn 0.4s ease;
+}
+@keyframes priceSlideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.price-box-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.price-range {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.price-details {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+.price-details span {
+  display: inline-block;
+  background: rgba(0,42,50,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin: 2px 4px 2px 0;
+}
+.price-disclaimer {
+  font-size: 0.68rem;
+  color: var(--gray-mid);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* İl aranabilir dropdown */
+.city-combo { position: relative; }
+.city-combo input { width: 100%; }
+.city-dd {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  background: var(--white);
+  border: 1.5px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 50;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+.city-dd.open { display: block; }
+.city-dd-item {
+  padding: 9px 14px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.1s;
+}
+.city-dd-item:hover, .city-dd-item.active { background: rgba(0,90,108,0.07); color: var(--teal); }
+.city-dd-empty {
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
 </style>
 </head>
 <body>
@@ -1130,6 +1996,165 @@ body {
   </div>
 
 
+</section>
+
+<!-- ===== MALZEME KARŞILAŞTIRMA ===== -->
+<section class="compare-section" id="karsilastirma">
+  <div class="compare-header">
+    <div class="compare-eyebrow">Malzeme Rehberi</div>
+    <div class="compare-title">Hangi tezgah malzemesi size uygun?</div>
+    <div class="compare-sub">Her malzemenin kendine özgü avantajları var. İhtiyacınıza en uygun seçimi yapmanıza yardımcı olalım.</div>
+  </div>
+  <div class="compare-grid">
+
+    <!-- GRANIT -->
+    <div class="compare-card">
+      <div class="compare-card-head">
+        <h3>Granit</h3>
+        <div class="cc-type">Doğal Taş</div>
+      </div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★☆☆</span></div>
+        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★☆☆☆</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge green">₺3.000–8.000/m²</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20–30 mm</span></div>
+        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Yoğun mutfaklar</span></div>
+      </div>
+      <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Granit Tezgah Seç →</a>
+    </div>
+
+    <!-- QUARTZ -->
+    <div class="compare-card">
+      <div class="compare-card-head" style="background:linear-gradient(135deg,#1a3a5c 0%,#2a5a8c 100%)">
+        <h3>Quartz</h3>
+        <div class="cc-type">Mühendislik Taşı</div>
+      </div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★☆</span></div>
+        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★☆☆</span></div>
+        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★☆</span></div>
+        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge blue">₺4.000–16.000/m²</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20–30 mm</span></div>
+        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Modern mutfaklar</span></div>
+      </div>
+      <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Quartz Tezgah Seç →</a>
+    </div>
+
+    <!-- PORSELEN -->
+    <div class="compare-card">
+      <div class="compare-card-head" style="background:linear-gradient(135deg,#3a2a1a 0%,#6a4a2a 100%)">
+        <h3>Porselen Slab</h3>
+        <div class="cc-type">Büyük Format Seramik</div>
+      </div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★☆</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge amber">₺3.500–18.000/m²</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">12–20 mm</span></div>
+        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Premium mutfaklar</span></div>
+      </div>
+      <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Porselen Tezgah Seç →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== ÖNCE / SONRA GALERİ ===== -->
+<section class="gallery-section" id="galeri">
+  <div class="gallery-header">
+    <div class="gallery-eyebrow">Proje Vitrini</div>
+    <div class="gallery-title">Gerçek dönüşümler, gerçek mutfaklar</div>
+    <div class="gallery-sub">Müşterilerimizin mutfaklarında yaptığımız tezgah dönüşümlerini inceleyin.</div>
+  </div>
+  <div class="gallery-grid">
+
+    <!-- Proje 1 -->
+    <div class="ba-card">
+      <div class="ba-slider" data-ba="1">
+        <div class="ba-placeholder ba-after" style="background:#e8e8e8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="ba-placeholder-text">Sonra fotoğrafı eklenecek</span>
+        </div>
+        <div class="ba-placeholder ba-before" style="background:#d8d8d8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="ba-placeholder-text">Önce fotoğrafı eklenecek</span>
+        </div>
+        <div class="ba-line"></div>
+        <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
+        <span class="ba-label before">Önce</span>
+        <span class="ba-label after">Sonra</span>
+      </div>
+      <div class="ba-card-info">
+        <div class="ba-card-title">Ankara — Quartz Tezgah Yenileme</div>
+        <div class="ba-card-meta">
+          <span>📐 L Tipi</span>
+          <span>🏷️ Çimstone</span>
+          <span>📏 3.2 m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proje 2 -->
+    <div class="ba-card">
+      <div class="ba-slider" data-ba="2">
+        <div class="ba-placeholder ba-after" style="background:#e8e8e8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="ba-placeholder-text">Sonra fotoğrafı eklenecek</span>
+        </div>
+        <div class="ba-placeholder ba-before" style="background:#d8d8d8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="ba-placeholder-text">Önce fotoğrafı eklenecek</span>
+        </div>
+        <div class="ba-line"></div>
+        <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
+        <span class="ba-label before">Önce</span>
+        <span class="ba-label after">Sonra</span>
+      </div>
+      <div class="ba-card-info">
+        <div class="ba-card-title">İstanbul — Dekton Porselen Tezgah</div>
+        <div class="ba-card-meta">
+          <span>📐 U Tipi</span>
+          <span>🏷️ Dekton Stonika</span>
+          <span>📏 4.8 m²</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proje 3 -->
+    <div class="ba-card">
+      <div class="ba-slider" data-ba="3">
+        <div class="ba-placeholder ba-after" style="background:#e8e8e8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="ba-placeholder-text">Sonra fotoğrafı eklenecek</span>
+        </div>
+        <div class="ba-placeholder ba-before" style="background:#d8d8d8">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <span class="ba-placeholder-text">Önce fotoğrafı eklenecek</span>
+        </div>
+        <div class="ba-line"></div>
+        <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
+        <span class="ba-label before">Önce</span>
+        <span class="ba-label after">Sonra</span>
+      </div>
+      <div class="ba-card-info">
+        <div class="ba-card-title">İzmir — Granit Ada Tezgah</div>
+        <div class="ba-card-meta">
+          <span>📐 Ada</span>
+          <span>🏷️ Doğal Granit</span>
+          <span>📏 2.1 m²</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- ===== SORULAR ===== -->
@@ -1554,46 +2579,225 @@ body {
       </div>
     </div>
 
+    <!-- ===== SERVİS TALEBİ ===== -->
+    <div class="servis-blok" id="servisBlok">
+      <div class="servis-title">Servis Talebi Oluşturun</div>
+      <div class="servis-subtitle">Mevcut tezgahınızdaki sorunu seçin, size en uygun çözümü sunalım.</div>
+      <div class="servis-cats">
+        <button class="servis-cat" onclick="pickServis(this, 'cizdirma')">
+          <div class="servis-cat-icon">🔧</div>
+          <div class="servis-cat-name">Çizik Giderme</div>
+        </button>
+        <button class="servis-cat" onclick="pickServis(this, 'cilalama')">
+          <div class="servis-cat-icon">✨</div>
+          <div class="servis-cat-name">Cilalama</div>
+        </button>
+        <button class="servis-cat" onclick="pickServis(this, 'kirik')">
+          <div class="servis-cat-icon">💔</div>
+          <div class="servis-cat-name">Kırık / Çatlak</div>
+        </button>
+        <button class="servis-cat" onclick="pickServis(this, 'leke')">
+          <div class="servis-cat-icon">💧</div>
+          <div class="servis-cat-name">Leke Çıkarma</div>
+        </button>
+        <button class="servis-cat" onclick="pickServis(this, 'kenar')">
+          <div class="servis-cat-icon">📐</div>
+          <div class="servis-cat-name">Kenar Tamiri</div>
+        </button>
+        <button class="servis-cat" onclick="pickServis(this, 'diger')">
+          <div class="servis-cat-icon">📋</div>
+          <div class="servis-cat-name">Diğer</div>
+        </button>
+      </div>
+      <div class="servis-form" id="servisForm">
+        <div class="cf-grid">
+          <div class="cf-field">
+            <label>Ad Soyad <span style="color:#c0392b">*</span></label>
+            <input type="text" id="svName" placeholder="Ad Soyad" autocomplete="name" oninput="this.value=this.value.replace(/[0-9]/g,'')">
+          </div>
+          <div class="cf-field">
+            <label>Telefon <span style="color:#c0392b">*</span></label>
+            <input type="tel" id="svPhone" placeholder="05xx xxx xx xx" autocomplete="tel" maxlength="14" oninput="formatPhone(this)">
+          </div>
+          <div class="cf-field cf-city-field">
+            <label>İl <span style="color:#c0392b">*</span></label>
+            <div class="city-combo" id="svCityCombo">
+              <input type="text" id="svCity" placeholder="İl yazın veya seçin..." autocomplete="off" oninput="filterServisCities()" onfocus="openServisCityDD()">
+              <div class="city-dd" id="svCityDD"></div>
+            </div>
+          </div>
+          <div class="cf-field servis-desc-field">
+            <label>Sorun Açıklaması <span class="cf-opt">(opsiyonel)</span></label>
+            <textarea id="svDesc" placeholder="Tezgahınızdaki sorunu kısaca açıklayın..."></textarea>
+          </div>
+        </div>
+        <div class="cf-photo-label">Tezgah Fotoğrafı <span class="cf-opt">(opsiyonel — sorunu görmemize yardımcı olur)</span></div>
+        <div class="cf-photo-area" onclick="document.getElementById('svPhoto').click()">
+          <div id="svPhotoPreview"><span style="font-size:0.8rem">+ Fotoğraf ekle</span></div>
+        </div>
+        <input type="file" id="svPhoto" accept="image/*" style="display:none" onchange="previewServisPhoto(this)">
+        <div class="cf-error" id="svError"></div>
+        <div class="cf-btn-group">
+          <button class="cf-whatsapp" onclick="sendServisWhatsApp()">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp ile Gönder
+          </button>
+        </div>
+        <div class="cf-trust">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Bilgileriniz gizli tutulur ve sadece servis talebi için kullanılır.
+        </div>
+      </div>
+    </div>
+
     <!-- ===== MÜŞTERİ BİLGİ FORMU ===== -->
     <div class="cf-section" id="cfSection">
-      <div class="cf-title">Teklif için bilgilerinizi girin</div>
+      <div class="cf-title">Son adim: size ulaşalım</div>
+      <div class="cf-subtitle">Bilgilerinizi bırakın, size en uygun teklifi hazırlayalım. En kısa sürede dönüş yapacağız.</div>
+
+      <!-- Fiyat Tahmini -->
+      <div class="price-box" id="priceBox" style="display:none">
+        <div class="price-box-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Tahmini Fiyat Araligi
+        </div>
+        <div class="price-range" id="priceRange"></div>
+        <div class="price-details" id="priceDetails"></div>
+        <div class="price-disclaimer">* Fiyatlar tahminidir, kesin fiyat icin teklif aliniz. Iscilik ve montaj dahildir.</div>
+      </div>
       <div class="cf-grid">
         <div class="cf-field">
           <label>Ad Soyad <span style="color:#c0392b">*</span></label>
-          <input type="text" id="cfName" placeholder="Ad Soyad" autocomplete="name">
+          <input type="text" id="cfName" placeholder="Ad Soyad" autocomplete="name" oninput="this.value=this.value.replace(/[0-9]/g,'')">
         </div>
         <div class="cf-field">
           <label>Telefon <span style="color:#c0392b">*</span></label>
-          <input type="tel" id="cfPhone" placeholder="05xx xxx xx xx" autocomplete="tel">
+          <input type="tel" id="cfPhone" placeholder="05xx xxx xx xx" autocomplete="tel" maxlength="14" oninput="formatPhone(this)">
+        </div>
+        <div class="cf-field cf-city-field">
+          <label>İl <span style="color:#c0392b">*</span></label>
+          <div class="city-combo" id="cityCombo">
+            <input type="text" id="cfCity" placeholder="İl yazın veya seçin..." autocomplete="off" oninput="filterCities()" onfocus="openCityDD()">
+            <div class="city-dd" id="cityDD"></div>
+          </div>
         </div>
         <div class="cf-field">
-          <label>E-posta <span class="cf-opt">(opsiyonel)</span></label>
-          <input type="email" id="cfEmail" placeholder="ornek@mail.com" autocomplete="email">
-        </div>
-        <div class="cf-field">
-          <label>Adres</label>
-          <input type="text" id="cfAddress" placeholder="Mahalle, cadde, sokak..." autocomplete="street-address">
-        </div>
-        <div class="cf-field">
-          <label>İl</label>
-          <input type="text" id="cfCity" placeholder="İl" autocomplete="address-level1">
-        </div>
-        <div class="cf-field">
-          <label>İlçe</label>
-          <input type="text" id="cfDistrict" placeholder="İlçe" autocomplete="address-level2">
+          <label>Not <span class="cf-opt">(opsiyonel)</span></label>
+          <input type="text" id="cfNote" placeholder="Eklemek istediğiniz bir not...">
         </div>
       </div>
-      <div class="cf-photo-label">Mevcut Mutfak Fotoğrafı <span class="cf-opt">(opsiyonel)</span></div>
+      <div class="cf-photo-label">Mutfak Fotoğrafı <span class="cf-opt">(opsiyonel — teklifi hızlandırır)</span></div>
       <div class="cf-photo-area" onclick="document.getElementById('cfKitchenPhoto').click()">
         <div id="cfPhotoPreview"><span style="font-size:0.8rem">+ Fotoğraf ekle</span></div>
       </div>
       <input type="file" id="cfKitchenPhoto" accept="image/*" style="display:none" onchange="previewKitchenPhoto(this)">
-      <div class="cf-error" id="cfError">Lütfen Ad Soyad ve Telefon alanlarını doldurun.</div>
-      <button class="cf-submit" onclick="generateQuotePDF()">Teklif Formu İste →</button>
+      <div class="cf-error" id="cfError"></div>
+      <div class="cf-btn-group">
+        <button class="cf-whatsapp" onclick="sendWhatsApp()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp ile Gonder
+        </button>
+        <button class="cf-submit" onclick="generateQuotePDF()">Teklif PDF Oluştur</button>
+      </div>
+      <div class="cf-trust">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Bilgileriniz gizli tutulur ve sadece teklif amacıyla kullanılır.
+      </div>
     </div>
 
   </div>
 </section>
+
+<!-- ===== BLOG / REHBER ===== -->
+<section class="blog-section" id="rehber">
+  <div class="blog-header">
+    <div class="blog-eyebrow">Rehber & Blog</div>
+    <div class="blog-title">Tezgah seçiminde bilmeniz gerekenler</div>
+    <div class="blog-sub">Doğru malzemeyi seçmenize yardımcı olacak uzman içeriklerimizi keşfedin.</div>
+  </div>
+  <div class="blog-grid">
+
+    <div class="blog-card" onclick="openBlogModal('blog1')">
+      <div class="blog-card-icon" style="background:linear-gradient(135deg,#e8f4f0,#d0ebe4)">🪨</div>
+      <div class="blog-card-body">
+        <div class="blog-card-tag">Rehber</div>
+        <div class="blog-card-title">Mutfak Tezgahı Nasıl Seçilir? 5 Kritik Adım</div>
+        <div class="blog-card-excerpt">Malzeme seçiminden ölçü almaya, bütçe planlamasından imalatçı seçimine kadar bilmeniz gereken her şey.</div>
+        <span class="blog-card-read">Devamını Oku →</span>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openBlogModal('blog2')">
+      <div class="blog-card-icon" style="background:linear-gradient(135deg,#f0e8f4,#e4d0eb)">⚖️</div>
+      <div class="blog-card-body">
+        <div class="blog-card-tag">Karşılaştırma</div>
+        <div class="blog-card-title">Quartz mı, Granit mi, Porselen mi?</div>
+        <div class="blog-card-excerpt">Üç ana tezgah malzemesinin artıları, eksileri ve hangi mutfak için uygun olduğunu karşılaştırıyoruz.</div>
+        <span class="blog-card-read">Devamını Oku →</span>
+      </div>
+    </div>
+
+    <div class="blog-card" onclick="openBlogModal('blog3')">
+      <div class="blog-card-icon" style="background:linear-gradient(135deg,#f4f0e8,#ebe4d0)">🔧</div>
+      <div class="blog-card-body">
+        <div class="blog-card-tag">Bakım</div>
+        <div class="blog-card-title">Tezgah Bakımı: Malzemeye Göre İpuçları</div>
+        <div class="blog-card-excerpt">Granitten quarza, porselenden doğal taşa — her malzeme için doğru bakım yöntemlerini öğrenin.</div>
+        <span class="blog-card-read">Devamını Oku →</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Blog Modals -->
+<div class="blog-modal-overlay" id="blogModalOverlay" onclick="if(event.target===this)closeBlogModal()">
+  <div class="blog-modal">
+    <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
+    <div id="blogModalContent"></div>
+  </div>
+</div>
+
+<!-- ===== İMALATÇI DİZİNİ ===== -->
+<section class="mfr-section" id="imalatcilar">
+  <div class="mfr-header">
+    <div class="mfr-eyebrow">İmalatçı Dizini</div>
+    <div class="mfr-title">Güvenilir tezgah imalatçıları</div>
+    <div class="mfr-sub-text">Türkiye genelindeki onaylı imalatçılarımızı keşfedin. Şehre göre filtreleyin.</div>
+  </div>
+  <div class="mfr-filter-bar" id="mfrFilterBar">
+    <button class="mfr-filter-chip active" onclick="filterMfrs('all', this)">Tümü</button>
+  </div>
+  <div class="mfr-dir-grid" id="mfrDirGrid">
+    <!-- JS ile doldurulacak -->
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Tezgah<span>Bul</span></div>
+      <div class="footer-desc">Türkiye'nin mutfak tezgahı uzmanı. Doğru malzemeyi seçin, en uygun fiyatı bulun, güvenilir imalatçılarla buluşun.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Hızlı Erişim</h4>
+      <a href="#karsilastirma">Malzeme Karşılaştırma</a>
+      <a href="#galeri">Proje Vitrini</a>
+      <a href="#rehber">Rehber & Blog</a>
+      <a href="#imalatcilar">İmalatçılar</a>
+      <a href="#sorular">Teklif Al</a>
+    </div>
+    <div class="footer-col">
+      <h4>İletişim</h4>
+      <a href="https://wa.me/905052032326" target="_blank">WhatsApp</a>
+      <a href="mailto:info@tezgahbul.com">info@tezgahbul.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 TezgahBul — Tüm hakları saklıdır.
+  </div>
+</footer>
 
 <script>
 // ===== SLIDER =====
@@ -1683,6 +2887,18 @@ const q2Titles = [
 function updateQ2(idx) {
   const standard = document.getElementById('q2Standard');
   const advanced = document.getElementById('q2Advanced');
+  const servisBlok = document.getElementById('servisBlok');
+  const cfSection = document.getElementById('cfSection');
+  // Servis talebi seçilince
+  if (idx === 2) {
+    standard.style.display = 'none';
+    advanced.style.display = 'none';
+    servisBlok.classList.add('open');
+    cfSection.classList.remove('open');
+    return;
+  }
+  // Diğer seçeneklerde servis bloğunu kapat
+  servisBlok.classList.remove('open');
   if (idx === 0) {
     standard.style.display = 'none';
     advanced.style.display = '';
@@ -2391,16 +3607,97 @@ function _renderMfrCards(list, city, items) {
   list.innerHTML = `<div class="mfr-city">📍 ${city} çevresinde tezgah imalatçıları</div><div class="mfr-cards">${cards}</div>`;
 }
 
+// Konum algılama: GPS öncelikli, IP fallback, karşılaştırmalı
+function _isMobile() {
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+}
+
+function _getGPSLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) return reject('no-geo');
+    navigator.geolocation.getCurrentPosition(
+      pos => resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude, source: 'gps' }),
+      err => reject(err),
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 }
+    );
+  });
+}
+
+async function _getIPLocation() {
+  try {
+    const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
+    if (geo.latitude) return { lat: geo.latitude, lon: geo.longitude, city: geo.city || geo.region || 'Ankara', source: 'ip' };
+  } catch(e) {}
+  return { lat: 39.92, lon: 32.85, city: 'Ankara', source: 'ip-fallback' };
+}
+
+async function _getBestLocation(updateStatus) {
+  const ipLoc = await _getIPLocation();
+  updateStatus('Konum doğrulanıyor...');
+
+  if (_isMobile()) {
+    // Mobil: GPS konum izni iste, başarılı olursa GPS'i kullan
+    try {
+      const gps = await _getGPSLocation();
+      updateStatus('GPS konumu alındı...');
+      // GPS ile en yakın şehri bul
+      const nearestCity = _findNearestCity(gps.lat, gps.lon);
+      return { lat: gps.lat, lon: gps.lon, city: nearestCity, source: 'gps' };
+    } catch(e) {
+      // GPS başarısız → IP lokasyonunu kullan
+      updateStatus(`${ipLoc.city} çevresinde aranıyor (IP konum)...`);
+      return ipLoc;
+    }
+  } else {
+    // Masaüstü: Tarayıcı geolocation + IP karşılaştır
+    try {
+      const gps = await _getGPSLocation();
+      const gpsCity = _findNearestCity(gps.lat, gps.lon);
+      const distance = _dist(gps.lat, gps.lon, ipLoc.lat, ipLoc.lon);
+      // GPS ile IP arası 150km'den azsa → GPS güvenilir
+      if (distance < 150) {
+        updateStatus(`${gpsCity} çevresinde aranıyor...`);
+        return { lat: gps.lat, lon: gps.lon, city: gpsCity, source: 'gps-verified' };
+      } else {
+        // Büyük fark var → kullanıcıya sor (GPS'i tercih et ama uyar)
+        updateStatus(`${gpsCity} çevresinde aranıyor...`);
+        return { lat: gps.lat, lon: gps.lon, city: gpsCity, source: 'gps-unverified' };
+      }
+    } catch(e) {
+      // Tarayıcı konum izni verilmedi → IP ile devam
+      updateStatus(`${ipLoc.city} çevresinde aranıyor...`);
+      return ipLoc;
+    }
+  }
+}
+
+// En yakın Türkiye ilini bul (GPS koordinatına göre)
+const _CITY_COORDS = {
+  'Adana':[37.00,35.32],'Ankara':[39.92,32.85],'Antalya':[36.88,30.70],'Aydın':[37.84,27.85],
+  'Balıkesir':[39.65,27.88],'Bursa':[40.19,29.06],'Denizli':[37.77,29.09],'Diyarbakır':[37.91,40.24],
+  'Eskişehir':[39.77,30.52],'Gaziantep':[37.06,37.38],'Hatay':[36.40,36.35],'İstanbul':[41.01,28.98],
+  'İzmir':[38.42,27.13],'Kayseri':[38.73,35.49],'Kocaeli':[40.77,29.92],'Konya':[37.87,32.48],
+  'Malatya':[38.35,38.31],'Manisa':[38.61,27.43],'Mersin':[36.80,34.63],'Muğla':[37.22,28.36],
+  'Sakarya':[40.67,30.40],'Samsun':[41.29,36.33],'Şanlıurfa':[37.16,38.79],'Tekirdağ':[41.00,27.52],
+  'Trabzon':[41.00,39.72]
+};
+
+function _findNearestCity(lat, lon) {
+  let best = 'Ankara', bestDist = Infinity;
+  for (const [city, [cLat, cLon]] of Object.entries(_CITY_COORDS)) {
+    const d = _dist(lat, lon, cLat, cLon);
+    if (d < bestDist) { bestDist = d; best = city; }
+  }
+  return best;
+}
+
 async function fetchNearbyManufacturers() {
   const list = document.getElementById('mfrList');
   list.innerHTML = '<div class="mfr-loading"><span class="mfr-spinner"></span><span class="mfr-loading-text">Konum belirleniyor...</span></div>';
   const updateStatus = msg => { const t = list.querySelector('.mfr-loading-text'); if (t) t.textContent = msg; };
 
-  let city = 'Ankara', lat = 39.92, lon = 32.85;
-  try {
-    const geo = await fetch('https://ipapi.co/json/').then(r => r.json());
-    if (geo.latitude) { lat = geo.latitude; lon = geo.longitude; city = geo.city || geo.region || 'Ankara'; }
-  } catch(e) {}
+  const loc = await _getBestLocation(updateStatus);
+  let { lat, lon, city } = loc;
 
   updateStatus(`${city} çevresinde aranıyor...`);
 
@@ -2408,7 +3705,7 @@ async function fetchNearbyManufacturers() {
 
   // 1. Önce TezgahBul veritabanından ara (manufacturers.json)
   try {
-    const db = await fetch('https://engserdarozdemir.github.io/tezgahbul/manufacturers.json').then(r => r.json());
+    const db = await fetch('./manufacturers.json').then(r => r.json());
     const nearby = (db.manufacturers || [])
       .map(m => ({ ...m, _dist: _dist(lat, lon, m.lat, m.lon) }))
       .filter(m => m._dist < 120)
@@ -2498,6 +3795,7 @@ function saveSelections() {
   }
   updateBSummary();
   checkShowCustomerForm();
+  updatePriceEstimate();
 }
 
 function loadSelections() {
@@ -2652,54 +3950,526 @@ function previewKitchenPhoto(input) {
   reader.readAsDataURL(input.files[0]);
 }
 
-async function generateQuotePDF() {
-  const cfName    = document.getElementById('cfName').value.trim();
-  const cfPhone   = document.getElementById('cfPhone').value.trim();
-  if (!cfName || !cfPhone) {
-    document.getElementById('cfError').style.display = 'block';
+// ===== İL ARANABILIR DROPDOWN =====
+const _ILLER = ['Adana','Adıyaman','Afyonkarahisar','Ağrı','Aksaray','Amasya','Ankara','Antalya','Ardahan','Artvin','Aydın','Balıkesir','Bartın','Batman','Bayburt','Bilecik','Bingöl','Bitlis','Bolu','Burdur','Bursa','Çanakkale','Çankırı','Çorum','Denizli','Diyarbakır','Düzce','Edirne','Elazığ','Erzincan','Erzurum','Eskişehir','Gaziantep','Giresun','Gümüşhane','Hakkari','Hatay','Iğdır','Isparta','İstanbul','İzmir','Kahramanmaraş','Karabük','Karaman','Kars','Kastamonu','Kayseri','Kırıkkale','Kırklareli','Kırşehir','Kilis','Kocaeli','Konya','Kütahya','Malatya','Manisa','Mardin','Mersin','Muğla','Muş','Nevşehir','Niğde','Ordu','Osmaniye','Rize','Sakarya','Samsun','Şanlıurfa','Siirt','Sinop','Sivas','Şırnak','Tekirdağ','Tokat','Trabzon','Tunceli','Uşak','Van','Yalova','Yozgat','Zonguldak'];
+
+function _trLower(s) {
+  return s.replace(/İ/g,'i').replace(/I/g,'ı').replace(/Ş/g,'ş').replace(/Ç/g,'ç').replace(/Ö/g,'ö').replace(/Ü/g,'ü').replace(/Ğ/g,'ğ').toLowerCase();
+}
+
+function filterCities() {
+  const input = document.getElementById('cfCity');
+  const dd = document.getElementById('cityDD');
+  const q = _trLower(input.value.trim());
+  const matches = q ? _ILLER.filter(il => _trLower(il).startsWith(q)) : _ILLER;
+  _renderCityDD(dd, matches);
+  dd.classList.add('open');
+}
+
+function openCityDD() {
+  const input = document.getElementById('cfCity');
+  const dd = document.getElementById('cityDD');
+  const q = _trLower(input.value.trim());
+  const matches = q ? _ILLER.filter(il => _trLower(il).startsWith(q)) : _ILLER;
+  _renderCityDD(dd, matches);
+  dd.classList.add('open');
+}
+
+function _renderCityDD(dd, items) {
+  if (items.length === 0) {
+    dd.innerHTML = '<div class="city-dd-empty">Sonuç bulunamadı</div>';
     return;
   }
-  document.getElementById('cfError').style.display = 'none';
+  dd.innerHTML = items.map(il =>
+    `<div class="city-dd-item" onmousedown="pickCity('${il}')">${il}</div>`
+  ).join('');
+}
 
-  // — Veri toplama —
-  const brand      = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '—';
+function pickCity(name) {
+  document.getElementById('cfCity').value = name;
+  document.getElementById('cityDD').classList.remove('open');
+  saveSelections();
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.city-combo')) {
+    document.getElementById('cityDD')?.classList.remove('open');
+    // Girilen değer geçerli bir il değilse temizle
+    const input = document.getElementById('cfCity');
+    if (input && !_ILLER.includes(input.value.trim())) {
+      input.value = '';
+    }
+  }
+});
+
+function formatPhone(input) {
+  // Sadece rakam bırak
+  let digits = input.value.replace(/\D/g, '');
+  // 0 ile başlamazsa ekle
+  if (digits.length > 0 && digits[0] !== '0') digits = '0' + digits;
+  // Max 11 rakam (05xx xxx xx xx)
+  digits = digits.slice(0, 11);
+  // Formatla: 05xx xxx xx xx
+  let formatted = '';
+  if (digits.length > 0) formatted = digits.slice(0, 4);
+  if (digits.length > 4) formatted += ' ' + digits.slice(4, 7);
+  if (digits.length > 7) formatted += ' ' + digits.slice(7, 9);
+  if (digits.length > 9) formatted += ' ' + digits.slice(9, 11);
+  input.value = formatted;
+}
+
+// ===== SERVİS TALEBİ =====
+let _selectedServis = '';
+
+function pickServis(el, type) {
+  document.querySelectorAll('.servis-cat').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  _selectedServis = type;
+  document.getElementById('servisForm').classList.add('open');
+}
+
+function filterServisCities() {
+  const input = document.getElementById('svCity');
+  const dd = document.getElementById('svCityDD');
+  const q = _trLower(input.value.trim());
+  const matches = q ? _ILLER.filter(il => _trLower(il).startsWith(q)) : _ILLER;
+  _renderCityDD(dd, matches.map(il => `<div class="city-dd-item" onmousedown="pickServisCity('${il}')">${il}</div>`).join(''));
+  dd.classList.add('open');
+}
+function _renderServisCityDD(dd, items) {
+  if (items.length === 0) { dd.innerHTML = '<div class="city-dd-empty">Sonuç bulunamadı</div>'; return; }
+  dd.innerHTML = items.map(il => `<div class="city-dd-item" onmousedown="pickServisCity('${il}')">${il}</div>`).join('');
+}
+function filterServisCities() {
+  const input = document.getElementById('svCity');
+  const dd = document.getElementById('svCityDD');
+  const q = _trLower(input.value.trim());
+  const matches = q ? _ILLER.filter(il => _trLower(il).startsWith(q)) : _ILLER;
+  _renderServisCityDD(dd, matches);
+  dd.classList.add('open');
+}
+function openServisCityDD() {
+  const input = document.getElementById('svCity');
+  const dd = document.getElementById('svCityDD');
+  const q = _trLower(input.value.trim());
+  const matches = q ? _ILLER.filter(il => _trLower(il).startsWith(q)) : _ILLER;
+  _renderServisCityDD(dd, matches);
+  dd.classList.add('open');
+}
+function pickServisCity(name) {
+  document.getElementById('svCity').value = name;
+  document.getElementById('svCityDD').classList.remove('open');
+}
+
+// Servis city click-outside
+document.addEventListener('click', e => {
+  if (!e.target.closest('#svCityCombo')) {
+    document.getElementById('svCityDD')?.classList.remove('open');
+    const input = document.getElementById('svCity');
+    if (input && input.value && !_ILLER.includes(input.value.trim())) input.value = '';
+  }
+});
+
+function previewServisPhoto(input) {
+  if (!input.files?.[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const p = document.getElementById('svPhotoPreview');
+    p.innerHTML = `<img src="${e.target.result}" style="max-width:100%;max-height:160px;border-radius:8px;object-fit:contain">`;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+const SERVIS_LABELS = {
+  cizdirma: 'Çizik Giderme',
+  cilalama: 'Cilalama',
+  kirik: 'Kırık / Çatlak Tamiri',
+  leke: 'Leke Çıkarma',
+  kenar: 'Kenar Tamiri',
+  diger: 'Diğer Servis'
+};
+
+function sendServisWhatsApp() {
+  const name = document.getElementById('svName').value.trim();
+  const phone = document.getElementById('svPhone').value.trim();
+  const city = document.getElementById('svCity').value.trim();
+  const desc = document.getElementById('svDesc')?.value.trim() || '';
+  const errEl = document.getElementById('svError');
+  const errors = [];
+  if (!name || name.length < 3) errors.push('Ad Soyad');
+  if (!phone || !/^0?5\d{9}$/.test(phone.replace(/\s+/g,''))) errors.push('Geçerli telefon');
+  if (!city || !_ILLER.includes(city)) errors.push('İl');
+  if (!_selectedServis) errors.push('Servis türü');
+  if (errors.length) {
+    errEl.textContent = 'Lütfen doldurun: ' + errors.join(', ');
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  let msg = `Merhaba, TezgahBul üzerinden *servis talebi* oluşturmak istiyorum.\n\n`;
+  msg += `*Servis Türü:* ${SERVIS_LABELS[_selectedServis] || _selectedServis}\n`;
+  msg += `*Ad Soyad:* ${name}\n`;
+  msg += `*Telefon:* ${phone}\n`;
+  msg += `*İl:* ${city}\n`;
+  if (desc) msg += `\n*Sorun Açıklaması:* ${desc}\n`;
+
+  window.open(`https://wa.me/905052032326?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ===== İMALATÇI DİZİNİ =====
+let _mfrData = [];
+
+async function loadMfrDirectory() {
+  try {
+    const res = await fetch('./manufacturers.json');
+    const json = await res.json();
+    _mfrData = json.manufacturers || [];
+    _buildMfrFilters();
+    _renderMfrDirectory('all');
+  } catch(e) {
+    console.warn('İmalatçı dizini yüklenemedi:', e);
+  }
+}
+
+function _buildMfrFilters() {
+  const bar = document.getElementById('mfrFilterBar');
+  if (!bar) return;
+  const cities = [...new Set(_mfrData.map(m => m.sehir))].sort();
+  // "Tümü" zaten HTML'de var, şehirleri ekle
+  cities.forEach(city => {
+    const btn = document.createElement('button');
+    btn.className = 'mfr-filter-chip';
+    btn.textContent = city;
+    btn.onclick = function() { filterMfrs(city, this); };
+    bar.appendChild(btn);
+  });
+}
+
+function filterMfrs(city, btn) {
+  document.querySelectorAll('.mfr-filter-chip').forEach(c => c.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  _renderMfrDirectory(city);
+}
+
+function _renderMfrDirectory(city) {
+  const grid = document.getElementById('mfrDirGrid');
+  if (!grid) return;
+  const items = city === 'all' ? _mfrData : _mfrData.filter(m => m.sehir === city);
+  if (items.length === 0) {
+    grid.innerHTML = '<div class="mfr-dir-empty">Bu şehirde kayıtlı imalatçı bulunmuyor.</div>';
+    return;
+  }
+  grid.innerHTML = items.map(m => {
+    const featured = m.onayli ? ' featured' : '';
+    const badge = m.onayli ? '<div class="mfr-featured-badge">Öne Çıkan</div>' : '';
+    const tags = (m.uzmanlik || []).map(u => `<span class="mfr-dir-tag">${u}</span>`).join('');
+    const brands = (m.markalar || []).slice(0, 4).map(b => `<span class="mfr-dir-tag" style="background:rgba(232,101,10,0.08);color:var(--orange)">${b}</span>`).join('');
+    return `<div class="mfr-dir-card${featured}">
+      ${badge}
+      <div class="mfr-dir-name">${m.ad}</div>
+      <div class="mfr-dir-loc">📍 ${m.ilce}, ${m.sehir}</div>
+      <div class="mfr-dir-desc">${m.aciklama || ''}</div>
+      <div class="mfr-dir-tags">${tags}${brands}</div>
+      <div class="mfr-dir-actions">
+        ${m.tel ? `<a class="mfr-dir-btn primary" href="tel:${m.tel}">📞 Ara</a>` : ''}
+        ${m.maps ? `<a class="mfr-dir-btn secondary" href="${m.maps}" target="_blank" rel="noopener">🗺️ Haritada Gör</a>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+loadMfrDirectory();
+
+// ===== BLOG MODAL =====
+const BLOG_CONTENT = {
+  blog1: `<h2>Mutfak Tezgahı Nasıl Seçilir? 5 Kritik Adım</h2>
+<p>Mutfak tezgahı seçimi, mutfağınızın hem estetiğini hem de kullanım ömrünü doğrudan etkiler. Doğru karar vermek için bu 5 adımı takip edin.</p>
+<h3>1. İhtiyacınızı Belirleyin</h3>
+<p>Sadece tezgah mı değiştirmek istiyorsunuz, yoksa mutfağı komple mi yeniliyorsunuz? Mevcut dolaplarınızın durumu, tezgah kalınlığı ve tipini belirler.</p>
+<h3>2. Malzemeyi Tanıyın</h3>
+<p>Üç ana malzeme grubu vardır: <strong>Granit</strong> (doğal, çok sert), <strong>Quartz</strong> (mühendislik taşı, gözeneksiz), <strong>Porselen Slab</strong> (büyük format seramik, ince ve hafif). Her birinin avantaj ve dezavantajları farklıdır.</p>
+<h3>3. Bütçenizi Planlayın</h3>
+<p>Metrekare başına fiyatlar malzemeye ve markaya göre ₺3.000 ile ₺18.000 arasında değişir. İşçilik ve montaj genellikle fiyata dahildir.</p>
+<h3>4. Doğru Ölçü Alın</h3>
+<p>Tezgah tipi (düz, L, U veya ada) ve kenar uzunlukları doğru ölçülmelidir. Standart derinlik 60 cm'dir. Hatalı ölçü = ek maliyet demektir.</p>
+<h3>5. Güvenilir İmalatçı Seçin</h3>
+<p>Referansları kontrol edin, garanti koşullarını sorun ve mümkünse showroom'u ziyaret edin. TezgahBul olarak biz bu süreci sizin için kolaylaştırıyoruz.</p>`,
+
+  blog2: `<h2>Quartz mı, Granit mi, Porselen mi?</h2>
+<p>Bu üç malzeme mutfak tezgahı dünyasının en popüler seçenekleridir. Hangisi sizin için doğru?</p>
+<h3>Granit — Doğanın Gücü</h3>
+<ul>
+<li><strong>Artıları:</strong> Çok sert, ısıya dayanıklı, her plaka benzersiz, çizilmez</li>
+<li><strong>Eksileri:</strong> Gözenekli olduğu için emprenye gerektirir, renk seçeneği sınırlı</li>
+<li><strong>Kime uygun:</strong> Yoğun yemek yapan, doğal görünüm seven mutfaklar</li>
+</ul>
+<h3>Quartz — Mühendislik Harikası</h3>
+<ul>
+<li><strong>Artıları:</strong> Gözeneksiz, hijyenik, çok geniş renk seçeneği, kolay bakım</li>
+<li><strong>Eksileri:</strong> Yüksek ısıya hassas (sıcak tencere direkt konmamalı)</li>
+<li><strong>Kime uygun:</strong> Modern, temiz görünüm isteyen, bakım kolaylığı arayan mutfaklar</li>
+</ul>
+<h3>Porselen Slab — Yeni Nesil</h3>
+<ul>
+<li><strong>Artıları:</strong> Çizilmez, ısıya dayanıklı, UV dirençli, ince ve hafif, çok büyük boyutlar</li>
+<li><strong>Eksileri:</strong> Kenar darbelere hassas, montaj uzmanlık gerektirir</li>
+<li><strong>Kime uygun:</strong> Premium mutfaklar, minimalist tasarım sevenler, dış mekan kullanımı</li>
+</ul>`,
+
+  blog3: `<h2>Tezgah Bakımı: Malzemeye Göre İpuçları</h2>
+<p>Tezgahınızın ömrünü uzatmak ve ilk günkü görünümünü korumak için malzemenize uygun bakım çok önemlidir.</p>
+<h3>Granit Bakımı</h3>
+<ul>
+<li>Yılda 1-2 kez emprenye (su geçirmezlik) uygulaması yapın</li>
+<li>Asitli sıvıları (limon, sirke) hemen silin</li>
+<li>Günlük temizlikte pH nötr deterjan kullanın</li>
+<li>Kesme tahtası kullanın — bıçak granitten zarar görmez ama tezgah çizilmez diye direkt üstünde kesmeyin</li>
+</ul>
+<h3>Quartz Bakımı</h3>
+<ul>
+<li>Emprenye gerekmez (gözeneksiz yapı)</li>
+<li>Sıcak tencereyi asla direkt koymayın — termal şok riski</li>
+<li>Günlük temizlikte ıslak bez ve az deterjan yeterli</li>
+<li>Aşındırıcı temizleyicilerden kaçının</li>
+</ul>
+<h3>Porselen Slab Bakımı</h3>
+<ul>
+<li>En az bakım gerektiren malzemedir</li>
+<li>Herhangi bir kimyasal temizleyici kullanılabilir</li>
+<li>Sıcak tencere direkt konabilir (ısıya çok dayanıklı)</li>
+<li>Kenar darbelerden koruyun — düşme ve çarpma ile kırılabilir</li>
+</ul>`
+};
+
+function openBlogModal(id) {
+  const content = BLOG_CONTENT[id];
+  if (!content) return;
+  document.getElementById('blogModalContent').innerHTML = content;
+  document.getElementById('blogModalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBlogModal() {
+  document.getElementById('blogModalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeBlogModal();
+});
+
+// ===== ÖNCE/SONRA SLIDER =====
+document.querySelectorAll('.ba-slider').forEach(slider => {
+  let isDragging = false;
+  const update = (x) => {
+    const rect = slider.getBoundingClientRect();
+    let pct = ((x - rect.left) / rect.width) * 100;
+    pct = Math.max(5, Math.min(95, pct));
+    const before = slider.querySelector('.ba-before');
+    const line = slider.querySelector('.ba-line');
+    const handle = slider.querySelector('.ba-handle');
+    if (before) before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    if (line) line.style.left = pct + '%';
+    if (handle) handle.style.left = pct + '%';
+  };
+  slider.addEventListener('pointerdown', e => {
+    isDragging = true;
+    slider.setPointerCapture(e.pointerId);
+    update(e.clientX);
+  });
+  slider.addEventListener('pointermove', e => {
+    if (isDragging) update(e.clientX);
+  });
+  slider.addEventListener('pointerup', () => { isDragging = false; });
+  slider.addEventListener('pointercancel', () => { isDragging = false; });
+});
+
+// ===== FİYAT TAHMİNİ =====
+const PRICE_DATA = {
+  // Porselen (₺/m²) — min, max (işçilik dahil)
+  'Dekton':       [8500, 18000],
+  'Neolith':      [7500, 16000],
+  'Laminam':      [5500, 12000],
+  'Infinity':     [5000, 10000],
+  'Kale T-One':   [4000, 8500],
+  'Ng Kütahya':   [3500, 7000],
+  'Anatolia':     [3500, 7000],
+  'Lamar':        [3500, 7000],
+  'Sapienstone':  [6000, 13000],
+  // Quartz
+  'Belenco':      [4500, 9000],
+  'Çimstone':     [5000, 10000],
+  'Coante':       [4500, 9000],
+  'Calisco':      [4000, 8500],
+  'Silestone':    [8000, 16000],
+  // Granit
+  '_granit':      [3000, 8000]
+};
+
+function _calcArea() {
+  const activeCard = document.querySelector('#q2PanelD .tplan-card.active');
+  if (!activeCard) return 0;
+  const plan = activeCard.dataset.plan;
+  const inputs = Array.from(activeCard.querySelectorAll('input'));
+  const vals = inputs.map(i => parseFloat(i.value) || 0);
+  const DEPTH = 60; // standart tezgah derinliği cm
+  let area = 0;
+  if (plan === 'duz') area = vals[0] * DEPTH;
+  else if (plan === 'l') area = (vals[0] + vals[1]) * DEPTH;
+  else if (plan === 'u') area = (vals[0] + vals[1] + vals[2]) * DEPTH;
+  else if (plan === 'ada') area = vals[0] * vals[1];
+  // Ada tezgah eki (toggle açıksa)
+  if (document.getElementById('adaSwitch')?.checked && plan !== 'ada') {
+    const adaInputs = document.querySelectorAll('#q2PanelE .tplan-card input');
+    const adaA = parseFloat(adaInputs[0]?.value) || 0;
+    const adaB = parseFloat(adaInputs[1]?.value) || 0;
+    area += adaA * adaB;
+  }
+  // Kaplama alanı ekleme
+  const kaplSw = document.getElementById('kaplamaSwitch')?.checked;
+  if (kaplSw) {
+    const kaplType = document.querySelector('.kaplama-chip.active')?.dataset.val || '';
+    if (kaplType === 'kaplama') {
+      const davEn = parseFloat(document.getElementById('davlumbazEn')?.value) || 0;
+      const davBoy = parseFloat(document.getElementById('davlumbazBoy')?.value) || 0;
+      if (davEn && davBoy) area += davEn * davBoy;
+    } else if (kaplType === 'standart') {
+      // Standart süpürgelik: tezgah uzunluğu × 4cm
+      let uzunluk = 0;
+      if (plan === 'duz') uzunluk = vals[0];
+      else if (plan === 'l') uzunluk = vals[0] + vals[1];
+      else if (plan === 'u') uzunluk = vals[0] + vals[1] + vals[2];
+      area += uzunluk * 4;
+    } else if (kaplType === 'yuksek') {
+      const h = parseFloat(document.getElementById('supurgelikYuksek')?.value) || 0;
+      let uzunluk = 0;
+      if (plan === 'duz') uzunluk = vals[0];
+      else if (plan === 'l') uzunluk = vals[0] + vals[1];
+      else if (plan === 'u') uzunluk = vals[0] + vals[1] + vals[2];
+      if (h) area += uzunluk * h;
+    }
+  }
+  return area / 10000; // cm² → m²
+}
+
+function updatePriceEstimate() {
+  const box = document.getElementById('priceBox');
+  if (!box) return;
+  const area = _calcArea();
+  if (area <= 0) { box.style.display = 'none'; return; }
+  const brand = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '';
+  const material = document.querySelector('#q2PanelB .q2-chip.active')?.textContent.trim() || '';
+  let priceRange, label;
+  if (brand && PRICE_DATA[brand]) {
+    priceRange = PRICE_DATA[brand];
+    label = brand;
+  } else if (material === 'Granit') {
+    priceRange = PRICE_DATA['_granit'];
+    label = 'Granit';
+  } else {
+    box.style.display = 'none';
+    return;
+  }
+  const minTotal = Math.round(area * priceRange[0]);
+  const maxTotal = Math.round(area * priceRange[1]);
+  const fmt = n => new Intl.NumberFormat('tr-TR').format(n);
+  document.getElementById('priceRange').textContent = `₺${fmt(minTotal)} – ₺${fmt(maxTotal)}`;
+  document.getElementById('priceDetails').innerHTML =
+    `<span>${area.toFixed(2)} m²</span> <span>${label}</span> <span>₺${fmt(priceRange[0])}–${fmt(priceRange[1])}/m²</span>`;
+  box.style.display = 'block';
+}
+
+function _validateForm() {
+  const cfName  = document.getElementById('cfName').value.trim();
+  const cfPhone = document.getElementById('cfPhone').value.trim();
+  const cfCity  = document.getElementById('cfCity').value;
+  const errEl   = document.getElementById('cfError');
+  const errors  = [];
+  if (!cfName) errors.push('Ad Soyad');
+  else if (cfName.length < 3) errors.push('Geçerli bir ad soyad');
+  if (!cfPhone) errors.push('Telefon');
+  else if (!/^0?5\d{9}$/.test(cfPhone.replace(/\s+/g,''))) errors.push('Geçerli bir telefon (05xx xxx xx xx)');
+  if (!cfCity) errors.push('İl');
+  if (errors.length) {
+    errEl.textContent = 'Lütfen doldurun: ' + errors.join(', ');
+    errEl.style.display = 'block';
+    return false;
+  }
+  errEl.style.display = 'none';
+  return true;
+}
+
+function _collectProductData() {
+  const brand = document.querySelector('#bBrandChips .q2-chip.active')?.textContent.trim() || '';
   const activeItem = document.querySelector('.dekton-list-item.active');
-  let modelText = '—', finishText = '—', collText = '';
+  let modelText = '', finishText = '', collText = '';
   if (activeItem) {
     const ds = activeItem.dataset.model || '';
     if (brand === 'Dekton') {
       const parts = ds.split(' - ');
-      modelText  = parts[0] || ds;
-      finishText = parts[1] || '—';
+      modelText = parts[0] || ds;
+      finishText = parts[1] || '';
       const m = (window.dektonModels || []).find(x => x.name === modelText);
       collText = m ? m.collection : '';
     } else if (brand === 'Neolith') {
-      modelText  = ds;
-      finishText = document.querySelector('#neolithFinishChips .q2-chip.active')?.textContent.trim() || '—';
+      modelText = ds;
+      finishText = document.querySelector('#neolithFinishChips .q2-chip.active')?.textContent.trim() || '';
     } else {
-      modelText  = ds;
-      finishText = document.querySelector('#bSurfaceChips .q2-chip.active')?.textContent.trim() || '—';
+      modelText = ds;
+      finishText = document.querySelector('#bSurfaceChips .q2-chip.active')?.textContent.trim() || '';
     }
   }
-
   const activeCard = document.querySelector('#q2PanelD .tplan-card.active');
-  const planLabel  = activeCard?.querySelector('.tplan-label')?.textContent.trim() || '—';
-  const dims       = Array.from(activeCard?.querySelectorAll('.tplan-val') || [])
-                       .map(v => v.textContent.trim()).filter(Boolean).join('   ');
-  const kaplSw     = document.getElementById('kaplamaSwitch')?.checked;
-  const kaplType   = document.querySelector('.kaplama-chip.active')?.textContent.trim() || '';
-  const davEn      = document.getElementById('davlumbazEn')?.value;
-  const davBoy     = document.getElementById('davlumbazBoy')?.value;
-  let kaplamaText  = '';
+  const planLabel = activeCard?.querySelector('.tplan-label')?.textContent.trim() || '';
+  const dims = Array.from(activeCard?.querySelectorAll('.tplan-val') || [])
+    .map(v => v.textContent.trim()).filter(Boolean).join('  ');
+  const kaplSw = document.getElementById('kaplamaSwitch')?.checked;
+  const kaplType = document.querySelector('.kaplama-chip.active')?.textContent.trim() || '';
+  const davEn = document.getElementById('davlumbazEn')?.value;
+  const davBoy = document.getElementById('davlumbazBoy')?.value;
+  let kaplamaText = '';
   if (kaplSw && kaplType) {
     kaplamaText = kaplType;
     if (kaplType === 'Kaplama' && davEn && davBoy) kaplamaText += ` (En: ${davEn} cm, Boy: ${davBoy} cm)`;
   }
+  return { brand, modelText, finishText, collText, planLabel, dims, kaplamaText };
+}
 
-  const cfEmail    = document.getElementById('cfEmail').value.trim();
-  const cfAddress  = document.getElementById('cfAddress').value.trim();
-  const cfCity     = document.getElementById('cfCity').value.trim();
-  const cfDist     = document.getElementById('cfDistrict').value.trim();
+function sendWhatsApp() {
+  if (!_validateForm()) return;
+  const cfName  = document.getElementById('cfName').value.trim();
+  const cfPhone = document.getElementById('cfPhone').value.trim();
+  const cfCity  = document.getElementById('cfCity').value.trim();
+  const cfNote  = document.getElementById('cfNote')?.value.trim() || '';
+  const p = _collectProductData();
+
+  let msg = `Merhaba, TezgahBul uzerinden teklif almak istiyorum.\n\n`;
+  msg += `*Ad Soyad:* ${cfName}\n`;
+  msg += `*Telefon:* ${cfPhone}\n`;
+  msg += `*Il:* ${cfCity}\n`;
+  if (p.brand) msg += `\n*Malzeme:* ${[p.brand, p.modelText, p.finishText].filter(Boolean).join(' - ')}\n`;
+  if (p.planLabel) msg += `*Tezgah:* ${p.planLabel}\n`;
+  if (p.dims) msg += `*Olculer:* ${p.dims}\n`;
+  if (p.kaplamaText) msg += `*Kaplama:* ${p.kaplamaText}\n`;
+  if (cfNote) msg += `\n*Not:* ${cfNote}\n`;
+
+  const waNumber = '905052032326';
+  window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+async function generateQuotePDF() {
+  if (!_validateForm()) return;
+
+  // — Veri toplama —
+  const p = _collectProductData();
+  const brand = p.brand || '—', modelText = p.modelText || '—', finishText = p.finishText || '—';
+  const collText = p.collText, planLabel = p.planLabel || '—', dims = p.dims, kaplamaText = p.kaplamaText;
+
+  const cfName    = document.getElementById('cfName').value.trim();
+  const cfPhone   = document.getElementById('cfPhone').value.trim();
+  const cfCity    = document.getElementById('cfCity').value.trim();
+  const cfNote    = document.getElementById('cfNote')?.value.trim() || '';
 
   const now      = new Date();
   const dateStr  = now.toLocaleDateString('tr-TR', { day:'2-digit', month:'2-digit', year:'numeric' });
@@ -2746,7 +4516,7 @@ body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1e1a17;backgro
     ${sec('Ürün Bilgileri', `<div style="display:flex;gap:22px;align-items:flex-start">${slabImgHtml}
       <table style="border-collapse:collapse">${row('Marka',brand)}${row('Model',modelText)}${row('Yüzey',finishText)}${collText?row('Koleksiyon',collText):''}</table></div>`)}
     ${sec('Tezgah Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Tip',planLabel)}${row('Ölçüler',dims||'—')}${kaplamaText?row('Kaplama',kaplamaText):''}</table>`)}
-    ${sec('Müşteri Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Ad Soyad',cfName)}${row('Telefon',cfPhone)}${cfEmail?row('E-posta',cfEmail):''}${cfAddress?row('Adres',cfAddress):''}${(cfCity||cfDist)?row('İl / İlçe',[cfCity,cfDist].filter(Boolean).join(' / ')):''}</table>`)}
+    ${sec('Müşteri Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Ad Soyad',cfName)}${row('Telefon',cfPhone)}${cfCity?row('İl',cfCity):''}${cfNote?row('Not',cfNote):''}</table>`)}
     ${kitchenHtml}
   </div>
 </div>
