@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İmalatçı Dizini — TezgahBul</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; }
+
+/* Page header */
+.page-header {
+  background: var(--teal);
+  padding: 48px var(--gap) 40px;
+  text-align: center;
+}
+.page-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.page-title { font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+.page-sub { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto; }
+
+/* Filter bar */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  padding: 24px var(--gap) 8px;
+  max-width: 900px; margin: 0 auto;
+}
+.filter-chip {
+  padding: 6px 16px; border-radius: 20px; border: 1.5px solid rgba(0,91,108,0.2);
+  background: white; color: var(--teal); font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-chip:hover { border-color: var(--teal); }
+.filter-chip.active { background: var(--teal); color: white; border-color: var(--teal); }
+
+/* Manufacturer grid */
+.mfr-container { max-width: 900px; margin: 0 auto; padding: 24px var(--gap) 64px; }
+.mfr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 16px; }
+.mfr-card {
+  background: white; border-radius: 14px; padding: 24px;
+  border: 1px solid rgba(0,91,108,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.mfr-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.mfr-name { font-size: 1.05rem; font-weight: 700; color: var(--teal); margin-bottom: 4px; }
+.mfr-addr { font-size: 0.78rem; color: #9ca3af; margin-bottom: 8px; }
+.mfr-desc { font-size: 0.82rem; color: #6b7280; line-height: 1.5; margin-bottom: 12px; }
+.mfr-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.mfr-tag {
+  font-size: 0.65rem; font-weight: 600; padding: 3px 8px;
+  border-radius: 4px; letter-spacing: 0.3px;
+}
+.mfr-tag-uz { background: rgba(0,91,108,0.08); color: var(--teal); }
+.mfr-tag-mk { background: rgba(212,118,44,0.1); color: var(--orange); }
+.mfr-badge {
+  display: inline-block; font-size: 0.6rem; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; color: #16a34a;
+  background: rgba(22,163,74,0.08); padding: 3px 8px; border-radius: 4px;
+  margin-bottom: 12px;
+}
+.mfr-actions { display: flex; gap: 8px; }
+.mfr-btn {
+  padding: 8px 16px; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; border: none; transition: all 0.2s;
+}
+.mfr-btn-call { background: var(--teal); color: white; }
+.mfr-btn-call:hover { background: #004854; }
+.mfr-btn-map { background: white; color: var(--teal); border: 1.5px solid rgba(0,91,108,0.2); }
+.mfr-btn-map:hover { border-color: var(--teal); }
+.mfr-empty { text-align: center; padding: 48px 20px; color: #9ca3af; font-size: 0.9rem; }
+
+/* Footer */
+.site-footer {
+  background: var(--teal); color: rgba(255,255,255,0.7);
+  padding: 40px var(--gap) 24px; text-align: center;
+}
+.footer-bottom { font-size: 0.75rem; margin-top: 16px; opacity: 0.5; }
+
+@media (max-width: 768px) {
+  .page-title { font-size: 1.5rem; }
+  .mfr-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
+  <ul class="nav-links">
+    <li><a href="rehber.html">Rehber</a></li>
+    <li><a href="imalatcilar.html" class="active">İmalatçılar</a></li>
+    <li><a href="backsplash.html">Mutfak Tasarla</a></li>
+    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">İmalatçı Dizini</div>
+  <h1 class="page-title">Güvenilir tezgah imalatçıları</h1>
+  <p class="page-sub">Türkiye genelindeki onaylı imalatçılarımızı keşfedin. Şehre göre filtreleyin.</p>
+</div>
+
+<div class="filter-bar" id="filterBar">
+  <button class="filter-chip active" onclick="filterMfrs('all', this)">Tümü</button>
+</div>
+
+<div class="mfr-container">
+  <div class="mfr-grid" id="mfrGrid">
+    <div class="mfr-empty">Yükleniyor...</div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div>© 2025 TezgahBul — Tüm hakları saklıdır.</div>
+  <div class="footer-bottom"><a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">← Ana Sayfaya Dön</a></div>
+</footer>
+
+<script>
+let mfrData = [];
+
+async function loadManufacturers() {
+  try {
+    const res = await fetch('./data/manufacturers.json');
+    const json = await res.json();
+    mfrData = json.manufacturers || [];
+    buildFilters();
+    renderMfrs('all');
+  } catch (e) {
+    document.getElementById('mfrGrid').innerHTML = '<div class="mfr-empty">İmalatçı verileri yüklenemedi.</div>';
+  }
+}
+
+function buildFilters() {
+  const cities = [...new Set(mfrData.map(m => m.sehir))].sort((a, b) => a.localeCompare(b, 'tr'));
+  const bar = document.getElementById('filterBar');
+  cities.forEach(city => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.textContent = city;
+    btn.onclick = function() { filterMfrs(city, this); };
+    bar.appendChild(btn);
+  });
+}
+
+function filterMfrs(city, btn) {
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  renderMfrs(city);
+}
+
+function renderMfrs(city) {
+  const grid = document.getElementById('mfrGrid');
+  const list = city === 'all' ? mfrData : mfrData.filter(m => m.sehir === city);
+  if (!list.length) {
+    grid.innerHTML = '<div class="mfr-empty">Bu şehirde kayıtlı imalatçı bulunmuyor.</div>';
+    return;
+  }
+  grid.innerHTML = list.map(m => {
+    const uzTags = (m.uzmanlik || []).map(u => `<span class="mfr-tag mfr-tag-uz">${u}</span>`).join('');
+    const mkTags = (m.markalar || []).map(b => `<span class="mfr-tag mfr-tag-mk">${b}</span>`).join('');
+    const badge = m.onayli ? '<div class="mfr-badge">✓ Onaylı İmalatçı</div>' : '';
+    const mapsUrl = m.maps || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(m.ad + ' ' + m.sehir)}`;
+    const phone = m.tel ? m.tel.replace(/\s/g, '') : '';
+    return `<div class="mfr-card">
+      ${badge}
+      <div class="mfr-name">${m.ad}</div>
+      <div class="mfr-addr">📍 ${m.ilce || ''}, ${m.sehir}</div>
+      ${m.aciklama ? `<div class="mfr-desc">${m.aciklama}</div>` : ''}
+      <div class="mfr-tags">${uzTags}${mkTags}</div>
+      <div class="mfr-actions">
+        ${phone ? `<a href="tel:${phone}" class="mfr-btn mfr-btn-call">📞 Ara</a>` : ''}
+        <a href="${mapsUrl}" target="_blank" class="mfr-btn mfr-btn-map">🗺️ Haritada Gör</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+loadManufacturers();
+</script>
+</body>
+</html>

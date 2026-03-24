@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutfak Tasarla | TezgahBul</title>
+<link rel="stylesheet" href="navbar.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#888;color:#1a1a1a;overflow:hidden;height:100vh}
+
+.app{display:flex;height:calc(100vh - 68px)}
+.scene-wrap{flex:1;position:relative;cursor:grab}
+.scene-wrap:active{cursor:grabbing}
+.panel{width:370px;background:#fff;border-left:1px solid #e0e0e0;overflow-y:auto;padding:20px 18px}
+
+.panel h2{font-size:1.05rem;font-weight:700;margin-bottom:18px;color:var(--teal);display:flex;align-items:center;gap:8px}
+.panel h2 span{color:var(--orange)}
+.section{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #eee}
+.section:last-child{border-bottom:none}
+.section-title{font-size:0.68rem;text-transform:uppercase;letter-spacing:1.2px;color:#999;margin-bottom:8px;font-weight:600}
+
+.input-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.input-row label{font-size:0.8rem;color:#555;font-weight:500;min-width:70px}
+.input-row input[type=number]{width:76px;padding:5px 8px;border:1px solid #ddd;border-radius:6px;font-size:0.82rem;font-family:inherit;text-align:center;outline:none}
+.input-row input[type=number]:focus{border-color:var(--orange)}
+.input-row .unit{font-size:0.72rem;color:#999}
+
+.slider-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.slider-row label{font-size:0.8rem;color:#555;font-weight:500}
+.slider-row .val{font-size:0.8rem;color:var(--orange);font-weight:700;min-width:50px;text-align:right}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;background:#e0e0e0;border-radius:2px;outline:none;margin-top:4px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--orange);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+
+/* Style cards */
+.style-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.style-card{padding:8px 4px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;transition:all 0.15s;font-family:inherit}
+.style-card:hover{border-color:#aaa}
+.style-card.active{border-color:var(--orange);background:#fff8f4}
+.style-card .sc-icon{font-size:1.2rem;margin-bottom:2px}
+.style-card .sc-name{font-size:0.62rem;font-weight:600;color:#333}
+
+/* Color swatches row */
+.color-row{display:flex;gap:5px;flex-wrap:wrap}
+.c-sw{width:30px;height:30px;border-radius:6px;cursor:pointer;border:2px solid #e0e0e0;transition:all 0.12s;position:relative}
+.c-sw:hover{transform:scale(1.1)}
+.c-sw.active{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange)}
+.c-sw .tip{position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);background:#333;color:#fff;padding:2px 6px;border-radius:3px;font-size:0.58rem;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity 0.15s}
+.c-sw:hover .tip{opacity:1}
+
+/* Material type tabs */
+.mat-tabs{display:flex;gap:4px;margin-bottom:10px}
+.mat-tab{flex:1;padding:7px 4px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;transition:all 0.15s;font-family:inherit;font-size:0.72rem;font-weight:600;color:#555}
+.mat-tab:hover{border-color:#aaa}
+.mat-tab.active{border-color:var(--teal);background:var(--teal);color:#fff}
+.mat-tab.disabled{opacity:0.4;cursor:not-allowed}
+
+/* Brand tabs */
+.brand-tabs{display:flex;gap:4px;margin-bottom:10px}
+.brand-tab{padding:4px 10px;border:1px solid #e0e0e0;border-radius:16px;background:#fff;color:#666;font-size:0.65rem;font-weight:600;cursor:pointer;transition:all 0.12s;font-family:inherit}
+.brand-tab:hover:not(.active){border-color:#aaa;color:#333}
+.brand-tab.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+
+/* Collection filter */
+.coll-tabs{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:10px}
+.coll-tab{padding:3px 8px;border:1px solid #e0e0e0;border-radius:12px;background:#fff;color:#777;font-size:0.62rem;font-weight:600;cursor:pointer;transition:all 0.12s;font-family:inherit}
+.coll-tab.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.coll-tab:hover:not(.active){border-color:#aaa;color:#333}
+
+.model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.model-card{border-radius:6px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all 0.12s;background:#f5f5f5}
+.model-card:hover{transform:scale(1.03);box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.model-card.active{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange)}
+.model-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.model-card .m-name{font-size:0.6rem;font-weight:600;color:#333;padding:3px 4px;text-align:center;line-height:1.2}
+.model-card .m-finish{font-size:0.54rem;color:#999;padding:0 4px 3px;text-align:center}
+
+.info-bar{position:absolute;bottom:14px;left:14px;display:flex;gap:8px}
+.info-chip{background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;font-size:0.68rem;color:rgba(255,255,255,0.8)}
+.info-chip b{color:var(--orange)}
+
+.selected-badge{position:absolute;top:14px;right:14px;background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.1);padding:6px 12px;border-radius:8px;font-size:0.74rem;color:#fff;display:none}
+.selected-badge b{color:var(--orange)}
+.selected-badge .finish-tag{display:inline-block;padding:1px 6px;border-radius:3px;background:var(--orange);color:#fff;font-size:0.58rem;font-weight:600;margin-left:4px;vertical-align:middle}
+
+.hint{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.4);backdrop-filter:blur(6px);padding:5px 14px;border-radius:20px;font-size:0.68rem;color:rgba(255,255,255,0.7);pointer-events:none;transition:opacity 1s}
+
+/* Checkbox */
+.check-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.check-row input[type=checkbox]{accent-color:var(--orange);width:16px;height:16px}
+.check-row label{font-size:0.8rem;color:#555;font-weight:500;cursor:pointer}
+
+/* Tezgah tipi cards */
+.tplan-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.tplan-pick{padding:8px 4px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;transition:all 0.15s}
+.tplan-pick:hover{border-color:#aaa}
+.tplan-pick.active{border-color:var(--orange);background:#fff8f4}
+.tplan-svg{height:36px;display:flex;align-items:center;justify-content:center;color:var(--teal)}
+.tplan-svg svg{height:100%;width:auto}
+.tplan-txt{font-size:0.65rem;font-weight:600;color:#333;margin-top:2px}
+
+.coming-soon{padding:20px;text-align:center;color:#aaa;font-size:0.78rem;font-style:italic}
+
+@media(max-width:900px){
+  .app{flex-direction:column-reverse;height:auto;overflow-y:auto}
+  .scene-wrap{height:50vh;min-height:280px}
+  .panel{width:100%;border-left:none;border-top:1px solid #e0e0e0}
+  body{overflow:auto;height:auto}
+  .model-grid{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
+  <ul class="nav-links">
+    <li><a href="rehber.html">Rehber</a></li>
+    <li><a href="imalatcilar.html">İmalatçılar</a></li>
+    <li><a href="backsplash.html" class="active">Mutfak Tasarla</a></li>
+    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+  </ul>
+</nav>
+
+<div class="app">
+  <div class="scene-wrap" id="canvas-wrap">
+    <div class="hint" id="hint">Sahneyi döndürmek için sürükleyin</div>
+    <div class="selected-badge" id="selBadge">
+      <b id="selName">—</b> <span class="finish-tag" id="selFinish"></span>
+    </div>
+    <div class="info-bar">
+      <div class="info-chip">Tezgah: <b id="infoW">200</b> x <b id="infoD">60</b> cm</div>
+      <div class="info-chip">Backsplash: <b id="infoH">60</b> cm</div>
+      <div class="info-chip">Alan: <b id="infoArea">1.20</b> m²</div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2><span>&#9638;</span> Mutfak Tasarla</h2>
+
+    <!-- Tezgah Tipi & Ölçüler -->
+    <div class="section">
+      <div class="section-title">Tezgah Tipi & Ölçüler</div>
+      <div class="tplan-cards" id="tplanCards">
+        <!-- Düz -->
+        <div class="tplan-pick active" data-plan="duz">
+          <div class="tplan-svg">
+            <svg viewBox="0 -10 80 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" overflow="visible">
+              <rect x="4" y="3" width="72" height="18" rx="1.5" fill="rgba(0,91,108,0.09)"/>
+              <text x="40" y="-3" text-anchor="middle" dominant-baseline="middle" font-size="10" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+            </svg>
+          </div>
+          <div class="tplan-txt">Düz</div>
+        </div>
+        <!-- L -->
+        <div class="tplan-pick" data-plan="l">
+          <div class="tplan-svg">
+            <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
+              <polygon points="4,4 56,4 56,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
+              <text x="30" y="-2" text-anchor="middle" font-size="11" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+              <g transform="translate(-4,38) rotate(-90)"><text x="0" y="0" text-anchor="middle" font-size="11" fill="currentColor" font-family="DM Sans,sans-serif">B</text></g>
+            </svg>
+          </div>
+          <div class="tplan-txt">L</div>
+        </div>
+        <!-- U -->
+        <div class="tplan-pick" data-plan="u">
+          <div class="tplan-svg">
+            <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
+              <polygon points="4,4 56,4 56,54 38,54 38,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
+              <text x="30" y="-2" text-anchor="middle" font-size="11" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+              <g transform="translate(-4,38) rotate(-90)"><text x="0" y="0" text-anchor="middle" font-size="11" fill="currentColor" font-family="DM Sans,sans-serif">A</text></g>
+              <g transform="translate(64,38) rotate(-90)"><text x="0" y="0" text-anchor="middle" font-size="11" fill="currentColor" font-family="DM Sans,sans-serif">C</text></g>
+            </svg>
+          </div>
+          <div class="tplan-txt">U</div>
+        </div>
+      </div>
+      <!-- Dimension inputs -->
+      <div id="dimInputs">
+        <div class="input-row">
+          <label>A</label>
+          <input type="number" id="inA" value="200" min="60" max="600" step="5">
+          <span class="unit">cm</span>
+        </div>
+        <div class="input-row" id="dimB" style="display:none">
+          <label>B</label>
+          <input type="number" id="inB" value="150" min="60" max="600" step="5">
+          <span class="unit">cm</span>
+        </div>
+        <div class="input-row" id="dimC" style="display:none">
+          <label>C</label>
+          <input type="number" id="inC" value="150" min="60" max="600" step="5">
+          <span class="unit">cm</span>
+        </div>
+        <div class="input-row">
+          <label>Derinlik</label>
+          <input type="number" id="inD" value="60" min="30" max="90" step="5">
+          <span class="unit">cm</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backsplash -->
+    <div class="section">
+      <div class="section-title">Backsplash Yüksekliği</div>
+      <div class="slider-row">
+        <label>Yükseklik</label>
+        <span class="val" id="vH">60 cm</span>
+      </div>
+      <input type="range" id="sH" min="10" max="120" value="60" step="5">
+    </div>
+
+    <!-- Dolap Stili -->
+    <div class="section">
+      <div class="section-title">Dolap Stili</div>
+      <div class="style-cards" id="styleCards"></div>
+      <div class="section-title" style="margin-top:10px">Dolap Rengi / Yüzeyi</div>
+      <div class="color-row" id="cabColors"></div>
+    </div>
+
+    <!-- Üst Dolap -->
+    <div class="section">
+      <div class="check-row">
+        <input type="checkbox" id="chkUpper" checked>
+        <label for="chkUpper">Üst Dolaplar</label>
+      </div>
+      <div id="upperOpts">
+        <div style="font-size:0.75rem;color:#999;margin-top:4px">Yükseklik: 70 cm (sabit)</div>
+      </div>
+    </div>
+
+    <!-- Malzeme Tipi & Model Seçimi -->
+    <div class="section">
+      <div class="section-title">Tezgah Malzemesi</div>
+      <div class="mat-tabs" id="matTabs"></div>
+      <div class="brand-tabs" id="brandTabs"></div>
+      <div class="coll-tabs" id="collTabs"></div>
+      <div class="model-grid" id="modelGrid"></div>
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ========== DATA LOADING ==========
+// Brand configurations
+const BRANDS = {
+  dekton:    { type:'porselen', label:'Dekton',    dataUrl:'/data/dekton-models.json',    thumbBase:'/Plakalar/Porselen/Dekton/',      slabBase:'/Plakalar/Porselen/Dekton/slab/',  thumbExt:'.jpg', slabExt:'.jpg', hasCollections:true },
+  neolith:   { type:'porselen', label:'Neolith',   dataUrl:'/data/neolith-models.json',   thumbBase:'/Plakalar/Porselen/Neolith/',     slabBase:'/Plakalar/Porselen/Neolith/slab/', thumbExt:'.jpg', slabExt:'.jpg', hasCollections:false },
+  infinity:  { type:'porselen', label:'Infinity',  dataUrl:'/data/infinity-models.json',  thumbBase:'/Plakalar/Porselen/Infinity/',    slabBase:null,                               thumbExt:'.webp',slabExt:null,   hasCollections:false },
+  silestone: { type:'quartz',   label:'Silestone',  dataUrl:'/data/silestone-models.json', thumbBase:'/Plakalar/Quartz/Silestone/',     slabBase:'/Plakalar/Quartz/Silestone/',      thumbExt:'.jpg', slabExt:'.jpg', hasCollections:false },
+};
+
+const MAT_TYPES = [
+  { id:'porselen', name:'Porselen', brands:['dekton','neolith','infinity'] },
+  { id:'quartz',   name:'Quartz',   brands:['silestone'] },
+  { id:'granit',   name:'Granit',   brands:[] },
+];
+
+// Normalize all models to unified format
+const allBrandModels = {}; // brandId -> [{name, slug, finish, collection?, thumbUrl, slabUrl}]
+
+async function loadAllBrands() {
+  const promises = Object.entries(BRANDS).map(async ([brandId, cfg]) => {
+    try {
+      const res = await fetch(cfg.dataUrl);
+      const raw = await res.json();
+      const models = Array.isArray(raw) ? raw : (raw.models || []);
+      allBrandModels[brandId] = models.map(m => {
+        const slug = m.slug || m.name.toLowerCase();
+        const finish = m.finish || (m.finishes ? m.finishes[0] : '');
+        const thumbUrl = m.thumb_url || (cfg.thumbBase + slug + '-thumb' + cfg.thumbExt);
+        const slabUrl = m.slab_url || (cfg.slabBase ? cfg.slabBase + slug + '-slab' + cfg.slabExt : null);
+        return {
+          name: m.name,
+          slug,
+          finish,
+          finishes: m.finishes || [m.finish],
+          collection: m.collection || null,
+          thumbUrl,
+          slabUrl,
+          brand: brandId
+        };
+      });
+    } catch (e) {
+      console.warn('Failed to load brand:', brandId, e);
+      allBrandModels[brandId] = [];
+    }
+  });
+  await Promise.all(promises);
+}
+
+await loadAllBrands();
+
+// === State ===
+let activeMat = 'porselen';
+let activeBrand = 'dekton';
+let activeCollection = 'Tümü';
+let selectedModelKey = 'dekton:0'; // brandId:index
+
+// === Dolap stilleri ===
+const CAB_STYLES = [
+  { id:'handleless', name:'Kulpsuz', icon:'▬', desc:'Gola profil, parmak açma' },
+  { id:'jpull',      name:'J-Pull',  icon:'⌐', desc:'Kapak altı gizli profil' },
+  { id:'bar',        name:'Bar Kulp',icon:'━', desc:'Klasik çubuk kulp' },
+  { id:'knob',       name:'Düğme',   icon:'●', desc:'Yuvarlak düğme kulp' },
+  { id:'groove',     name:'Kanal',   icon:'═', desc:'Kapak üst kenar kanalı' },
+  { id:'flat',       name:'Push',    icon:'◻', desc:'İtmeli açma, tamamen düz' }
+];
+
+// === Dolap renkleri / yüzeyleri ===
+const CAB_COLORS = [
+  { name:'Beyaz Lake',    color:'#f5f2ee', rough:0.15, metal:0.0 },
+  { name:'Krem Lake',     color:'#e8dcc8', rough:0.15, metal:0.0 },
+  { name:'Açık Gri Lake', color:'#c8c4be', rough:0.15, metal:0.0 },
+  { name:'Antrasit Mat',  color:'#3a3a3a', rough:0.6,  metal:0.0 },
+  { name:'Siyah Mat',     color:'#1a1a1a', rough:0.65, metal:0.0 },
+  { name:'Ceviz Ahşap',   color:'#6b4226', rough:0.7,  metal:0.0, wood:true, grain:'#4a2a12' },
+  { name:'Meşe Ahşap',    color:'#a0804c', rough:0.7,  metal:0.0, wood:true, grain:'#7a5a2c' },
+  { name:'Kayın Ahşap',   color:'#c4a060', rough:0.7,  metal:0.0, wood:true, grain:'#a07830' },
+  { name:'Lacivert Lake', color:'#1c2a4a', rough:0.15, metal:0.0 },
+  { name:'Koyu Yeşil',    color:'#2a4a3a', rough:0.5,  metal:0.0 }
+];
+
+// === Prosedürel ahşap doku üretici ===
+const woodTexCache = {};
+function generateWoodTexture(baseColor, grainColor) {
+  const key = baseColor + grainColor;
+  if (woodTexCache[key]) return woodTexCache[key];
+
+  const w = 512, h = 512;
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const ctx = c.getContext('2d');
+
+  ctx.fillStyle = baseColor;
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.globalAlpha = 0.35;
+  const rng = (seed) => { let s = seed; return () => { s = (s * 16807 + 0) % 2147483647; return s / 2147483647; }; };
+  const rand = rng(42);
+
+  for (let y = 0; y < h; y += 2) {
+    const offset = Math.sin(y * 0.02) * 8 + Math.sin(y * 0.005) * 20;
+    const thickness = 0.5 + rand() * 1.5;
+    const alpha = 0.1 + rand() * 0.25;
+    ctx.globalAlpha = alpha;
+    ctx.strokeStyle = grainColor;
+    ctx.lineWidth = thickness;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    for (let x = 0; x < w; x += 20) {
+      const wobble = Math.sin((x + offset) * 0.01 + y * 0.003) * 3;
+      ctx.lineTo(x, y + wobble);
+    }
+    ctx.stroke();
+  }
+
+  ctx.globalAlpha = 0.15;
+  for (let i = 0; i < 3; i++) {
+    const kx = rand() * w, ky = rand() * h, kr = 8 + rand() * 15;
+    const g = ctx.createRadialGradient(kx, ky, 0, kx, ky, kr);
+    g.addColorStop(0, grainColor); g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g; ctx.fillRect(kx - kr, ky - kr, kr * 2, kr * 2);
+  }
+
+  ctx.globalAlpha = 0.08;
+  for (let i = 0; i < 2000; i++) {
+    const nx = rand() * w, ny = rand() * h;
+    ctx.fillStyle = rand() > 0.5 ? '#fff' : '#000';
+    ctx.fillRect(nx, ny, 1, 1);
+  }
+
+  ctx.globalAlpha = 1;
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = THREE.RepeatWrapping;
+  tex.wrapT = THREE.RepeatWrapping;
+  woodTexCache[key] = tex;
+  return tex;
+}
+
+// === State ===
+let cabStyleIdx = 0;
+let cabColorIdx = 0;
+let showUpper = true;
+let upperH = 70;
+let W = 200, D = 60, H = 60;
+let armB = 150, armC = 150;
+const SLAB_W = 320, SLAB_H = 144;
+
+// === Three.js ===
+const wrap = document.getElementById('canvas-wrap');
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.3;
+wrap.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+
+// Gradient background
+const bgC = document.createElement('canvas');
+bgC.width = 2; bgC.height = 512;
+const bgX = bgC.getContext('2d');
+const bgG = bgX.createLinearGradient(0, 0, 0, 512);
+bgG.addColorStop(0, '#7a7a7a');
+bgG.addColorStop(0.5, '#999');
+bgG.addColorStop(1, '#6a6a6a');
+bgX.fillStyle = bgG;
+bgX.fillRect(0, 0, 2, 512);
+scene.background = new THREE.CanvasTexture(bgC);
+
+const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+camera.position.set(3.5, 2.2, 3.0);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.minDistance = 1.5;
+controls.maxDistance = 8;
+controls.maxPolarAngle = Math.PI * 0.55;
+controls.target.set(0.5, 0.85, -0.1);
+controls.update();
+
+// === Lighting ===
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const sun = new THREE.DirectionalLight(0xfff8f0, 2.2);
+sun.position.set(4, 6, 5);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.camera.near = 0.1; sun.shadow.camera.far = 20;
+sun.shadow.camera.left = -6; sun.shadow.camera.right = 6;
+sun.shadow.camera.top = 6; sun.shadow.camera.bottom = -2;
+sun.shadow.bias = -0.001;
+scene.add(sun);
+const fl = new THREE.DirectionalLight(0xd0e8ff, 0.5); fl.position.set(-3, 4, -2); scene.add(fl);
+const rl = new THREE.DirectionalLight(0xffe8d0, 0.3); rl.position.set(0, 3, 5); scene.add(rl);
+
+// Environment
+const eC = document.createElement('canvas'); eC.width = 256; eC.height = 256;
+const eX = eC.getContext('2d');
+const eG = eX.createLinearGradient(0, 0, 0, 256);
+eG.addColorStop(0, '#b0c0d0'); eG.addColorStop(0.5, '#e0e0e0'); eG.addColorStop(1, '#c8c0b8');
+eX.fillStyle = eG; eX.fillRect(0, 0, 256, 256);
+const envTex = new THREE.CanvasTexture(eC);
+envTex.mapping = THREE.EquirectangularReflectionMapping;
+scene.environment = envTex;
+
+// === Floor & Walls ===
+const flr = new THREE.Mesh(new THREE.PlaneGeometry(14, 14),
+  new THREE.MeshStandardMaterial({ color: '#b0a898', roughness: 0.8 }));
+flr.rotation.x = -Math.PI / 2; flr.receiveShadow = true; scene.add(flr);
+
+const wMat = new THREE.MeshStandardMaterial({ color: '#d8d4ce', roughness: 0.9 });
+const bkW = new THREE.Mesh(new THREE.PlaneGeometry(14, 5), wMat);
+bkW.position.set(0, 2.5, -1.5); bkW.receiveShadow = true; scene.add(bkW);
+
+const ltW = new THREE.Mesh(new THREE.PlaneGeometry(8, 5), wMat.clone());
+ltW.rotation.y = Math.PI / 2; ltW.position.set(-2, 2.5, 0);
+ltW.receiveShadow = true; scene.add(ltW);
+
+// === Cabinet & Counter & Backsplash groups ===
+const cabGroup = new THREE.Group(); scene.add(cabGroup);
+const upperGroup = new THREE.Group(); scene.add(upperGroup);
+const counterGroup = new THREE.Group(); scene.add(counterGroup);
+const bsGroup = new THREE.Group(); scene.add(bsGroup);
+
+const cabMat = new THREE.MeshStandardMaterial({
+  color: CAB_COLORS[0].color, roughness: CAB_COLORS[0].rough, metalness: 0.0
+});
+const handleMat = new THREE.MeshStandardMaterial({ color: '#888', metalness: 0.85, roughness: 0.15 });
+const grooveMat = new THREE.MeshStandardMaterial({ color: '#222', roughness: 0.4 });
+const counterMat = new THREE.MeshStandardMaterial({ color: '#ccc', roughness: 0.3, metalness: 0.05 });
+const bsMat = new THREE.MeshStandardMaterial({ color: '#ccc', roughness: 0.3, metalness: 0.0 });
+
+function clearGroup(g) {
+  while (g.children.length) {
+    const c = g.children[0]; g.remove(c);
+    if (c.geometry) c.geometry.dispose();
+    if (c.material && c.material !== cabMat && c.material !== handleMat && c.material !== grooveMat && c.material !== counterMat && c.material !== bsMat) {
+      if (c.material.dispose) c.material.dispose();
+    }
+  }
+}
+
+function darkenColor(hex, factor) {
+  let r = parseInt(hex.slice(1, 3), 16);
+  let g = parseInt(hex.slice(3, 5), 16);
+  let b = parseInt(hex.slice(5, 7), 16);
+  r = Math.round(r * factor); g = Math.round(g * factor); b = Math.round(b * factor);
+  return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+}
+
+// --- Adds handle meshes for one door module ---
+function addHandle(group, style, x, doorCenterY, doorFrontZ, mW, doorH, isUpper) {
+  // doorFrontZ = the Z position of the front face of the door
+  // Alt dolap: kulp kapak üst kenarına yakın
+  // Üst dolap: kulp kapak alt kenarına yakın
+
+  if (style === 'bar') {
+    const barLen = Math.min(0.16, mW * 0.4);
+    const hY = isUpper ? (doorCenterY - doorH / 2 + 0.06) : (doorCenterY + doorH / 2 - 0.06);
+    const hX = x + mW / 2 - 0.04;
+    // Bar standoff brackets + bar, clearly in front of door
+    const h = new THREE.Mesh(new THREE.BoxGeometry(0.008, barLen, 0.012), handleMat);
+    h.position.set(hX, hY, doorFrontZ + 0.016); h.castShadow = true; group.add(h);
+    for (const dy of [-barLen / 2 + 0.01, barLen / 2 - 0.01]) {
+      const st = new THREE.Mesh(new THREE.BoxGeometry(0.006, 0.006, 0.016), handleMat);
+      st.position.set(hX, hY + dy, doorFrontZ + 0.008); group.add(st);
+    }
+  } else if (style === 'knob') {
+    const kY = isUpper ? (doorCenterY - doorH / 2 + 0.06) : (doorCenterY + doorH / 2 - 0.06);
+    const k = new THREE.Mesh(new THREE.SphereGeometry(0.012, 12, 8), handleMat);
+    k.position.set(x + mW / 2 - 0.04, kY, doorFrontZ + 0.014); k.castShadow = true; group.add(k);
+    // Knob stem
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.012, 6), handleMat);
+    stem.rotation.x = Math.PI / 2;
+    stem.position.set(x + mW / 2 - 0.04, kY, doorFrontZ + 0.006); group.add(stem);
+  }
+  // handleless, jpull, groove: no visible protruding geometry
+  // These are integrated into the door/cabinet design via visual gap only
+  // 'flat' = push-open, no handle
+}
+
+// --- Build a row of cabinets along one arm ---
+function buildCabRow(group, armW, dS, originX, originZ, rotY) {
+  const cabH = 0.85, modW = 0.5, gap = 0.004;
+  const n = Math.max(1, Math.round(armW / modW));
+  const mW = (armW - gap * (n - 1)) / n;
+  const style = CAB_STYLES[cabStyleIdx].id;
+  const cc = CAB_COLORS[cabColorIdx];
+  const bodyColor = cc.color;
+
+  const arm = new THREE.Group();
+
+  for (let i = 0; i < n; i++) {
+    const x = -armW / 2 + mW / 2 + i * (mW + gap);
+
+    // Body (full cabinet box) — uses cabinet color
+    const bodyMat = new THREE.MeshStandardMaterial({ color: darkenColor(bodyColor, 0.85), roughness: 0.8 });
+    if (cc.wood) {
+      bodyMat.map = generateWoodTexture(darkenColor(bodyColor, 0.85), darkenColor(cc.grain, 0.85));
+      bodyMat.color.set('#fff');
+    }
+    const body = new THREE.Mesh(new THREE.BoxGeometry(mW, cabH, dS - 0.02), bodyMat);
+    body.position.set(x, cabH / 2, -0.01);
+    body.castShadow = true; body.receiveShadow = true; arm.add(body);
+
+    // Door — slightly smaller than body, in front
+    const doorThickness = 0.018;
+    const doorH = cabH - 0.01;
+    const doorFrontZ = dS / 2 - doorThickness / 2;
+    const door = new THREE.Mesh(new THREE.BoxGeometry(mW - 0.003, doorH, doorThickness), cabMat);
+    door.position.set(x, cabH / 2, doorFrontZ);
+    door.castShadow = true; door.receiveShadow = true; arm.add(door);
+
+    // Handle
+    addHandle(arm, style, x, cabH / 2, dS / 2, mW, doorH, false);
+
+    // Module divider line
+    if (i < n - 1) {
+      const ln = new THREE.Mesh(new THREE.BoxGeometry(0.002, cabH, doorThickness + 0.004), grooveMat);
+      ln.position.set(x + mW / 2 + gap / 2, cabH / 2, doorFrontZ); arm.add(ln);
+    }
+  }
+
+  // Plinth — darker shade, with polygon offset to prevent z-fighting
+  const plinthColor = darkenColor(cc.color, 0.4);
+  const plinthMat = new THREE.MeshStandardMaterial({ color: plinthColor, roughness: 0.8 });
+  plinthMat.polygonOffset = true; plinthMat.polygonOffsetFactor = 2; plinthMat.polygonOffsetUnits = 2;
+  const plinthH = 0.10;
+  const plinth = new THREE.Mesh(new THREE.BoxGeometry(armW, plinthH, dS - 0.006), plinthMat);
+  plinth.position.set(0, plinthH / 2 - 0.002, -0.001); plinth.receiveShadow = true; arm.add(plinth);
+
+  arm.position.set(originX, 0, originZ);
+  arm.rotation.y = rotY;
+  group.add(arm);
+}
+
+// --- Build upper cabinet row ---
+function buildUpperRow(group, armW, dS, bsH, originX, originZ, rotY) {
+  if (!showUpper) return;
+  const cabH = 0.85, tH = 0.04;
+  const uhS = upperH * 0.01;
+  const gap = 0.004, modW = 0.5;
+  const n = Math.max(1, Math.round(armW / modW));
+  const mW = (armW - gap * (n - 1)) / n;
+  const style = CAB_STYLES[cabStyleIdx].id;
+  const cc = CAB_COLORS[cabColorIdx];
+  const upperDepth = 0.35;
+  const upperBottom = cabH + tH + bsH; // flush with backsplash top, no gap
+  const upperBackZ = -dS / 2 + 0.01;
+  const upperFrontZ = upperBackZ + upperDepth;
+  const doorThickness = 0.018;
+
+  const arm = new THREE.Group();
+
+  for (let i = 0; i < n; i++) {
+    const x = -armW / 2 + mW / 2 + i * (mW + gap);
+
+    // Body — uses cabinet color
+    const bodyMat = new THREE.MeshStandardMaterial({ color: darkenColor(cc.color, 0.85), roughness: 0.8 });
+    if (cc.wood) {
+      bodyMat.map = generateWoodTexture(darkenColor(cc.color, 0.85), darkenColor(cc.grain, 0.85));
+      bodyMat.color.set('#fff');
+    }
+    const body = new THREE.Mesh(new THREE.BoxGeometry(mW, uhS, upperDepth), bodyMat);
+    body.position.set(x, upperBottom + uhS / 2, upperBackZ + upperDepth / 2);
+    body.castShadow = true; body.receiveShadow = true; arm.add(body);
+
+    // Door
+    const doorH = uhS - 0.006;
+    const door = new THREE.Mesh(new THREE.BoxGeometry(mW - 0.003, doorH, doorThickness), cabMat);
+    door.position.set(x, upperBottom + uhS / 2, upperFrontZ);
+    door.castShadow = true; door.receiveShadow = true; arm.add(door);
+
+    // Handle
+    addHandle(arm, style, x, upperBottom + uhS / 2, upperFrontZ + doorThickness / 2, mW, doorH, true);
+
+    if (i < n - 1) {
+      const ln = new THREE.Mesh(new THREE.BoxGeometry(0.002, uhS, doorThickness + 0.002), grooveMat);
+      ln.position.set(x + mW / 2 + gap / 2, upperBottom + uhS / 2, upperFrontZ); arm.add(ln);
+    }
+  }
+
+  arm.position.set(originX, 0, originZ);
+  arm.rotation.y = rotY;
+  group.add(arm);
+}
+
+// === Texture Loading ===
+const texLoader = new THREE.TextureLoader();
+let currentSlabUrl = '';
+let loadedSlabImage = null; // Shared image source for tiling
+
+function loadSlabTexture(slabUrl) {
+  if (!slabUrl) {
+    bsMat.map = null; bsMat.color.set('#ccc'); bsMat.needsUpdate = true;
+    counterMat.map = null; counterMat.color.set('#ccc'); counterMat.needsUpdate = true;
+    currentSlabUrl = '';
+    loadedSlabImage = null;
+    updateScene();
+    return;
+  }
+  currentSlabUrl = slabUrl;
+  texLoader.load(slabUrl, t => {
+    t.wrapS = THREE.RepeatWrapping; t.wrapT = THREE.ClampToEdgeWrapping;
+    t.colorSpace = THREE.SRGBColorSpace;
+    loadedSlabImage = t.image; // Cache the image for cloning
+
+    bsMat.map = t; bsMat.color.set('#fff'); bsMat.needsUpdate = true;
+
+    // Create separate texture for counter
+    const ct = t.clone();
+    ct.needsUpdate = true;
+    counterMat.map = ct; counterMat.color.set('#fff'); counterMat.needsUpdate = true;
+
+    // Rebuild scene to apply textures to all arms (L/U)
+    updateScene();
+  }, undefined, () => {
+    bsMat.map = null; bsMat.color.set('#ccc'); bsMat.needsUpdate = true;
+    counterMat.map = null; counterMat.color.set('#ccc'); counterMat.needsUpdate = true;
+    currentSlabUrl = '';
+    loadedSlabImage = null;
+  });
+}
+
+function createSlabTexForArm(armWidth, armHeight, isCounter) {
+  // Create a new texture from the cached slab image for a specific arm
+  if (!loadedSlabImage) return null;
+  const t = new THREE.Texture(loadedSlabImage);
+  t.wrapS = THREE.RepeatWrapping;
+  t.wrapT = THREE.ClampToEdgeWrapping;
+  t.colorSpace = THREE.SRGBColorSpace;
+  t.needsUpdate = true;
+
+  const su = armWidth / SLAB_W;
+  const sv = armHeight / SLAB_H;
+  t.repeat.set(su, sv);
+  if (isCounter) {
+    t.offset.set(0, (1 - sv) / 2);
+  } else {
+    t.offset.set(0, 0);
+  }
+  return t;
+}
+
+function updateTexMap() {
+  // Update UV mapping for main arm textures
+  if (bsMat.map) {
+    const su = W / SLAB_W, sv = H / SLAB_H;
+    bsMat.map.repeat.set(su, sv);
+    bsMat.map.offset.set(0, 0);
+  }
+  if (counterMat.map) {
+    const su = W / SLAB_W, sv = D / SLAB_H;
+    counterMat.map.repeat.set(su, sv);
+    counterMat.map.offset.set(0, (1 - sv) / 2);
+  }
+}
+
+// === Build all arms of counter/backsplash ===
+function buildCounterAndBS() {
+  clearGroup(counterGroup);
+  clearGroup(bsGroup);
+  const s = 0.01, wS = W * s, dS = D * s, hS = H * s;
+  const tH = 0.04, cabH = 0.85;
+  const startX = -2 + 0.05 + wS / 2;
+
+  // Main arm (A) — along back wall
+  const ctr = new THREE.Mesh(new THREE.BoxGeometry(wS + 0.02, tH, dS + 0.04), counterMat);
+  ctr.position.set(startX, cabH + tH / 2, 0.02);
+  ctr.castShadow = true; ctr.receiveShadow = true;
+  counterGroup.add(ctr);
+
+  const bsA = new THREE.Mesh(new THREE.BoxGeometry(wS, hS, 0.018), bsMat);
+  bsA.position.set(startX, cabH + tH + hS / 2, -dS / 2 + 0.01);
+  bsA.castShadow = true; bsA.receiveShadow = true;
+  bsGroup.add(bsA);
+
+  // Update main arm UV
+  updateTexMap();
+
+  if (tezgahTipi === 'l' || tezgahTipi === 'u') {
+    const bS = armB * s;
+    // Trim B arm counter at junction to avoid overlap with A arm
+    const trimB = dS + 0.04; // trim by A arm's depth at the corner
+    const effectiveBLen = bS - trimB + 0.02;
+    const effectiveBCenterZ = -dS / 2 + trimB + effectiveBLen / 2;
+    const armOriginX = -2 + 0.05 + dS / 2;
+
+    // B arm counter — trimmed to start after corner
+    const ctrBMat = new THREE.MeshStandardMaterial({ color: '#fff', roughness: counterMat.roughness, metalness: 0.05 });
+    const bTexC = createSlabTexForArm(armB - D, D, true);
+    if (bTexC) { ctrBMat.map = bTexC; ctrBMat.color.set('#fff'); } else { ctrBMat.color.set('#ccc'); }
+    const ctrB = new THREE.Mesh(new THREE.BoxGeometry(effectiveBLen, tH, dS + 0.04), ctrBMat);
+    ctrB.rotation.y = Math.PI / 2;
+    ctrB.position.set(armOriginX, cabH + tH / 2, effectiveBCenterZ);
+    ctrB.castShadow = true; ctrB.receiveShadow = true;
+    counterGroup.add(ctrB);
+
+    // B arm backsplash — full length (on wall, no overlap)
+    const bsBMat = new THREE.MeshStandardMaterial({ color: '#fff', roughness: bsMat.roughness, metalness: 0.0 });
+    const bTexB = createSlabTexForArm(armB, H, false);
+    if (bTexB) { bsBMat.map = bTexB; bsBMat.color.set('#fff'); } else { bsBMat.color.set('#ccc'); }
+    const fullBCenterZ = -dS / 2 + bS / 2;
+    const bsB = new THREE.Mesh(new THREE.BoxGeometry(bS, hS, 0.018), bsBMat);
+    bsB.rotation.y = Math.PI / 2;
+    bsB.position.set(-2 + 0.05 + 0.01, cabH + tH + hS / 2, fullBCenterZ);
+    bsB.castShadow = true; bsB.receiveShadow = true;
+    bsGroup.add(bsB);
+  }
+
+  if (tezgahTipi === 'u') {
+    const cS = armC * s;
+    const rightEdge = startX + wS / 2;
+    const armOriginX = rightEdge - dS / 2;
+    // Trim C arm counter at junction
+    const trimC = dS + 0.04;
+    const effectiveCLen = cS - trimC + 0.02;
+    const effectiveCCenterZ = -dS / 2 + trimC + effectiveCLen / 2;
+
+    // C arm counter — trimmed to start after corner
+    const ctrCMat = new THREE.MeshStandardMaterial({ color: '#fff', roughness: counterMat.roughness, metalness: 0.05 });
+    const cTexC = createSlabTexForArm(armC - D, D, true);
+    if (cTexC) { ctrCMat.map = cTexC; ctrCMat.color.set('#fff'); } else { ctrCMat.color.set('#ccc'); }
+    const ctrC = new THREE.Mesh(new THREE.BoxGeometry(effectiveCLen, tH, dS + 0.04), ctrCMat);
+    ctrC.rotation.y = -Math.PI / 2;
+    ctrC.position.set(armOriginX, cabH + tH / 2, effectiveCCenterZ);
+    ctrC.castShadow = true; ctrC.receiveShadow = true;
+    counterGroup.add(ctrC);
+
+    // C arm backsplash — full length (on wall, no overlap)
+    const fullCCenterZ = -dS / 2 + cS / 2;
+    const bsCMat = new THREE.MeshStandardMaterial({ color: '#fff', roughness: bsMat.roughness, metalness: 0.0 });
+    const cTexB = createSlabTexForArm(armC, H, false);
+    if (cTexB) { bsCMat.map = cTexB; bsCMat.color.set('#fff'); } else { bsCMat.color.set('#ccc'); }
+    const bsC = new THREE.Mesh(new THREE.BoxGeometry(cS, hS, 0.018), bsCMat);
+    bsC.rotation.y = -Math.PI / 2;
+    bsC.position.set(rightEdge - 0.01, cabH + tH + hS / 2, fullCCenterZ);
+    bsC.castShadow = true; bsC.receiveShadow = true;
+    bsGroup.add(bsC);
+  }
+}
+
+// === Update ===
+function updateScene() {
+  const s = 0.01, wS = W * s, dS = D * s, hS = H * s;
+  const cabH = 0.85;
+  const startX = -2 + 0.05 + wS / 2;
+
+  // Back wall
+  bkW.position.z = -dS / 2 - 0.01;
+
+  // Build cabinets for main arm (A)
+  clearGroup(cabGroup);
+  clearGroup(upperGroup);
+
+  // Main arm (A) cabinets — along back wall
+  buildCabRow(cabGroup, wS, dS, startX, 0, 0);
+  buildUpperRow(upperGroup, wS, dS, hS, startX, 0, 0);
+
+  // L arm (B) — perpendicular along left wall
+  if (tezgahTipi === 'l' || tezgahTipi === 'u') {
+    const bS = armB * s;
+    const armCenterX = -2 + 0.05 + dS / 2;
+    const armCenterZ = -dS / 2 + bS / 2;
+    buildCabRow(cabGroup, bS, dS, armCenterX, armCenterZ, Math.PI / 2);
+    buildUpperRow(upperGroup, bS, dS, hS, armCenterX, armCenterZ, Math.PI / 2);
+  }
+
+  // U arm (C) — perpendicular along right wall
+  if (tezgahTipi === 'u') {
+    const cS = armC * s;
+    const rightEdge = startX + wS / 2;
+    const armCenterX = rightEdge - dS / 2;
+    const armCenterZ = -dS / 2 + cS / 2;
+    buildCabRow(cabGroup, cS, dS, armCenterX, armCenterZ, -Math.PI / 2);
+    buildUpperRow(upperGroup, cS, dS, hS, armCenterX, armCenterZ, -Math.PI / 2);
+  }
+
+  // Counter & backsplash
+  buildCounterAndBS();
+
+  document.getElementById('infoW').textContent = W;
+  document.getElementById('infoD').textContent = D;
+  document.getElementById('infoH').textContent = H;
+  document.getElementById('infoArea').textContent = ((W * H) / 10000).toFixed(2);
+}
+
+// === UI Renderers ===
+function renderStyles() {
+  const el = document.getElementById('styleCards');
+  el.innerHTML = '';
+  CAB_STYLES.forEach((st, i) => {
+    const c = document.createElement('div');
+    c.className = 'style-card' + (i === cabStyleIdx ? ' active' : '');
+    c.innerHTML = `<div class="sc-icon">${st.icon}</div><div class="sc-name">${st.name}</div>`;
+    c.title = st.desc;
+    c.onclick = () => { cabStyleIdx = i; renderStyles(); updateScene(); };
+    el.appendChild(c);
+  });
+}
+
+function renderCabColors() {
+  const el = document.getElementById('cabColors');
+  el.innerHTML = '';
+  CAB_COLORS.forEach((c, i) => {
+    const sw = document.createElement('div');
+    sw.className = 'c-sw' + (i === cabColorIdx ? ' active' : '');
+    sw.style.background = c.color;
+    sw.innerHTML = `<span class="tip">${c.name}</span>`;
+    sw.onclick = () => {
+      cabColorIdx = i;
+      cabMat.color.set(c.color); cabMat.roughness = c.rough; cabMat.needsUpdate = true;
+      if (c.wood) {
+        cabMat.map = generateWoodTexture(c.color, c.grain);
+        cabMat.color.set('#fff');
+      } else {
+        cabMat.map = null;
+      }
+      cabMat.needsUpdate = true;
+      renderCabColors(); updateScene();
+    };
+    el.appendChild(sw);
+  });
+}
+
+// === Material / Brand / Model UI ===
+function renderMatTabs() {
+  const el = document.getElementById('matTabs');
+  el.innerHTML = '';
+  MAT_TYPES.forEach(mt => {
+    const b = document.createElement('button');
+    b.className = 'mat-tab' + (mt.id === activeMat ? ' active' : '') + (mt.brands.length === 0 ? ' disabled' : '');
+    b.textContent = mt.name;
+    b.onclick = () => {
+      if (mt.brands.length === 0) return;
+      activeMat = mt.id;
+      activeBrand = mt.brands[0];
+      activeCollection = 'Tümü';
+      renderMatTabs(); renderBrandTabs(); renderCollTabs(); renderModels();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderBrandTabs() {
+  const el = document.getElementById('brandTabs');
+  el.innerHTML = '';
+  const mt = MAT_TYPES.find(m => m.id === activeMat);
+  if (!mt || mt.brands.length === 0) return;
+  mt.brands.forEach(bId => {
+    const cfg = BRANDS[bId];
+    const b = document.createElement('button');
+    b.className = 'brand-tab' + (bId === activeBrand ? ' active' : '');
+    b.textContent = cfg.label;
+    b.onclick = () => {
+      activeBrand = bId;
+      activeCollection = 'Tümü';
+      renderBrandTabs(); renderCollTabs(); renderModels();
+    };
+    el.appendChild(b);
+  });
+}
+
+function renderCollTabs() {
+  const el = document.getElementById('collTabs');
+  el.innerHTML = '';
+  const cfg = BRANDS[activeBrand];
+  if (!cfg || !cfg.hasCollections) return;
+  const models = allBrandModels[activeBrand] || [];
+  const cols = ['Tümü', ...new Set(models.map(m => m.collection).filter(Boolean))];
+  cols.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'coll-tab' + (c === activeCollection ? ' active' : '');
+    b.textContent = c;
+    b.onclick = () => { activeCollection = c; renderCollTabs(); renderModels(); };
+    el.appendChild(b);
+  });
+}
+
+function renderModels() {
+  const el = document.getElementById('modelGrid');
+  el.innerHTML = '';
+  const models = allBrandModels[activeBrand] || [];
+  if (models.length === 0) {
+    el.innerHTML = '<div class="coming-soon">Yakında eklenecek...</div>';
+    return;
+  }
+
+  let filtered = models;
+  const cfg = BRANDS[activeBrand];
+  if (cfg && cfg.hasCollections && activeCollection !== 'Tümü') {
+    filtered = models.filter(m => m.collection === activeCollection);
+  }
+
+  filtered.forEach(m => {
+    const globalIdx = models.indexOf(m);
+    const key = activeBrand + ':' + globalIdx;
+    const c = document.createElement('div');
+    c.className = 'model-card' + (key === selectedModelKey ? ' active' : '');
+    const finishDisplay = Array.isArray(m.finishes) ? m.finishes[0] : m.finish;
+    c.innerHTML = `<img src="${m.thumbUrl}" alt="${m.name}" loading="lazy"><div class="m-name">${m.name}</div><div class="m-finish">${finishDisplay || ''}</div>`;
+    c.onclick = () => {
+      selectedModelKey = key;
+      loadSlabTexture(m.slabUrl);
+      renderModels();
+      updateBadge(m);
+    };
+    el.appendChild(c);
+  });
+}
+
+function updateBadge(m) {
+  const brandLabel = BRANDS[activeBrand]?.label || '';
+  document.getElementById('selBadge').style.display = 'block';
+  document.getElementById('selName').textContent = brandLabel + ' ' + m.name;
+  const finishDisplay = Array.isArray(m.finishes) ? m.finishes[0] : m.finish;
+  document.getElementById('selFinish').textContent = finishDisplay || '';
+}
+
+
+// === Tezgah Tipi ===
+let tezgahTipi = 'duz';
+document.querySelectorAll('.tplan-pick').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.tplan-pick').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    tezgahTipi = card.dataset.plan;
+    document.getElementById('dimB').style.display = (tezgahTipi === 'l' || tezgahTipi === 'u') ? '' : 'none';
+    document.getElementById('dimC').style.display = tezgahTipi === 'u' ? '' : 'none';
+    W = Math.max(60, Math.min(600, +document.getElementById('inA').value || 200));
+    updateScene();
+  });
+});
+
+// === Events ===
+document.getElementById('inA').addEventListener('input', e => { W = Math.max(60, Math.min(600, +e.target.value || 200)); updateScene(); });
+document.getElementById('inB').addEventListener('input', e => { armB = Math.max(60, Math.min(600, +e.target.value || 150)); updateScene(); });
+document.getElementById('inC').addEventListener('input', e => { armC = Math.max(60, Math.min(600, +e.target.value || 150)); updateScene(); });
+document.getElementById('inD').addEventListener('input', e => { D = Math.max(30, Math.min(90, +e.target.value || 60)); updateScene(); });
+document.getElementById('sH').addEventListener('input', e => { H = +e.target.value; document.getElementById('vH').textContent = H + ' cm'; updateScene(); });
+document.getElementById('chkUpper').addEventListener('change', e => { showUpper = e.target.checked; document.getElementById('upperOpts').style.display = showUpper ? '' : 'none'; updateScene(); });
+
+// Resize
+function resize() { const w = wrap.clientWidth, h = wrap.clientHeight; camera.aspect = w / h; camera.updateProjectionMatrix(); renderer.setSize(w, h); }
+window.addEventListener('resize', resize);
+
+document.getElementById('hint').addEventListener('transitionend', () => {});
+controls.addEventListener('start', () => { document.getElementById('hint').style.opacity = '0'; });
+
+// Animate
+(function anim() { requestAnimationFrame(anim); controls.update(); renderer.render(scene, camera); })();
+
+// Init
+resize();
+renderStyles();
+renderCabColors();
+renderMatTabs();
+renderBrandTabs();
+renderCollTabs();
+renderModels();
+
+// Load first Dekton model
+const firstModels = allBrandModels['dekton'] || [];
+if (firstModels.length > 0) {
+  selectedModelKey = 'dekton:0';
+  loadSlabTexture(firstModels[0].slabUrl);
+  updateBadge(firstModels[0]);
+}
+updateScene();
+</script>
+</body>
+</html>

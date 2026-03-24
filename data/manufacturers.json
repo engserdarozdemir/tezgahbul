@@ -1,0 +1,2841 @@
+{
+  "version": "6.1",
+  "updated": "2026-03-15",
+  "aciklama": "TezgahBul imalatçı veritabanı. 81 il, Google Places API ile doğrulanmış gerçek veriler.",
+  "manufacturers": [
+    {
+      "ad": "Palmira Granit Mermer",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "tel": "0312 472 82 93",
+      "maps": "https://www.google.com/maps/search/?api=1&query=Palmira+Granit+Mermer+Ankara",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit",
+        "Mermer"
+      ],
+      "aciklama": "20 yılı aşkın tecrübesiyle granit ve mermer tezgah üretimi.",
+      "puan": 5,
+      "yorum": 1,
+      "onayli": true
+    },
+    {
+      "ad": "KARA-TAŞ MERMER PORSELEN GRANİT",
+      "sehir": "Adana",
+      "ilce": "Çukurova",
+      "tel": "0532 065 77 32",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJMUiCgpGJKBURXNIIMJOJlbY",
+      "uzmanlik": [
+        "Porselen",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Adana'de porselen, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 71
+    },
+    {
+      "ad": "Osmanoğlu Mermer Granit",
+      "sehir": "Adana",
+      "ilce": "Yüreğir",
+      "tel": "0532 723 07 58",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ9ZifHayPKBURd7W-BXGPKWI",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Adana'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 40,
+      "website": "http://www.osmanoglumermer.com.tr/"
+    },
+    {
+      "ad": "Adıyaman Metaş Mermer Granit-Çimstone",
+      "sehir": "Adıyaman",
+      "ilce": "Adıyaman Merkez",
+      "tel": "0532 431 29 64",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJT-Q8gIQRMxURMVAgXUrV8s0",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Adıyaman'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4,
+      "yorum": 4
+    },
+    {
+      "ad": "CNC Marble Stone- Afyon Mermer",
+      "sehir": "Afyonkarahisar",
+      "ilce": "İscehisar",
+      "tel": "0533 151 18 42",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJg7SaPK0DzxQR0M4jRrK9-Hs",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Afyonkarahisar'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 5,
+      "website": "http://cncmarblestone.com/"
+    },
+    {
+      "ad": "Canpol Akrikor Ve Döküm Mermer",
+      "sehir": "Afyonkarahisar",
+      "ilce": "1143. Sk. no:86",
+      "tel": "0541 223 17 88",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJu5-BuMQXzxQRD_H1YcCaREs",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Afyonkarahisar'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 18
+    },
+    {
+      "ad": "Artaş Mermer Granit Showroom",
+      "sehir": "Ağrı",
+      "ilce": "Yenimahalle",
+      "tel": "0536 014 60 90",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJX2IaV8dL0xQRgLjtTqMOA3U",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Ağrı'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 128,
+      "website": "https://www.artasmermer.com.tr/"
+    },
+    {
+      "ad": "Tezgah Market Üretim & Uygulama ve Satış Mağazası",
+      "sehir": "Ağrı",
+      "ilce": "Altındağ",
+      "tel": "0532 647 69 96",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJayXoWPZN0xQRx458Ls8Stfo",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Ağrı'de mermer, granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 9,
+      "website": "http://www.tezgahmarket.net/"
+    },
+    {
+      "ad": "ANDAÇ MERMER",
+      "sehir": "Amasya",
+      "ilce": "Dadı",
+      "tel": "0505 566 39 72",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ54J6OHBnh0ARyY8nwY3GYhU",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Amasya'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 3.4,
+      "yorum": 5
+    },
+    {
+      "ad": "Artaş Mermer Granit Showroom",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "tel": "0536 014 60 90",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJX2IaV8dL0xQRgLjtTqMOA3U",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Ankara'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 128,
+      "website": "https://www.artasmermer.com.tr/"
+    },
+    {
+      "ad": "Ankara Mermerciler",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "tel": "0533 620 69 06",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJq1YA-BBP0xQRVrRXUGImjqU",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Ankara Yenimahalle'de mutfak tezgahı üretimi ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 10
+    },
+    {
+      "ad": "Torunlar Mermer",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "tel": "0532 678 54 74",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJVVWFhGpK0xQRgX_nBKQQj8U",
+      "uzmanlik": ["Mermer", "Granit", "Quartz"],
+      "markalar": ["Belenco", "Çimstone", "Doğal Granit"],
+      "aciklama": "Mermerciler Sitesi'nde mermer, granit ve quartz tezgah üretim ve montaj hizmeti.",
+      "onayli": false,
+      "puan": 5.0,
+      "yorum": 8,
+      "website": "https://torunlarmermer.com.tr/"
+    },
+    {
+      "ad": "Hisartaş Mühendislik",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "tel": "0532 433 02 86",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJZQIQlmpK0xQRtxwFoULglxY",
+      "uzmanlik": ["Porselen", "Quartz", "Granit"],
+      "markalar": ["Dekton", "Neolith", "Çimstone", "Belenco"],
+      "aciklama": "Porselen ve quartz tezgah konusunda uzman. CNC kesim teknolojisi.",
+      "onayli": false,
+      "puan": 4.7,
+      "yorum": 17,
+      "website": "http://www.hisartas.com.tr/"
+    },
+    {
+      "ad": "Betamer",
+      "sehir": "Ankara",
+      "ilce": "Yenimahalle",
+      "tel": "(0312) 396 02 22",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJEasnjkBK0xQR2V1QGhJsWO4",
+      "uzmanlik": ["Granit", "Mermer"],
+      "markalar": ["Doğal Granit", "Mermer"],
+      "aciklama": "Ankara'nın en büyük taş depolarından biri. Montaj hizmeti ile doğal taş işleme.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 14,
+      "website": "http://www.betamer.com.tr/"
+    },
+    {
+      "ad": "Serin Mermer Granit Kuvars porselen",
+      "sehir": "Antalya",
+      "ilce": "Muratpaşa",
+      "tel": "0541 480 10 07",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJs29WAyBZIigR4292QppgeBo",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Antalya'de porselen, quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 44,
+      "website": "http://www.serinmermergranitkuars.com/"
+    },
+    {
+      "ad": "Antalya Mermer Silim",
+      "sehir": "Antalya",
+      "ilce": "6095.Sokak No:9",
+      "tel": "0535 793 56 08",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJI_Rs2duFwxQR5wF5DBOH3sI",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Antalya'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 20,
+      "website": "https://mermersilimcila.com/"
+    },
+    {
+      "ad": "İlhan Mermer",
+      "sehir": "Artvin",
+      "ilce": "Seyitler",
+      "tel": "0530 287 31 06",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJue6Dw0N2aEARLsFP1bOeoF4",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Artvin'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.3,
+      "yorum": 10
+    },
+    {
+      "ad": "Güven Mermer",
+      "sehir": "Aydın",
+      "ilce": "Efeler",
+      "tel": "0530 793 09 90",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJtxjPy2UtuRQRjp-0I59-Ws8",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Aydın'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 34,
+      "website": "https://www.instagram.com/guvenmarble/"
+    },
+    {
+      "ad": "Beltaş Mermer",
+      "sehir": "Aydın",
+      "ilce": "Efeler",
+      "tel": "0507 218 68 21",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJCbNkZ0AruRQRPYJam4HZ-_k",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Aydın'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3,
+      "website": "https://www.beltasinsaat.com/"
+    },
+    {
+      "ad": "Çizgi Mermer Granit",
+      "sehir": "Balıkesir",
+      "ilce": "Altıeylül",
+      "tel": "0546 517 56 44",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJxVxAjhEAtxQRMJv6zxgs8GQ",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Balıkesir'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 35,
+      "website": "http://www.cizgimermer.com/"
+    },
+    {
+      "ad": "BALIKESİR AS MEZAR MERMER GRANİT ARİF USTA",
+      "sehir": "Balıkesir",
+      "ilce": "Başçeşme Cd. no:35",
+      "tel": "0538 373 08 40",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJL9JfcE8BtxQR57eIQyO-VrI",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Balıkesir'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 11
+    },
+    {
+      "ad": "Han Mermer",
+      "sehir": "Bilecik",
+      "ilce": "Gülümbe",
+      "tel": "0535 541 97 43",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJLYnQThuFyxQRDSdsJu0J0Qg",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bilecik'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "Kılınç Mermer",
+      "sehir": "Bilecik",
+      "ilce": "Bilecik Merkez",
+      "tel": "(0228) 212 55 57",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJfSSCwVOFyxQRLfU3JV7mAcQ",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bilecik'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "Mer-ka Mermer Granit Maden Ltd.şti",
+      "sehir": "Bingöl",
+      "ilce": "Merkez",
+      "tel": "(0426) 232 72 49",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJie8Ed5PPc0AR-8knkoCmcdU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bingöl'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "MERKA MERMER GRANİT",
+      "sehir": "Bingöl",
+      "ilce": "Merkez",
+      "tel": "0542 205 29 79",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJtaZpIwDPc0ARld7gBf83Ngo",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bingöl'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false
+    },
+    {
+      "ad": "Mermerist Mermer ve Granit",
+      "sehir": "Bitlis",
+      "ilce": "Sultanbeyli",
+      "tel": "0532 546 13 72",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJIX3l5UfRyhQRuRfJ5l1tU8I",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bitlis'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 66,
+      "website": "http://mermerist.com/"
+    },
+    {
+      "ad": "ÖZMER MERMER",
+      "sehir": "Bolu",
+      "ilce": "Sema Sk. 2",
+      "tel": "(0374) 212 02 12",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJaVihTmE_nUAR1ZuUKDgOOpo",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bolu'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 18,
+      "website": "http://boluozmermer.com/"
+    },
+    {
+      "ad": "BOLU MEKA MERMER GRANITT",
+      "sehir": "Bolu",
+      "ilce": "Vakıfgeçitveren",
+      "tel": "0543 784 67 29",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJQ7vTKNJBnUARDSuEGUgDS2I",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bolu'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 5,
+      "website": "http://mermergranit.info/?utm_source=gmb&utm_medium=referral"
+    },
+    {
+      "ad": "Fatih Mermer",
+      "sehir": "Burdur",
+      "ilce": "Burdur Merkez",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJWZT-UQ8txBQR5wBFgHegILk",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Burdur'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3
+    },
+    {
+      "ad": "KAYA MERMER",
+      "sehir": "Burdur",
+      "ilce": "Milli Egemenlik Cd. Mahrukatcılar Sitesi No:72",
+      "tel": "0543 951 30 15",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJq-uLh0EtxBQRFZg6C2VJS_8",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Burdur'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3
+    },
+    {
+      "ad": "Bursa",
+      "sehir": "Bursa",
+      "ilce": "Yıldırım",
+      "tel": "0541 618 46 41",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJE_Xws4s-yhQRrSlMr1CC2gU",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bursa'de mermer, granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 77,
+      "website": "http://www.bursamutfaktezgahi.com/"
+    },
+    {
+      "ad": "TEZGAH TASARIM",
+      "sehir": "Bursa",
+      "ilce": "Ahıska Cd. No:244",
+      "tel": "(0224) 999 46 88",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJM78T5h8RyhQRzHErgLGA0YI",
+      "uzmanlik": [
+        "Quartz"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bursa'de quartz mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 33,
+      "website": "https://www.tezgahtasarim.com/"
+    },
+    {
+      "ad": "Çanakkale Başkent Mermer",
+      "sehir": "Çanakkale",
+      "ilce": "Kalabaklı Köyü Altı No : 86",
+      "tel": "0532 176 96 17",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJT8dRTbGrsRQR118LNy902g0",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Çanakkale'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 7,
+      "website": "https://baskentmermer.net/"
+    },
+    {
+      "ad": "Çanakkale Ayka Mermer Çimstone",
+      "sehir": "Çanakkale",
+      "ilce": "Işıklar",
+      "tel": "0531 701 22 63",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJQ2zAF8MHsRQRfmeEKRA-FVw",
+      "uzmanlik": [
+        "Quartz",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Çanakkale'de quartz, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3
+    },
+    {
+      "ad": "KARTAŞ MERMER MERMERİT GRANİT",
+      "sehir": "Çankırı",
+      "ilce": "Ömer Topuz Cd. no46",
+      "tel": "0543 742 54 10",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJxcYoCGTDg0ARFRfK_abyoTA",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Çankırı'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "Çolak Mermer",
+      "sehir": "Çankırı",
+      "ilce": "Çankırı Merkez",
+      "tel": "0532 393 67 86",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJifNo1WLDg0AR3tRHCpiCKgM",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Çankırı'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "ÇORUM AKMER MERMER PORSELEN GRANİT",
+      "sehir": "Çorum",
+      "ilce": "Çorum Merkez",
+      "tel": "0534 491 93 97",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJZRUuJDvVgEAR_eIZuyodwmY",
+      "uzmanlik": [
+        "Porselen",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Çorum'de porselen, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 29,
+      "website": "https://www.instagram.com/corumakmermerr?igsh=MW9qc3hsaDNvM3hkMA=="
+    },
+    {
+      "ad": "ÇORUM DİZAYN MERMER GRANİT",
+      "sehir": "Çorum",
+      "ilce": "Çorum Merkez",
+      "tel": "0532 574 35 23",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJg74-meTVgEARA8VCLmRfnN0",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Çorum'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 7,
+      "website": "http://instagram.com/dizaynmermer"
+    },
+    {
+      "ad": "Fatih Granit Mermer Denizli",
+      "sehir": "Denizli",
+      "ilce": "2487",
+      "tel": "0532 373 05 53",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJpzLJrcI_xxQRgs70CvrexHU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Denizli'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 13
+    },
+    {
+      "ad": "DAŞDEMİR MERMER MEZAR GRANİT",
+      "sehir": "Denizli",
+      "ilce": "Denizli Merkezefendi",
+      "tel": "0532 176 29 20",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ5QlrA98_xxQRVnCaSxxTjL8",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Denizli'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 13,
+      "website": "http://www.dasdemirmermergranit.com/"
+    },
+    {
+      "ad": "Metin Granit ve Kuvars Mermer",
+      "sehir": "Diyarbakır",
+      "ilce": "Kayapınar",
+      "tel": "0532 726 49 23",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJzZo9FeUfdUAR5k73q1_VdDM",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Diyarbakır'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.7,
+      "yorum": 13
+    },
+    {
+      "ad": "Güney Granit & Mermer Atölyesi",
+      "sehir": "Diyarbakır",
+      "ilce": "Bağlar",
+      "tel": "0532 717 67 53",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJmRRuer4fdUAR_e5sT9_V104",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Diyarbakır'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "Anka mermer groups",
+      "sehir": "Edirne",
+      "ilce": "Edirne Merkez",
+      "tel": "0535 702 16 55",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ21BV1gYlsxQRY9eBJXn2u2c",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Edirne'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 11
+    },
+    {
+      "ad": "Edirne mermer & Granit",
+      "sehir": "Edirne",
+      "ilce": "Bahar Sk. 2",
+      "tel": "0541 492 21 42",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJu8bEX3glsxQRhHu8I4FmcJc",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Edirne'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.3,
+      "yorum": 4
+    },
+    {
+      "ad": "Elazığ Mermer Enes mermer Mezar Granit Çeşme",
+      "sehir": "Elazığ",
+      "ilce": "Elazığ Merkez",
+      "tel": "0539 384 33 44",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ57RT4Mm_dkARbLhXzOkCqQ0",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Elazığ'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 16
+    },
+    {
+      "ad": "ASMER GRANİT /MERMER",
+      "sehir": "Elazığ",
+      "ilce": "Yazıkonak",
+      "tel": "0534 254 11 03",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJV3d-zJDBdkARJKCuznSyXZ4",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Elazığ'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 47,
+      "website": "http://www.asmermer.com.tr/"
+    },
+    {
+      "ad": "Dinçer Mermer & Granit",
+      "sehir": "Erzincan",
+      "ilce": "Bit Pazarı Yanı Fabrika Caddesi No 59",
+      "tel": "0542 414 64 57",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJtTd6r8gMcEARxdKVG7-qpCs",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Erzincan'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 115,
+      "website": "http://www.dincermermer.com.tr/"
+    },
+    {
+      "ad": "Erzincan Mermer Ve Granit",
+      "sehir": "Erzincan",
+      "ilce": "Erzincan Merkez",
+      "tel": "0538 655 11 15",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ9TQCYq50cEARmDpPY95cBP4",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Erzincan'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 18
+    },
+    {
+      "ad": "GALAXY Mermer Granit Çimstone ve Porselen",
+      "sehir": "Erzurum",
+      "ilce": "Aziziye",
+      "tel": "0506 134 52 36",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJFd-zuMtZbkAReYl-SG2DLPk",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Erzurum'de porselen, quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 39
+    },
+    {
+      "ad": "USTA Mermer Granit erzurum Çimstone/ porselen tezgah/mezar",
+      "sehir": "Erzurum",
+      "ilce": "Aziziye",
+      "tel": "0545 308 69 86",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJZ6Pan09ZbkARfFqTjSI9TfQ",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Erzurum'de porselen, quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 67,
+      "website": "https://kurumsalfirmam.com/firma/usta-mermer-granit/"
+    },
+    {
+      "ad": "UMAY STONE",
+      "sehir": "Eskişehir",
+      "ilce": "Tepebaşı",
+      "tel": "0542 525 68 83",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJZ0ZW7PAXzBQRMoTPgVGRK28",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Eskişehir'de mermer, granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 70,
+      "website": "https://www.umaystone.com/"
+    },
+    {
+      "ad": "ARTİST MERMER GRANİT",
+      "sehir": "Eskişehir",
+      "ilce": "Sivrihisar",
+      "tel": "0543 526 57 56",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJsQzNDcT3zRQRWYA0ir_iEfQ",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Eskişehir'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "İPEK MERMER PORSELEN GAZİANTEP",
+      "sehir": "Gaziantep",
+      "ilce": "Şehitkamil",
+      "tel": "0542 454 27 00",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJW97a1vblMRURyQdvjC7d0W4",
+      "uzmanlik": [
+        "Porselen",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Gaziantep'de porselen, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 138,
+      "website": "http://www.ipekmermer.com/"
+    },
+    {
+      "ad": "Kayalıoğlu Mermer Granit Gaziantep",
+      "sehir": "Gaziantep",
+      "ilce": "Şehitkamil",
+      "tel": "0532 337 97 50",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJmQs8O9XnMRURsqpKI6afFuU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Gaziantep'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 77,
+      "website": "https://sites.google.com/view/kayalioglu-mermer-ve-granit/ana-sayfa"
+    },
+    {
+      "ad": "GİMSAN MERMERİT",
+      "sehir": "Giresun",
+      "ilce": "Giresun Merkez",
+      "tel": "0544 967 80 18",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ5WFQEIluY0ARNffYkeOuuGE",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Giresun'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.4,
+      "yorum": 8,
+      "website": "http://www.mermerit.org/"
+    },
+    {
+      "ad": "Cihan Mermerit Granit",
+      "sehir": "Giresun",
+      "ilce": "Ali Usta Cd. Sanayi sit No:60",
+      "tel": "0537 252 23 22",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJYao9nEltY0ARiNw2dR2itS0",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Giresun'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2,
+      "website": "https://instagram.com/cihanmermeritgranit"
+    },
+    {
+      "ad": "Eminler Granit Mermer",
+      "sehir": "Gümüşhane",
+      "ilce": "Gümüşhane Merkez",
+      "tel": "(0456) 242 24 49",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ0yKju_EbZUARjjKVUWTzQfQ",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Gümüşhane'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "website": "http://www.eminlermermer.com/"
+    },
+    {
+      "ad": "Van bölgesi imalatçıları",
+      "sehir": "Hakkari",
+      "ilce": "Merkez",
+      "tel": "",
+      "maps": "",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Hakkari için en yakın imalatçılar Van ilindedir.",
+      "onayli": false
+    },
+    {
+      "ad": "Antakya MERMER",
+      "sehir": "Hatay",
+      "ilce": "Antakya",
+      "tel": "0539 838 73 41",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJqz5LhK7DJRUR3bi4IebfGzY",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Hatay'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 14
+    },
+    {
+      "ad": "Tutar Mermer Granit",
+      "sehir": "Hatay",
+      "ilce": "1605 Sokak No:24",
+      "tel": "0531 991 84 44",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJPWEcwvxfLxURmAaQ4G-8FrU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Hatay'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 34
+    },
+    {
+      "ad": "Özmen Mermer & Granit",
+      "sehir": "Isparta",
+      "ilce": "Merkez",
+      "tel": "0507 424 47 89",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ61J_JUq1xRQR8Gl8IfrRYIA",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Isparta'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 18
+    },
+    {
+      "ad": "Kaya Mermer Granit Çimstone Mezarlık Yapımı Isparta",
+      "sehir": "Isparta",
+      "ilce": "Merkez",
+      "tel": "0542 208 09 09",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ2x7H8ee1xRQRd1af4BPpA7s",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Isparta'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "DOĞMER MERMER & GRANİT",
+      "sehir": "Mersin",
+      "ilce": "Mezitli",
+      "tel": "0536 722 29 69",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJkRlrs2OKJxUR3wh1HMJ1ilo",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Mersin'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.3,
+      "yorum": 12
+    },
+    {
+      "ad": "Mermer Granit, Mutfak, Banyo Mobilya,",
+      "sehir": "Mersin",
+      "ilce": "Toroslar",
+      "tel": "0532 438 27 35",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJS1pqCXj0JxURCctHcuIzdXU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Mersin'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "Vip Mermer",
+      "sehir": "İstanbul",
+      "ilce": "Ataşehir",
+      "tel": "0533 463 93 73",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJWzbbx3XPyhQRwQ0JTuBCmLE",
+      "uzmanlik": ["Mermer", "Granit"],
+      "markalar": ["Doğal Granit", "Mermer"],
+      "aciklama": "Ferhatpaşa'da mermer ve granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": true,
+      "website": "https://www.vipmermer.com/"
+    },
+    {
+      "ad": "Doğa Stone",
+      "sehir": "İstanbul",
+      "ilce": "Eyüpsultan",
+      "tel": "(0212) 625 30 43",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJkwtBsS-xyhQRG8Xm51GMN1U",
+      "uzmanlik": ["Granit", "Mermer"],
+      "markalar": ["Doğal Granit", "Mermer"],
+      "aciklama": "Alibeyköy'de granit ve mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5.0,
+      "yorum": 3,
+      "website": "http://dogastone.com/"
+    },
+    {
+      "ad": "Granit Stone",
+      "sehir": "İstanbul",
+      "ilce": "Başakşehir",
+      "tel": "0530 955 21 15",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJlfcIOBGmyhQR5uCKBjAURHU",
+      "uzmanlik": ["Porselen", "Quartz", "Granit"],
+      "markalar": ["Belenco", "Doğal Granit"],
+      "aciklama": "Başakşehir'de porselen, quartz ve granit mutfak tezgahı imalatı.",
+      "onayli": false,
+      "puan": 4.6,
+      "yorum": 65,
+      "website": "http://www.granitstone.com/"
+    },
+    {
+      "ad": "Yılmazer Mermer Granit",
+      "sehir": "İstanbul",
+      "ilce": "Ataşehir",
+      "tel": "0539 333 39 59",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJk3CgTQvFyhQRyEs5kH0dZgQ",
+      "uzmanlik": ["Granit", "Mermer"],
+      "markalar": ["Doğal Granit"],
+      "aciklama": "İstanbul'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 14,
+      "website": "https://www.yilmazermermer.com.tr/"
+    },
+    {
+      "ad": "Has Mermer",
+      "sehir": "İstanbul",
+      "ilce": "Avcılar",
+      "tel": "0535 832 61 26",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJLW8eQFChyhQRPUO6V2xotVQ",
+      "uzmanlik": ["Porselen", "Quartz", "Mermer"],
+      "markalar": ["Çimstone", "Belenco"],
+      "aciklama": "İstanbul'de porselen, quartz, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 35,
+      "website": "http://www.e-porselenmutfaktezgah.com/"
+    },
+    {
+      "ad": "İZMİR",
+      "sehir": "İzmir",
+      "ilce": "Buca",
+      "tel": "0507 309 46 80",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJb_tmTWDfuxQRXbJTzpWDRTg",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "İzmir'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 67
+    },
+    {
+      "ad": "İzmir mermerit tezgah",
+      "sehir": "İzmir",
+      "ilce": "Bornova",
+      "tel": "0533 055 36 98",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJde5L1_R9uRQRyvbDrcXJtHo",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "İzmir'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 84,
+      "website": "https://sites.google.com/view/scmermer/ana-sayfa"
+    },
+    {
+      "ad": "Görkem Mermer",
+      "sehir": "Kars",
+      "ilce": "Kars Merkez",
+      "tel": "0538 486 68 31",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJeQTH1jKPaUARP9jSme5tepY",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kars'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 4
+    },
+    {
+      "ad": "Atmaca Mermer",
+      "sehir": "Kars",
+      "ilce": "Selim",
+      "tel": "0530 920 98 79",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJh7wcpHF5aUAR6VZc0_a2IL0",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kars'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.2,
+      "yorum": 5
+    },
+    {
+      "ad": "Topçuoğlu ve Tanrıdağı mermer",
+      "sehir": "Kastamonu",
+      "ilce": "Kastamonu Merkez",
+      "tel": "0546 882 32 64",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ9_HdPvX7hEARnleryOq7eb8",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kastamonu'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 32
+    },
+    {
+      "ad": "Kastamonu Mermer",
+      "sehir": "Kastamonu",
+      "ilce": "8. Sk. No:5",
+      "tel": "(0366) 214 67 23",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ51mXtHL6hEARUwCX5HRpWIU",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kastamonu'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.2,
+      "yorum": 5
+    },
+    {
+      "ad": "Yaren mermer Belenco Granit",
+      "sehir": "Kayseri",
+      "ilce": "Kocasinan",
+      "tel": "0541 367 39 38",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJEeeAOzsTKxUR0kda3ZeR1XQ",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Belenco"
+      ],
+      "aciklama": "Kayseri'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 335
+    },
+    {
+      "ad": "SARIKAN MERMER GRANİT LTD. ŞTİ. • BELENCO PORSELEN LAMAR •",
+      "sehir": "Kayseri",
+      "ilce": "6380. Sokak no:4",
+      "tel": "0543 599 48 56",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJVzR7pA0TKxURllr1LVILj48",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Mermer"
+      ],
+      "markalar": [
+        "Belenco",
+        "Lamar"
+      ],
+      "aciklama": "Kayseri'de porselen, quartz, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 54,
+      "website": "http://www.sarikanmermer.com/"
+    },
+    {
+      "ad": "Üstündağ Mermer",
+      "sehir": "Kırklareli",
+      "ilce": "Kırklareli Merkez",
+      "tel": "0533 128 62 92",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJz0ynkRZTp0ARfhizgqt-kjw",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kırklareli'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 3.7,
+      "yorum": 3
+    },
+    {
+      "ad": "Star Mermer Granit",
+      "sehir": "Kırklareli",
+      "ilce": "Kırklareli Merkez",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ7WFmwVxTp0ARS3MM_jTeBZk",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kırklareli'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false
+    },
+    {
+      "ad": "Çobanoğlu Mermer",
+      "sehir": "Kırşehir",
+      "ilce": "Kırşehir Merkez",
+      "tel": "0546 435 66 98",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJI2hsGO8N1RQRdcEoJb9yMLU",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kırşehir'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 13
+    },
+    {
+      "ad": "Emre Mermer Granit",
+      "sehir": "Kırşehir",
+      "ilce": "Bahçeli evler mahallesi Kılıçözü sanayi sitesi 3bilok no5 Bahçeli evler mahallesi kılıçözü sanayi sitesi 3bilok no",
+      "tel": "0541 929 04 01",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ31wghS9z1RQRoosm6Bgtstk",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kırşehir'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 12,
+      "website": "https://kirsehirmezar.com/"
+    },
+    {
+      "ad": "İzmit Granit mermer çimstone belenco malatı montajı",
+      "sehir": "Kocaeli",
+      "ilce": "İzmit",
+      "tel": "0535 779 87 07",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJC5ZdNYtPyxQRhhCMHEsV0kI",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone",
+        "Belenco"
+      ],
+      "aciklama": "Kocaeli'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4,
+      "yorum": 4,
+      "website": "http://izmitgranit.net/"
+    },
+    {
+      "ad": "GÜNGÖR MERMER Granit Çimstone Belenco Porselen",
+      "sehir": "Kocaeli",
+      "ilce": "İzmit",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ90ZPgENFyxQR0Ei2pYzaoqY",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone",
+        "Belenco"
+      ],
+      "aciklama": "Kocaeli'de porselen, quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 50,
+      "website": "https://gungormermer.com.tr/"
+    },
+    {
+      "ad": "Konya Mermer Granit Ltd. Şti.",
+      "sehir": "Konya",
+      "ilce": "Kaside Sk. No: 20",
+      "tel": "0542 388 19 99",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJQYnIG5eP0BQR9PPLI72NtCc",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Konya'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.6,
+      "yorum": 29,
+      "website": "http://www.konyakonakmermer.com/"
+    },
+    {
+      "ad": "Güçlü Mermer&Granit",
+      "sehir": "Konya",
+      "ilce": "Selçuklu",
+      "tel": "0507 495 21 79",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJQcHSOQiP0BQR0tbqpTyR8zI",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Konya'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 167
+    },
+    {
+      "ad": "Kütahya Mermer",
+      "sehir": "Kütahya",
+      "ilce": "Tabakhane Sk. 49",
+      "tel": "0538 575 09 10",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJY49oZ3ZIyRQRkNLLMmEDVtE",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kütahya'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.6,
+      "yorum": 12,
+      "website": "https://tr-tr.facebook.com/pages/category/Company/K%C3%BCtahya-Mermer-523006271240092/"
+    },
+    {
+      "ad": "Artaş Mermer Granit Showroom",
+      "sehir": "Kütahya",
+      "ilce": "Yenimahalle",
+      "tel": "0536 014 60 90",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJX2IaV8dL0xQRgLjtTqMOA3U",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kütahya'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 128,
+      "website": "https://www.artasmermer.com.tr/"
+    },
+    {
+      "ad": "Perk Mermer Ve Granit",
+      "sehir": "Malatya",
+      "ilce": "Yeşilyurt",
+      "tel": "0536 492 51 78",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJGyn1gqY2dkARHsCQK8Cu2FM",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Malatya'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.6,
+      "yorum": 11,
+      "website": "https://perkmermergranit.com/"
+    },
+    {
+      "ad": "KORKMAZLAR MERMER VE GRANİT",
+      "sehir": "Malatya",
+      "ilce": "Yeşilyurt",
+      "tel": "0537 879 67 80",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJl_LZ9wAzdkARUbLoo0J5eK0",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Malatya'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 25
+    },
+    {
+      "ad": "Star Mermer Granit",
+      "sehir": "Manisa",
+      "ilce": "Manisa Merkez",
+      "tel": "(0236) 238 72 24",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ24ZZrfabuRQRiRrQYgtkIFg",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Manisa'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 5
+    },
+    {
+      "ad": "Belenco Kuvars Yüzeyler",
+      "sehir": "Manisa",
+      "ilce": "Manisa Merkez",
+      "tel": "(0236) 213 03 43",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJtbmknqqeuRQRYLQ8mGuhgLE",
+      "uzmanlik": [
+        "Quartz"
+      ],
+      "markalar": [
+        "Belenco"
+      ],
+      "aciklama": "Manisa'de quartz mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.1,
+      "yorum": 68,
+      "website": "http://www.belenco.com/"
+    },
+    {
+      "ad": "EDEMER MERMER GRANIT",
+      "sehir": "Kahramanmaraş",
+      "ilce": "Onikişubat",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJH_Zp2WfdLRURWTQ6ylchopc",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kahramanmaraş'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 34,
+      "website": "http://www.edemer.com/"
+    },
+    {
+      "ad": "DK Granit Mermer",
+      "sehir": "Kahramanmaraş",
+      "ilce": "Onikişubat",
+      "tel": "0537 275 26 70",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJX2wcXBzdLRUR7rhYUDyGs8Q",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kahramanmaraş'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 27
+    },
+    {
+      "ad": "Akman Mermer",
+      "sehir": "Mardin",
+      "ilce": "Kızıltepe",
+      "tel": "(0482) 312 60 04",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJfSJropaICkARvof0gG_eCTQ",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Mardin'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false
+    },
+    {
+      "ad": "AKMER GRANİT-MERMER-MUTFAK-QUARTZ",
+      "sehir": "Muğla",
+      "ilce": "Karatepeliler 06.SK No:13",
+      "tel": "0506 055 48 00",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJr73IkP6BwBQRX8t5gy4I-eM",
+      "uzmanlik": [
+        "Quartz",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Muğla'de quartz, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 9,
+      "website": "https://www.instagram.com/akmer_granit_koycegiz"
+    },
+    {
+      "ad": "Esse Dekor & Marmaris Tezgah Dünyası",
+      "sehir": "Muğla",
+      "ilce": "Menteşe",
+      "tel": "0538 416 23 56",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ5U33FVsNvxQRMKRvwfkApNI",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Muğla'de mermer, granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 44,
+      "website": "https://www.essedekor.com/"
+    },
+    {
+      "ad": "Cihan Mermer Granit",
+      "sehir": "Muş",
+      "ilce": "Muş Merkez",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJw_PmlnXvckARGleA-WAnC6s",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Muş'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 3.8,
+      "yorum": 5
+    },
+    {
+      "ad": "Artaş Mermer Granit Showroom",
+      "sehir": "Muş",
+      "ilce": "Yenimahalle",
+      "tel": "0536 014 60 90",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJX2IaV8dL0xQRgLjtTqMOA3U",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Muş'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 128,
+      "website": "https://www.artasmermer.com.tr/"
+    },
+    {
+      "ad": "Aktif granit mermer",
+      "sehir": "Nevşehir",
+      "ilce": "Boğaz",
+      "tel": "0532 725 31 71",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJoZVKn9gNKhURKlFiCKu3RzE",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Nevşehir'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 10
+    },
+    {
+      "ad": "Mimar Sinan Mermer Nevşehir",
+      "sehir": "Nevşehir",
+      "ilce": "Nevşehir Merkez",
+      "tel": "0536 872 82 12",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJm0yCFoVzKhURwTvI84sCTHI",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Nevşehir'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 71
+    },
+    {
+      "ad": "Niğde Mermer Granit HASKAL",
+      "sehir": "Niğde",
+      "ilce": "Aktaş",
+      "tel": "0533 691 59 64",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJO1dcfG3vKRURnnvORm05jkc",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Niğde'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 4,
+      "website": "https://www.nigdemermergranit.com.tr/"
+    },
+    {
+      "ad": "Nurtaş Mermer Granit",
+      "sehir": "Niğde",
+      "ilce": "Niğde Merkez",
+      "tel": "0549 478 51 51",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJX-Za0UfpKRURqEe-7bi1HCU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Niğde'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 11
+    },
+    {
+      "ad": "Ordu Hisar Mermer Mobilya",
+      "sehir": "Ordu",
+      "ilce": "Altınordu",
+      "tel": "",
+      "maps": "https://maps.app.goo.gl/W9rQV2H2VWuwv74m8",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit",
+        "Mermer"
+      ],
+      "aciklama": "Eskipazar'da mermer tedarik ve mutfak tezgahı hizmeti. 24 saat açık.",
+      "puan": 5,
+      "yorum": 4,
+      "onayli": false
+    },
+    {
+      "ad": "Yakut Mermer",
+      "sehir": "Rize",
+      "ilce": "Sahil Caddesi No: 104",
+      "tel": "(0464) 223 48 46",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ5USqGA17ZkARn1ABfB23V1A",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Rize'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.7,
+      "yorum": 14
+    },
+    {
+      "ad": "Birinciler Mermer Granit",
+      "sehir": "Rize",
+      "ilce": "Rize Merkez",
+      "tel": "0536 053 65 81",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJC8z-aFdlZkAR1kUuHNgn1Jc",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Rize'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 10,
+      "website": "https://www.facebook.com/birincilermermer/"
+    },
+    {
+      "ad": "Sakarya mermer granit",
+      "sehir": "Sakarya",
+      "ilce": "Erenler",
+      "tel": "0532 587 87 86",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJOzm8Wk-zzBQRBbo8xs0bg2Q",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Sakarya'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 14
+    },
+    {
+      "ad": "Coşar Mermer Granit Cimstone",
+      "sehir": "Sakarya",
+      "ilce": "Adapazarı",
+      "tel": "0532 595 53 87",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJWzFpbDX2nUARfllv62KNnHE",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Sakarya'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 10,
+      "website": "https://www.cosarmermer.com/"
+    },
+    {
+      "ad": "Kardeşler Mermer - Sam Stone",
+      "sehir": "Samsun",
+      "ilce": "İlkadım",
+      "tel": "0543 303 65 74",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJabxqtYN3iEARHnH9lGTal2Y",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Samsun'de porselen, quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 12,
+      "website": "https://samstoneart.com/"
+    },
+    {
+      "ad": "Aloğlu Mermerit",
+      "sehir": "Samsun",
+      "ilce": "İlkadım",
+      "tel": "(0362) 440 30 20",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ8QEkf8F3iEARW_RWRRZfe_A",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Samsun'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.2,
+      "yorum": 12,
+      "website": "http://www.firmasec.com/firma/zbtrfb-aloglu-mermerit/"
+    },
+    {
+      "ad": "Kayar Mermer",
+      "sehir": "Siirt",
+      "ilce": "Siirt Merkez",
+      "tel": "0545 324 03 48",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJzfApKMSHDEAR0lUczt24CHM",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Siirt'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 26
+    },
+    {
+      "ad": "Barbaros mermer",
+      "sehir": "Siirt",
+      "ilce": "Siirt Merkez",
+      "tel": "0544 679 16 92",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJqQXoq26HDEARGUGhXX17L3w",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Siirt'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 9
+    },
+    {
+      "ad": "Asil taş mermer granit",
+      "sehir": "Sinop",
+      "ilce": "Taypaklı",
+      "tel": "0542 318 70 55",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJQW61c-dnj0ARu02XP5Vjfn4",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Sinop'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 4,
+      "website": "http://asiltasmermer.com/"
+    },
+    {
+      "ad": "Sinop Soğuksu Mermer granit mezar belenco tezgah",
+      "sehir": "Sinop",
+      "ilce": "Lala",
+      "tel": "0532 596 40 98",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ9b0gLtdnj0ARLxIkilHUzZA",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Belenco"
+      ],
+      "aciklama": "Sinop'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 19
+    },
+    {
+      "ad": "Arkan Stone Mermer & Granit Kuvars Showroom",
+      "sehir": "Sivas",
+      "ilce": "Sivas Merkez",
+      "tel": "(0346) 211 37 18",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJS0KpkyWrfkAR__TnV14IqDY",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Sivas'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.5,
+      "yorum": 14,
+      "website": "https://arkanstone.com/"
+    },
+    {
+      "ad": "Sivas Birlik Mermer & Granit ve Sivas Mermer Mezar Yapımı",
+      "sehir": "Sivas",
+      "ilce": "Merkez",
+      "tel": "0507 705 83 84",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ-TwdqW6rfkARTQ1vbwelXik",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Sivas'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.7,
+      "yorum": 13,
+      "website": "https://www.sivasbirlikmermer.com/"
+    },
+    {
+      "ad": "Taştan Mermer Granit",
+      "sehir": "Tekirdağ",
+      "ilce": "Çorlu",
+      "tel": "0537 479 91 54",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJT-NY4crhtBQRyWCSZhgTR20",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Tekirdağ'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.5,
+      "yorum": 8,
+      "website": "https://www.tastanmermer.com/"
+    },
+    {
+      "ad": "SEMA MERMER GRANİT",
+      "sehir": "Tekirdağ",
+      "ilce": "Süleymanpaşa",
+      "tel": "0545 254 25 41",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ-977QH5htBQRk-kQrv3Wqlg",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Tekirdağ'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 10
+    },
+    {
+      "ad": "sefa mermer tokat",
+      "sehir": "Tokat",
+      "ilce": "Tokat Merkez",
+      "tel": "0543 696 45 19",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJJT0-JeW3fUARtVHczT0DMvA",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Tokat'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 4,
+      "website": "https://sefamermertokat.com/"
+    },
+    {
+      "ad": "Polat Mermer",
+      "sehir": "Tokat",
+      "ilce": "Tokat Merkez",
+      "tel": "0541 829 17 08",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJOesJFwC3fUAR3Yd7-MVenww",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Tokat'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 22,
+      "website": "http://polatmermer.com/"
+    },
+    {
+      "ad": "DEKORASYON MERMER&GRANİT TRABZON",
+      "sehir": "Trabzon",
+      "ilce": "Ortahisar",
+      "tel": "0532 798 62 55",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJL-jI9PY7ZEARv4rm816TVlI",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Trabzon'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 230
+    },
+    {
+      "ad": "Trabzon Mermer",
+      "sehir": "Trabzon",
+      "ilce": "Ortahisar",
+      "tel": "0543 788 74 35",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJFUJ1Kik9ZEARPn3wmSPkgnk",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Trabzon'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 36,
+      "website": "https://www.fosilmermerdekorasyon.com/"
+    },
+    {
+      "ad": "Bektaş Mermer - Granit Mezar - Anıt Mezar -",
+      "sehir": "Tunceli",
+      "ilce": "Tunceli Merkez",
+      "tel": "0532 342 89 71",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJv28bYKUjcUARXnB5Z0QqjzE",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Tunceli'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "ŞANLIURFA GÜRBÜZLER GRANİT MERMER ve PORSELEN",
+      "sehir": "Şanlıurfa",
+      "ilce": "Eyyübiye",
+      "tel": "0553 874 61 91",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJMdSpncdxNBURwzNalufgEmg",
+      "uzmanlik": [
+        "Porselen",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Şanlıurfa'de porselen, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3
+    },
+    {
+      "ad": "AYMİRA MERMER & GRANİT BEKİR YOLCU",
+      "sehir": "Şanlıurfa",
+      "ilce": "Eyyübiye",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJMQDW9uNtNBURxWtoDEle3zY",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Şanlıurfa'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 7
+    },
+    {
+      "ad": "Kemal Mermer Granit",
+      "sehir": "Uşak",
+      "ilce": "Merkez",
+      "tel": "0538 494 18 22",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJd_PX_82ByBQR9NEPoeuBKL8",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Uşak'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 50
+    },
+    {
+      "ad": "BEKA Granit Mermer",
+      "sehir": "Uşak",
+      "ilce": "Merkez",
+      "tel": "0555 055 36 64",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJd8XFWhGByBQRKhe23ici0h8",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Uşak'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 23,
+      "website": "http://www.bekagranit.com/"
+    },
+    {
+      "ad": "Erdinç Mermer & Granit",
+      "sehir": "Van",
+      "ilce": "Van Merkez",
+      "tel": "0543 591 02 35",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJJXAPglZwEkARbn-4TX7Y4MY",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Van'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 6
+    },
+    {
+      "ad": "Cihan Mermer Granit",
+      "sehir": "Van",
+      "ilce": "İpekyolu",
+      "tel": "0546 857 00 65",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJz-986J5vEkARWpbImdcMI2s",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Van'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 17
+    },
+    {
+      "ad": "MURAT MERMER GRANİT",
+      "sehir": "Yozgat",
+      "ilce": "Yozgat Merkez",
+      "tel": "0546 472 10 00",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJpUkPJhFxgEARN6jX2HOdUeg",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Yozgat'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 13
+    },
+    {
+      "ad": "Yeni Çağrı Mermer",
+      "sehir": "Yozgat",
+      "ilce": "Yozgat Merkez",
+      "tel": "0544 692 17 22",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJP7supipxgEARJbrt7e2SEMw",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Yozgat'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 12
+    },
+    {
+      "ad": "CEYLAN MERMER ÇAYCUMA",
+      "sehir": "Zonguldak",
+      "ilce": "Çaycuma",
+      "tel": "0541 180 22 50",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJvySNn9KDnEAR6oKKsMQkgNI",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Zonguldak'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "İncekara Mermer",
+      "sehir": "Zonguldak",
+      "ilce": "Zonguldak Merkez",
+      "tel": "0541 230 03 05",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJsxNcm4t9nEAR2S9K7rDITR8",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Zonguldak'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 6,
+      "website": "https://incekaramermer.com.tr/"
+    },
+    {
+      "ad": "FATİH MERMER GRANİT PORSELEN",
+      "sehir": "Aksaray",
+      "ilce": "Bahçesaray mah.214 cad.No 10",
+      "tel": "0533 940 23 86",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJcT9cyjZv1hQRPXAWO23UJPY",
+      "uzmanlik": [
+        "Porselen",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Aksaray'de porselen, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 66,
+      "website": "http://www.fatihmermer.com.tr/"
+    },
+    {
+      "ad": "Ali Aydın Oğulları Mermer Granit Kuvars Porselen",
+      "sehir": "Aksaray",
+      "ilce": "Aksaray Merkez",
+      "tel": "0533 335 84 14",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJia-lyYxw1hQRah976XArN30",
+      "uzmanlik": [
+        "Porselen",
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Aksaray'de porselen, quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.8,
+      "yorum": 28,
+      "website": "http://aliaydinmermer.com/"
+    },
+    {
+      "ad": "Çelik Mermer",
+      "sehir": "Bayburt",
+      "ilce": "Bayburt Merkez",
+      "tel": "0542 522 13 42",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ3zAU1KyHb0AR4jMq9qNrX-s",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bayburt'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false
+    },
+    {
+      "ad": "Uğur mermer granit",
+      "sehir": "Karaman",
+      "ilce": "Karaman Merkez",
+      "tel": "0546 405 17 67",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJV3i1geqN2RQRY5vPAcw6XUE",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Karaman'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "ŞimşekSTONE Cimston porselen mutfak mermer",
+      "sehir": "Karaman",
+      "ilce": "Karaman Merkez",
+      "tel": "0542 221 54 40",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJgz8DEwGN2RQRwIRee946WjI",
+      "uzmanlik": [
+        "Porselen",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Karaman'de porselen, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 19
+    },
+    {
+      "ad": "ART GRANİT MERMER KIRIKKALE MERMERCİ",
+      "sehir": "Kırıkkale",
+      "ilce": "Kırıkkale Merkez",
+      "tel": "0553 200 35 77",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ58PVI3XfgUAR-NzKml1V31I",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kırıkkale'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.7,
+      "yorum": 14
+    },
+    {
+      "ad": "ERÇETİN MERMER - KIRIKKALE",
+      "sehir": "Kırıkkale",
+      "ilce": "Kırıkkale Merkez",
+      "tel": "0546 806 51 06",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJASCR1QTfgUARlbxWkMF6o2A",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kırıkkale'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 24
+    },
+    {
+      "ad": "Tekno Mermer Granit & Çimstone",
+      "sehir": "Batman",
+      "ilce": "Batman Merkez",
+      "tel": "0530 320 00 72",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJudjIXj9BC0ARnXBF5l9dzFc",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone"
+      ],
+      "aciklama": "Batman'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 26
+    },
+    {
+      "ad": "Batman Şahin Mermer & Granit - Çimston",
+      "sehir": "Batman",
+      "ilce": "Garzan Cd. 67",
+      "tel": "0539 924 02 27",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ2eIoWhBHC0ARtZfPbY8Pf-4",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Batman'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 60
+    },
+    {
+      "ad": "Tezgah Market Üretim & Uygulama ve Satış Mağazası",
+      "sehir": "Şırnak",
+      "ilce": "Altındağ",
+      "tel": "0532 647 69 96",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJayXoWPZN0xQRx458Ls8Stfo",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Şırnak'de mermer, granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.9,
+      "yorum": 9,
+      "website": "http://www.tezgahmarket.net/"
+    },
+    {
+      "ad": "Dekor Mermer Granit",
+      "sehir": "Bartın",
+      "ilce": "Bartın Merkez",
+      "tel": "(0378) 220 05 75",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJVVVVlTNwm0ARyyEIi_1h9JY",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Bartın'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2
+    },
+    {
+      "ad": "Konak Mermer - Granit - Çimstone - Belenco",
+      "sehir": "Bartın",
+      "ilce": "Merkez",
+      "tel": "(0378) 227 07 41",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJyaFTzzNym0ARezh7Wf34Jsk",
+      "uzmanlik": [
+        "Quartz",
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Çimstone",
+        "Belenco"
+      ],
+      "aciklama": "Bartın'de quartz, granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2,
+      "website": "http://www.ozkonakmermer.com.tr/"
+    },
+    {
+      "ad": "YILDIRIM MERMER ARDAHAN",
+      "sehir": "Ardahan",
+      "ilce": "Küçük Sanayi Sitesi F BLOK NO:204",
+      "tel": "0553 349 78 83",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJl52at0Qk00ERaLos5d-nCbQ",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Ardahan'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3
+    },
+    {
+      "ad": "SARYAM MERMER ATÖLYESİ ARDAHAN",
+      "sehir": "Ardahan",
+      "ilce": "Ardahan Merkez",
+      "tel": "0530 660 64 79",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJzz_S1qsvaEARJCYapxAbjxQ",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Ardahan'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "IĞDIR MERMER Selami Granit Mermer",
+      "sehir": "Iğdır",
+      "ilce": "Iğdır Merkez",
+      "tel": "0532 561 41 99",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJB9EdCQAha0AR8DeDfVlNqFw",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Iğdır'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "website": "https://www.segemyapı.com/"
+    },
+    {
+      "ad": "Abay Mermer Granit",
+      "sehir": "Iğdır",
+      "ilce": "Iğdır Merkez",
+      "tel": "0543 667 17 91",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJA89bVgAha0ARBR4Q_dOidQU",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Iğdır'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 4
+    },
+    {
+      "ad": "Çepni Mermer & Granit",
+      "sehir": "Yalova",
+      "ilce": "Yalova Merkez",
+      "tel": "0536 209 49 44",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJu2gzqPz6yhQRX3itXyiQ43E",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Yalova'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "Örnek Mermer Granit YALOVA",
+      "sehir": "Yalova",
+      "ilce": "Çiftlikköy",
+      "tel": "0551 661 80 88",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJhbWWsJnkyhQRJM1w8NdBuGo",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Yalova'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1,
+      "website": "http://örnekmermer.com/"
+    },
+    {
+      "ad": "Bozkurt Mermer ve Granit",
+      "sehir": "Karabük",
+      "ilce": "Merkez",
+      "tel": "0541 688 25 94",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJoUar34mtnEAR9c4fpDXMh_8",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Karabük'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 8,
+      "website": "http://www.karabukmermer.com/"
+    },
+    {
+      "ad": "Turhan Mermer Karabük",
+      "sehir": "Karabük",
+      "ilce": "Merkez",
+      "tel": "0544 486 55 10",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ6bQG6bBTg0ARO_rbQ4ewD-c",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Karabük'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 2,
+      "website": "https://www.karabukmermerci.com.tr/"
+    },
+    {
+      "ad": "KİLİS.Mercan Mermer ve granit mezar",
+      "sehir": "Kilis",
+      "ilce": "Kilis Merkez",
+      "tel": "0544 838 46 14",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJcd719irRLxURZQUGizo7OjA",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kilis'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 1
+    },
+    {
+      "ad": "KİLİS MERMER ATÖLYESİ",
+      "sehir": "Kilis",
+      "ilce": "Kilis Merkez",
+      "tel": "",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJx4d0TKXRLxURnbWbXVNPlU8",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Kilis'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 5
+    },
+    {
+      "ad": "Osmaniye Mermer Granit",
+      "sehir": "Osmaniye",
+      "ilce": "Osmaniye Merkez",
+      "tel": "0552 947 06 80",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJcTL4IhwhLxURDv4HHUHQOxw",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Osmaniye'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 4
+    },
+    {
+      "ad": "Mehmetoğulları Mermer Ve Granit",
+      "sehir": "Osmaniye",
+      "ilce": "Osmaniye Merkez",
+      "tel": "0552 947 06 80",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ9aSnEZkhLxURyBFHJsAjeVw",
+      "uzmanlik": [
+        "Granit",
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Osmaniye'de granit, mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 28,
+      "website": "https://tiktok.com/@mhmtpak80"
+    },
+    {
+      "ad": "CENGİZ MERMER, PORSLEN, GRANİT",
+      "sehir": "Düzce",
+      "ilce": "d100 karayolu caddesi no824",
+      "tel": "0505 971 34 81",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJKbYSOSKfnUARCo6j3FlGTV0",
+      "uzmanlik": [
+        "Mermer"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Düzce'de mermer mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 5,
+      "yorum": 3,
+      "website": "https://www.instagram.com/cengizmermer.duzce?igsh=MTIyYTY0ZjJoeWZrdg==&utm_source=qr"
+    },
+    {
+      "ad": "EGEMER GRANİT",
+      "sehir": "Düzce",
+      "ilce": "Gümüşpınar",
+      "tel": "0543 929 69 81",
+      "maps": "https://www.google.com/maps/place/?q=place_id:ChIJ67Keygt1nUARdPYw_H97VhI",
+      "uzmanlik": [
+        "Mermer",
+        "Granit"
+      ],
+      "markalar": [
+        "Doğal Granit"
+      ],
+      "aciklama": "Düzce'de mermer, granit mutfak tezgahı imalatı ve montajı.",
+      "onayli": false,
+      "puan": 4.4,
+      "yorum": 27,
+      "website": "https://egemermergranit.com/"
+    }
+  ]
+}

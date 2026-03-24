@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rehber & Blog — TezgahBul</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="navbar.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; }
+
+/* Page header */
+.page-header {
+  background: var(--teal);
+  padding: 48px var(--gap) 40px;
+  text-align: center;
+}
+.page-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.page-title { font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+.page-sub { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto; }
+
+/* Blog grid */
+.blog-container { max-width: 900px; margin: 0 auto; padding: 40px var(--gap) 64px; }
+.blog-card {
+  background: white; border-radius: 14px; padding: 32px;
+  margin-bottom: 24px; cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; gap: 20px; align-items: flex-start;
+}
+.blog-card:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+.blog-card-icon {
+  width: 56px; height: 56px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.blog-card-body { flex: 1; }
+.blog-card-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; }
+.blog-card-title { font-size: 1.1rem; font-weight: 700; color: var(--teal); margin-bottom: 8px; }
+.blog-card-excerpt { font-size: 0.85rem; color: #6b7280; line-height: 1.6; margin-bottom: 10px; }
+.blog-card-read { font-size: 0.8rem; font-weight: 700; color: var(--orange); }
+
+/* Blog detail (expanded) */
+.blog-detail {
+  display: none; background: white; border-radius: 14px; padding: 40px 36px;
+  margin-bottom: 24px; box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+}
+.blog-detail.open { display: block; }
+.blog-detail h2 { font-size: 1.5rem; font-weight: 800; color: var(--teal); margin-bottom: 16px; }
+.blog-detail h3 { font-size: 1.05rem; font-weight: 700; color: var(--teal); margin: 20px 0 8px; }
+.blog-detail p { font-size: 0.92rem; color: #374151; line-height: 1.75; margin-bottom: 12px; }
+.blog-detail ul { margin: 8px 0 16px 20px; }
+.blog-detail li { font-size: 0.9rem; color: #374151; line-height: 1.7; margin-bottom: 4px; }
+.blog-detail-close {
+  display: inline-block; margin-top: 16px; padding: 8px 20px;
+  background: var(--teal); color: white; border: none; border-radius: 8px;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+}
+.blog-detail-close:hover { background: #004854; }
+
+/* Footer */
+.site-footer {
+  background: var(--teal); color: rgba(255,255,255,0.7);
+  padding: 40px var(--gap) 24px; text-align: center;
+}
+.footer-bottom { font-size: 0.75rem; margin-top: 16px; opacity: 0.5; }
+
+@media (max-width: 768px) {
+  .page-title { font-size: 1.5rem; }
+  .blog-card { flex-direction: column; padding: 24px; }
+  .blog-detail { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
+  <ul class="nav-links">
+    <li><a href="rehber.html" class="active">Rehber</a></li>
+    <li><a href="imalatcilar.html">İmalatçılar</a></li>
+    <li><a href="backsplash.html">Mutfak Tasarla</a></li>
+    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-eyebrow">Rehber & Blog</div>
+  <h1 class="page-title">Tezgah seçiminde bilmeniz gerekenler</h1>
+  <p class="page-sub">Doğru malzemeyi seçmenize yardımcı olacak uzman içeriklerimizi keşfedin.</p>
+</div>
+
+<div class="blog-container">
+
+  <!-- Blog 1 -->
+  <div class="blog-card" onclick="toggleBlog('detail1', this)">
+    <div class="blog-card-icon" style="background:linear-gradient(135deg,#e8f4f0,#d0ebe4)">🪨</div>
+    <div class="blog-card-body">
+      <div class="blog-card-tag">Rehber</div>
+      <div class="blog-card-title">Mutfak Tezgahı Nasıl Seçilir? 5 Kritik Adım</div>
+      <div class="blog-card-excerpt">Malzeme seçiminden ölçü almaya, bütçe planlamasından imalatçı seçimine kadar bilmeniz gereken her şey.</div>
+      <span class="blog-card-read">Devamını Oku →</span>
+    </div>
+  </div>
+  <div class="blog-detail" id="detail1">
+    <h2>Mutfak Tezgahı Nasıl Seçilir? 5 Kritik Adım</h2>
+    <p>Mutfak tezgahı seçimi, mutfağınızın hem estetiğini hem de kullanım ömrünü doğrudan etkiler. Doğru karar vermek için bu 5 adımı takip edin.</p>
+    <h3>1. İhtiyacınızı Belirleyin</h3>
+    <p>Sadece tezgah mı değiştirmek istiyorsunuz, yoksa mutfağı komple mi yeniliyorsunuz? Mevcut dolaplarınızın durumu, tezgah kalınlığı ve tipini belirler.</p>
+    <h3>2. Malzemeyi Tanıyın</h3>
+    <p>Üç ana malzeme grubu vardır: <strong>Granit</strong> (doğal, çok sert), <strong>Quartz</strong> (mühendislik taşı, gözeneksiz), <strong>Porselen</strong> (büyük format, ince ve hafif). Her birinin avantaj ve dezavantajları farklıdır.</p>
+    <h3>3. Bütçenizi Planlayın</h3>
+    <p>Metrekare başına fiyatlar malzemeye ve markaya göre değişir. İşçilik ve montaj genellikle fiyata dahildir.</p>
+    <h3>4. Doğru Ölçü Alın</h3>
+    <p>Tezgah tipi (düz, L, U veya ada) ve kenar uzunlukları doğru ölçülmelidir. Standart derinlik 60 cm'dir. Hatalı ölçü = ek maliyet demektir.</p>
+    <h3>5. Güvenilir İmalatçı Seçin</h3>
+    <p>Referansları kontrol edin, garanti koşullarını sorun ve mümkünse showroom'u ziyaret edin. TezgahBul olarak biz bu süreci sizin için kolaylaştırıyoruz.</p>
+    <button class="blog-detail-close" onclick="event.stopPropagation();closeBlog('detail1')">Kapat</button>
+  </div>
+
+  <!-- Blog 2 -->
+  <div class="blog-card" onclick="toggleBlog('detail2', this)">
+    <div class="blog-card-icon" style="background:linear-gradient(135deg,#f0e8f4,#e4d0eb)">⚖️</div>
+    <div class="blog-card-body">
+      <div class="blog-card-tag">Karşılaştırma</div>
+      <div class="blog-card-title">Quartz mı, Granit mi, Porselen mi?</div>
+      <div class="blog-card-excerpt">Üç ana tezgah malzemesinin artıları, eksileri ve hangi mutfak için uygun olduğunu karşılaştırıyoruz.</div>
+      <span class="blog-card-read">Devamını Oku →</span>
+    </div>
+  </div>
+  <div class="blog-detail" id="detail2">
+    <h2>Quartz mı, Granit mi, Porselen mi?</h2>
+    <p>Bu üç malzeme mutfak tezgahı dünyasının en popüler seçenekleridir. Hangisi sizin için doğru?</p>
+    <h3>Granit — Doğanın Gücü</h3>
+    <ul>
+      <li><strong>Artıları:</strong> Çok sert, ısıya dayanıklı, her plaka benzersiz, çizilmez</li>
+      <li><strong>Eksileri:</strong> Gözenekli olduğu için emprenye gerektirir, renk seçeneği sınırlı</li>
+      <li><strong>Kime uygun:</strong> Yoğun yemek yapan, doğal görünüm seven mutfaklar</li>
+    </ul>
+    <h3>Quartz — Mühendislik Harikası</h3>
+    <ul>
+      <li><strong>Artıları:</strong> Gözeneksiz, hijyenik, çok geniş renk seçeneği, kolay bakım</li>
+      <li><strong>Eksileri:</strong> Yüksek ısıya hassas (sıcak tencere direkt konmamalı)</li>
+      <li><strong>Kime uygun:</strong> Modern, temiz görünüm isteyen, bakım kolaylığı arayan mutfaklar</li>
+    </ul>
+    <h3>Porselen — Yeni Nesil</h3>
+    <ul>
+      <li><strong>Artıları:</strong> Çizilmez, ısıya dayanıklı, UV dirençli, ince ve hafif, çok büyük boyutlar</li>
+      <li><strong>Eksileri:</strong> Kenar darbelere hassas, montaj uzmanlık gerektirir</li>
+      <li><strong>Kime uygun:</strong> Premium mutfaklar, minimalist tasarım sevenler, dış mekan kullanımı</li>
+    </ul>
+    <button class="blog-detail-close" onclick="event.stopPropagation();closeBlog('detail2')">Kapat</button>
+  </div>
+
+  <!-- Blog 3 -->
+  <div class="blog-card" onclick="toggleBlog('detail3', this)">
+    <div class="blog-card-icon" style="background:linear-gradient(135deg,#f4f0e8,#ebe4d0)">🔧</div>
+    <div class="blog-card-body">
+      <div class="blog-card-tag">Bakım</div>
+      <div class="blog-card-title">Tezgah Bakımı: Malzemeye Göre İpuçları</div>
+      <div class="blog-card-excerpt">Granitten quarza, porselenden doğal taşa — her malzeme için doğru bakım yöntemlerini öğrenin.</div>
+      <span class="blog-card-read">Devamını Oku →</span>
+    </div>
+  </div>
+  <div class="blog-detail" id="detail3">
+    <h2>Tezgah Bakımı: Malzemeye Göre İpuçları</h2>
+    <p>Tezgahınızın ömrünü uzatmak ve ilk günkü görünümünü korumak için malzemenize uygun bakım çok önemlidir.</p>
+    <h3>Granit Bakımı</h3>
+    <ul>
+      <li>Yılda 1-2 kez emprenye (su geçirmezlik) uygulaması yapın</li>
+      <li>Asitli sıvıları (limon, sirke) hemen silin</li>
+      <li>Günlük temizlikte pH nötr deterjan kullanın</li>
+      <li>Kesme tahtası kullanın — bıçak granitten zarar görmez ama direkt üstünde kesmeyin</li>
+    </ul>
+    <h3>Quartz Bakımı</h3>
+    <ul>
+      <li>Emprenye gerekmez (gözeneksiz yapı)</li>
+      <li>Sıcak tencereyi asla direkt koymayın — termal şok riski</li>
+      <li>Günlük temizlikte ıslak bez ve az deterjan yeterli</li>
+      <li>Aşındırıcı temizleyicilerden kaçının</li>
+    </ul>
+    <h3>Porselen Bakımı</h3>
+    <ul>
+      <li>En az bakım gerektiren malzemedir</li>
+      <li>Herhangi bir kimyasal temizleyici kullanılabilir</li>
+      <li>Sıcak tencere direkt konabilir (ısıya çok dayanıklı)</li>
+      <li>Kenar darbelerden koruyun — düşme ve çarpma ile kırılabilir</li>
+    </ul>
+    <button class="blog-detail-close" onclick="event.stopPropagation();closeBlog('detail3')">Kapat</button>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <div>© 2025 TezgahBul — Tüm hakları saklıdır.</div>
+  <div class="footer-bottom"><a href="index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">← Ana Sayfaya Dön</a></div>
+</footer>
+
+<script>
+function toggleBlog(id, card) {
+  const detail = document.getElementById(id);
+  const isOpen = detail.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.blog-detail').forEach(d => d.classList.remove('open'));
+  if (!isOpen) {
+    detail.classList.add('open');
+    setTimeout(() => detail.scrollIntoView({behavior:'smooth', block:'start'}), 100);
+  }
+}
+function closeBlog(id) {
+  document.getElementById(id).classList.remove('open');
+}
+</script>
+</body>
+</html>

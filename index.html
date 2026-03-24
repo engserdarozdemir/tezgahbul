@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TezgahBul — Mutfak Tezgahı Uzmanı</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
 <style>
 
 /* ===== RESET ===== */
@@ -53,12 +55,11 @@ body {
   font-weight: 700;
   color: var(--white);
   letter-spacing: -0.5px;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.city-trigger {
-  position: relative;
-  display: inline-block;
-}
+/* city-trigger removed — auto-detect only */
 
 .nav-logo span {
   color: var(--teal-light);
@@ -68,16 +69,13 @@ body {
   font-size: 0.55rem;
   font-weight: 500;
   letter-spacing: 2px;
-  color: rgba(255,255,255,0.4);
+  color: var(--orange);
   margin-left: 6px;
   vertical-align: baseline;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: color 0.2s;
+  cursor: default;
   user-select: none;
 }
-
-.nav-logo sub:hover { color: var(--orange); }
 
 /* Logo şehir dropdown */
 .logo-city-dd {
@@ -222,6 +220,96 @@ body {
   letter-spacing: -0.3px;
 }
 
+
+/* ===== MUTFAK TASARLA CTA ===== */
+.design-cta {
+  background: linear-gradient(135deg, #002A32 0%, #004a58 50%, #002A32 100%);
+  padding: 48px var(--gap);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.design-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(232,101,10,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.design-cta-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.design-cta-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+.design-cta h2 {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.design-cta p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.design-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 36px;
+  background: var(--orange);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-family: inherit;
+  box-shadow: 0 4px 20px rgba(232,101,10,0.35);
+}
+.design-cta-btn:hover {
+  background: #d45a08;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(232,101,10,0.45);
+}
+.design-cta-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.design-cta-features {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.design-cta-feat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.5);
+}
+.design-cta-feat svg {
+  width: 16px;
+  height: 16px;
+  color: var(--orange);
+  flex-shrink: 0;
+}
 
 /* ===== SORULAR ===== */
 #sorular {
@@ -1638,6 +1726,51 @@ body {
   .mfr-dir-grid { grid-template-columns: 1fr; }
 }
 
+/* ===== HAKKIMIZDA ===== */
+.about-section {
+  padding: 72px var(--gap) 56px;
+  background: #f7fafa;
+}
+.about-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+.about-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.about-title { font-size: 1.8rem; font-weight: 800; color: var(--teal); margin-bottom: 16px; }
+.about-text { font-size: 1rem; line-height: 1.7; color: #4a5568; max-width: 700px; margin: 0 auto 36px; }
+.about-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.about-feat { background: white; border-radius: 12px; padding: 28px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.about-feat-icon { font-size: 1.6rem; margin-bottom: 10px; }
+.about-feat-title { font-size: 0.95rem; font-weight: 700; color: var(--teal); margin-bottom: 6px; }
+.about-feat-desc { font-size: 0.82rem; color: #6b7280; line-height: 1.5; }
+
+/* ===== İLETİŞİM ===== */
+.contact-section {
+  padding: 64px var(--gap) 56px;
+  background: white;
+}
+.contact-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+.contact-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+.contact-title { font-size: 1.8rem; font-weight: 800; color: var(--teal); margin-bottom: 12px; }
+.contact-sub { font-size: 0.95rem; color: #6b7280; margin-bottom: 32px; }
+.contact-cards { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.contact-card {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: #f7fafa; border: 1px solid rgba(0,91,108,0.1); border-radius: 12px;
+  padding: 28px 36px; text-decoration: none; color: var(--teal);
+  transition: transform 0.2s, box-shadow 0.2s; min-width: 200px;
+}
+.contact-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,91,108,0.12); }
+.contact-card-icon { font-size: 1.8rem; }
+.contact-card-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); }
+.contact-card-val { font-size: 0.95rem; font-weight: 600; color: var(--teal); }
+
+@media (max-width: 768px) {
+  .about-section { padding: 48px 20px 40px; }
+  .about-title { font-size: 1.4rem; }
+  .about-features { grid-template-columns: 1fr; gap: 14px; }
+  .contact-section { padding: 48px 20px 40px; }
+  .contact-title { font-size: 1.4rem; }
+  .contact-cards { flex-direction: column; align-items: center; }
+}
+
 /* ===== FOOTER ===== */
 .site-footer {
   background: var(--teal);
@@ -1930,21 +2063,17 @@ body {
 
 <!-- ===== NAVBAR ===== -->
 <nav class="navbar">
-  <div class="nav-logo">
+  <a href="#" class="nav-logo" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'});location.hash='';">
     Tezgah<span>Bul</span>
-    <span class="city-trigger">
-      <sub id="citySub" onclick="toggleLogoCity()">Ankara</sub>
-      <div class="logo-city-dd" id="logoCityDD">
-        <div class="lc-opt active" onclick="pickLogoCity(this,'Ankara')">Ankara</div>
-        <div class="lc-opt" onclick="pickLogoCity(this,'İstanbul')">İstanbul</div>
-        <div class="lc-opt" onclick="pickLogoCity(this,'İzmir')">İzmir</div>
-      </div>
-    </span>
-  </div>
+    <sub id="citySub">Ankara</sub>
+  </a>
 
   <ul class="nav-links">
-    <li><a href="#">Hakkımızda</a></li>
-    <li><a href="#">İletişim</a></li>
+    <li><a href="rehber.html">Rehber</a></li>
+    <li><a href="imalatcilar.html">İmalatçılar</a></li>
+    <li><a href="backsplash.html">Mutfak Tasarla</a></li>
+    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+    <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
   </ul>
 </nav>
 
@@ -1998,6 +2127,33 @@ body {
 
 </section>
 
+<!-- ===== MUTFAK TASARLA CTA ===== -->
+<section class="design-cta">
+  <div class="design-cta-inner">
+    <div class="design-cta-eyebrow">3D Mutfak Tasarımcısı</div>
+    <h2>Kendi Mutfağını Tasarla ve Fiyat Al</h2>
+    <p>Tezgah malzemeni, dolap stilini ve rengini seç. 3D olarak mutfağını canlandır, anında fiyat teklifi al.</p>
+    <a href="backsplash.html" class="design-cta-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Mutfağımı Tasarla
+    </a>
+    <div class="design-cta-features">
+      <div class="design-cta-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        3D Görselleştirme
+      </div>
+      <div class="design-cta-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        Granit, Quartz, Porselen
+      </div>
+      <div class="design-cta-feat">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        Anlık Fiyat Teklifi
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== MALZEME KARŞILAŞTIRMA ===== -->
 <section class="compare-section" id="karsilastirma">
   <div class="compare-header">
@@ -2019,8 +2175,8 @@ body {
         <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
         <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★☆☆</span></div>
         <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★☆☆☆</span></div>
-        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge green">₺3.000–8.000/m²</span></span></div>
-        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20–30 mm</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge green">Teklif alın</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20 mm</span></div>
         <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Yoğun mutfaklar</span></div>
       </div>
       <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Granit Tezgah Seç →</a>
@@ -2038,8 +2194,8 @@ body {
         <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★☆</span></div>
         <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
         <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge blue">₺4.000–16.000/m²</span></span></div>
-        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20–30 mm</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge blue">Teklif alın</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20 mm</span></div>
         <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Modern mutfaklar</span></div>
       </div>
       <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Quartz Tezgah Seç →</a>
@@ -2048,8 +2204,8 @@ body {
     <!-- PORSELEN -->
     <div class="compare-card">
       <div class="compare-card-head" style="background:linear-gradient(135deg,#3a2a1a 0%,#6a4a2a 100%)">
-        <h3>Porselen Slab</h3>
-        <div class="cc-type">Büyük Format Seramik</div>
+        <h3>Porselen</h3>
+        <div class="cc-type">Büyük Format Porselen</div>
       </div>
       <div class="compare-card-body">
         <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
@@ -2057,8 +2213,8 @@ body {
         <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
         <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
         <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★☆</span></div>
-        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge amber">₺3.500–18.000/m²</span></span></div>
-        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">12–20 mm</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge amber">Teklif alın</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">12 mm</span></div>
         <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Premium mutfaklar</span></div>
       </div>
       <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Porselen Tezgah Seç →</a>
@@ -2068,7 +2224,7 @@ body {
 </section>
 
 <!-- ===== ÖNCE / SONRA GALERİ ===== -->
-<section class="gallery-section" id="galeri">
+<section class="gallery-section" id="galeri" style="display:none">
   <div class="gallery-header">
     <div class="gallery-eyebrow">Proje Vitrini</div>
     <div class="gallery-title">Gerçek dönüşümler, gerçek mutfaklar</div>
@@ -2079,14 +2235,8 @@ body {
     <!-- Proje 1 -->
     <div class="ba-card">
       <div class="ba-slider" data-ba="1">
-        <div class="ba-placeholder ba-after" style="background:#e8e8e8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="ba-placeholder-text">Sonra fotoğrafı eklenecek</span>
-        </div>
-        <div class="ba-placeholder ba-before" style="background:#d8d8d8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="ba-placeholder-text">Önce fotoğrafı eklenecek</span>
-        </div>
+        <img class="ba-after" src="./Goruntu/galeri/after1.jpg" alt="Sonra - Quartz tezgah">
+        <img class="ba-before" src="./Goruntu/galeri/before1.jpg" alt="Önce - Eski tezgah">
         <div class="ba-line"></div>
         <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
         <span class="ba-label before">Önce</span>
@@ -2105,14 +2255,8 @@ body {
     <!-- Proje 2 -->
     <div class="ba-card">
       <div class="ba-slider" data-ba="2">
-        <div class="ba-placeholder ba-after" style="background:#e8e8e8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="ba-placeholder-text">Sonra fotoğrafı eklenecek</span>
-        </div>
-        <div class="ba-placeholder ba-before" style="background:#d8d8d8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="ba-placeholder-text">Önce fotoğrafı eklenecek</span>
-        </div>
+        <img class="ba-after" src="./Goruntu/galeri/after2.jpg" alt="Sonra - Dekton tezgah">
+        <img class="ba-before" src="./Goruntu/galeri/before2.jpg" alt="Önce - Eski tezgah">
         <div class="ba-line"></div>
         <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
         <span class="ba-label before">Önce</span>
@@ -2131,14 +2275,8 @@ body {
     <!-- Proje 3 -->
     <div class="ba-card">
       <div class="ba-slider" data-ba="3">
-        <div class="ba-placeholder ba-after" style="background:#e8e8e8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="ba-placeholder-text">Sonra fotoğrafı eklenecek</span>
-        </div>
-        <div class="ba-placeholder ba-before" style="background:#d8d8d8">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          <span class="ba-placeholder-text">Önce fotoğrafı eklenecek</span>
-        </div>
+        <img class="ba-after" src="./Goruntu/galeri/after3.jpg" alt="Sonra - Granit tezgah">
+        <img class="ba-before" src="./Goruntu/galeri/before3.jpg" alt="Önce - Eski tezgah">
         <div class="ba-line"></div>
         <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
         <span class="ba-label before">Önce</span>
@@ -2309,7 +2447,7 @@ body {
 
         <!-- Panel A: Mevcut tezgah -->
         <div class="q2-panel" id="q2PanelA" data-panel="A">
-          <div class="q2-panel-no">A</div>
+          <div class="q2-panel-no">1</div>
           <div class="q2-panel-q">Mevcut tezgahınız nedir?</div>
           <div class="q2-chip-group">
             <button class="q2-chip" onclick="pickChip(this)">Mermer</button>
@@ -2323,7 +2461,7 @@ body {
 
         <!-- Panel B: İstenen ürün (locked until A filled) -->
         <div class="q2-panel q2-panel-locked" id="q2PanelB" data-panel="B">
-          <div class="q2-panel-no">B</div>
+          <div class="q2-panel-no">2</div>
           <div class="q2-panel-q">Hangi ürün grubunu istiyorsunuz? <span id="bSelectionSummary"></span></div>
           <div class="q2-chip-group">
             <button class="q2-chip" onclick="pickChip(this)">Porselen</button>
@@ -2359,7 +2497,7 @@ body {
 
         <!-- Panel C: Ölçü bilgisi (locked until B filled) -->
         <div class="q2-panel q2-panel-locked" id="q2PanelC" data-panel="C">
-          <div class="q2-panel-no">C</div>
+          <div class="q2-panel-no">3</div>
           <div class="q2-panel-q">Ölçüleri biliyor musunuz?</div>
           <div class="q2-chip-group">
             <button class="q2-chip" onclick="pickChip(this)">Evet</button>
@@ -2369,7 +2507,7 @@ body {
 
         <!-- Panel D: Tezgah tipi + ölçüler (locked until C = Evet) -->
         <div class="q2-panel q2-panel-locked" id="q2PanelD" data-panel="D">
-          <div class="q2-panel-no">D</div>
+          <div class="q2-panel-no">4</div>
           <div class="q2-panel-q">Tezgah tipi &amp; ölçüler</div>
           <div class="tplan-grid">
 
@@ -2530,6 +2668,16 @@ body {
             </div>
           </div>
 
+          <!-- Karşı duvar ek tezgah sorusu -->
+          <div class="ada-toggle-row" id="ekTezgahToggleRow" style="display:none">
+            <span class="ada-toggle-q">Karşı duvarda ek tezgah var mı?</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="ekTezgahSwitch" onchange="toggleEkTezgah(this)">
+              <span class="ios-slider"></span>
+            </label>
+            <span class="ada-yn-label" id="ekTezgahLabel">Hayır</span>
+          </div>
+
         </div>
 
         <!-- Panel F: Yakınımdaki imalatçılar (C=Hayır seçilince) -->
@@ -2546,7 +2694,7 @@ body {
 
         <!-- Panel E: Ada tezgah ölçüleri (tam genişlik 2. satır) -->
         <div class="q2-panel-e" id="q2PanelE" style="display:none">
-          <div class="q2-panel-no">E</div>
+          <div class="q2-panel-no">4a</div>
           <div class="q2-panel-q">Ada tezgah ölçüleri</div>
           <div class="tplan-card active" data-plan="ada" style="cursor:default; margin-top:8px; border-left-width:3px;">
             <div class="tplan-diagram" style="height:52px">
@@ -2576,6 +2724,95 @@ body {
           </div>
         </div>
 
+        <!-- Panel EkTezgah: Karşı duvar ek tezgah ölçüleri -->
+        <div class="q2-panel-e" id="q2PanelEkTezgah" style="display:none">
+          <div class="q2-panel-no">4b</div>
+          <div class="q2-panel-q">Karşı duvar tezgah ölçüleri</div>
+          <div class="tplan-grid" style="margin-top:8px">
+            <!-- Düz ek tezgah -->
+            <div class="tplan-card" data-plan="duz-ek" onclick="pickEkTplan(this)">
+              <div class="tplan-diagram">
+                <svg viewBox="0 -10 80 36" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" overflow="visible">
+                  <rect x="4" y="3" width="72" height="18" rx="1.5" fill="rgba(0,91,108,0.09)"/>
+                  <text x="40" y="-3" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                </svg>
+              </div>
+              <div class="tplan-right">
+                <div class="tplan-label">Düz Tezgah</div>
+                <div class="tplan-inputs" style="display:none">
+                  <div class="tplan-input-row">
+                    <label>A</label>
+                    <input type="number" placeholder="cm" min="1" max="1200" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- L ek tezgah -->
+            <div class="tplan-card" data-plan="l-ek" onclick="pickEkTplan(this)">
+              <div class="tplan-diagram">
+                <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
+                  <polygon points="4,4 56,4 56,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
+                  <text x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                  <g transform="translate(-4,38) rotate(-90)">
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="tplan-right">
+                <div class="tplan-label">L Tezgah</div>
+                <div class="tplan-inputs" style="display:none">
+                  <div class="tplan-input-row">
+                    <label>A</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                  <div class="tplan-input-row">
+                    <label>B</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- U ek tezgah -->
+            <div class="tplan-card" data-plan="u-ek" onclick="pickEkTplan(this)">
+              <div class="tplan-diagram">
+                <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
+                  <polygon points="4,4 56,4 56,54 38,54 38,22 22,22 22,54 4,54" fill="rgba(0,91,108,0.09)" stroke="currentColor" stroke-width="1.5"/>
+                  <text x="30" y="-2" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">B</text>
+                  <g transform="translate(-4,38) rotate(-90)">
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+                  </g>
+                  <g transform="translate(64,38) rotate(-90)">
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="400" fill="currentColor" font-family="DM Sans,sans-serif">C</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="tplan-right">
+                <div class="tplan-label">U Tezgah</div>
+                <div class="tplan-inputs" style="display:none">
+                  <div class="tplan-input-row">
+                    <label>A</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                  <div class="tplan-input-row">
+                    <label>B</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                  <div class="tplan-input-row">
+                    <label>C</label>
+                    <input type="number" placeholder="cm" min="1" max="999" oninput="updateTplanVal(this)">
+                    <span class="tplan-val"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -2584,29 +2821,17 @@ body {
       <div class="servis-title">Servis Talebi Oluşturun</div>
       <div class="servis-subtitle">Mevcut tezgahınızdaki sorunu seçin, size en uygun çözümü sunalım.</div>
       <div class="servis-cats">
-        <button class="servis-cat" onclick="pickServis(this, 'cizdirma')">
-          <div class="servis-cat-icon">🔧</div>
-          <div class="servis-cat-name">Çizik Giderme</div>
-        </button>
-        <button class="servis-cat" onclick="pickServis(this, 'cilalama')">
-          <div class="servis-cat-icon">✨</div>
-          <div class="servis-cat-name">Cilalama</div>
-        </button>
         <button class="servis-cat" onclick="pickServis(this, 'kirik')">
           <div class="servis-cat-icon">💔</div>
           <div class="servis-cat-name">Kırık / Çatlak</div>
-        </button>
-        <button class="servis-cat" onclick="pickServis(this, 'leke')">
-          <div class="servis-cat-icon">💧</div>
-          <div class="servis-cat-name">Leke Çıkarma</div>
         </button>
         <button class="servis-cat" onclick="pickServis(this, 'kenar')">
           <div class="servis-cat-icon">📐</div>
           <div class="servis-cat-name">Kenar Tamiri</div>
         </button>
-        <button class="servis-cat" onclick="pickServis(this, 'diger')">
-          <div class="servis-cat-icon">📋</div>
-          <div class="servis-cat-name">Diğer</div>
+        <button class="servis-cat" onclick="pickServis(this, 'izolasyon')">
+          <div class="servis-cat-icon">🚰</div>
+          <div class="servis-cat-name">Evye İzolasyon</div>
         </button>
       </div>
       <div class="servis-form" id="servisForm">
@@ -2638,15 +2863,15 @@ body {
         <input type="file" id="svPhoto" accept="image/*" style="display:none" onchange="previewServisPhoto(this)">
         <div class="cf-error" id="svError"></div>
         <div class="cf-btn-group">
-          <button class="cf-whatsapp" onclick="sendServisWhatsApp()">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            WhatsApp ile Gönder
+          <button class="cf-whatsapp" style="background:#005b6c" onclick="showServisMfrs()">
+            📍 Yakındaki İmalatçıları Gör
           </button>
         </div>
         <div class="cf-trust">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           Bilgileriniz gizli tutulur ve sadece servis talebi için kullanılır.
         </div>
+        <div id="servisMfrResults" style="display:none;margin-top:20px;"></div>
       </div>
     </div>
 
@@ -2709,69 +2934,9 @@ body {
 </section>
 
 <!-- ===== BLOG / REHBER ===== -->
-<section class="blog-section" id="rehber">
-  <div class="blog-header">
-    <div class="blog-eyebrow">Rehber & Blog</div>
-    <div class="blog-title">Tezgah seçiminde bilmeniz gerekenler</div>
-    <div class="blog-sub">Doğru malzemeyi seçmenize yardımcı olacak uzman içeriklerimizi keşfedin.</div>
-  </div>
-  <div class="blog-grid">
+<!-- Rehber & İmalatçılar ayrı sayfalara taşındı -->
 
-    <div class="blog-card" onclick="openBlogModal('blog1')">
-      <div class="blog-card-icon" style="background:linear-gradient(135deg,#e8f4f0,#d0ebe4)">🪨</div>
-      <div class="blog-card-body">
-        <div class="blog-card-tag">Rehber</div>
-        <div class="blog-card-title">Mutfak Tezgahı Nasıl Seçilir? 5 Kritik Adım</div>
-        <div class="blog-card-excerpt">Malzeme seçiminden ölçü almaya, bütçe planlamasından imalatçı seçimine kadar bilmeniz gereken her şey.</div>
-        <span class="blog-card-read">Devamını Oku →</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openBlogModal('blog2')">
-      <div class="blog-card-icon" style="background:linear-gradient(135deg,#f0e8f4,#e4d0eb)">⚖️</div>
-      <div class="blog-card-body">
-        <div class="blog-card-tag">Karşılaştırma</div>
-        <div class="blog-card-title">Quartz mı, Granit mi, Porselen mi?</div>
-        <div class="blog-card-excerpt">Üç ana tezgah malzemesinin artıları, eksileri ve hangi mutfak için uygun olduğunu karşılaştırıyoruz.</div>
-        <span class="blog-card-read">Devamını Oku →</span>
-      </div>
-    </div>
-
-    <div class="blog-card" onclick="openBlogModal('blog3')">
-      <div class="blog-card-icon" style="background:linear-gradient(135deg,#f4f0e8,#ebe4d0)">🔧</div>
-      <div class="blog-card-body">
-        <div class="blog-card-tag">Bakım</div>
-        <div class="blog-card-title">Tezgah Bakımı: Malzemeye Göre İpuçları</div>
-        <div class="blog-card-excerpt">Granitten quarza, porselenden doğal taşa — her malzeme için doğru bakım yöntemlerini öğrenin.</div>
-        <span class="blog-card-read">Devamını Oku →</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- Blog Modals -->
-<div class="blog-modal-overlay" id="blogModalOverlay" onclick="if(event.target===this)closeBlogModal()">
-  <div class="blog-modal">
-    <button class="blog-modal-close" onclick="closeBlogModal()">✕</button>
-    <div id="blogModalContent"></div>
-  </div>
-</div>
-
-<!-- ===== İMALATÇI DİZİNİ ===== -->
-<section class="mfr-section" id="imalatcilar">
-  <div class="mfr-header">
-    <div class="mfr-eyebrow">İmalatçı Dizini</div>
-    <div class="mfr-title">Güvenilir tezgah imalatçıları</div>
-    <div class="mfr-sub-text">Türkiye genelindeki onaylı imalatçılarımızı keşfedin. Şehre göre filtreleyin.</div>
-  </div>
-  <div class="mfr-filter-bar" id="mfrFilterBar">
-    <button class="mfr-filter-chip active" onclick="filterMfrs('all', this)">Tümü</button>
-  </div>
-  <div class="mfr-dir-grid" id="mfrDirGrid">
-    <!-- JS ile doldurulacak -->
-  </div>
-</section>
+<!-- Hakkımızda & İletişim ayrı sayfaya taşındı (hakkimizda.html) -->
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
@@ -2783,10 +2948,10 @@ body {
     <div class="footer-col">
       <h4>Hızlı Erişim</h4>
       <a href="#karsilastirma">Malzeme Karşılaştırma</a>
-      <a href="#galeri">Proje Vitrini</a>
-      <a href="#rehber">Rehber & Blog</a>
-      <a href="#imalatcilar">İmalatçılar</a>
       <a href="#sorular">Teklif Al</a>
+      <a href="rehber.html">Rehber & Blog</a>
+      <a href="imalatcilar.html">İmalatçılar</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
     </div>
     <div class="footer-col">
       <h4>İletişim</h4>
@@ -3486,8 +3651,9 @@ function pickTplan(el) {
   // Seçili kartın mevcut değerlerini SVG'ye geri yükle
   _syncTplanSvg(el);
   panel.classList.add('filled');
-  // Ada ve kaplama toggle'ı göster
+  // Ada, ek tezgah ve kaplama toggle'ları göster
   document.getElementById('adaToggleRow').style.display = 'flex';
+  document.getElementById('ekTezgahToggleRow').style.display = 'flex';
   document.getElementById('kaplamaToggleRow').style.display = 'flex';
   saveSelections();
 }
@@ -3574,6 +3740,37 @@ function toggleAda(checkbox) {
     panelE.querySelectorAll('.tplan-val').forEach(s => { s.textContent = ''; });
     panelE.querySelectorAll('[data-arm]').forEach(t => { t.textContent = t.dataset.arm; });
   }
+  saveSelections();
+}
+
+// ===== EK TEZGAH (KARŞI DUVAR) =====
+function toggleEkTezgah(checkbox) {
+  const label = document.getElementById('ekTezgahLabel');
+  const panel = document.getElementById('q2PanelEkTezgah');
+  if (checkbox.checked) {
+    label.textContent = 'Evet';
+    panel.style.display = 'block';
+  } else {
+    label.textContent = 'Hayır';
+    panel.style.display = 'none';
+    panel.querySelectorAll('.tplan-card').forEach(c => {
+      c.classList.remove('active');
+      c.querySelector('.tplan-inputs').style.display = 'none';
+    });
+    panel.querySelectorAll('input').forEach(i => { i.value = ''; });
+    panel.querySelectorAll('.tplan-val').forEach(s => { s.textContent = ''; });
+  }
+  saveSelections();
+}
+
+function pickEkTplan(el) {
+  const panel = el.closest('.q2-panel-e');
+  panel.querySelectorAll('.tplan-card').forEach(c => {
+    c.classList.remove('active');
+    c.querySelector('.tplan-inputs').style.display = 'none';
+  });
+  el.classList.add('active');
+  el.querySelector('.tplan-inputs').style.display = 'flex';
   saveSelections();
 }
 
@@ -3671,15 +3868,29 @@ async function _getBestLocation(updateStatus) {
   }
 }
 
-// En yakın Türkiye ilini bul (GPS koordinatına göre)
+// Türkiye 81 il merkezi koordinatları
 const _CITY_COORDS = {
-  'Adana':[37.00,35.32],'Ankara':[39.92,32.85],'Antalya':[36.88,30.70],'Aydın':[37.84,27.85],
-  'Balıkesir':[39.65,27.88],'Bursa':[40.19,29.06],'Denizli':[37.77,29.09],'Diyarbakır':[37.91,40.24],
-  'Eskişehir':[39.77,30.52],'Gaziantep':[37.06,37.38],'Hatay':[36.40,36.35],'İstanbul':[41.01,28.98],
-  'İzmir':[38.42,27.13],'Kayseri':[38.73,35.49],'Kocaeli':[40.77,29.92],'Konya':[37.87,32.48],
-  'Malatya':[38.35,38.31],'Manisa':[38.61,27.43],'Mersin':[36.80,34.63],'Muğla':[37.22,28.36],
-  'Sakarya':[40.67,30.40],'Samsun':[41.29,36.33],'Şanlıurfa':[37.16,38.79],'Tekirdağ':[41.00,27.52],
-  'Trabzon':[41.00,39.72]
+  'Adana':[37.00,35.32],'Adıyaman':[37.76,38.28],'Afyonkarahisar':[38.74,30.54],'Ağrı':[39.72,43.05],
+  'Aksaray':[38.37,34.03],'Amasya':[40.65,35.83],'Ankara':[39.92,32.85],'Antalya':[36.88,30.70],
+  'Ardahan':[41.11,42.70],'Artvin':[41.18,41.82],'Aydın':[37.84,27.85],'Balıkesir':[39.65,27.88],
+  'Bartın':[41.64,32.34],'Batman':[37.88,41.13],'Bayburt':[40.26,40.22],'Bilecik':[40.05,30.00],
+  'Bingöl':[38.88,40.50],'Bitlis':[38.40,42.12],'Bolu':[40.73,31.61],'Burdur':[37.72,30.29],
+  'Bursa':[40.19,29.06],'Çanakkale':[40.15,26.41],'Çankırı':[40.60,33.62],'Çorum':[40.55,34.95],
+  'Denizli':[37.77,29.09],'Diyarbakır':[37.91,40.24],'Düzce':[40.84,31.16],'Edirne':[41.68,26.56],
+  'Elazığ':[38.67,39.22],'Erzincan':[39.75,39.49],'Erzurum':[39.90,41.27],'Eskişehir':[39.77,30.52],
+  'Gaziantep':[37.06,37.38],'Giresun':[40.91,38.39],'Gümüşhane':[40.46,39.48],'Hakkari':[37.58,43.74],
+  'Hatay':[36.40,36.35],'Iğdır':[39.92,44.05],'Isparta':[37.76,30.55],'İstanbul':[41.01,28.98],
+  'İzmir':[38.42,27.13],'Kahramanmaraş':[37.58,36.94],'Karabük':[41.20,32.63],'Karaman':[37.18,33.23],
+  'Kars':[40.60,43.09],'Kastamonu':[41.39,33.78],'Kayseri':[38.73,35.49],'Kilis':[36.72,37.12],
+  'Kırıkkale':[39.85,33.51],'Kırklareli':[41.73,27.23],'Kırşehir':[39.15,34.17],'Kocaeli':[40.77,29.92],
+  'Konya':[37.87,32.48],'Kütahya':[39.42,29.98],'Malatya':[38.35,38.31],'Manisa':[38.61,27.43],
+  'Mardin':[37.31,40.73],'Mersin':[36.80,34.63],'Muğla':[37.22,28.36],'Muş':[38.95,41.50],
+  'Nevşehir':[38.63,34.72],'Niğde':[37.97,34.68],'Ordu':[40.98,37.88],'Osmaniye':[37.07,36.25],
+  'Rize':[41.02,40.52],'Sakarya':[40.67,30.40],'Samsun':[41.29,36.33],'Şanlıurfa':[37.16,38.79],
+  'Siirt':[37.93,41.94],'Sinop':[42.03,35.15],'Sivas':[39.75,37.01],'Şırnak':[37.52,42.46],
+  'Tekirdağ':[41.00,27.52],'Tokat':[40.31,36.55],'Trabzon':[41.00,39.72],'Tunceli':[39.11,39.55],
+  'Uşak':[38.68,29.41],'Van':[38.49,43.38],'Yalova':[40.65,29.27],'Yozgat':[39.77,34.80],
+  'Zonguldak':[41.45,31.80]
 };
 
 function _findNearestCity(lat, lon) {
@@ -3705,7 +3916,7 @@ async function fetchNearbyManufacturers() {
 
   // 1. Önce TezgahBul veritabanından ara (manufacturers.json)
   try {
-    const db = await fetch('./manufacturers.json').then(r => r.json());
+    const db = await fetch('./data/manufacturers.json').then(r => r.json());
     const nearby = (db.manufacturers || [])
       .map(m => ({ ...m, _dist: _dist(lat, lon, m.lat, m.lon) }))
       .filter(m => m._dist < 120)
@@ -3857,23 +4068,22 @@ function loadSelections() {
 
 loadSelections();
 
-// ===== ŞEHİR (LOGO) =====
-function toggleLogoCity() {
-  document.getElementById('logoCityDD').classList.toggle('open');
-}
-
-function pickLogoCity(el, name) {
-  document.getElementById('citySub').textContent = name;
-  document.getElementById('logoCityDD').classList.remove('open');
-  document.querySelectorAll('.lc-opt').forEach(o => o.classList.remove('active'));
-  el.classList.add('active');
-}
-
-document.addEventListener('click', e => {
-  if (!e.target.closest('.city-trigger')) {
-    document.getElementById('logoCityDD').classList.remove('open');
+// ===== ŞEHİR (LOGO — otomatik konum tespiti) =====
+(async function autoDetectCity() {
+  const sub = document.getElementById('citySub');
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    const data = await res.json();
+    if (data.latitude && data.longitude) {
+      sub.textContent = _findNearestCity(data.latitude, data.longitude);
+    }
+  } catch(e) {}
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      sub.textContent = _findNearestCity(pos.coords.latitude, pos.coords.longitude);
+    }, () => {}, { timeout: 5000, maximumAge: 300000 });
   }
-});
+})();
 
 // ===== MÜŞTERİ FORMU & TEKLİF PDF =====
 
@@ -4081,40 +4291,72 @@ function previewServisPhoto(input) {
 }
 
 const SERVIS_LABELS = {
-  cizdirma: 'Çizik Giderme',
-  cilalama: 'Cilalama',
   kirik: 'Kırık / Çatlak Tamiri',
-  leke: 'Leke Çıkarma',
   kenar: 'Kenar Tamiri',
-  diger: 'Diğer Servis'
+  izolasyon: 'Evye İzolasyon Problemi'
 };
 
-function sendServisWhatsApp() {
-  const name = document.getElementById('svName').value.trim();
-  const phone = document.getElementById('svPhone').value.trim();
+async function showServisMfrs() {
   const city = document.getElementById('svCity').value.trim();
-  const desc = document.getElementById('svDesc')?.value.trim() || '';
   const errEl = document.getElementById('svError');
-  const errors = [];
-  if (!name || name.length < 3) errors.push('Ad Soyad');
-  if (!phone || !/^0?5\d{9}$/.test(phone.replace(/\s+/g,''))) errors.push('Geçerli telefon');
-  if (!city || !_ILLER.includes(city)) errors.push('İl');
-  if (!_selectedServis) errors.push('Servis türü');
-  if (errors.length) {
-    errEl.textContent = 'Lütfen doldurun: ' + errors.join(', ');
+  if (!city || !_ILLER.includes(city)) {
+    errEl.textContent = 'Lütfen bir il seçin.';
+    errEl.style.display = 'block';
+    return;
+  }
+  if (!_selectedServis) {
+    errEl.textContent = 'Lütfen servis türü seçin.';
     errEl.style.display = 'block';
     return;
   }
   errEl.style.display = 'none';
 
-  let msg = `Merhaba, TezgahBul üzerinden *servis talebi* oluşturmak istiyorum.\n\n`;
-  msg += `*Servis Türü:* ${SERVIS_LABELS[_selectedServis] || _selectedServis}\n`;
-  msg += `*Ad Soyad:* ${name}\n`;
-  msg += `*Telefon:* ${phone}\n`;
-  msg += `*İl:* ${city}\n`;
-  if (desc) msg += `\n*Sorun Açıklaması:* ${desc}\n`;
+  const resultsDiv = document.getElementById('servisMfrResults');
+  resultsDiv.style.display = 'block';
+  resultsDiv.innerHTML = '<div style="text-align:center;color:#6b7280;padding:20px;">Yakındaki imalatçılar aranıyor...</div>';
 
-  window.open(`https://wa.me/905052032326?text=${encodeURIComponent(msg)}`, '_blank');
+  try {
+    const res = await fetch('./data/manufacturers.json');
+    const json = await res.json();
+    const mfrs = (json.manufacturers || []).filter(m => _trLower(m.sehir) === _trLower(city));
+
+    if (!mfrs.length) {
+      resultsDiv.innerHTML = `<div style="text-align:center;padding:24px;color:#6b7280;">
+        <div style="font-size:1.5rem;margin-bottom:8px;">📍</div>
+        <strong>${city}</strong> ilinde kayıtlı imalatçı bulunamadı.<br>
+        <a href="https://wa.me/905052032326?text=${encodeURIComponent('Merhaba, ' + city + ' ilinde servis talebi için imalatçı arıyorum.')}" target="_blank" style="color:var(--orange);font-weight:600;text-decoration:none;margin-top:8px;display:inline-block;">Bize WhatsApp ile ulaşın →</a>
+      </div>`;
+      return;
+    }
+
+    const servisLabel = SERVIS_LABELS[_selectedServis] || _selectedServis;
+    resultsDiv.innerHTML = `
+      <div style="font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;">
+        ${city} — ${servisLabel}
+      </div>
+      <div style="font-size:0.95rem;font-weight:600;color:var(--teal);margin-bottom:16px;">
+        Yakındaki İmalatçılar (${mfrs.length})
+      </div>
+      <div style="display:grid;gap:12px;">
+        ${mfrs.map(m => {
+          const phone = m.tel ? m.tel.replace(/\\s/g, '') : '';
+          const mapsUrl = m.maps || 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(m.ad + ' ' + m.sehir);
+          return `<div style="background:white;border:1px solid rgba(0,91,108,0.1);border-radius:12px;padding:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+            <div>
+              <div style="font-weight:700;color:var(--teal);font-size:0.95rem;">${m.ad}</div>
+              <div style="font-size:0.78rem;color:#9ca3af;">📍 ${m.ilce || ''}, ${m.sehir}</div>
+              ${m.aciklama ? '<div style="font-size:0.82rem;color:#6b7280;margin-top:4px;">' + m.aciklama + '</div>' : ''}
+            </div>
+            <div style="display:flex;gap:8px;flex-shrink:0;">
+              ${phone ? '<a href="tel:' + phone + '" style="padding:8px 14px;border-radius:8px;background:var(--teal);color:white;font-size:0.78rem;font-weight:600;text-decoration:none;">📞 Ara</a>' : ''}
+              <a href="${mapsUrl}" target="_blank" style="padding:8px 14px;border-radius:8px;background:white;color:var(--teal);border:1.5px solid rgba(0,91,108,0.2);font-size:0.78rem;font-weight:600;text-decoration:none;">🗺️ Harita</a>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>`;
+  } catch (e) {
+    resultsDiv.innerHTML = '<div style="text-align:center;color:#c0392b;padding:20px;">İmalatçı verileri yüklenemedi.</div>';
+  }
 }
 
 // ===== İMALATÇI DİZİNİ =====
@@ -4122,7 +4364,7 @@ let _mfrData = [];
 
 async function loadMfrDirectory() {
   try {
-    const res = await fetch('./manufacturers.json');
+    const res = await fetch('./data/manufacturers.json');
     const json = await res.json();
     _mfrData = json.manufacturers || [];
     _buildMfrFilters();
@@ -4286,25 +4528,9 @@ document.querySelectorAll('.ba-slider').forEach(slider => {
 });
 
 // ===== FİYAT TAHMİNİ =====
+// Fiyatlar sonra girilecek — şimdilik boş
 const PRICE_DATA = {
-  // Porselen (₺/m²) — min, max (işçilik dahil)
-  'Dekton':       [8500, 18000],
-  'Neolith':      [7500, 16000],
-  'Laminam':      [5500, 12000],
-  'Infinity':     [5000, 10000],
-  'Kale T-One':   [4000, 8500],
-  'Ng Kütahya':   [3500, 7000],
-  'Anatolia':     [3500, 7000],
-  'Lamar':        [3500, 7000],
-  'Sapienstone':  [6000, 13000],
-  // Quartz
-  'Belenco':      [4500, 9000],
-  'Çimstone':     [5000, 10000],
-  'Coante':       [4500, 9000],
-  'Calisco':      [4000, 8500],
-  'Silestone':    [8000, 16000],
-  // Granit
-  '_granit':      [3000, 8000]
+  // 'Marka': [min, max] şeklinde ₺/m² değerleri girilecek
 };
 
 function _calcArea() {
@@ -4444,10 +4670,12 @@ function sendWhatsApp() {
   const cfNote  = document.getElementById('cfNote')?.value.trim() || '';
   const p = _collectProductData();
 
+  const mevcutTezgah = document.querySelector('#q2PanelA .q2-chip.active')?.textContent.trim() || '';
   let msg = `Merhaba, TezgahBul uzerinden teklif almak istiyorum.\n\n`;
   msg += `*Ad Soyad:* ${cfName}\n`;
   msg += `*Telefon:* ${cfPhone}\n`;
   msg += `*Il:* ${cfCity}\n`;
+  if (mevcutTezgah) msg += `*Mevcut Tezgah:* ${mevcutTezgah}\n`;
   if (p.brand) msg += `\n*Malzeme:* ${[p.brand, p.modelText, p.finishText].filter(Boolean).join(' - ')}\n`;
   if (p.planLabel) msg += `*Tezgah:* ${p.planLabel}\n`;
   if (p.dims) msg += `*Olculer:* ${p.dims}\n`;
@@ -4466,6 +4694,22 @@ async function generateQuotePDF() {
   const brand = p.brand || '—', modelText = p.modelText || '—', finishText = p.finishText || '—';
   const collText = p.collText, planLabel = p.planLabel || '—', dims = p.dims, kaplamaText = p.kaplamaText;
 
+  // Mevcut tezgah bilgisi
+  const mevcutTezgah = document.querySelector('#q2PanelA .q2-chip.active')?.textContent.trim() || '';
+
+  // Ek tezgah bilgisi
+  const ekTezgahSw = document.getElementById('ekTezgahSwitch')?.checked;
+  let ekTezgahText = '';
+  if (ekTezgahSw) {
+    const ekCard = document.querySelector('#q2PanelEkTezgah .tplan-card.active');
+    if (ekCard) {
+      const ekLabel = ekCard.querySelector('.tplan-label')?.textContent.trim() || '';
+      const ekDims = Array.from(ekCard.querySelectorAll('.tplan-val') || [])
+        .map(v => v.textContent.trim()).filter(Boolean).join('  ');
+      ekTezgahText = ekLabel + (ekDims ? ' — ' + ekDims : '');
+    }
+  }
+
   const cfName    = document.getElementById('cfName').value.trim();
   const cfPhone   = document.getElementById('cfPhone').value.trim();
   const cfCity    = document.getElementById('cfCity').value.trim();
@@ -4476,61 +4720,59 @@ async function generateQuotePDF() {
   const quoteNo  = getNextQuoteNo();
   const slabPath = getSlabImagePath();
   const slabDataURL = slabPath ? await slabToDataURL(slabPath) : null;
-  const kitchenPhotoURL = document.getElementById('cfPhotoPreview')?.dataset?.src || null;
 
-  // — Print HTML —
+  // — PDF oluştur (hidden div → html2canvas → jsPDF) —
   const row = (lbl, val) => val
-    ? `<tr><td style="color:#666;font-weight:600;padding:5px 18px 5px 0;width:120px;vertical-align:top;white-space:nowrap">${lbl}</td><td style="color:#1e1a17;padding:5px 0;vertical-align:top">${val}</td></tr>`
+    ? `<tr><td style="color:#666;font-weight:600;padding:4px 14px 4px 0;width:110px;vertical-align:top;white-space:nowrap;font-size:11px">${lbl}</td><td style="color:#1e1a17;padding:4px 0;vertical-align:top;font-size:11px">${val}</td></tr>`
     : '';
 
   const sec = (title, content) =>
-    `<div style="margin-bottom:26px">
-       <div style="font-size:8px;font-weight:700;color:#002a32;letter-spacing:2px;text-transform:uppercase;padding-bottom:6px;border-bottom:1.5px solid #c9a96e;margin-bottom:13px">${title}</div>
+    `<div style="margin-bottom:16px">
+       <div style="font-size:7px;font-weight:700;color:#002a32;letter-spacing:2px;text-transform:uppercase;padding-bottom:4px;border-bottom:1.5px solid #c9a96e;margin-bottom:8px">${title}</div>
        ${content}
      </div>`;
 
   const slabImgHtml = slabDataURL
-    ? `<img src="${slabDataURL}" style="max-width:200px;max-height:144px;border-radius:4px;border:1px solid #ddd;display:block;flex-shrink:0">`
-    : `<div style="width:200px;height:144px;background:#f0ebe4;border-radius:4px;flex-shrink:0"></div>`;
-
-  const kitchenHtml = kitchenPhotoURL
-    ? sec('Mevcut Mutfak', `<img src="${kitchenPhotoURL}" style="max-width:280px;max-height:200px;border-radius:4px;border:1px solid #ddd;display:block">`)
+    ? `<img src="${slabDataURL}" style="max-width:140px;max-height:100px;border-radius:3px;border:1px solid #ddd;display:block;flex-shrink:0">`
     : '';
 
-  const printHTML = `<!DOCTYPE html><html lang="tr"><head><meta charset="UTF-8">
-<title>TezgahBul Teklif ${quoteNo}</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1e1a17;background:#fff}
-@page{size:A4;margin:0}
-@media print{body{print-color-adjust:exact;-webkit-print-color-adjust:exact}
-.footer{position:fixed;bottom:0;left:0;right:0}}
-</style></head><body>
-<div style="width:210mm;min-height:297mm;padding-bottom:48px">
-  <div style="background:#002a32;padding:22px 40px;display:flex;justify-content:space-between;align-items:flex-start">
-    <div><div style="color:#fff;font-size:26px;font-weight:700">TezgahBul</div>
-    <div style="color:#90c8c8;font-size:11px;margin-top:4px">Mutfak Tezgahı Uzmanı</div></div>
-    <div style="text-align:right"><div style="color:#e0f0f0;font-size:12px;font-weight:600">${dateStr}</div>
-    <div style="color:#90c8c8;font-size:10px;margin-top:3px">Teklif Formu</div></div>
+  const pdfDiv = document.createElement('div');
+  pdfDiv.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#1e1a17;';
+  pdfDiv.innerHTML = `
+  <div style="background:#002a32;padding:16px 32px;display:flex;justify-content:space-between;align-items:flex-start">
+    <div><div style="color:#fff;font-size:22px;font-weight:700">TezgahBul</div>
+    <div style="color:#90c8c8;font-size:9px;margin-top:3px">Mutfak Tezgahı Uzmanı</div></div>
+    <div style="text-align:right"><div style="color:#e0f0f0;font-size:11px;font-weight:600">${dateStr}</div>
+    <div style="color:#90c8c8;font-size:9px;margin-top:2px">Teklif No: ${quoteNo}</div></div>
   </div>
-  <div style="padding:30px 40px">
-    ${sec('Ürün Bilgileri', `<div style="display:flex;gap:22px;align-items:flex-start">${slabImgHtml}
+  <div style="padding:20px 32px 12px">
+    ${sec('Ürün Bilgileri', `<div style="display:flex;gap:16px;align-items:flex-start">${slabImgHtml}
       <table style="border-collapse:collapse">${row('Marka',brand)}${row('Model',modelText)}${row('Yüzey',finishText)}${collText?row('Koleksiyon',collText):''}</table></div>`)}
-    ${sec('Tezgah Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Tip',planLabel)}${row('Ölçüler',dims||'—')}${kaplamaText?row('Kaplama',kaplamaText):''}</table>`)}
+    ${sec('Tezgah Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Tip',planLabel)}${row('Ölçüler',dims||'—')}${mevcutTezgah?row('Mevcut Tezgah',mevcutTezgah):''}${ekTezgahText?row('Ek Tezgah',ekTezgahText):''}${kaplamaText?row('Kaplama',kaplamaText):''}</table>`)}
     ${sec('Müşteri Bilgileri', `<table style="border-collapse:collapse;width:100%">${row('Ad Soyad',cfName)}${row('Telefon',cfPhone)}${cfCity?row('İl',cfCity):''}${cfNote?row('Not',cfNote):''}</table>`)}
-    ${kitchenHtml}
   </div>
-</div>
-<div class="footer" style="background:#f5f0eb;padding:10px 40px;display:flex;justify-content:space-between;border-top:1px solid #e8e0d8">
-  <span style="font-size:10px;color:#002a32;font-weight:600">TezgahBul — tezgahbul.com</span>
-  <span style="font-size:10px;color:#888">Teklif No: ${quoteNo}</span>
-</div>
-<script>window.addEventListener('load',()=>window.print());window.addEventListener('afterprint',()=>window.close());<\/script>
-</body></html>`;
+  <div style="background:#f5f0eb;padding:8px 32px;display:flex;justify-content:space-between;border-top:1px solid #e8e0d8;position:absolute;bottom:0;left:0;right:0">
+    <span style="font-size:9px;color:#002a32;font-weight:600">TezgahBul — tezgahbul.com</span>
+    <span style="font-size:9px;color:#888">${quoteNo}</span>
+  </div>`;
 
-  const win = window.open('', '_blank', 'width=900,height=1100');
-  if (!win) { alert('Popup engelleyici aktif — lütfen izin verin.'); return; }
-  win.document.write(printHTML);
-  win.document.close();
+  // A4 boyutu: 794 x 1123 px (96 dpi)
+  pdfDiv.style.height = '1123px';
+  document.body.appendChild(pdfDiv);
+
+  try {
+    const canvas = await html2canvas(pdfDiv, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+    const imgData = canvas.toDataURL('image/jpeg', 0.92);
+    pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297);
+    pdf.save(`TezgahBul-Teklif-${quoteNo.replace('#','')}.pdf`);
+  } catch(e) {
+    console.error('PDF oluşturma hatası:', e);
+    alert('PDF oluşturulamadı. Lütfen tekrar deneyin.');
+  } finally {
+    document.body.removeChild(pdfDiv);
+  }
 }
 </script>
 
