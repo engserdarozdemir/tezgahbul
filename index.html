@@ -39,7 +39,7 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0; left: 0; right: 0;
   z-index: 100;
   height: 68px;
@@ -141,7 +141,6 @@ body {
   height: 20vh;
   min-height: 100px;
   overflow: hidden;
-  margin-top: 68px;
   user-select: none;
   -webkit-user-select: none;
 }
@@ -153,10 +152,10 @@ body {
   will-change: transform;
 }
 
-.slide:nth-child(1) .slide-bg { background-image: url('Goruntu/GranitBanner.png'); background-size: cover; background-position: center; }
-.slide:nth-child(2) .slide-bg { background-image: url('Goruntu/Quartz.png'); background-size: cover; background-position: center; }
-.slide:nth-child(3) .slide-bg { background-image: url('Goruntu/Porselen.png'); background-size: cover; background-position: center; }
-.slide:nth-child(4) .slide-bg { background-image: url('Goruntu/AdaT.png'); background-size: cover; background-position: center; }
+.slide:nth-child(1) .slide-bg { background-image: url('Goruntu/GranitBanner.jpg'); background-size: cover; background-position: center; }
+.slide:nth-child(2) .slide-bg { background-image: url('Goruntu/Quartz.jpg'); background-size: cover; background-position: center; }
+.slide:nth-child(3) .slide-bg { background-image: url('Goruntu/Porselen.jpg'); background-size: cover; background-position: center; }
+.slide:nth-child(4) .slide-bg { background: linear-gradient(135deg, #002A32 0%, #005b6c 50%, #007a8f 100%); }
 
 .slide-bg {
   position: absolute;
@@ -2071,7 +2070,7 @@ body {
   <ul class="nav-links">
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
-    <li><a href="backsplash.html">Mutfak Tasarla</a></li>
+    <li><a href="tasarla.html">Mutfak Tasarla</a></li>
     <li><a href="hakkimizda.html">Hakkımızda</a></li>
     <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
   </ul>
@@ -2133,7 +2132,7 @@ body {
     <div class="design-cta-eyebrow">3D Mutfak Tasarımcısı</div>
     <h2>Kendi Mutfağını Tasarla ve Fiyat Al</h2>
     <p>Tezgah malzemeni, dolap stilini ve rengini seç. 3D olarak mutfağını canlandır, anında fiyat teklifi al.</p>
-    <a href="backsplash.html" class="design-cta-btn">
+    <a href="tasarla.html" class="design-cta-btn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       Mutfağımı Tasarla
     </a>
@@ -2154,74 +2153,6 @@ body {
   </div>
 </section>
 
-<!-- ===== MALZEME KARŞILAŞTIRMA ===== -->
-<section class="compare-section" id="karsilastirma">
-  <div class="compare-header">
-    <div class="compare-eyebrow">Malzeme Rehberi</div>
-    <div class="compare-title">Hangi tezgah malzemesi size uygun?</div>
-    <div class="compare-sub">Her malzemenin kendine özgü avantajları var. İhtiyacınıza en uygun seçimi yapmanıza yardımcı olalım.</div>
-  </div>
-  <div class="compare-grid">
-
-    <!-- GRANIT -->
-    <div class="compare-card">
-      <div class="compare-card-head">
-        <h3>Granit</h3>
-        <div class="cc-type">Doğal Taş</div>
-      </div>
-      <div class="compare-card-body">
-        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★☆☆</span></div>
-        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★☆☆☆</span></div>
-        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge green">Teklif alın</span></span></div>
-        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20 mm</span></div>
-        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Yoğun mutfaklar</span></div>
-      </div>
-      <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Granit Tezgah Seç →</a>
-    </div>
-
-    <!-- QUARTZ -->
-    <div class="compare-card">
-      <div class="compare-card-head" style="background:linear-gradient(135deg,#1a3a5c 0%,#2a5a8c 100%)">
-        <h3>Quartz</h3>
-        <div class="cc-type">Mühendislik Taşı</div>
-      </div>
-      <div class="compare-card-body">
-        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★☆</span></div>
-        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★☆☆</span></div>
-        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★☆</span></div>
-        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge blue">Teklif alın</span></span></div>
-        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20 mm</span></div>
-        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Modern mutfaklar</span></div>
-      </div>
-      <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Quartz Tezgah Seç →</a>
-    </div>
-
-    <!-- PORSELEN -->
-    <div class="compare-card">
-      <div class="compare-card-head" style="background:linear-gradient(135deg,#3a2a1a 0%,#6a4a2a 100%)">
-        <h3>Porselen</h3>
-        <div class="cc-type">Büyük Format Porselen</div>
-      </div>
-      <div class="compare-card-body">
-        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
-        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★☆</span></div>
-        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge amber">Teklif alın</span></span></div>
-        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">12 mm</span></div>
-        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Premium mutfaklar</span></div>
-      </div>
-      <a class="compare-card-cta" onclick="document.getElementById('sorular').scrollIntoView({behavior:'smooth'})">Porselen Tezgah Seç →</a>
-    </div>
-
-  </div>
-</section>
 
 <!-- ===== ÖNCE / SONRA GALERİ ===== -->
 <section class="gallery-section" id="galeri" style="display:none">
@@ -2502,6 +2433,31 @@ body {
           <div class="q2-chip-group">
             <button class="q2-chip" onclick="pickChip(this)">Evet</button>
             <button class="q2-chip" onclick="pickChip(this)">Hayır</button>
+          </div>
+        </div>
+
+        <!-- Panel CTA: 3D Tasarım Daveti (Evet seçilince görünür) -->
+        <div class="q2-panel q2-panel-locked" id="q2PanelCTA" data-panel="CTA" style="border-left:3px solid var(--orange);background:linear-gradient(135deg,#fff8f4,#fff)">
+          <div class="q2-panel-q" style="font-size:1.1rem;font-weight:700;color:var(--teal);margin-bottom:6px">
+            🎨 Mutfağınızı 3D Olarak Tasarlayın
+          </div>
+          <p style="font-size:0.85rem;color:#555;line-height:1.5;margin-bottom:14px">
+            Seçtiğiniz <strong id="ctaMatLabel">porselen</strong> ürünle mutfağınızı 3D ortamda canlandırın.
+            Dolap stilini, rengini ve tezgah ölçülerini belirleyerek gerçekçi bir görüntü elde edin.
+          </p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button id="ctaDesignBtn" style="padding:10px 22px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:0.88rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background 0.2s" onmouseover="this.style.background='#d45a08'" onmouseout="this.style.background='var(--orange)'">
+              ✦ Mutfağımı Tasarla
+            </button>
+            <button id="ctaExpertBtn" onclick="document.getElementById('yakinimdaSection').style.display='block';fetchNearbyManufacturers();this.closest('.q2-panel').querySelector('.cta-expert-msg').style.display='block'" style="padding:10px 22px;background:#fff;color:var(--teal);border:1.5px solid var(--teal);border-radius:8px;font-family:inherit;font-size:0.88rem;font-weight:600;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='var(--teal)';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='var(--teal)'">
+              Uzmana Danış
+            </button>
+          </div>
+          <div class="cta-expert-msg" style="display:none;margin-top:14px;padding:12px 16px;background:#f0f7f8;border-radius:8px;border-left:3px solid var(--teal)">
+            <p style="font-size:0.82rem;color:#444;line-height:1.5;margin:0">
+              <strong style="color:var(--teal)">Profesyonel yardım alın</strong> — Aşağıdaki imalatçılardan biri size en uygun tezgah çözümünü sunabilir.
+              Ücretsiz keşif ve fiyat teklifi için iletişime geçin.
+            </p>
           </div>
         </div>
 
@@ -3513,10 +3469,39 @@ function pickChip(el) {
     document.getElementById('q2PanelC').classList.remove('q2-panel-locked');
   } else if (panelId === 'q2PanelC') {
     const panelD = document.getElementById('q2PanelD');
+    const panelCTA = document.getElementById('q2PanelCTA');
     if (el.textContent.trim() === 'Evet') {
-      panelD.classList.remove('q2-panel-locked');
+      // CTA panelini göster, Panel D'yi kilitle
+      panelCTA.classList.remove('q2-panel-locked');
+      panelD.classList.add('q2-panel-locked');
+
+      // CTA etiketini güncelle
+      const matLabel = document.querySelector('#q2PanelB .q2-chip.active')?.textContent.trim() || 'porselen';
+      const brandEl = document.querySelector('#bBrandChips .q2-chip.active');
+      const brandName = brandEl ? brandEl.textContent.trim() : '';
+      const ctaLabel = document.getElementById('ctaMatLabel');
+      if (ctaLabel) ctaLabel.textContent = brandName ? (brandName + ' ' + matLabel.toLowerCase()) : matLabel.toLowerCase();
+
+      // Seçilen bilgilerle 3D tasarım URL'si oluştur
+      const matType = matLabel;
+      const modelEl = document.querySelector('.dekton-list-item.active');
+      const modelSlug = modelEl ? (modelEl.dataset.model || '') : '';
+      const brandMap = { 'Dekton':'dekton', 'Neolith':'neolith', 'Infinity':'infinity', 'Silestone':'silestone' };
+      const matMap = { 'Porselen':'porselen', 'Quartz':'quartz', 'Granit':'granit' };
+
+      const params = new URLSearchParams();
+      if (matType) params.set('mat', matMap[matType] || matType.toLowerCase());
+      if (brandName && brandMap[brandName]) params.set('brand', brandMap[brandName]);
+      if (modelSlug) params.set('model', modelSlug);
+      const designUrl = '/tasarla.html' + (params.toString() ? '?' + params.toString() : '');
+
+      // Tasarla butonuna tıklama olayı
+      document.getElementById('ctaDesignBtn').onclick = () => { window.location.href = designUrl; };
+
       document.getElementById('yakinimdaSection').style.display = 'none';
     } else {
+      // Hayır: CTA gizle, Panel D kilitle, imalatçıları göster
+      panelCTA.classList.add('q2-panel-locked');
       panelD.classList.add('q2-panel-locked');
       panelD.querySelectorAll('.tplan-card').forEach(c => {
         c.classList.remove('active');
@@ -3531,7 +3516,7 @@ function pickChip(el) {
       const kaplSw = document.getElementById('kaplamaSwitch');
       if (kaplSw && kaplSw.checked) { kaplSw.checked = false; toggleKaplama(kaplSw); }
       document.getElementById('kaplamaToggleRow').style.display = 'none';
-      // Yakınımdaki imalatçılar bölümünü göster
+      // Yakınımdaki imalatçılar bölümünü göster + uzman yardımı mesajı
       document.getElementById('yakinimdaSection').style.display = 'block';
       fetchNearbyManufacturers();
     }

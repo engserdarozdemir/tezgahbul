@@ -59,6 +59,30 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
 }
 .blog-detail-close:hover { background: #004854; }
 
+/* ===== MALZEME KARŞILAŞTIRMA ===== */
+.compare-section { padding: 60px 24px 48px; background: #f0f7f8; }
+.compare-header { text-align: center; margin-bottom: 40px; }
+.compare-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+.compare-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; color: var(--teal); margin-bottom: 10px; }
+.compare-sub { font-size: 0.9rem; color: #6b7280; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+.compare-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+.compare-card { background: #fff; border-radius: 14px; border: 1.5px solid #e0e0e0; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.compare-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,42,50,0.1); }
+.compare-card-head { padding: 24px 22px 16px; background: linear-gradient(135deg, var(--teal) 0%, #005b6c 100%); color: #fff; }
+.compare-card-head h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
+.compare-card-head .cc-type { font-size: 0.72rem; opacity: 0.7; letter-spacing: 0.5px; }
+.compare-card-body { padding: 20px 22px 24px; }
+.compare-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.8rem; }
+.compare-row:last-child { border-bottom: none; }
+.compare-row .cr-label { color: #6b7280; font-weight: 500; }
+.compare-row .cr-value { font-weight: 600; color: #1a1a1a; }
+.cr-stars { color: var(--orange); letter-spacing: 1px; }
+.cr-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+.cr-badge.green { background: #e6f9ee; color: #1a8a4a; }
+.cr-badge.blue { background: #e6f0fa; color: #1a5a8a; }
+.cr-badge.amber { background: #fef3e0; color: #8a6a1a; }
+@media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; max-width: 400px; } }
+
 /* Footer */
 .site-footer {
   background: var(--teal); color: rgba(255,255,255,0.7);
@@ -80,7 +104,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
   <ul class="nav-links">
     <li><a href="rehber.html" class="active">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
-    <li><a href="backsplash.html">Mutfak Tasarla</a></li>
+    <li><a href="tasarla.html">Mutfak Tasarla</a></li>
     <li><a href="hakkimizda.html">Hakkımızda</a></li>
     <li><a href="hakkimizda.html#iletisim">İletişim</a></li>
   </ul>
@@ -91,6 +115,68 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
   <h1 class="page-title">Tezgah seçiminde bilmeniz gerekenler</h1>
   <p class="page-sub">Doğru malzemeyi seçmenize yardımcı olacak uzman içeriklerimizi keşfedin.</p>
 </div>
+
+<!-- ===== MALZEME KARŞILAŞTIRMA ===== -->
+<section class="compare-section">
+  <div class="compare-header">
+    <div class="compare-eyebrow">Malzeme Rehberi</div>
+    <div class="compare-title">Hangi tezgah malzemesi size uygun?</div>
+    <div class="compare-sub">Her malzemenin kendine özgü avantajları var. İhtiyacınıza en uygun seçimi yapmanıza yardımcı olalım.</div>
+  </div>
+  <div class="compare-grid">
+    <!-- GRANIT -->
+    <div class="compare-card">
+      <div class="compare-card-head">
+        <h3>Granit</h3>
+        <div class="cc-type">Doğal Taş</div>
+      </div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★☆☆</span></div>
+        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★☆☆☆</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge green">Teklif alın</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20 mm</span></div>
+        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Yoğun mutfaklar</span></div>
+      </div>
+    </div>
+    <!-- QUARTZ -->
+    <div class="compare-card">
+      <div class="compare-card-head" style="background:linear-gradient(135deg,#1a3a5c 0%,#2a5a8c 100%)">
+        <h3>Quartz</h3>
+        <div class="cc-type">Mühendislik Taşı</div>
+      </div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★☆</span></div>
+        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★☆☆</span></div>
+        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★☆</span></div>
+        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge blue">Teklif alın</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">20 mm</span></div>
+        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Modern mutfaklar</span></div>
+      </div>
+    </div>
+    <!-- PORSELEN -->
+    <div class="compare-card">
+      <div class="compare-card-head" style="background:linear-gradient(135deg,#3a2a1a 0%,#6a4a2a 100%)">
+        <h3>Porselen</h3>
+        <div class="cc-type">Büyük Format Porselen</div>
+      </div>
+      <div class="compare-card-body">
+        <div class="compare-row"><span class="cr-label">Dayanıklılık</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Isı Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Çizilme Direnci</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Bakım Kolaylığı</span><span class="cr-value cr-stars">★★★★★</span></div>
+        <div class="compare-row"><span class="cr-label">Renk Çeşitliliği</span><span class="cr-value cr-stars">★★★★☆</span></div>
+        <div class="compare-row"><span class="cr-label">Fiyat Aralığı</span><span class="cr-value"><span class="cr-badge amber">Teklif alın</span></span></div>
+        <div class="compare-row"><span class="cr-label">Kalınlık</span><span class="cr-value">12 mm</span></div>
+        <div class="compare-row"><span class="cr-label">İdeal Kullanım</span><span class="cr-value">Premium mutfaklar</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="blog-container">
 
