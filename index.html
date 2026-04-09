@@ -1,9 +1,21 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TezgahBul — Mutfak Tezgahı Uzmanı</title>
+<meta name="description" content="TezgahBul ile mutfak tezgahı karşılaştır, 3D tasarla ve en uygun fiyat teklifi al. Porselen, quartz ve granit tezgah seçenekleri.">
+<meta name="keywords" content="mutfak tezgahı, quartz tezgah, porselen tezgah, granit tezgah, tezgah fiyatları, mutfak tezgahı karşılaştırma, dekton, neolith, silestone">
+<link rel="canonical" href="https://tezgahbul.com/">
+<meta property="og:title" content="TezgahBul — Mutfak Tezgahı Uzmanı">
+<meta property="og:description" content="Mutfak tezgahı karşılaştır, 3D tasarla ve en uygun fiyat teklifi al.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tezgahbul.com/">
+<meta property="og:image" content="https://tezgahbul.com/Goruntu/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
@@ -134,6 +146,18 @@ body {
 }
 
 .nav-links a:hover { color: var(--white); }
+
+/* Hamburger toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
 
 /* ===== HERO ===== */
 .hero {
@@ -1827,7 +1851,21 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--teal);
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 0.85rem; }
   .opt-grid { grid-template-columns: 1fr; }
   .sec-header { flex-direction: column; align-items: flex-start; }
   .sec-sub { text-align: left; max-width: 100%; }
@@ -2057,6 +2095,30 @@ body {
   color: var(--text-muted);
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TezgahBul",
+  "url": "https://tezgahbul.com",
+  "description": "Mutfak tezgahı karşılaştırma ve fiyat teklifi platformu",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://tezgahbul.com/tasarla.html?model={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TezgahBul",
+  "url": "https://tezgahbul.com",
+  "logo": "https://tezgahbul.com/Goruntu/logo.png",
+  "sameAs": []
+}
+</script>
 </head>
 <body>
 
@@ -2067,6 +2129,7 @@ body {
     <sub id="citySub">Ankara</sub>
   </a>
 
+  <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
   <ul class="nav-links">
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
@@ -2155,11 +2218,11 @@ body {
 
 
 <!-- ===== ÖNCE / SONRA GALERİ ===== -->
-<section class="gallery-section" id="galeri" style="display:none">
+<section class="gallery-section" id="galeri">
   <div class="gallery-header">
-    <div class="gallery-eyebrow">Proje Vitrini</div>
+    <div class="gallery-eyebrow">Önce / Sonra Galerisi</div>
     <div class="gallery-title">Gerçek dönüşümler, gerçek mutfaklar</div>
-    <div class="gallery-sub">Müşterilerimizin mutfaklarında yaptığımız tezgah dönüşümlerini inceleyin.</div>
+    <div class="gallery-sub">Müşterilerimizin mutfaklarında yaptığımız tezgah dönüşümlerini inceleyin. Kaydırma çubuğunu sürükleyerek önce ve sonra halini karşılaştırın.</div>
   </div>
   <div class="gallery-grid">
 

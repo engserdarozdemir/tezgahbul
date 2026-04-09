@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mutfak Tasarla | TezgahBul</title>
+<meta name="description" content="3D mutfak tasarımcısı ile tezgahınızı online tasarlayın. Porselen, quartz ve granit malzemeler arasından seçim yapın.">
+<meta name="keywords" content="mutfak tasarla, 3D mutfak tasarımcısı, tezgah tasarla, mutfak tezgahı online tasarım">
+<link rel="canonical" href="https://tezgahbul.com/tasarla.html">
+<meta property="og:title" content="Mutfak Tasarla | TezgahBul">
+<meta property="og:description" content="3D mutfak tasarımcısı ile tezgahınızı online tasarlayın.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tezgahbul.com/tasarla.html">
 <link rel="stylesheet" href="navbar.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js" defer></script>
 <script type="importmap">
 { "imports": {
     "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
@@ -98,7 +110,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .check-row label{font-size:0.8rem;color:#555;font-weight:500;cursor:pointer}
 
 /* Tezgah tipi cards */
-.tplan-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px}
+.tplan-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
 .tplan-pick{padding:8px 4px;border:1.5px solid #e0e0e0;border-radius:8px;background:#fff;cursor:pointer;text-align:center;transition:all 0.15s}
 .tplan-pick:hover{border-color:#aaa}
 .tplan-pick.active{border-color:var(--orange);background:#fff8f4}
@@ -210,6 +222,49 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 .vc-bottom{transform:rotateX(-90deg) translateZ(28px)}
 .vc-axes{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);font-size:0.5rem;color:rgba(255,255,255,0.5);white-space:nowrap}
 
+/* Lighting presets */
+.light-presets{display:flex;gap:5px;margin-top:6px}
+.light-btn{flex:1;padding:6px 4px;border:1.5px solid #e0e0e0;border-radius:6px;background:#fff;cursor:pointer;text-align:center;font-family:inherit;font-size:0.68rem;font-weight:600;color:#555;transition:all 0.12s}
+.light-btn:hover{border-color:#aaa}
+.light-btn.active{border-color:var(--orange);background:#fff8f4;color:var(--orange)}
+.light-btn .light-icon{font-size:1rem;display:block;margin-bottom:2px}
+
+/* Customer form */
+.cust-form{margin-top:12px}
+.cust-form .form-group{margin-bottom:10px}
+.cust-form label{display:block;font-size:0.72rem;font-weight:600;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
+.cust-form input,.cust-form select,.cust-form textarea{width:100%;padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:7px;font-family:inherit;font-size:0.8rem;outline:none;transition:border-color 0.15s}
+.cust-form input:focus,.cust-form select:focus,.cust-form textarea:focus{border-color:var(--orange)}
+.cust-form textarea{resize:vertical;min-height:60px}
+.cust-form .form-row{display:flex;gap:8px}
+.cust-form .form-row .form-group{flex:1}
+
+/* Share/PDF buttons */
+.action-btns{display:flex;gap:8px;margin-top:10px}
+.action-btn{flex:1;padding:10px;border:none;border-radius:7px;font-family:inherit;font-size:0.72rem;font-weight:600;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;justify-content:center;gap:6px}
+.action-btn:hover{opacity:0.85;transform:translateY(-1px)}
+.action-btn.pdf-btn{background:var(--teal);color:#fff}
+.action-btn.share-btn{background:#25D366;color:#fff}
+.action-btn.link-btn{background:var(--orange);color:#fff}
+.action-btn.wa-btn{background:#25D366;color:#fff}
+
+/* Manufacturer cards */
+.mfr-cards{margin-top:12px}
+.mfr-card{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #e8e8e8;border-radius:8px;margin-bottom:6px;background:#fafafa}
+.mfr-info{flex:1}
+.mfr-name{font-size:0.78rem;font-weight:700;color:#333}
+.mfr-city{font-size:0.65rem;color:#888;margin-top:1px}
+.mfr-tags{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px}
+.mfr-tag{font-size:0.55rem;padding:1px 5px;border-radius:3px;background:rgba(0,91,108,0.08);color:var(--teal);font-weight:600}
+.mfr-actions{display:flex;gap:4px}
+.mfr-btn{padding:6px 10px;border:none;border-radius:5px;font-family:inherit;font-size:0.65rem;font-weight:600;cursor:pointer;transition:all 0.12s}
+.mfr-btn.call{background:#f0f0f0;color:#333}
+.mfr-btn.whatsapp{background:#25D366;color:#fff}
+
+/* Drag cursor for equipment */
+.scene-wrap.dragging{cursor:grabbing!important}
+.scene-wrap.drag-hover{cursor:grab!important}
+
 @media(max-width:900px){
   .app{flex-direction:column-reverse;height:auto;overflow-y:auto}
   .scene-wrap{height:50vh;min-height:280px}
@@ -223,6 +278,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 
 <nav class="navbar">
   <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
+  <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
   <ul class="nav-links">
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
@@ -329,6 +385,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
           </div>
           <div class="tplan-txt">U</div>
         </div>
+        <!-- Ada -->
+        <div class="tplan-pick" data-plan="ada">
+          <div class="tplan-svg">
+            <svg viewBox="-12 -10 84 72" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" overflow="visible">
+              <rect x="4" y="3" width="52" height="14" rx="1.5" fill="rgba(0,91,108,0.09)"/>
+              <text x="30" y="-3" text-anchor="middle" font-size="10" fill="currentColor" font-family="DM Sans,sans-serif">A</text>
+              <rect x="14" y="34" width="32" height="14" rx="1.5" fill="rgba(232,101,10,0.12)" stroke="var(--orange)" stroke-dasharray="3,2"/>
+              <text x="30" y="62" text-anchor="middle" font-size="10" fill="var(--orange)" font-family="DM Sans,sans-serif">Ada</text>
+            </svg>
+          </div>
+          <div class="tplan-txt">Ada</div>
+        </div>
       </div>
       <!-- Dimension inputs -->
       <div id="dimInputs">
@@ -351,6 +419,19 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
           <label>Derinlik</label>
           <input type="number" id="inD" value="60" min="30" max="90" step="5">
           <span class="unit">cm</span>
+        </div>
+        <div id="dimIsland" style="display:none">
+          <div class="section-title" style="margin-top:8px">Ada Ölçüleri</div>
+          <div class="input-row">
+            <label>Ada Genişlik</label>
+            <input type="number" id="inIslandW" value="120" min="60" max="300" step="5">
+            <span class="unit">cm</span>
+          </div>
+          <div class="input-row">
+            <label>Ada Derinlik</label>
+            <input type="number" id="inIslandD" value="70" min="40" max="120" step="5">
+            <span class="unit">cm</span>
+          </div>
         </div>
       </div>
     </div>
@@ -512,6 +593,16 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
       </div>
     </div>
 
+    <!-- Aydınlatma Modu -->
+    <div class="section">
+      <div class="section-title">Sahne Aydınlatması</div>
+      <div class="light-presets" id="lightPresets">
+        <button class="light-btn active" data-light="day"><span class="light-icon">☀️</span>Gündüz</button>
+        <button class="light-btn" data-light="evening"><span class="light-icon">🌅</span>Akşam</button>
+        <button class="light-btn" data-light="night"><span class="light-icon">🌙</span>Gece</button>
+      </div>
+    </div>
+
     <!-- Zemin Kaplama -->
     <div class="section">
       <div class="section-title">Zemin Kaplama</div>
@@ -527,10 +618,54 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
     <!-- ====== ADIM 5: ÖZET ====== -->
     <div class="step-content" id="step4">
 
-    <div class="section" style="border-bottom:none">
+    <div class="section">
       <div class="section-title">Teklif Özeti</div>
       <div id="liveSummary" style="font-size:0.78rem;color:#555"></div>
-      <button class="summary-btn" id="btnSummary" style="margin-top:14px">Detaylı Teklif Oluştur</button>
+    </div>
+
+    <div class="section">
+      <div class="section-title">İletişim Bilgileri</div>
+      <div class="cust-form" id="custForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ad Soyad *</label>
+            <input type="text" id="cfName" placeholder="Adınız Soyadınız" required>
+          </div>
+          <div class="form-group">
+            <label>Telefon *</label>
+            <input type="tel" id="cfPhone" placeholder="05XX XXX XX XX" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>E-posta</label>
+            <input type="email" id="cfEmail" placeholder="email@adres.com">
+          </div>
+          <div class="form-group">
+            <label>İl</label>
+            <select id="cfCity"><option value="">İl Seçin</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Not</label>
+          <textarea id="cfNote" placeholder="Ek bilgi veya özel istekleriniz..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="action-btns">
+        <button class="action-btn pdf-btn" id="btnPDF">📄 PDF Teklif</button>
+        <button class="action-btn link-btn" id="btnShare">🔗 Linki Kopyala</button>
+      </div>
+      <div class="action-btns" style="margin-top:6px">
+        <button class="summary-btn" id="btnSummary" style="margin:0">Detaylı Teklif Oluştur</button>
+      </div>
+    </div>
+
+    <div class="section" id="mfrSection" style="display:none">
+      <div class="section-title">Yakınızdaki İmalatçılar</div>
+      <div class="mfr-cards" id="mfrCards"></div>
     </div>
 
     <div class="step-nav">
@@ -715,6 +850,14 @@ let showDishw = false, dishwPos = 15;
 let showTall = false, tallSide = 'left';
 let showLed = true;
 let showWindow = false, winPos = 50, winSize = 'small';
+
+// Ada (island) state
+let islandW = 120, islandD = 70;
+
+// Lighting preset
+let lightPreset = 'day';
+
+// (Manufacturer data yüklenmesi aşağıda — müşteri formu bölümünde)
 
 // Zemin seçenekleri
 const FLOOR_TYPES = [
@@ -1240,6 +1383,31 @@ function buildCounterAndBS() {
     bsC.castShadow = true; bsC.receiveShadow = true;
     bsGroup.add(bsC);
   }
+
+  // === ADA (Island) counter ===
+  if (tezgahTipi === 'ada') {
+    const iW = islandW * s, iD = islandD * s;
+    const islandX = startX; // centered with A arm
+    const islandZ = dS / 2 + 0.8; // 80cm in front of main counter
+
+    // Island counter surface
+    const islandMat = new THREE.MeshStandardMaterial({ color:'#fff', roughness: counterMat.roughness, metalness:0.05 });
+    const iTex = createSlabTexForArm(islandW, islandD, true);
+    if (iTex) { islandMat.map = iTex; islandMat.color.set('#fff'); } else { islandMat.color.set('#ccc'); }
+    const islandCtr = new THREE.Mesh(new THREE.BoxGeometry(iW, tH, iD), islandMat);
+    islandCtr.position.set(islandX, cabH + tH / 2, islandZ);
+    islandCtr.castShadow = true; islandCtr.receiveShadow = true;
+    counterGroup.add(islandCtr);
+
+    // Edge profile on island front
+    addEdgeProfileMesh(counterGroup, iW, islandX, islandZ + iD / 2, cabH, tH, 0, islandMat);
+    // Edge profile on island back
+    addEdgeProfileMesh(counterGroup, iW, islandX, islandZ - iD / 2, cabH, tH, Math.PI, islandMat);
+
+    // Island cabinets (both sides)
+    buildCabRow(cabGroup, iW, iD, islandX, islandZ, 0);
+    buildCabRow(cabGroup, iW, iD, islandX, islandZ, Math.PI);
+  }
 }
 
 // === Equipment (Ocak, Evye, Davlumbaz) ===
@@ -1262,6 +1430,7 @@ function buildEquipment() {
     const glassPlane = new THREE.Mesh(new THREE.BoxGeometry(oW, 0.008, oD), glassMat);
     glassPlane.position.set(posX, counterTopY + 0.004, 0.02);
     glassPlane.castShadow = true; glassPlane.receiveShadow = true;
+    glassPlane.userData.equipType = 'ocak';
     equipGroup.add(glassPlane);
 
     // 4 burner rings (2x2 grid)
@@ -1332,7 +1501,9 @@ function buildEquipment() {
     const rimH = 0.006;
     const rim = new THREE.Mesh(new THREE.BoxGeometry(eW, rimH, eD), sinkMat);
     rim.position.set(posX, counterTopY + rimH / 2, 0.02);
-    rim.castShadow = true; equipGroup.add(rim);
+    rim.castShadow = true;
+    rim.userData.equipType = 'evye';
+    equipGroup.add(rim);
 
     // Basin (inner, slightly recessed)
     const basinW = eW - 0.03, basinD = eD - 0.03, basinDepth = 0.04;
@@ -1945,6 +2116,7 @@ document.querySelectorAll('.tplan-pick').forEach(card => {
     tezgahTipi = card.dataset.plan;
     document.getElementById('dimB').style.display = (tezgahTipi === 'l' || tezgahTipi === 'u') ? '' : 'none';
     document.getElementById('dimC').style.display = tezgahTipi === 'u' ? '' : 'none';
+    document.getElementById('dimIsland').style.display = tezgahTipi === 'ada' ? '' : 'none';
     W = Math.max(60, Math.min(600, +document.getElementById('inA').value || 200));
     updateScene();
   });
@@ -2018,6 +2190,58 @@ document.querySelectorAll('[data-winsize]').forEach(btn => {
     updateScene();
   });
 });
+
+// Island dimension events
+document.getElementById('inIslandW').addEventListener('input', e => { islandW = Math.max(60, Math.min(300, +e.target.value || 120)); updateScene(); });
+document.getElementById('inIslandD').addEventListener('input', e => { islandD = Math.max(40, Math.min(120, +e.target.value || 70)); updateScene(); });
+
+// Lighting preset events
+document.querySelectorAll('[data-light]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-light]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    lightPreset = btn.dataset.light;
+    applyLightPreset(lightPreset);
+  });
+});
+
+function applyLightPreset(preset) {
+  if (preset === 'day') {
+    hemiLight.intensity = 0.35; hemiLight.color.set(0xffffff); hemiLight.groundColor.set(0xc8b8a0);
+    sun.intensity = 1.5; sun.color.set(0xfff5e8);
+    fl.intensity = 0.3; rl.intensity = 0.2;
+    scene.environmentIntensity = 0.4;
+    renderer.toneMappingExposure = 0.9;
+    wMat.color.set('#d8d4ce');
+    const bgG2 = bgX.createLinearGradient(0,0,0,512);
+    bgG2.addColorStop(0,'#7a7a7a'); bgG2.addColorStop(0.5,'#999'); bgG2.addColorStop(1,'#6a6a6a');
+    bgX.fillStyle = bgG2; bgX.fillRect(0,0,2,512);
+    scene.background = new THREE.CanvasTexture(bgC);
+  } else if (preset === 'evening') {
+    hemiLight.intensity = 0.2; hemiLight.color.set(0xffd4a0); hemiLight.groundColor.set(0x8a6040);
+    sun.intensity = 0.8; sun.color.set(0xffb070);
+    fl.intensity = 0.15; rl.intensity = 0.1;
+    scene.environmentIntensity = 0.25;
+    renderer.toneMappingExposure = 0.75;
+    wMat.color.set('#c8b8a0');
+    const bgG2 = bgX.createLinearGradient(0,0,0,512);
+    bgG2.addColorStop(0,'#5a4a3a'); bgG2.addColorStop(0.5,'#7a6a5a'); bgG2.addColorStop(1,'#4a3a2a');
+    bgX.fillStyle = bgG2; bgX.fillRect(0,0,2,512);
+    scene.background = new THREE.CanvasTexture(bgC);
+  } else if (preset === 'night') {
+    hemiLight.intensity = 0.08; hemiLight.color.set(0x8090c0); hemiLight.groundColor.set(0x303040);
+    sun.intensity = 0.15; sun.color.set(0x8090c0);
+    fl.intensity = 0.05; rl.intensity = 0.03;
+    scene.environmentIntensity = 0.1;
+    renderer.toneMappingExposure = 0.5;
+    wMat.color.set('#8a8880');
+    const bgG2 = bgX.createLinearGradient(0,0,0,512);
+    bgG2.addColorStop(0,'#1a1a2a'); bgG2.addColorStop(0.5,'#2a2a3a'); bgG2.addColorStop(1,'#151520');
+    bgX.fillStyle = bgG2; bgX.fillRect(0,0,2,512);
+    scene.background = new THREE.CanvasTexture(bgC);
+  }
+  wMat.needsUpdate = true;
+}
 
 // Zemin kaplama render & events
 function renderFloor() {
@@ -2263,6 +2487,7 @@ function updatePrice() {
   let totalArea = areaM2;
   if (tezgahTipi === 'l' || tezgahTipi === 'u') totalArea += (armB * D) / 10000;
   if (tezgahTipi === 'u') totalArea += (armC * D) / 10000;
+  if (tezgahTipi === 'ada') totalArea += (islandW * islandD) / 10000;
 
   const matPrices = PRICE_TABLE[activeMat] || PRICE_TABLE.granit;
   const basePrice = matPrices[activeBrand] || matPrices._default;
@@ -2287,11 +2512,14 @@ function updateLiveSummary() {
   let totalArea = (W * D) / 10000;
   if (tezgahTipi === 'l' || tezgahTipi === 'u') totalArea += (armB * D) / 10000;
   if (tezgahTipi === 'u') totalArea += (armC * D) / 10000;
+  if (tezgahTipi === 'ada') totalArea += (islandW * islandD) / 10000;
 
+  const tipLabel = tezgahTipi === 'duz' ? 'Düz' : tezgahTipi === 'ada' ? 'Ada' : tezgahTipi.toUpperCase();
   const el = document.getElementById('liveSummary');
   el.innerHTML = `
     <div class="sum-section">ÖLÇÜLER</div>
-    <div class="sum-row"><span class="sum-label">Tip</span><span class="sum-val">${tezgahTipi === 'duz' ? 'Düz' : tezgahTipi.toUpperCase()} — ${W}×${D} cm</span></div>
+    <div class="sum-row"><span class="sum-label">Tip</span><span class="sum-val">${tipLabel} — ${W}×${D} cm</span></div>
+    ${tezgahTipi === 'ada' ? `<div class="sum-row"><span class="sum-label">Ada</span><span class="sum-val">${islandW}×${islandD} cm</span></div>` : ''}
     <div class="sum-row"><span class="sum-label">Kalınlık</span><span class="sum-val">${counterThickness} cm</span></div>
     <div class="sum-row"><span class="sum-label">Kenar</span><span class="sum-val">${edgeNames[edgeProfile]}</span></div>
     <div class="sum-row"><span class="sum-label">Alan</span><span class="sum-val">${totalArea.toFixed(2)} m²</span></div>
@@ -2401,6 +2629,421 @@ if (!initDone) {
   }
 }
 updateScene();
+
+// ==================================================================
+// === MÜŞTERİ FORMU + PDF + İMALATÇI GÖNDERİMİ =====================
+// ==================================================================
+
+// Renderer'ı global'e ver (PDF için canvas.toDataURL lazım)
+window.__renderer = renderer;
+
+// --- Manufacturer data ---
+let mfrData = [];
+let mfrLoaded = false;
+
+async function loadManufacturers() {
+  if (mfrLoaded) return;
+  try {
+    const r = await fetch('data/manufacturers.json');
+    const j = await r.json();
+    mfrData = j.manufacturers || [];
+    mfrLoaded = true;
+    populateCityDropdown();
+  } catch (e) { console.warn('Manufacturer data load failed:', e); }
+}
+
+function populateCityDropdown() {
+  const sel = document.getElementById('cfCity');
+  if (!sel || !mfrData.length) return;
+  const cities = [...new Set(mfrData.map(m => m.sehir).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'tr'));
+  sel.innerHTML = '<option value="">İl Seçin</option>' + cities.map(c => `<option value="${c}">${c}</option>`).join('');
+  sel.addEventListener('change', renderMatchedManufacturers);
+}
+
+loadManufacturers();
+
+// --- Customer form ---
+const customerInfo = { name: '', phone: '', email: '', city: '', note: '' };
+
+function readCustomerForm() {
+  customerInfo.name  = (document.getElementById('cfName')?.value || '').trim();
+  customerInfo.phone = (document.getElementById('cfPhone')?.value || '').trim();
+  customerInfo.email = (document.getElementById('cfEmail')?.value || '').trim();
+  customerInfo.city  = (document.getElementById('cfCity')?.value || '').trim();
+  customerInfo.note  = (document.getElementById('cfNote')?.value || '').trim();
+  return customerInfo;
+}
+
+function validateCustomerForm() {
+  readCustomerForm();
+  const errors = [];
+  if (!customerInfo.name) errors.push('Ad Soyad gerekli');
+  const phoneClean = customerInfo.phone.replace(/\s/g, '');
+  if (!/^0?5\d{9}$/.test(phoneClean)) errors.push('Geçerli bir telefon girin (05XX XXX XX XX)');
+  if (customerInfo.email && !/^\S+@\S+\.\S+$/.test(customerInfo.email)) errors.push('Geçerli bir e-posta girin');
+  return { ok: errors.length === 0, errors };
+}
+
+// --- Manufacturer matching & rendering ---
+function renderMatchedManufacturers() {
+  readCustomerForm();
+  const section = document.getElementById('mfrSection');
+  const cards = document.getElementById('mfrCards');
+  if (!section || !cards) return;
+
+  if (!customerInfo.city || !mfrData.length) {
+    section.style.display = 'none';
+    return;
+  }
+
+  const matTitle = activeMat.charAt(0).toUpperCase() + activeMat.slice(1);
+  const matches = mfrData
+    .filter(m => m.sehir === customerInfo.city)
+    .filter(m => !m.uzmanlik || m.uzmanlik.length === 0 || m.uzmanlik.some(u => u.toLowerCase() === matTitle.toLowerCase()))
+    .slice(0, 5);
+
+  if (!matches.length) {
+    const anyCity = mfrData.filter(m => m.sehir === customerInfo.city).slice(0, 5);
+    if (!anyCity.length) {
+      section.style.display = 'block';
+      cards.innerHTML = `<div style="padding:12px;color:#888;font-size:0.75rem;text-align:center">${customerInfo.city} için imalatçı bulunamadı.</div>`;
+      return;
+    }
+    matches.push(...anyCity);
+  }
+
+  section.style.display = 'block';
+  cards.innerHTML = matches.map((m, i) => {
+    const phoneDigits = (m.tel || '').replace(/\D/g, '');
+    const waPhone = phoneDigits.startsWith('0') ? '9' + phoneDigits : (phoneDigits.startsWith('9') ? phoneDigits : '90' + phoneDigits);
+    const tagsHtml = (m.uzmanlik || []).slice(0, 3).map(t => `<span class="mfr-tag">${t}</span>`).join('');
+    return `
+      <div class="mfr-card">
+        <div class="mfr-info">
+          <div class="mfr-name">${m.ad}</div>
+          <div class="mfr-city">${m.sehir}${m.ilce ? ' · ' + m.ilce : ''}</div>
+          <div class="mfr-tags">${tagsHtml}</div>
+        </div>
+        <div class="mfr-actions">
+          <button class="mfr-btn call" data-tel="${phoneDigits}">Ara</button>
+          <button class="mfr-btn whatsapp" data-wa="${waPhone}">WhatsApp</button>
+        </div>
+      </div>
+    `;
+  }).join('') + `
+    <div class="action-btns" style="margin-top:10px">
+      <button class="action-btn wa-btn" id="btnSendAll">📨 Tümüne WhatsApp Gönder</button>
+    </div>
+  `;
+
+  // Wire card buttons
+  cards.querySelectorAll('.mfr-btn.call').forEach(b => {
+    b.onclick = () => { const t = b.dataset.tel; if (t) window.location.href = 'tel:' + t; };
+  });
+  cards.querySelectorAll('.mfr-btn.whatsapp').forEach(b => {
+    b.onclick = () => {
+      const wa = b.dataset.wa; if (!wa) return;
+      const msg = buildQuoteText();
+      window.open(`https://wa.me/${wa}?text=${encodeURIComponent(msg)}`, '_blank');
+    };
+  });
+  const sendAll = document.getElementById('btnSendAll');
+  if (sendAll) sendAll.onclick = () => {
+    const v = validateCustomerForm();
+    if (!v.ok) { alert('Lütfen formu doldurun:\n• ' + v.errors.join('\n• ')); return; }
+    const msg = buildQuoteText();
+    const top3 = Array.from(cards.querySelectorAll('.mfr-btn.whatsapp')).slice(0, 3);
+    top3.forEach((b, i) => setTimeout(() => {
+      window.open(`https://wa.me/${b.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank');
+    }, i * 500));
+  };
+}
+
+// --- Quote text builder (WhatsApp + PDF shared) ---
+function buildQuoteText() {
+  const [brandKey, modelIdx] = selectedModelKey.split(':');
+  const models = allBrandModels[brandKey] || [];
+  const selModel = models[+modelIdx];
+  const brandLabel = BRANDS[brandKey]?.label || brandKey;
+  const edgeNames = { cit_pah:'Çıt Pah', alin_cila:'Alın Cila', yarim_balik:'Yarım Balık Sırtı', profilli:'Profilli', duz:'Düz', gonye_kesim:'Gönye Kesim 4cm' };
+  const tipLabel = tezgahTipi === 'duz' ? 'Düz' : tezgahTipi === 'ada' ? 'Ada' : tezgahTipi.toUpperCase();
+  const priceStr = document.getElementById('priceVal')?.textContent || '';
+  const areaStr = document.getElementById('priceArea')?.textContent || '';
+
+  let t = `🏠 *TezgahBul Teklif Talebi*\n\n`;
+  if (customerInfo.name) t += `👤 ${customerInfo.name}\n`;
+  if (customerInfo.phone) t += `📞 ${customerInfo.phone}\n`;
+  if (customerInfo.city) t += `📍 ${customerInfo.city}\n`;
+  t += `\n*TEZGAH*\n`;
+  t += `• Tip: ${tipLabel} (${W}×${D} cm)\n`;
+  if (tezgahTipi === 'l' || tezgahTipi === 'u') t += `• B kol: ${armB} cm\n`;
+  if (tezgahTipi === 'u') t += `• C kol: ${armC} cm\n`;
+  if (tezgahTipi === 'ada') t += `• Ada: ${islandW}×${islandD} cm\n`;
+  t += `• Kalınlık: ${counterThickness} cm\n`;
+  t += `• Kenar: ${edgeNames[edgeProfile] || edgeProfile}\n`;
+  t += `• Alan: ${areaStr} m²\n`;
+  t += `\n*MALZEME*\n`;
+  t += `• Tip: ${activeMat.charAt(0).toUpperCase() + activeMat.slice(1)}\n`;
+  t += `• Marka: ${brandLabel}\n`;
+  t += `• Model: ${selModel ? selModel.name : '—'}\n`;
+  t += `\n*EKİPMAN*\n`;
+  if (showOcak) t += `• Ocak (${ocakWidth} cm)\n`;
+  if (showEvye) t += `• Evye\n`;
+  if (showDavlumbaz) t += `• Davlumbaz\n`;
+  if (showFirin) t += `• Ankastre Fırın\n`;
+  if (showDishw) t += `• Bulaşık Makinesi\n`;
+  t += `\n💰 *Tahmini Fiyat: ${priceStr}*\n`;
+  if (customerInfo.note) t += `\n📝 Not: ${customerInfo.note}\n`;
+  t += `\n— tezgahbul.com`;
+  return t;
+}
+
+// --- PDF Generation ---
+async function generateQuotePDF() {
+  const v = validateCustomerForm();
+  if (!v.ok) { alert('Lütfen formu doldurun:\n• ' + v.errors.join('\n• ')); return; }
+
+  if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+    alert('PDF kütüphaneleri yükleniyor, bir saniye sonra tekrar deneyin.');
+    return;
+  }
+
+  const btn = document.getElementById('btnPDF');
+  const oldText = btn?.textContent;
+  if (btn) { btn.textContent = '⏳ Oluşturuluyor...'; btn.disabled = true; }
+
+  try {
+    // 3D render görüntüsünü yakala
+    renderer.render(scene, camera);
+    const canvasImg = renderer.domElement.toDataURL('image/jpeg', 0.92);
+
+    const [brandKey, modelIdx] = selectedModelKey.split(':');
+    const models = allBrandModels[brandKey] || [];
+    const selModel = models[+modelIdx];
+    const brandLabel = BRANDS[brandKey]?.label || brandKey;
+    const edgeNames = { cit_pah:'Çıt Pah', alin_cila:'Alın Cila', yarim_balik:'Yarım Balık Sırtı', profilli:'Profilli', duz:'Düz', gonye_kesim:'Gönye Kesim 4cm' };
+    const tipLabel = tezgahTipi === 'duz' ? 'Düz' : tezgahTipi === 'ada' ? 'Ada' : tezgahTipi.toUpperCase();
+    const priceStr = document.getElementById('priceVal')?.textContent || '';
+    const areaStr = document.getElementById('priceArea')?.textContent || '';
+    const quoteNo = '#TB-' + Date.now().toString(36).toUpperCase();
+    const dateStr = new Date().toLocaleDateString('tr-TR');
+
+    const pdfDiv = document.createElement('div');
+    pdfDiv.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;min-height:1123px;background:#fff;padding:40px;font-family:"DM Sans",Arial,sans-serif;color:#1a1a1a';
+    pdfDiv.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #005b6c;padding-bottom:16px;margin-bottom:22px">
+        <div>
+          <div style="font-size:28px;font-weight:800;color:#005b6c;letter-spacing:-0.5px">TezgahBul</div>
+          <div style="font-size:11px;color:#666;margin-top:2px">Mutfak Tezgahı Teklifi</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:13px;font-weight:700;color:#f47b20">${quoteNo}</div>
+          <div style="font-size:11px;color:#888;margin-top:2px">${dateStr}</div>
+        </div>
+      </div>
+
+      <div style="background:#fafafa;border-radius:8px;padding:14px;margin-bottom:18px">
+        <div style="font-size:11px;font-weight:700;color:#005b6c;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Müşteri Bilgileri</div>
+        <div style="font-size:13px;line-height:1.6">
+          <b>${customerInfo.name}</b> · ${customerInfo.phone}${customerInfo.email ? ' · ' + customerInfo.email : ''}<br>
+          ${customerInfo.city || ''}
+          ${customerInfo.note ? '<div style="margin-top:6px;color:#666;font-style:italic">Not: ' + customerInfo.note + '</div>' : ''}
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:18px">
+        <img src="${canvasImg}" style="max-width:100%;border-radius:8px;border:1px solid #e0e0e0">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#005b6c;text-transform:uppercase;margin-bottom:8px">Tezgah Özellikleri</div>
+          <table style="width:100%;font-size:12px;border-collapse:collapse">
+            <tr><td style="padding:4px 0;color:#666">Tip</td><td style="text-align:right;font-weight:600">${tipLabel}</td></tr>
+            <tr><td style="padding:4px 0;color:#666">Ölçü (A)</td><td style="text-align:right;font-weight:600">${W}×${D} cm</td></tr>
+            ${(tezgahTipi === 'l' || tezgahTipi === 'u') ? `<tr><td style="padding:4px 0;color:#666">B kol</td><td style="text-align:right;font-weight:600">${armB} cm</td></tr>` : ''}
+            ${tezgahTipi === 'u' ? `<tr><td style="padding:4px 0;color:#666">C kol</td><td style="text-align:right;font-weight:600">${armC} cm</td></tr>` : ''}
+            ${tezgahTipi === 'ada' ? `<tr><td style="padding:4px 0;color:#666">Ada</td><td style="text-align:right;font-weight:600">${islandW}×${islandD} cm</td></tr>` : ''}
+            <tr><td style="padding:4px 0;color:#666">Kalınlık</td><td style="text-align:right;font-weight:600">${counterThickness} cm</td></tr>
+            <tr><td style="padding:4px 0;color:#666">Kenar</td><td style="text-align:right;font-weight:600">${edgeNames[edgeProfile] || edgeProfile}</td></tr>
+            <tr><td style="padding:4px 0;color:#666">Toplam Alan</td><td style="text-align:right;font-weight:600">${areaStr} m²</td></tr>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#005b6c;text-transform:uppercase;margin-bottom:8px">Malzeme</div>
+          <table style="width:100%;font-size:12px;border-collapse:collapse">
+            <tr><td style="padding:4px 0;color:#666">Malzeme</td><td style="text-align:right;font-weight:600">${activeMat.charAt(0).toUpperCase() + activeMat.slice(1)}</td></tr>
+            <tr><td style="padding:4px 0;color:#666">Marka</td><td style="text-align:right;font-weight:600">${brandLabel}</td></tr>
+            <tr><td style="padding:4px 0;color:#666">Model</td><td style="text-align:right;font-weight:600">${selModel ? selModel.name : '—'}</td></tr>
+          </table>
+          <div style="font-size:11px;font-weight:700;color:#005b6c;text-transform:uppercase;margin:12px 0 8px">Dolap & Ekipman</div>
+          <table style="width:100%;font-size:12px;border-collapse:collapse">
+            <tr><td style="padding:4px 0;color:#666">Stil</td><td style="text-align:right;font-weight:600">${CAB_STYLES[cabStyleIdx].name}</td></tr>
+            <tr><td style="padding:4px 0;color:#666">Renk</td><td style="text-align:right;font-weight:600">${CAB_COLORS[cabColorIdx].name}</td></tr>
+            ${showOcak ? `<tr><td style="padding:4px 0;color:#666">Ocak</td><td style="text-align:right;font-weight:600">${ocakWidth} cm</td></tr>` : ''}
+            ${showEvye ? `<tr><td style="padding:4px 0;color:#666">Evye</td><td style="text-align:right;font-weight:600">Var</td></tr>` : ''}
+            ${showFirin ? `<tr><td style="padding:4px 0;color:#666">Fırın</td><td style="text-align:right;font-weight:600">Var</td></tr>` : ''}
+            ${showDishw ? `<tr><td style="padding:4px 0;color:#666">Bulaşık</td><td style="text-align:right;font-weight:600">Var</td></tr>` : ''}
+          </table>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#005b6c,#008aa0);color:#fff;border-radius:10px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;margin-bottom:22px">
+        <div>
+          <div style="font-size:11px;opacity:0.9;text-transform:uppercase;letter-spacing:0.5px">Tahmini Fiyat</div>
+          <div style="font-size:11px;opacity:0.8;margin-top:2px">*Kesin fiyat imalatçıdan alınmalıdır</div>
+        </div>
+        <div style="font-size:26px;font-weight:800">${priceStr}</div>
+      </div>
+
+      <div style="border-top:1px solid #e0e0e0;padding-top:14px;font-size:10px;color:#888;text-align:center">
+        Bu teklif TezgahBul 3D Mutfak Tasarımcısı ile oluşturulmuştur. · tezgahbul.com<br>
+        Fiyatlar tahmini olup kesin teklif için imalatçı ile görüşünüz.
+      </div>
+    `;
+    document.body.appendChild(pdfDiv);
+
+    const canvas = await html2canvas(pdfDiv, { scale: 2, useCORS: true, backgroundColor: '#fff' });
+    document.body.removeChild(pdfDiv);
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const imgData = canvas.toDataURL('image/jpeg', 0.92);
+    const pdfW = 210, pdfH = 297;
+    const imgH = (canvas.height * pdfW) / canvas.width;
+    pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, Math.min(imgH, pdfH));
+    pdf.save(`TezgahBul-Teklif-${quoteNo.replace('#','')}.pdf`);
+  } catch (err) {
+    console.error('PDF error:', err);
+    alert('PDF oluşturulamadı: ' + err.message);
+  } finally {
+    if (btn) { btn.textContent = oldText; btn.disabled = false; }
+  }
+}
+
+// --- Share / Copy Link ---
+function shareDesignLink() {
+  const params = new URLSearchParams();
+  params.set('mat', activeMat);
+  params.set('brand', activeBrand);
+  const [bk, idx] = selectedModelKey.split(':');
+  const models = allBrandModels[bk] || [];
+  if (models[+idx]) params.set('model', models[+idx].name);
+  const url = window.location.origin + window.location.pathname + '?' + params.toString();
+  navigator.clipboard.writeText(url).then(() => {
+    const btn = document.getElementById('btnShare');
+    if (btn) {
+      const old = btn.textContent;
+      btn.textContent = '✓ Kopyalandı';
+      setTimeout(() => btn.textContent = old, 1500);
+    }
+  }).catch(() => alert('Link: ' + url));
+}
+
+// --- Wire buttons ---
+document.getElementById('btnPDF')?.addEventListener('click', generateQuotePDF);
+document.getElementById('btnShare')?.addEventListener('click', shareDesignLink);
+
+// ==================================================================
+// === DRAG & DROP EQUIPMENT (ocak / evye) ==========================
+// ==================================================================
+(() => {
+  const canvasEl = renderer.domElement;
+  const sceneWrap = document.querySelector('.scene-wrap');
+  const raycaster = new THREE.Raycaster();
+  const ptr = new THREE.Vector2();
+  let dragType = null;       // 'ocak' | 'evye' | null
+  let dragActive = false;
+  let wasControlsEnabled = true;
+
+  function setPointer(e) {
+    const rect = canvasEl.getBoundingClientRect();
+    ptr.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    ptr.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+  }
+
+  function pickEquipment() {
+    raycaster.setFromCamera(ptr, camera);
+    const targets = [];
+    equipGroup.traverse(o => { if (o.userData?.equipType) targets.push(o); });
+    const hits = raycaster.intersectObjects(targets, false);
+    return hits[0]?.object?.userData?.equipType || null;
+  }
+
+  function projectToCounter() {
+    // A-arm only (düz/L/U ana kolunun üstünde hareket)
+    const s = 0.01, wS = W * s;
+    const cabH = 0.85, tH = counterThickness * 0.01;
+    const y = cabH + tH + 0.001;
+    raycaster.setFromCamera(ptr, camera);
+    const plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -y);
+    const hit = new THREE.Vector3();
+    if (!raycaster.ray.intersectPlane(plane, hit)) return null;
+    const startX = -2 + 0.05 + wS / 2;
+    const relX = hit.x - (startX - wS / 2);
+    const pct = Math.max(5, Math.min(95, (relX / wS) * 100));
+    return pct;
+  }
+
+  canvasEl.addEventListener('pointermove', (e) => {
+    setPointer(e);
+    if (dragActive) {
+      const pct = projectToCounter();
+      if (pct != null) {
+        if (dragType === 'ocak') {
+          ocakPos = pct;
+          const vo = document.getElementById('vOcakPos');
+          const so = document.getElementById('sOcakPos');
+          if (so) so.value = pct;
+          if (vo) vo.textContent = (typeof posLabel === 'function' ? posLabel(pct) : Math.round(pct) + '%');
+        } else if (dragType === 'evye') {
+          evyePos = pct;
+          const ve = document.getElementById('vEvyePos');
+          const se = document.getElementById('sEvyePos');
+          if (se) se.value = pct;
+          if (ve) ve.textContent = (typeof posLabel === 'function' ? posLabel(pct) : Math.round(pct) + '%');
+        }
+        updateScene();
+      }
+      e.preventDefault();
+      return;
+    }
+    // Hover state
+    const hit = pickEquipment();
+    sceneWrap?.classList.toggle('drag-hover', !!hit);
+  });
+
+  canvasEl.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    setPointer(e);
+    const hit = pickEquipment();
+    if (!hit) return;
+    dragType = hit;
+    dragActive = true;
+    wasControlsEnabled = controls.enabled;
+    controls.enabled = false;  // disable OrbitControls while dragging
+    sceneWrap?.classList.add('dragging');
+    canvasEl.setPointerCapture?.(e.pointerId);
+    e.preventDefault();
+  });
+
+  function endDrag(e) {
+    if (!dragActive) return;
+    dragActive = false;
+    dragType = null;
+    controls.enabled = wasControlsEnabled;
+    sceneWrap?.classList.remove('dragging');
+    try { canvasEl.releasePointerCapture?.(e.pointerId); } catch {}
+  }
+  canvasEl.addEventListener('pointerup', endDrag);
+  canvasEl.addEventListener('pointercancel', endDrag);
+})();
+
+// Form değiştiğinde eşleşmeleri güncelle
+['cfCity', 'cfName', 'cfPhone', 'cfEmail', 'cfNote'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => { readCustomerForm(); });
+});
 </script>
 </body>
 </html>

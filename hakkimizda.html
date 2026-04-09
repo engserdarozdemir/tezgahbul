@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hakkımızda — TezgahBul</title>
+<meta name="description" content="TezgahBul hakkında: Türkiye'nin mutfak tezgahı karşılaştırma ve teklif platformu. Bize ulaşın.">
+<link rel="canonical" href="https://tezgahbul.com/hakkimizda.html">
+<meta property="og:title" content="Hakkımızda | TezgahBul">
+<meta property="og:description" content="TezgahBul - Türkiye'nin mutfak tezgahı karşılaştırma platformu.">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="navbar.css">
 <style>
@@ -69,6 +77,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
 
 <nav class="navbar">
   <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
+  <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
   <ul class="nav-links">
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>

@@ -53,11 +53,32 @@
   color: var(--white);
 }
 
-@media (max-width: 768px) {
-  .nav-links { gap: 16px; }
-  .nav-links a { font-size: 0.72rem; }
+/* Hamburger toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
 }
 
-@media (max-width: 480px) {
-  .nav-links { gap: 10px; }
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--teal);
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { font-size: 0.85rem; }
 }
