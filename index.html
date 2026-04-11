@@ -18,7 +18,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js" defer></script>
 <style>
 
 /* ===== RESET ===== */
@@ -2130,7 +2130,7 @@ body {
   </a>
 
   <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
-  <ul class="nav-links">
+  <ul class="nav-links" onclick="this.classList.remove('open')"
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
     <li><a href="tasarla.html">Mutfak Tasarla</a></li>
@@ -2217,77 +2217,7 @@ body {
 </section>
 
 
-<!-- ===== ÖNCE / SONRA GALERİ ===== -->
-<section class="gallery-section" id="galeri">
-  <div class="gallery-header">
-    <div class="gallery-eyebrow">Önce / Sonra Galerisi</div>
-    <div class="gallery-title">Gerçek dönüşümler, gerçek mutfaklar</div>
-    <div class="gallery-sub">Müşterilerimizin mutfaklarında yaptığımız tezgah dönüşümlerini inceleyin. Kaydırma çubuğunu sürükleyerek önce ve sonra halini karşılaştırın.</div>
-  </div>
-  <div class="gallery-grid">
-
-    <!-- Proje 1 -->
-    <div class="ba-card">
-      <div class="ba-slider" data-ba="1">
-        <img class="ba-after" src="./Goruntu/galeri/after1.jpg" alt="Sonra - Quartz tezgah">
-        <img class="ba-before" src="./Goruntu/galeri/before1.jpg" alt="Önce - Eski tezgah">
-        <div class="ba-line"></div>
-        <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
-        <span class="ba-label before">Önce</span>
-        <span class="ba-label after">Sonra</span>
-      </div>
-      <div class="ba-card-info">
-        <div class="ba-card-title">Ankara — Quartz Tezgah Yenileme</div>
-        <div class="ba-card-meta">
-          <span>📐 L Tipi</span>
-          <span>🏷️ Çimstone</span>
-          <span>📏 3.2 m²</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Proje 2 -->
-    <div class="ba-card">
-      <div class="ba-slider" data-ba="2">
-        <img class="ba-after" src="./Goruntu/galeri/after2.jpg" alt="Sonra - Dekton tezgah">
-        <img class="ba-before" src="./Goruntu/galeri/before2.jpg" alt="Önce - Eski tezgah">
-        <div class="ba-line"></div>
-        <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
-        <span class="ba-label before">Önce</span>
-        <span class="ba-label after">Sonra</span>
-      </div>
-      <div class="ba-card-info">
-        <div class="ba-card-title">İstanbul — Dekton Porselen Tezgah</div>
-        <div class="ba-card-meta">
-          <span>📐 U Tipi</span>
-          <span>🏷️ Dekton Stonika</span>
-          <span>📏 4.8 m²</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Proje 3 -->
-    <div class="ba-card">
-      <div class="ba-slider" data-ba="3">
-        <img class="ba-after" src="./Goruntu/galeri/after3.jpg" alt="Sonra - Granit tezgah">
-        <img class="ba-before" src="./Goruntu/galeri/before3.jpg" alt="Önce - Eski tezgah">
-        <div class="ba-line"></div>
-        <div class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/></svg></div>
-        <span class="ba-label before">Önce</span>
-        <span class="ba-label after">Sonra</span>
-      </div>
-      <div class="ba-card-info">
-        <div class="ba-card-title">İzmir — Granit Ada Tezgah</div>
-        <div class="ba-card-meta">
-          <span>📐 Ada</span>
-          <span>🏷️ Doğal Granit</span>
-          <span>📏 2.1 m²</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
+<!-- Önce/Sonra galerisi kaldırıldı -->
 
 <!-- ===== SORULAR ===== -->
 <section id="sorular">

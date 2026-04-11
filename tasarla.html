@@ -279,7 +279,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;heigh
 <nav class="navbar">
   <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
   <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
-  <ul class="nav-links">
+  <ul class="nav-links" onclick="this.classList.remove('open')">
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
     <li><a href="tasarla.html" class="active">Mutfak Tasarla</a></li>
@@ -703,7 +703,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 const BRANDS = {
   dekton:    { type:'porselen', label:'Dekton',    dataUrl:'/data/dekton-models.json',    thumbBase:'/Plakalar/Porselen/Dekton/',      slabBase:'/Plakalar/Porselen/Dekton/slab/',  thumbExt:'.jpg', slabExt:'.jpg', hasCollections:true },
   neolith:   { type:'porselen', label:'Neolith',   dataUrl:'/data/neolith-models.json',   thumbBase:'/Plakalar/Porselen/Neolith/',     slabBase:'/Plakalar/Porselen/Neolith/slab/', thumbExt:'.jpg', slabExt:'.jpg', hasCollections:false },
-  infinity:  { type:'porselen', label:'Infinity',  dataUrl:'/data/infinity-models.json',  thumbBase:'/Plakalar/Porselen/Infinity/',    slabBase:null,                               thumbExt:'.webp',slabExt:null,   hasCollections:false },
+  infinity:  { type:'porselen', label:'Infinity',  dataUrl:'/data/infinity-models.json',  thumbBase:'/Plakalar/Porselen/Infinity/',    slabBase:'/Plakalar/Porselen/Infinity/slab/',     thumbExt:'.webp',slabExt:'.jpg', slabSuffix:'-slab', hasCollections:false },
   silestone: { type:'quartz',   label:'Silestone',  dataUrl:'/data/silestone-models.json', thumbBase:'/Plakalar/Quartz/Silestone/',     slabBase:'/Plakalar/Quartz/Silestone/',      thumbExt:'.jpg', slabExt:'.jpg', hasCollections:false },
 };
 
@@ -726,7 +726,8 @@ async function loadAllBrands() {
         const slug = m.slug || m.name.toLowerCase();
         const finish = m.finish || (m.finishes ? m.finishes[0] : '');
         const thumbUrl = m.thumb_url || (cfg.thumbBase + slug + '-thumb' + cfg.thumbExt);
-        const slabUrl = m.slab_url || (cfg.slabBase ? cfg.slabBase + slug + '-slab' + cfg.slabExt : null);
+        const slabSuffix = cfg.slabSuffix || '-slab';
+        const slabUrl = m.slab_url || (cfg.slabBase ? cfg.slabBase + slug + slabSuffix + cfg.slabExt : null);
         return {
           name: m.name,
           slug,

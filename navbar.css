@@ -69,16 +69,19 @@
   .nav-toggle { display: block; }
   .nav-links {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 68px;
     left: 0;
     right: 0;
-    background: var(--teal);
+    bottom: 0;
+    z-index: 200;
+    background: rgba(0, 42, 50, 0.97);
     flex-direction: column;
-    padding: 16px;
-    gap: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 32px 24px;
+    gap: 20px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 0.85rem; }
+  .nav-links a { font-size: 1.1rem; color: rgba(255,255,255,0.85); }
 }

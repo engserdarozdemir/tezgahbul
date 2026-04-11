@@ -28,19 +28,45 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
 .page-title { font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
 .page-sub { font-size: 0.95rem; color: rgba(255,255,255,0.6); max-width: 500px; margin: 0 auto; }
 
-/* Filter bar */
-.filter-bar {
-  display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-  padding: 24px var(--gap) 8px;
-  max-width: 900px; margin: 0 auto;
+/* Turkey Map */
+.map-wrap {
+  max-width: 900px; margin: 0 auto; padding: 24px var(--gap) 8px;
 }
-.filter-chip {
-  padding: 6px 16px; border-radius: 20px; border: 1.5px solid rgba(0,91,108,0.2);
+.map-container {
+  background: #fff; border: 2px solid #1a1a1a; border-radius: 14px;
+  padding: 20px; position: relative; overflow: visible;
+}
+.map-container svg {
+  width: 100%; height: auto; display: block;
+}
+.map-container svg path {
+  fill: #fff; stroke: #1a1a1a; stroke-width: 0.5;
+  cursor: pointer; transition: fill 0.15s;
+}
+.map-container svg path:hover {
+  fill: #e0f2f4;
+}
+.map-container svg path.selected {
+  fill: #e53e3e; stroke: #b91c1c; stroke-width: 1;
+}
+.map-tooltip {
+  position: fixed; pointer-events: none;
+  background: #1a1a1a; color: #fff; font-size: 0.8rem; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px; white-space: nowrap;
+  opacity: 0; transition: opacity 0.12s; z-index: 100;
+  transform: translate(-50%, -120%);
+}
+.map-reset {
+  display: inline-block; margin-top: 12px; padding: 6px 18px;
+  border-radius: 20px; border: 1.5px solid rgba(0,91,108,0.2);
   background: white; color: var(--teal); font-size: 0.78rem; font-weight: 600;
   cursor: pointer; transition: all 0.2s;
 }
-.filter-chip:hover { border-color: var(--teal); }
-.filter-chip.active { background: var(--teal); color: white; border-color: var(--teal); }
+.map-reset:hover { background: var(--teal); color: white; }
+.map-selected-label {
+  display: inline-block; margin-left: 8px; font-size: 0.85rem;
+  font-weight: 700; color: var(--teal);
+}
 
 /* Manufacturer grid */
 .mfr-container { max-width: 900px; margin: 0 auto; padding: 24px var(--gap) 64px; }
@@ -97,7 +123,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
 <nav class="navbar">
   <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
   <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
-  <ul class="nav-links">
+  <ul class="nav-links" onclick="this.classList.remove('open')"
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html" class="active">İmalatçılar</a></li>
     <li><a href="tasarla.html">Mutfak Tasarla</a></li>
@@ -112,8 +138,15 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
   <p class="page-sub">Türkiye genelindeki onaylı imalatçılarımızı keşfedin. Şehre göre filtreleyin.</p>
 </div>
 
-<div class="filter-bar" id="filterBar">
-  <button class="filter-chip active" onclick="filterMfrs('all', this)">Tümü</button>
+<div class="map-wrap">
+  <div class="map-container" id="mapContainer">
+    <div class="map-tooltip" id="mapTooltip"></div>
+    <!-- SVG harita JS ile yüklenecek -->
+  </div>
+  <div style="text-align:center">
+    <button class="map-reset" id="mapReset">Tümünü Göster</button>
+    <span class="map-selected-label" id="selectedLabel"></span>
+  </div>
 </div>
 
 <div class="mfr-container">
@@ -129,42 +162,108 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
 
 <script>
 let mfrData = [];
+let selectedCity = 'all';
 
-async function loadManufacturers() {
-  try {
-    const res = await fetch('./data/manufacturers.json');
-    const json = await res.json();
-    mfrData = json.manufacturers || [];
-    buildFilters();
-    renderMfrs('all');
-  } catch (e) {
-    document.getElementById('mfrGrid').innerHTML = '<div class="mfr-empty">İmalatçı verileri yüklenemedi.</div>';
+async function init() {
+  // Haritayı ve verileri paralel yükle
+  const [svgRes, mfrRes] = await Promise.all([
+    fetch('./data/turkey-provinces.svg').then(r => r.text()),
+    fetch('./data/manufacturers.json').then(r => r.json())
+  ]).catch(() => [null, null]);
+
+  if (mfrRes) {
+    mfrData = mfrRes.manufacturers || [];
   }
+
+  // SVG haritayı DOM'a ekle
+  const container = document.getElementById('mapContainer');
+  const tooltip = document.getElementById('mapTooltip');
+  if (svgRes) {
+    // SVG'yi tooltip'ten sonra ekle
+    const temp = document.createElement('div');
+    temp.innerHTML = svgRes;
+    const svg = temp.querySelector('svg');
+    if (svg) {
+      svg.removeAttribute('width');
+      svg.removeAttribute('height');
+      container.appendChild(svg);
+      setupMap(svg, tooltip);
+    }
+  }
+
+  renderMfrs('all');
 }
 
-function buildFilters() {
-  const cities = [...new Set(mfrData.map(m => m.sehir))].sort((a, b) => a.localeCompare(b, 'tr'));
-  const bar = document.getElementById('filterBar');
-  cities.forEach(city => {
-    const btn = document.createElement('button');
-    btn.className = 'filter-chip';
-    btn.textContent = city;
-    btn.onclick = function() { filterMfrs(city, this); };
-    bar.appendChild(btn);
+function setupMap(svg, tooltip) {
+  const paths = svg.querySelectorAll('path[title]');
+
+  // İmalatçısı olan şehirleri belirle
+  const citiesWithMfr = new Set(mfrData.map(m => m.sehir));
+
+  paths.forEach(path => {
+    const cityName = path.getAttribute('title');
+
+    // Hover: tooltip göster
+    path.addEventListener('mouseenter', (e) => {
+      const count = mfrData.filter(m => m.sehir === cityName).length;
+      tooltip.textContent = cityName + (count ? ` (${count} imalatçı)` : '');
+      tooltip.style.opacity = '1';
+    });
+
+    path.addEventListener('mousemove', (e) => {
+      tooltip.style.left = e.clientX + 'px';
+      tooltip.style.top = e.clientY + 'px';
+    });
+
+    path.addEventListener('mouseleave', () => {
+      tooltip.style.opacity = '0';
+    });
+
+    // Click: şehir seç
+    path.addEventListener('click', () => {
+      selectCity(cityName);
+    });
+
+    // İmalatçısı olmayan şehirleri biraz soluk göster
+    if (!citiesWithMfr.has(cityName)) {
+      path.style.fill = '#f0f0f0';
+    }
   });
 }
 
-function filterMfrs(city, btn) {
-  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
+function selectCity(city) {
+  selectedCity = city;
+  const svg = document.querySelector('#mapContainer svg');
+  if (svg) {
+    svg.querySelectorAll('path.selected').forEach(p => p.classList.remove('selected'));
+    const target = svg.querySelector(`path[title="${city}"]`);
+    if (target) {
+      target.classList.add('selected');
+      // Mfrlar bölümüne scroll
+      document.getElementById('mfrGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+  document.getElementById('selectedLabel').textContent = city;
   renderMfrs(city);
 }
+
+function resetSelection() {
+  selectedCity = 'all';
+  const svg = document.querySelector('#mapContainer svg');
+  if (svg) {
+    svg.querySelectorAll('path.selected').forEach(p => p.classList.remove('selected'));
+  }
+  document.getElementById('selectedLabel').textContent = '';
+  renderMfrs('all');
+}
+
+document.getElementById('mapReset').addEventListener('click', resetSelection);
 
 function renderMfrs(city) {
   const grid = document.getElementById('mfrGrid');
   const list = city === 'all' ? mfrData : mfrData.filter(m => m.sehir === city);
   if (!list.length) {
-    grid.innerHTML = '<div class="mfr-empty">Bu şehirde kayıtlı imalatçı bulunmuyor.</div>';
+    grid.innerHTML = `<div class="mfr-empty">${city === 'all' ? 'İmalatçı verileri yüklenemedi.' : city + ' için kayıtlı imalatçı bulunmuyor.'}</div>`;
     return;
   }
   grid.innerHTML = list.map(m => {
@@ -187,7 +286,7 @@ function renderMfrs(city) {
   }).join('');
 }
 
-loadManufacturers();
+init();
 </script>
 </body>
 </html>

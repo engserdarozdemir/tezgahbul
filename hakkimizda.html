@@ -78,7 +78,7 @@ body { font-family: 'DM Sans', sans-serif; background: #f7fafa; color: #1a1a1a; 
 <nav class="navbar">
   <a href="index.html" class="nav-logo">Tezgah<span>Bul</span></a>
   <button class="nav-toggle" onclick="this.parentElement.querySelector('.nav-links').classList.toggle('open')" aria-label="Menü">☰</button>
-  <ul class="nav-links">
+  <ul class="nav-links" onclick="this.classList.remove('open')"
     <li><a href="rehber.html">Rehber</a></li>
     <li><a href="imalatcilar.html">İmalatçılar</a></li>
     <li><a href="tasarla.html">Mutfak Tasarla</a></li>
